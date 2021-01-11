@@ -1,0 +1,64 @@
+@import './Varablies.scss';
+
+$language-taxt-width: 98px;
+
+.sidebar{
+    position: absolute;
+    right: 0;
+    width: $sidebar-width;
+    height: 100%;
+    border: 1px solid #B9B9B9;
+    z-index: 1;
+}
+
+.menuIconsWrapper{
+    height: $sidebar-width;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuIcons{
+    cursor: pointer;
+}
+
+.languageBlock{
+    position: absolute;
+    right: 0;
+    top: $sidebar-width;
+    width: 149px;
+    height: $sidebar-width;
+    border-bottom: 1px solid #B9B9B9;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .text{
+        width: $language-taxt-width;
+        font: normal normal 300 16px/19px "Work Sans Light";
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        margin-bottom: 17px;
+        margin-left: 0;
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+    .languages{
+        display: flex;
+        width: $language-taxt-width;
+        justify-content: space-between;
+        font: normal normal 300 16px/19px "Work Sans Light";
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        .active{
+            font: normal normal 300 16px/19px "Work Sans Black";
+            letter-spacing: 0px;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+        .language{
+            cursor: pointer;
+        }
+    }
+}

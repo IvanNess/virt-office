@@ -1,0 +1,65 @@
+$block-width: 323px;
+$block-height: 323px;
+
+
+
+@mixin block($width, $height) {
+    width: $width;
+    height: $height;
+    border: 1px solid #CD0000;
+    cursor: pointer;    
+    background-color: white;
+}
+
+.fullBlock{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.block{
+    @include block(323px, 323px);
+    border: 1px solid #CD0000;
+}
+
+.blockNone{
+    @include block(323px, 323px);
+    border: 1px solid #B9B9B9;
+}
+
+.blockLarge{
+    @include block(692px, 262px);
+    margin-right: 16px;
+}
+
+.blockLargeNone{
+    @include block(692px, 262px);
+    border: 1px solid #B9B9B9;
+    margin-right: 16px;
+}
+
+.blockMedium{
+    @include block(436px, 266px);
+    margin-right: 16px;
+}
+
+.blockMediumNone{
+    @include block(436px, 266px);
+    border: 1px solid #B9B9B9;
+    margin-right: 16px;
+}
+
+.mainWhyBlock{
+    width: $block-width;
+    height: $block-height;
+    padding: 30px 29px 0 29px;
+    font: normal normal bold 16px/24px "Work Sans Bold";
+    letter-spacing: 0.8px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    background: #CD0000 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+}
+

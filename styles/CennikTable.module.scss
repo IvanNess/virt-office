@@ -1,0 +1,95 @@
+@import './Varablies.scss';
+
+$column-heght: 90px;
+
+@mixin signWrapper {
+    width: $column-heght;
+    height: $column-heght;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: $border;
+    border-left: $border;    
+}
+
+@mixin name {
+    display: flex;
+    align-items: center;
+    font: normal normal 24px/28px "Work Sans Medium";
+    letter-spacing: 0px;
+    color: #411141; 
+    border-bottom: $border;
+    height: $column-heght;
+}
+
+.cennikTable{
+    padding-right: $sidebar-width;
+    .titles{
+        display: flex;
+        justify-content: flex-end;
+        .title{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-90deg) translate(-5px, 0);
+            width: $column-heght;
+            height: $column-heght;
+            font: normal normal 300 24px/28px "Work Sans Light";
+            margin: 0;
+            letter-spacing: 0px;
+            color: #411141;
+        }
+    }
+    .spaces{
+        display: flex;
+        .left{
+            display: flex;
+            margin-left: $main-margin-left;
+            border-bottom: $border;
+            flex: 1;
+        }
+        .right{
+            display: flex;
+            justify-content: flex-end;            
+            .space{
+                width: $column-heght;
+                height: 20px;
+                border-left: $border;
+                border-bottom: $border;
+            }
+        }
+        
+    }
+}
+
+.main{
+    display: flex;
+    justify-content: space-between;
+    .signs{
+        display: flex;
+        flex-direction: column;
+        .row{
+            display: flex;
+            .signWrapper{
+                @include signWrapper();
+            }
+            .signWrapperWOBorder{
+                @include signWrapper();
+                border-left: none;
+            }
+        }
+    }
+    .names{
+        display: flex;
+        flex-direction: column;
+        margin-left: $main-margin-left;
+        flex: 1;
+        .name{
+            @include name();
+        }
+        .nameWMargin{
+            @include name();
+            margin-left: 450px;
+        }
+    }
+}

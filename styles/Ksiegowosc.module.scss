@@ -1,0 +1,113 @@
+@import './Varablies.scss';
+
+.ksiegowosc{
+    position: relative;
+    .headerTitle{
+        margin-top: 150px;
+        width: 595px;
+    }
+    .headerText{
+        padding-bottom: 44px;
+    }
+    .title{
+        width: 484px;
+        margin-bottom: 31px;
+        .boldFont{
+            text-transform: lowercase;
+        }
+    }
+    .smallText{
+        padding-bottom: 31px;
+    }
+    .blocks{
+        display: flex;
+        margin-left: $main-margin-left;
+        margin-right: 50px;
+        justify-content: space-between;
+        margin-bottom: 228px;
+        .blockTitleTwo{
+            padding-top: 33px;   
+        }
+        .blockTextTwo{
+            display: flex;
+        }
+        .afterHyphen{
+            margin-left: 30px;       
+        }
+    }
+    .secondTitle{
+        .title{
+            width: 673px;
+            margin-bottom: 99px;
+            .boldFont{
+                text-transform: none;
+            } 
+        } 
+    }
+    .thirdTitle{
+        .title{
+            width: 761px;
+            margin-bottom: 75.5px;
+            .boldFont{
+                text-transform: none;
+            } 
+        } 
+    }
+    .records{
+        width: 1130px;
+        display: flex;
+        justify-content: space-between;
+        margin-left: $main-margin-left;
+        margin-bottom: 185px;
+        .record{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            .top{
+                font: normal normal 900 56px/66px "Work Sans Black";
+                letter-spacing: 0px;
+                color: #CD0000;
+                text-transform: lowercase;
+            }
+            .bottom{
+                position: absolute;
+                font: normal normal 300 16px/25px "Work Sans Light";
+                letter-spacing: 0px;
+                color: #411141;
+                left: 0;
+                bottom: -30px;
+                width: 300px;
+            }
+        }
+    }
+    .secondBlocks{
+        .blocks{
+            margin-right: 149px;
+            justify-content: space-between;
+            padding-bottom: 228px;   
+            margin-bottom: 0;
+            .wrapper{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding-bottom: 39.5px;
+                height: 323px;
+                .firm{
+                    margin-left: 29px;
+                    font: normal normal 900 16px/19px "Work Sans Black";
+                    letter-spacing: 0px;
+                    color: #411141;
+                }
+            } 
+        }
+        .quotes{
+            position: absolute;
+            left: -45px;
+            top: -40px;
+            font: normal normal 300 205px/241px "Work Sans Light";
+            letter-spacing: 0px;
+            color: #CD0000;
+            transform: matrix(-1, 0, 0, -1, 0, 0);
+        }
+    }
+}

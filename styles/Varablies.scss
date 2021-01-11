@@ -1,0 +1,175 @@
+$main-margin-left: 50px;
+
+$sidebar-width: 150px;
+
+$border: 1px solid #B9B9B9;
+
+@mixin title{
+  margin-top: 117px;
+  margin-bottom: 60px;
+  margin-left: $main-margin-left;
+  width: 1192px;
+  font: normal normal 300 56px/66px 'Work Sans Light';
+  letter-spacing: 0px;
+  color: #411141;
+  text-transform: lowercase;
+  .boldFont{
+    font: normal normal 900 56px/66px 'Work Sans Black';
+    letter-spacing: 0px;
+    color: #411141;
+    text-transform: uppercase;
+  }
+}
+
+@mixin with-background($url, $background-color, $opacity) {
+    background-image: url($url);
+    background-position: center; 
+    background-repeat: repeat;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    &::after{
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: $background-color;
+      opacity: $opacity;
+      width: 100%;
+      height: 100%;
+    }
+}
+
+@mixin blocks($margin-bottom) {
+  margin-left: $main-margin-left;
+  margin-right: $main-margin-left;
+  margin-bottom: $margin-bottom;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.headerTitle{
+    text-align: left;
+    font: normal normal 300 56px/66px "Work Sans Light";
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    text-transform: lowercase;
+    margin-left: $main-margin-left;
+    margin-top: 85px;
+    width: 812px;
+}
+  
+.headerBoldFont{
+    text-align: left;
+    font: normal normal 900 56px/66px "Work Sans Bold";
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+  
+.headerText{
+    margin-left: $main-margin-left;
+    margin-top: 85px;
+    padding-bottom: 17px;
+    width: 1000px;
+    font: normal normal 300 16px/25px "Work Sans Light";
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+}
+  
+.headerForm{
+    margin-left: $main-margin-left;
+    padding-bottom: 101px;
+    .textInput{
+      width: 436px;
+      height: 55px;
+      border: none;
+      padding-left: 28px;
+      &:focus{
+        outline: none;
+      }
+      &::placeholder{
+        font: normal normal medium 16px/19px Work Sans;
+        letter-spacing: 0px;
+        color: #B9B9B9;
+        text-transform: uppercase;
+      }
+    }
+    .buttonInput{
+      width: 226px;
+      height: 55px;
+      border: none;
+      background: #411141 0% 0% no-repeat padding-box;
+      cursor: pointer;
+      font: normal normal bold 16px/19px Work Sans;
+      letter-spacing: 0.8px;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      opacity: 1;
+    }
+}
+  
+.title{
+  @include title();
+}
+
+.text{
+  margin-left: $main-margin-left;
+  padding-bottom: 153px;
+  padding-top: 152px;
+  width: 1115px;
+  font: normal normal 900 60px/71px "Work Sans Black";
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.smallText{
+  margin-left: $main-margin-left;
+  width: 1001px;
+  font: normal normal 300 16px/25px "Work Sans Light";
+  letter-spacing: 0px;
+  color: #411141;
+  padding-bottom: 47px;
+}
+
+.blockTitleTwo{
+  padding: 42px 0 0 29px;
+  font: normal normal 900 24px/28px "Work Sans Black";
+  letter-spacing: 0px;
+  color: #411141;
+  .boldFont{
+    text-transform: uppercase;
+  }
+}
+
+.blockTextTwo{
+  padding: 20.5px 44px 0 29px;
+  font: normal normal 300 16px/19px "Work Sans Light";
+  letter-spacing: 0px;
+  color: #411141;
+}
+
+.hyphen{
+  color: #CD0000;
+  letter-spacing: -3px;
+}
+
+.blocks{
+  @include blocks(225.5px);
+}
+
+.blocksTwo{
+  @include blocks(0);
+  justify-content: flex-start;
+  padding-bottom: 282.5px;
+}
+
+.blockText{
+  padding: 30.5px 29px 0 29px;
+}

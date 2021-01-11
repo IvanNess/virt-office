@@ -1,0 +1,9 @@
+@import '/styles/Varablies.scss';
+
+.billboard{
+    position: relative;
+  }
+  
+.billboardWrapper{
+    @include with-background("/images/business.jpg", #BA0000, 0.8)
+}

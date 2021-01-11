@@ -1,0 +1,41 @@
+@import './Varablies.scss';
+
+.localizacje{
+    position: relative;
+    .headerTitle{
+        width: 1092px;
+        margin-top: 150px;
+    }
+    .headerText{
+        padding-bottom: 44px;
+    }
+    .buttonInput{
+        background: #CD0000 0% 0% no-repeat padding-box;
+    }
+    .title{
+        width: 705px;
+        .boldFont{
+            text-transform: lowercase;
+        }
+    }
+    .regions{
+        margin-left: $main-margin-left;
+        margin-right: 179px;
+        padding-bottom: 141.5px;
+        justify-content: space-between;
+        display: flex;
+        .left, .right{
+            width: 549px;
+            .name{
+                font: normal normal 900 24px/32px "Work Sans Black";
+                letter-spacing: 0px;
+                color: #411141;
+            }
+            .street{
+                font: normal normal 300 20px/32px "Work Sans Light";
+                letter-spacing: 0px;
+                color: #411141;
+            }
+        }
+    }
+}

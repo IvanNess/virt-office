@@ -1,0 +1,88 @@
+@import './Varablies.scss';
+
+$cities-width: 450px;
+
+.menuContent{
+    position: absolute;
+    top: 0;
+    width: 692px;
+    padding: 53px 63px 0 56px;
+    right: $sidebar-width;
+    background: #CD0000 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 15px #411141AF;
+    .iconsWrapper{
+        a{
+            text-decoration: none;
+        }
+    }
+    .options{
+        a{
+            text-decoration: none;
+        }
+        h2{
+            margin: 0;
+            padding-bottom: 27px;
+            font: normal normal 900 35px/42px "Work Sans Bold";
+            letter-spacing: 0px;
+            color: #FFFFFF;
+            &.last{
+                padding-bottom: 17px;
+            }
+        }
+    }
+}
+
+.iconsWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cities{
+    width: $cities-width;
+    padding-bottom: 44.5px;
+    .cityWrapper{
+        width: $cities-width / 3;
+        display: inline-block;
+    }
+    p{
+        font: normal normal 16px/27px "Work Sans Light";
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        margin: 0;
+    }
+}
+
+.logo{
+    font: normal normal 900 29px/34px "Work Sans Black";
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+.icons{
+    width: 125px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.textOne, .textTwo{
+    width: 323px;
+    font: normal normal 300 16px/19px "Work Sans Light";
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+.textOne{
+    padding: 21px 0;
+}
+
+.textTwo{
+    padding-bottom: 96.5px;
+    width: 340px;
+}
+
+.bold{
+    font: normal normal 900 16px/19px "Work Sans Black";
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
