@@ -23,7 +23,7 @@ const Package = ({title, text, id, openedId, setOpenedId}) => {
         <div className={isOpen? styles.open: styles.package} onClick={clicked}>
             <div className={styles.textWrapper}>
                 <div className={styles.title}>{title}</div>
-                <div className={styles.text}>{text}</div>
+                <div className={styles.smallText}>{text}</div>
             </div>
             {isOpen && <div className={styles.buttonWrapper}>
                 <button className={styles.button} onClick={buynow}>Kup teraz</button>
