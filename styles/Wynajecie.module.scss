@@ -1,0 +1,71 @@
+@import './Varablies.scss';
+
+.wynajecie{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.selectOptionWithBtn{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+}
+
+.wynajecieHeader{
+    height: 150px;
+    border-bottom: 1px solid $main-color;
+    display: flex;
+    align-items: center;
+}
+
+.wynajecieLogo a{
+    @include header-logo();
+    color: $main-color;
+    margin-left: $main-margin-left;    
+}
+
+.servicesTitle{
+    @include title();
+    width: 597px;
+    margin-top: 60px;
+    .boldFont{
+        text-transform: lowercase;
+    }
+}
+
+.periodsTitle{
+    @include title();
+    width: 597px;
+    margin-top: 60px;
+    .boldFont{
+        text-transform: lowercase;
+    }
+    .smallText{
+        margin-left: 0px;
+        width: 578px;
+        padding-bottom: 0px;
+    }
+}
+
+.confirmSelectOptionWrapper{
+    display: flex;
+    margin-left: 580px;
+}
+
+.confirmSelectOption{
+    @include buttonInput();
+    // margin-left: $main-margin-left;
+    margin-top: 40px;
+}
+
+.officeSearchConfirm{
+    @include buttonInput();
+    margin-left: 486px;
+    margin-top: 40px;
+}
+
+.officeSearchConfirmWrapper{
+    display: flex;
+    justify-content: flex-start;
+}

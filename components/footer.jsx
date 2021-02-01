@@ -10,34 +10,34 @@ const Footer = () => {
         <div className={styles.footer}>
             <div className={styles.wrapper}>
                 <div className={styles.column}>
-                    <Link href="/ksiegowosc"><a><h2>księgowość</h2></a></Link>
-                    <Link href="/wirt-podpis"><a><h2>wirtualny Podpis</h2></a></Link>
-                    <Link href="/pakiety"><a><h2>pakiety</h2></a></Link>
-                    <Link href="/cennik"><a><h2 className={styles.last}>cennik</h2></a></Link>
+                    <div><Link href="/ksiegowosc"><a><h2>księgowość</h2></a></Link></div>
+                    <div><Link href="/wirt-podpis"><a><h2>wirtualny Podpis</h2></a></Link></div>
+                    <div><Link href="/pakiety"><a><h2>pakiety</h2></a></Link></div>
+                    <div><Link href="/cennik"><a><h2 className={styles.last}>cennik</h2></a></Link></div>     
                 </div>
                 <div className={styles.column}>
                     <div className={styles.columnWrapper}>
-                        <Link href="/lokalizacje"><a><h2>lokalizacje</h2></a></Link>
+                        <div><Link href="/lokalizacje"><a><h2>lokalizacje</h2></a></Link></div>
                         <div className={styles.regions}>
                             <div className={styles.regionsOne}>
-                                <Link href="/"><a>dolnośląskie</a></Link>
-                                <Link href="/"><a>kujawsko-pomorskie</a></Link>
-                                <Link href="/"><a>lubelskie</a></Link>
-                                <Link href="/"><a>lubuskie</a></Link>
-                                <Link href="/"><a>łódzkie</a></Link>
-                                <Link href="/"><a>małopolskie</a></Link>
-                                <Link href="/"><a>mazowieckie</a></Link>
-                                <Link href="/"><a>opolskie</a></Link>
+                                <div><Link href=""><a>dolnośląskie</a></Link></div>
+                                <div><Link href=""><a>kujawsko-pomorskie</a></Link></div>
+                                <div><Link href=""><a>lubelskie</a></Link></div>
+                                <div><Link href=""><a>lubuskie</a></Link></div>
+                                <div><Link href=""><a>łódzkie</a></Link></div>
+                                <div><Link href=""><a>małopolskie</a></Link></div>
+                                <div><Link href=""><a>mazowieckie</a></Link></div>
+                                <div><Link href=""><a>opolskie</a></Link></div>
                             </div>
                             <div className={styles.regionsTwo}>
-                                <Link href="/"><a>podkarpackie</a></Link>
-                                <Link href="/"><a>podlaskie</a></Link>
-                                <Link href="/"><a>pomorskie</a></Link>
-                                <Link href="/"><a>śląskie</a></Link>
-                                <Link href="/"><a>świętokrzyskie</a></Link>
-                                <Link href="/"><a>warmińsko-mazurskie</a></Link>
-                                <Link href="/"><a>wielkopolskie</a></Link>
-                                <Link href="/"><a>zachodniopomorskie</a></Link>
+                                <div><Link href=""><a>podkarpackie</a></Link></div>
+                                <div><Link href=""><a>podlaskie</a></Link></div>
+                                <div><Link href=""><a>pomorskie</a></Link></div>
+                                <div><Link href=""><a>śląskie</a></Link></div>
+                                <div><Link href=""><a>świętokrzyskie</a></Link></div>
+                                <div><Link href=""><a>warmińsko-mazurskie</a></Link></div>
+                                <div><Link href=""><a>wielkopolskie</a></Link></div>
+                                <div><Link href=""><a>zachodniopomorskie</a></Link></div>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@ const Footer = () => {
                 <div className={styles.thirdColumn}>
                     <div className={styles.columnWrapper}>
                         <div className={styles.top}>
-                            <Link href="/"><a><h2 className={styles.logo}>LO/GO</h2></a></Link>
+                            <div><Link href=""><a><h2 className={styles.logo}>LO/GO</h2></a></Link></div>
                             <div className={styles.textOne}>Działaj z dowolnego miejsca na świecie dzięki opcji biura wirtualnego.</div>
                             <div className={styles.textTwo}>Skontaktuj sie z nami: 
                                 <span className={styles.bold}>{` zawodzie20@biuro.pl`}</span>

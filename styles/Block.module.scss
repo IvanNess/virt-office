@@ -1,12 +1,12 @@
+@import './Varablies.scss';
+
 $block-width: 323px;
 $block-height: 323px;
-
-
 
 @mixin block($width, $height) {
     width: $width;
     height: $height;
-    border: 1px solid #CD0000;
+    border: 1px solid $main-color;
     cursor: pointer;    
     background-color: white;
 }
@@ -21,7 +21,7 @@ $block-height: 323px;
 
 .block{
     @include block(323px, 323px);
-    border: 1px solid #CD0000;
+    border: 1px solid $main-color;
 }
 
 .blockNone{
@@ -59,7 +59,7 @@ $block-height: 323px;
     letter-spacing: 0.8px;
     color: #FFFFFF;
     text-transform: uppercase;
-    background: #CD0000 0% 0% no-repeat padding-box;
+    background: $main-color 0% 0% no-repeat padding-box;
     border: 1px solid #707070;
 }
 

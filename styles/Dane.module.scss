@@ -1,0 +1,13 @@
+@import './Varablies.scss';
+
+.dane{
+    position: relative;
+    @include konto();
+    @include profileInput();
+    .text{
+        @include profileText();
+    }
+    .buttonInput{
+        margin-top: 20px;
+    }
+}

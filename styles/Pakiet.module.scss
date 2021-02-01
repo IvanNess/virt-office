@@ -1,0 +1,9 @@
+@import './Varablies.scss';
+
+.pakiet{
+    position: relative;
+    @include konto();
+    .text{
+        @include profileText();
+    }
+}

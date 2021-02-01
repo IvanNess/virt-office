@@ -1,0 +1,23 @@
+@import './Varablies.scss';
+
+.option{
+    @include regular();
+    color: #411141;
+    &:hover{
+        border: 1px solid $text-color;
+    }
+}
+
+.selectedOption{
+    @include regular();
+    color: white;
+    background-color: $main-color;
+}
+
+.options{
+    display: flex;
+    margin-left: $main-margin-left;
+}
+
+
+

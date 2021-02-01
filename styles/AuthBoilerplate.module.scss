@@ -1,0 +1,108 @@
+@import './Varablies.scss';
+$auth-margin-left: 58px;
+$auth-margin-right: 58px;
+$login-width: 124px;
+
+.authBoilerplate{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.authBoilerplateNone{
+    display: none;
+}
+
+.signupAuthWrapper, .loginAuthWrapper{
+    width: 692px;
+    height: 700px;    
+    background-color: $main-color;
+}
+
+.loginAuthWrapper{
+    height: 518px;
+    .authOptions{
+        margin-bottom: 40px;
+    }
+}
+
+.authHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: $auth-margin-left;
+    margin-top: 47px;
+    margin-right: $auth-margin-right;
+    .authLogo{
+        font-size: 25px;
+        font-weight: bolder;
+    }
+}
+
+@mixin regularAuth {
+    border-bottom: 2px solid white;
+    font: normal normal 300 16px/19px "Work Sans Light";
+    letter-spacing: 0.56px;
+    color: #ffffff;
+    padding-bottom: 13px;
+}
+.authOptions{
+    display: flex;
+    margin-left: $auth-margin-left;
+    margin-right: $auth-margin-right;
+    margin-top: 40px;
+    align-items: center;    
+    .login{
+        @include regularAuth();
+        width: $login-width;
+        cursor: pointer;
+    }
+    .signin{
+        @include regularAuth();
+        width: $login-width;
+        cursor: pointer;
+    }
+    .loginSelected, .signinSelected{
+        @include regularAuth();
+        font: normal normal 900 16px/19px "Work Sans Black";
+        width: $login-width;
+        letter-spacing: 0.56px;
+        color: #FFFFFF;
+        border-bottom: 5px solid #121109;
+        cursor: pointer;
+    }
+    .rest{
+        @include regularAuth();
+        width: calc(100% - #{$login-width} - #{$login-width});
+
+    }
+}
+
+.authStep{
+    margin-left: $auth-margin-left;
+    margin-right: $auth-margin-right;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 14px;
+    .content{
+        margin-top: 25px;
+        font: normal normal 300 16px/19px "Work Sans Light";
+        letter-spacing: 0px;
+        color: #FFFFFF;
+    }
+    .stepCount{
+        font: normal normal 900 16px/19px "Work Sans Black";
+        letter-spacing: 0px;
+        color: #121109;
+    }
+}
+
+.inner{
+    margin-left: $auth-margin-left;
+    margin-right: $auth-margin-right;
+}

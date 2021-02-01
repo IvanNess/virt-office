@@ -4,6 +4,20 @@ $sidebar-width: 150px;
 
 $border: 1px solid #B9B9B9;
 
+$main-color: #E2C700;
+
+$solid-color: #CDAD00;
+
+$text-color: #121109;
+
+@mixin header-logo {
+  font: normal normal 900 28px/33px "Work Sans Bold";
+  text-decoration: none;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
 @mixin title{
   margin-top: 117px;
   margin-bottom: 60px;
@@ -51,6 +65,49 @@ $border: 1px solid #B9B9B9;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+@mixin buttonInput {
+  width: 226px;
+  height: 55px;
+  border: none;
+  background: $main-color 0% 0% no-repeat padding-box;
+  cursor: pointer;
+  font: normal normal bold 16px/19px "Work Sans Black";
+  letter-spacing: 0.8px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+@mixin profileInput {
+  input{
+    width: 791px;
+    height: 52px;
+    margin-top: 10px;
+    padding-left: 18px;
+    &.buttonInput{
+        @include buttonInput();
+        width: 178px;
+        align-self: flex-end;
+        padding: 0;
+    }
+  }
+}
+
+@mixin profileText {
+  color: $text-color;
+  width: 578px;
+  padding-top: 14.5px;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+@mixin blockText{
+  padding: 20.5px 44px 0 29px;
+  font: normal normal 300 16px/19px "Work Sans Light";
+  letter-spacing: 0px;
+  color: $text-color;
 }
 
 .headerTitle{
@@ -101,19 +158,20 @@ $border: 1px solid #B9B9B9;
         text-transform: uppercase;
       }
     }
-    .buttonInput{
-      width: 226px;
-      height: 55px;
-      border: none;
-      background: #411141 0% 0% no-repeat padding-box;
-      cursor: pointer;
-      font: normal normal bold 16px/19px Work Sans;
-      letter-spacing: 0.8px;
-      color: #FFFFFF;
-      text-transform: uppercase;
-      opacity: 1;
-    }
 }
+
+// .buttonInput{
+//   width: 226px;
+//   height: 55px;
+//   border: none;
+//   background: $main-color 0% 0% no-repeat padding-box;
+//   cursor: pointer;
+//   font: normal normal bold 16px/19px "Work Sans Black";
+//   letter-spacing: 0.8px;
+//   color: #FFFFFF;
+//   text-transform: uppercase;
+//   opacity: 1;
+// }
   
 .title{
   @include title();
@@ -172,4 +230,60 @@ $border: 1px solid #B9B9B9;
 
 .blockText{
   padding: 30.5px 29px 0 29px;
+}
+
+@mixin konto{
+  color: $text-color;
+  .title{
+      font: normal normal 300 56px/66px "Work Sans Light";
+      width: auto;
+      margin: 0;
+      text-transform: none;
+      .bold{
+          font: normal normal 900 56px/66px "Work Sans Black";
+      }
+  }
+  .small, input{
+      font: normal normal 300 16px/19px "Work Sans Light";
+      &[type=button]{
+          font: normal normal bold 16px/19px "Work Sans Black";
+      }
+  }
+  form{
+    display: flex;
+    flex-direction: column;
+    width: 791px;
+    input:first-child{
+      margin-top: 14px;
+    }
+  }
+  .twoColumns{
+      display: flex;
+      flex-direction: row;
+      input:first-child{
+        margin-right: 10px;
+        margin-top: 10px;
+      }
+  }
+}
+
+@mixin regular {
+  width: 236px;
+  height: 323px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 28px 0 18px;
+  border: 1px solid #B9B9B9;
+  cursor: pointer;
+  margin-right: 24px;
+  overflow: hidden;
+  .optionTitle{
+      font: normal normal 900 24px/28px "Work Sans Black";
+      letter-spacing: 0px;
+      padding-bottom: 20px;
+  }
+  .optionText{
+      font: normal normal 300 16px/19px "Work Sans Light";
+      letter-spacing: 0px;
+  }
 }

@@ -17,3 +17,8 @@
   margin-bottom: 46.5px;
 }
 
+.headerForm input[type=button]{
+  @include buttonInput();
+  background-color: $text-color;
+}
+

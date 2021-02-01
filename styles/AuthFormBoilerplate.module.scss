@@ -1,0 +1,54 @@
+@import './Varablies.scss';
+
+@mixin authFooter {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 42px;
+    align-items: center;
+}
+
+.authFormBoilerplate{
+    width: 100%;
+    form, input{
+        width: 100%;
+        background-color: $main-color;
+        color: #ffffff;
+        outline: none;
+        &::placeholder{
+            color: #ffffff;
+        }
+    }
+    input{
+        border: 1px solid #ffffff;
+        height: 52px;
+        margin-top: 10px;
+        padding-left: 18px;
+        font: normal normal 300 16px/19px "Work Sans Light";
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        &[type=submit]{
+            @include buttonInput();
+            padding: 0;
+            background-color: $text-color;
+        }
+    }
+}
+
+.authFooter{
+    @include authFooter();
+}
+
+.signupForm{
+    .authFooter{
+        @include authFooter();
+        margin-top: 64px;
+    }
+    
+}
+
+.left{
+    font: normal normal 300 13px/15px "Work Sans Light";
+    letter-spacing: 0px;
+    color: #121109;
+    cursor: pointer;
+}

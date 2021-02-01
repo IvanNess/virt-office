@@ -1,0 +1,59 @@
+@import './Varablies.scss';
+
+.officeSearchTitle{
+    @include title();
+    width: 670px;
+    margin-bottom: 38.5px;
+    margin-top: 59px;
+}
+
+.officeSearchDescription{
+    @include blockText();
+    margin-left: $main-margin-left;
+    padding: 0;
+    width: 670px;
+}
+
+.officeSearchInput{
+}
+
+.officeSearchInputWrapper{
+    margin-left: $main-margin-left;
+    margin-top: 76px;
+    display: flex;
+}
+
+.officeSearchButton{
+    @include buttonInput();
+}
+
+.officeSearchResult{
+    margin-left: $main-margin-left;
+    margin-top: 36px;
+}
+
+@mixin officeSearchRegular{
+    @include regular();
+    margin-top: 5px;
+    color: #411141;
+    width: 662px;
+    height: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 28px;
+    padding-top: 0;
+    &:hover{
+        border: 1px solid $main-color;
+    }
+}
+
+.officeSearchItem{
+    @include officeSearchRegular();
+}
+
+.clickedOfficeSearchItem{
+    @include officeSearchRegular();
+    color: white;
+    background-color: $text-color;
+}

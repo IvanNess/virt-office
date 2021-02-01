@@ -22,22 +22,27 @@ $column-heght: 90px;
     height: $column-heght;
 }
 
-.cennikTable{
+@mixin cennikTitle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-90deg) translate(-5px, 0);
+    width: $column-heght;
+    height: $column-heght;
+    font: normal normal 300 24px/28px "Work Sans Light";
+    margin: 0;
+    letter-spacing: 0px;
+    color: #411141;
+}
+
+.cennikTable, .pakietTable{
     padding-right: $sidebar-width;
+    width: 100%;
     .titles{
-        display: flex;
+        display: flex; 
         justify-content: flex-end;
         .title{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform: rotate(-90deg) translate(-5px, 0);
-            width: $column-heght;
-            height: $column-heght;
-            font: normal normal 300 24px/28px "Work Sans Light";
-            margin: 0;
-            letter-spacing: 0px;
-            color: #411141;
+            @include cennikTitle()
         }
     }
     .spaces{
@@ -93,3 +98,7 @@ $column-heght: 90px;
         }
     }
 }
+
+// .pakietTable{
+//     @include cennikTitle();
+// }

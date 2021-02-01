@@ -2,8 +2,12 @@ import React, { useState } from 'react'
 import styles from '../styles/Packages.module.scss'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
+import { useRouter } from 'next/router'
 
-const Package = ({title, text, id, openedId, setOpenedId}) => {
+const Package = ({title, text, id, openedId, setOpenedId, children}) => {
+
+    const router = useRouter()
+    const isKontoPakiet = router.pathname==="/konto/pakiet"
 
     const isOpen = openedId===id
 
@@ -20,17 +24,18 @@ const Package = ({title, text, id, openedId, setOpenedId}) => {
     }
 
     return ( 
-        <div className={isOpen? styles.open: styles.package} onClick={clicked}>
+        <div className={isOpen? styles.open: styles.package} >
             <div className={styles.textWrapper}>
-                <div className={styles.title}>{title}</div>
-                <div className={styles.smallText}>{text}</div>
+                <div className={styles[isKontoPakiet? "kontoPakietTitle": "title"]} onClick={clicked}>{title}</div>
+                <div className={styles.text}>{text}</div>
+                {children}
             </div>
-            {isOpen && <div className={styles.buttonWrapper}>
+            {isOpen && !isKontoPakiet && <div className={styles.buttonWrapper}>
                 <button className={styles.button} onClick={buynow}>Kup teraz</button>
             </div>}
             <div className={styles.arrowWrapper}>
-                {!isOpen && <ExpandMoreIcon style={{color: '#CD0000', fontSize: '40px'}}/>}
-                {isOpen && <ExpandLessIcon style={{color: '#CD0000', fontSize: '40px'}}/>}
+                {!isOpen && <ExpandMoreIcon style={{color: '#E2C700', fontSize: '40px'}}/>}
+                {isOpen && <ExpandLessIcon style={{color: '#E2C700', fontSize: '40px'}}/>}
             </div>
         </div>
     )

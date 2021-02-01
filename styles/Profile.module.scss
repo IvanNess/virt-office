@@ -1,0 +1,27 @@
+@import './Varablies.scss';
+
+.profile{
+    position: relative;
+    @include konto();
+    @include profileInput();
+    .login{
+        margin-top: 14px;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+    .text{
+        @include profileText();
+    }
+    .changeLogin{
+        display: flex;
+        flex-direction: column;
+        .smallTitle{
+            font: normal normal 900 16px/19px "Work Sans Black";
+            color: $text-color;
+            padding-top: 69.5px;
+        }
+    }
+}
+

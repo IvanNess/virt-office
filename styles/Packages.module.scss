@@ -6,10 +6,22 @@ $text-padding: 22px;
     flex-direction: row;
     align-items: center;
     border-bottom: 1px solid #B9B9B9;
-    cursor: pointer; 
     transition-duration: 0.3s;
     overflow: hidden;
     position: relative;
+}
+
+@mixin  packageTitle {
+    padding: $text-padding 0; 
+    font: 24px/28px "Work Sans Medium";
+    letter-spacing: 0px;
+    color: #411141;
+    margin: 0;
+    cursor: pointer; 
+}
+
+.kontoPakietTitle{
+    @include packageTitle()
 }
 
 .packages{
@@ -25,32 +37,34 @@ $text-padding: 22px;
 
 .open{
     @include package();
-    max-height: 400px;
+    max-height: 1400px;
+}
+
+.text{
+    margin-left: 0;
+    padding-bottom: $text-padding;
+    width: 576px;
+
+    font: normal normal 300 16px/25px "Work Sans Light";
+    letter-spacing: 0px;
+    color: #411141;
+    padding-top: 0;
+}
+
+.title{
+    @include packageTitle()
 }
 
 .textWrapper{
     display: flex;
     flex-direction: column;
     align-self: flex-start;
-    // flex: 0.8;
-    .title{
-        padding: $text-padding 0; 
-        font: 24px/28px "Work Sans Medium";
-        letter-spacing: 0px;
-        color: #411141;
-        margin: 0;
-    }
-    
-    .smallText{
-        margin-left: 0;
-        padding-bottom: $text-padding;
-        width: 576px;
-    }
+    z-index: 2;
 }
 
 .open{
     .textWrapper{
-        .title{
+        .title, .kontoPakietTitle{
             font: normal normal 900 24px/28px "Work Sans Black";
             letter-spacing: 0px;
             color: #411141;
@@ -66,7 +80,7 @@ $text-padding: 22px;
 .button{
     width: 226px;
     height: 55px;
-    background: #CD0000 0% 0% no-repeat padding-box;
+    background: $main-color 0% 0% no-repeat padding-box;
     border: none;
     cursor: pointer;
     font: normal normal bold 16px/19px "Work Sans Bold";

@@ -1,0 +1,13 @@
+@import './Varablies.scss';
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+
+    .children{
+        padding-left: 97px;
+        padding-top: 41px;
+        width: calc(100% - 276px);
+
+    }
+}

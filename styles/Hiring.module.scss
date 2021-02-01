@@ -1,0 +1,108 @@
+@import './Varablies.scss';
+
+.rightbar{
+    width: 600px;
+    height: 750px;
+    background-color: $main-color;
+    padding-left: 34px;
+    padding-right: 180px;
+    padding-top: 38px;
+}
+
+.rightBarTop{
+    height: 150px;
+    width: 100%;
+    border-bottom: 1px solid #ffffff;
+    background-color: $main-color;
+}
+
+.rightBarTopBtn{
+    @include buttonInput();
+    background-color: $text-color;
+    width: 178px;
+    height: 44px;
+    margin-left: 34px;
+    margin-top: 53px;
+}
+
+.progressBar{
+    display: flex;
+}
+
+@mixin progressBarNumber{
+    width: 26px;
+    height: 26px;
+    background-color: #ffffff;
+    border-radius: 13px;
+    font: normal normal bold 16px/19px "Work Sans Black";
+    letter-spacing: 0.8px;
+    color: $main-color;
+    cursor: pointer;
+    margin-right: 46px;
+    // z-index: 1;
+    p{
+        margin-top: 4px;
+        margin-left: 8px;
+    }
+    &:last-child{
+        margin-right: 0px;
+    }
+}
+
+.progressBarNumber{
+   @include progressBarNumber();
+}
+
+.progressBarCompleteNumber{
+    @include progressBarNumber();
+    background-color: $text-color;
+    color: white
+}
+
+.connectBarWrapper{
+    width: 100%;
+    height: 1px;
+    position: relative;
+    background-color: #ffffff;
+}
+
+.connectBar{
+    background-color: #ffffff;
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    top: 13px;
+    z-index: 0;
+}
+
+.rightBarTitle{
+    margin-top: 41px;
+    font: normal normal 900 35px/42px "Work Sans Black";
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    text-transform: capitalize;
+}
+
+.hiringChoicesDiv{
+    margin-top: 11px;
+}
+
+.hiringChoice{
+    width: 325px;
+    min-height: 44px;
+    margin-top: 27px;  
+}
+
+.hiringChoiceTitle{
+    font: normal normal 300 16px/25px "Work Sans Light";
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    text-transform: lowercase;
+}
+
+.hiringChoiceValues{
+    font: normal normal 900 16px/25px "Work Sans Black";
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    text-transform: lowercase;
+}

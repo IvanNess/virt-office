@@ -5,5 +5,5 @@
   }
   
 .billboardWrapper{
-    @include with-background("/images/business.jpg", #BA0000, 0.8)
+    @include with-background("/images/office.png", $main-color, 0)
 }

@@ -1,0 +1,120 @@
+@import './Varablies.scss';
+
+@mixin hour {
+    display: flex;
+    // flex-basis: 33%;
+    justify-content: center;
+    padding: 10px 0;
+    font: normal normal normal 14px/16px Work Sans;
+    letter-spacing: 0px;
+    width: 96px;
+}
+
+.hour{
+    @include hour();
+}
+
+.hours{
+    display: flex;
+    width: 390px;
+    flex-wrap: wrap;
+    color: #121109;
+    cursor: default;
+    .selected{
+        background-color: yellowgreen;
+    }
+    
+    .free{
+        // background-color: mediumspringgreen;
+        cursor: pointer;
+    }
+    
+    .reserved{
+        // background-color: mediumvioletred;
+        color: rgba(0, 0, 0, 0.38)
+    }
+    
+    .middle{
+        // background-color: orange;
+        background-color: $solid-color;
+        cursor: pointer;
+    }
+    
+    .start{
+        // background-color: royalblue;
+        background-color: $solid-color;
+    }
+    
+    .finish{
+        // background-color: purple;
+        background-color: $solid-color;
+    }
+    
+    .past{
+        // background-color: slategrey;
+        color: rgba(0, 0, 0, 0.38)
+    }
+    
+    .noaccess{
+        // background-color: lightgrey;
+        color: rgba(0, 0, 0, 0.38)
+    }
+    
+    .session{
+        background-color: navy;
+    }
+    
+    .possible{
+        // background-color: lightgreen;
+        cursor: pointer;
+    }
+    
+    .border{
+        // background-color: tomato;
+        color: rgba(0, 0, 0, 0.38)
+    }
+}
+
+.board{
+    position: relative;
+}
+
+.boardString{
+    padding-left: 30px;
+    display: flex;
+    justify-content: space-between;
+    font: normal normal bold 17px/15px "Work Sans Black";
+    letter-spacing: 0px;
+    color: #121109;
+    height: 20px;
+    .boardResult{    
+        padding-right: 215px;
+    }
+}
+
+@mixin btn{
+    width: 390px;
+    height: 53px;
+    margin-top: 8px;
+    font: normal normal 900 18px/21px "Work Sans Black";
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+}
+
+.reserveBtn{
+    @include btn();
+    background: #CDAD00 0% 0% no-repeat padding-box;
+    // color: #FFFFFF;
+}
+
+.cancelBtn{
+    @include btn();
+    background: #121109 0% 0% no-repeat padding-box;
+    color: #FFFFFF;
+}
+
+
+
+
+

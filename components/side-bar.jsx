@@ -5,7 +5,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import styles from '../styles/Sidebar.module.scss'
 import MenuContent from './menu-content'
 
-const Sidebar = () => {
+const Sidebar = ({color = 'white'}) => {
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -24,8 +24,8 @@ const Sidebar = () => {
         <div className={styles.sidebar}>
             <div className={styles.menuIconsWrapper}>
                 <div className={styles.menuIcons} onClick={clickMenu}>
-                    {isOpen && <CloseIcon style={{fontSize: '70px', color: 'white'}}/>}
-                    {!isOpen && <MenuIcon style={{fontSize: '70px', color: 'white'}}/>}
+                    {isOpen && <CloseIcon style={{fontSize: '70px', color}}/>}
+                    {!isOpen && <MenuIcon style={{fontSize: '70px', color}}/>}
                 </div>                
             </div>
 
