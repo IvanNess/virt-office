@@ -25,12 +25,12 @@ $text-color: #121109;
   width: 1192px;
   font: normal normal 300 56px/66px 'Work Sans Light';
   letter-spacing: 0px;
-  color: #411141;
+  color: $text-color;
   text-transform: lowercase;
   .boldFont{
     font: normal normal 900 56px/66px 'Work Sans Black';
     letter-spacing: 0px;
-    color: #411141;
+    color: $text-color;
     text-transform: uppercase;
   }
 }
@@ -192,7 +192,7 @@ $text-color: #121109;
   width: 1001px;
   font: normal normal 300 16px/25px "Work Sans Light";
   letter-spacing: 0px;
-  color: #411141;
+  color: $text-color;
   padding-bottom: 47px;
 }
 
@@ -200,7 +200,7 @@ $text-color: #121109;
   padding: 42px 0 0 29px;
   font: normal normal 900 24px/28px "Work Sans Black";
   letter-spacing: 0px;
-  color: #411141;
+  color: $text-color;
   .boldFont{
     text-transform: uppercase;
   }
@@ -210,11 +210,11 @@ $text-color: #121109;
   padding: 20.5px 44px 0 29px;
   font: normal normal 300 16px/19px "Work Sans Light";
   letter-spacing: 0px;
-  color: #411141;
+  color: $text-color;
 }
 
 .hyphen{
-  color: #CD0000;
+  color: $main-color;
   letter-spacing: -3px;
 }
 

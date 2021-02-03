@@ -4,6 +4,11 @@
     @include noBackgroundBillboardText();
 }
 
+.buttonInput{
+    @include buttonInput();
+    background-color: $text-color;
+}
+
 .ksiegowosc{
     position: relative;
     .headerTitle{
@@ -14,7 +19,7 @@
         padding-bottom: 44px;
     }
     .title{
-        width: 484px;
+        width: 488px;
         margin-bottom: 31px;
         .boldFont{
             text-transform: lowercase;
