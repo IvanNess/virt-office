@@ -6,7 +6,7 @@ import SelectOption from '../components/select-option'
 function Kupteraz() {
     return (
         <div className={styles.kupteraz}>
-            <SelectOption options={services} reducerProp="selectedServiceId">
+            {/* <SelectOption options={services} reducerProp="selectedServiceId">
                 <div className={styles.servicesTitle}>1. WYBÓR USŁUGI
                     <span className={styles.boldFont}> BIURA WIRTUALNEGO</span>
                 </div>
@@ -19,7 +19,7 @@ function Kupteraz() {
                         Wpisz nazwę lub kod pocztowy miasta, w którym chcesz wybrać adres firmy. Dostępne adresy i miesięczny koszt wyświetlą się poniżej.
                     </div>
                 </div>
-            </SelectOption>
+            </SelectOption> */}
         </div>
     )
 }

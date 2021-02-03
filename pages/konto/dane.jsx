@@ -3,7 +3,7 @@ import styles from '../../styles/Dane.module.scss'
 
 import ProfileBoilerplate from '../../components/profile-boilerplate'
 
-function Dane() {
+function Dane({auth, db}) {
     return (
         <div className={styles.dane}>
             <ProfileBoilerplate  auth={auth} db={db}>

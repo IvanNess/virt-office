@@ -4,7 +4,7 @@ import styles from '../../styles/Pakiet.module.scss'
 import ProfileBoilerplate from '../../components/profile-boilerplate'
 import KontoPackages from '../../components/konto-packages'
 
-function Pakiet() {
+function Pakiet({auth, db}) {
     return (
         <div className={styles.pakiet}>
             <ProfileBoilerplate  auth={auth} db={db}>
