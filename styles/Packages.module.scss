@@ -74,12 +74,12 @@ $text-padding: 22px;
 
 .buttonWrapper{
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     right: 211px;
-}
-
-.button{
-    width: 226px;
-    height: 55px;
+    // width: 226px;
+    // height: 55px;
     background: $main-color 0% 0% no-repeat padding-box;
     border: none;
     cursor: pointer;
@@ -87,7 +87,24 @@ $text-padding: 22px;
     letter-spacing: 0.8px;
     color: #FFFFFF;
     text-transform: uppercase;
+    z-index: 2;
+    a{
+        color: white;
+        padding: 18px 65px; 
+    }
 }
+
+// .button{
+//     width: 226px;
+//     height: 55px;
+//     background: $main-color 0% 0% no-repeat padding-box;
+//     border: none;
+//     cursor: pointer;
+//     font: normal normal bold 16px/19px "Work Sans Bold";
+//     letter-spacing: 0.8px;
+//     color: #FFFFFF;
+//     text-transform: uppercase;
+// }
 
 .arrowWrapper{
     position: absolute;

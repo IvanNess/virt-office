@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setLoginFormProp } from '../../redux/actions' 
 import { TextField } from '@material-ui/core'
 
-function LoginForm() {
+function LoginForm({db, auth}) {
 
     const loginForm = useSelector(state=>state.loginForm)
     const dispatch = useDispatch()
@@ -19,9 +19,25 @@ function LoginForm() {
 
     return (
         <div className={styles.loginForm}>
-            <AuthFormBoilerplate isLogin={true}>
-                <input label="Login" variant="outlined" type="text" placeholder="Login" data-id="login" value={loginForm.login} onChange={onChange}/>
-                <input label="Hasło" variant="outlined" type="password" placeholder="Hasło" data-id="password" value={loginForm.password} onChange={onChange}/>
+            <AuthFormBoilerplate isLogin={true}  db={db} auth={auth}>
+                <input 
+                    label="Login" 
+                    variant="outlined" 
+                    type="text" 
+                    placeholder={!loginForm.loginPlaceholder ? "Login": loginForm.loginPlaceholder} 
+                    data-id="login" 
+                    value={loginForm.login} 
+                    onChange={onChange}
+                />
+                <input 
+                    label="Hasło" 
+                    variant="outlined" 
+                    type="password" 
+                    placeholder={!loginForm.passwordPlaceholder ? "Hasło": loginForm.passwordPlaceholder} 
+                    data-id="password" 
+                    value={loginForm.password} 
+                    onChange={onChange}
+                />
             </AuthFormBoilerplate>
         </div>
     )

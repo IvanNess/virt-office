@@ -6,9 +6,9 @@ import SignupFormOne from './authForms/signup-form-one'
 import { useSelector, useDispatch } from 'react-redux'
 import SignupFormTwo from './authForms/signup-form-two'
 import SignupFormThree from './authForms/signup-form-three'
-import { setShowAuth } from '../redux/actions'
+import { setShowAuth, setCurrentUser } from '../redux/actions'
 
-function AuthBoilerplate() {
+function AuthBoilerplate({db, auth}) {
 
 
     const [isLogin, setIsLogin] = useState(true)
@@ -17,6 +17,21 @@ function AuthBoilerplate() {
     const showAuth = useSelector(state=>state.showAuth)
 
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+        auth.onAuthStateChanged((user)=>{
+            console.log('on auth state changed', user)
+            if(user===null){
+                dispatch(setCurrentUser(false))
+            } else{
+                dispatch(setCurrentUser({
+                    email: user.email,
+                    username: user.displayName
+                }))
+            }
+            
+        })
+    }, [auth])
 
     function onClick(e){
         const id = e.target.dataset?.id
@@ -54,10 +69,10 @@ function AuthBoilerplate() {
                     {!isLogin && <div className={styles.content}>step <span className={styles.stepCount}>{page}</span>/3</div>}
                 </div>
                 <div className={styles.inner}>
-                    {isLogin && <LoginForm/>}
-                    {!isLogin && page===1 && <SignupFormOne/>}
-                    {!isLogin && page===2 && <SignupFormTwo/>}
-                    {!isLogin && page===3 && <SignupFormThree/>}
+                    {isLogin && <LoginForm  db={db} auth={auth}/>}
+                    {!isLogin && page===1 && <SignupFormOne  db={db} auth={auth}/>}
+                    {!isLogin && page===2 && <SignupFormTwo  db={db} auth={auth}/>}
+                    {!isLogin && page===3 && <SignupFormThree  db={db} auth={auth}/>}
                 </div>
             </div>
         </div>

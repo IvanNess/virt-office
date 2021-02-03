@@ -5,7 +5,7 @@ import AuthFormBoilerplate from './auth-form-boilerplate'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSignupFormProp } from '../../redux/actions' 
 
-function SignupFormTwo() {
+function SignupFormTwo({db, auth}) {
 
     const signupForm = useSelector(state=>state.signupForm)
     const dispatch = useDispatch()
@@ -19,7 +19,7 @@ function SignupFormTwo() {
 
     return (
         <div className={styles.signupForm}>
-            <AuthFormBoilerplate page={2}>
+            <AuthFormBoilerplate page={2}  db={db} auth={auth}>
                 <input type="text" 
                     placeholder={!signupForm.fullNamePlaceholder ? "Imię i Nazwisko": signupForm.fullNamePlaceholder} 
                     data-id="fullName" value={signupForm.fullName} 

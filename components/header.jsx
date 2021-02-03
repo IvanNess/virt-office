@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from '../styles/Header.module.scss'
-import { Link } from '@material-ui/core'
 import { setShowAuth } from '../redux/actions'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import Link from 'next/link'
 
 
 const Header = () => {
 
+    const currentUser = useSelector(state=>state.currentUser)
+
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+        console.log('header current user', currentUser)
+    }, [currentUser])
     
     function login(){
         const body = document.querySelector("body")
@@ -25,7 +31,11 @@ const Header = () => {
                 <div className={styles.button}>
                     <Link href="/wynajecie"><a>Wynajmij biuro</a></Link>
                 </div>
-                <button className={styles.loginButton} onClick={login}>Zaloguj się</button>
+                {(!currentUser && currentUser !== null) && <button className={styles.loginButton} onClick={login}>Zaloguj się</button>}
+                {currentUser && <div className={styles.profileButton} >
+                        <Link href="/konto/profil"><a>profile page</a></Link>
+                    </div>}
+                {currentUser === null && <button className={styles.plug}></button>}
             </div>
         </div>
     )

@@ -23,89 +23,80 @@ const Calendar = ({db, auth}) => {
 
     const [hoursReset, setHoursReset] = useState(0)
 
-    useEffect(()=>{
-        signin()
-    }, [])
-
-    async function signin(){
-        const user = await auth.signInWithEmailAndPassword("chai@bk.ru", "aaaaaa")
-        dispatch(setCurrentUser({ name: user.user.displayName, email: user.user.email }))
-    }
-
-    async function getReservedHoursPrivateData(){
-        try {
-            db.collectionGroup('private').where("email", "==", "chai@bk.ru").onSnapshot(snapshot=>{
-                console.log('snapshot', snapshot)
-                snapshot.docs.forEach(async doc=>{
-                    console.log('doc', doc.id, doc.data())
-                    doc.ref.parent.parent.onSnapshot(snapshot=>{
-                        console.log('parent snapshot', snapshot.data())
-                    })
-                    const data = await doc.ref.parent.parent.get()
-                    console.log('data', data.data())
-                })
-            })
-            // console.log('collections', collections)
-        } catch (error) {
-            console.log('error', error)
-        }
+    // async function getReservedHoursPrivateData(){
+    //     try {
+    //         db.collectionGroup('private').where("email", "==", currentUser.email).onSnapshot(snapshot=>{
+    //             console.log('snapshot', snapshot)
+    //             snapshot.docs.forEach(async doc=>{
+    //                 console.log('doc', doc.id, doc.data())
+    //                 doc.ref.parent.parent.onSnapshot(snapshot=>{
+    //                     console.log('parent snapshot', snapshot.data())
+    //                 })
+    //                 const data = await doc.ref.parent.parent.get()
+    //                 console.log('data', data.data())
+    //             })
+    //         })
+    //         // console.log('collections', collections)
+    //     } catch (error) {
+    //         console.log('error', error)
+    //     }
            
-    }
+    // }
 
-    async function getReservedHours(){
-        try {
-            db.collection('reservedHours').onSnapshot(snapshot=>{
-                snapshot.docs.forEach(doc=>{
-                    // console.log('reserved doc', doc.id, doc.data())
-                    const seconds = doc.data().timestamp?.seconds
-                    // console.log(seconds)
-                    if(seconds){
-                        const date = new Date(seconds*1000 + 5*60*1000)
-                        // console.log(moment(date).format('DD MM YY HH:mm:ss'))
-                    }
-                })
-            })
-            // console.log('collections', collections)
-        } catch (error) {
-            console.log('error', error)
-        }
+    // async function getReservedHours(){
+    //     try {
+    //         db.collection('reservedHours').onSnapshot(snapshot=>{
+    //             snapshot.docs.forEach(doc=>{
+    //                 // console.log('reserved doc', doc.id, doc.data())
+    //                 const seconds = doc.data().timestamp?.seconds
+    //                 // console.log(seconds)
+    //                 if(seconds){
+    //                     const date = new Date(seconds*1000 + 5*60*1000)
+    //                     // console.log(moment(date).format('DD MM YY HH:mm:ss'))
+    //                 }
+    //             })
+    //         })
+    //         // console.log('collections', collections)
+    //     } catch (error) {
+    //         console.log('error', error)
+    //     }
            
-    }
+    // }
     
-    useEffect(()=>{
-        if(currentUser){
-            console.log('current user', currentUser)
-            getReservedHoursPrivateData()
-            getReservedHours()
+    // useEffect(()=>{
+    //     if(currentUser){
+    //         console.log('current user', currentUser)
+    //         getReservedHoursPrivateData()
+    //         getReservedHours()
             
-            // db.collection("reservedHours")
-            //     // .orderBy('timestamp', 'desc')
-            //     // .where("email", "==", currentUser.email)
-            //     .onSnapshot(async snapshot=>{
-            //         // console.log('snapshot', snapshot.docs)
-            //         snapshot.docs.map(async doc=>{
-            //             console.log('doc', doc)
-            //             dispatch(addReservedHour({
-            //                 id: doc.id,
-            //                 ...doc.data() 
-            //             }))
-            //             try {
-            //                 const collections = await db.collection("reservedHours").doc(doc.id).collection('private')
-            //                 .where("email", "==", "chai@bk.ru").get()
-            //                 console.log('collections', collections)   
-            //                 collections.forEach(collection=>{
-            //                     console.log('collection', collection.data()) 
-            //                 }) 
-            //             } catch (error) {
-            //                 console.log('error', error) 
-            //             }  
+    //         // db.collection("reservedHours")
+    //         //     // .orderBy('timestamp', 'desc')
+    //         //     // .where("email", "==", currentUser.email)
+    //         //     .onSnapshot(async snapshot=>{
+    //         //         // console.log('snapshot', snapshot.docs)
+    //         //         snapshot.docs.map(async doc=>{
+    //         //             console.log('doc', doc)
+    //         //             dispatch(addReservedHour({
+    //         //                 id: doc.id,
+    //         //                 ...doc.data() 
+    //         //             }))
+    //         //             try {
+    //         //                 const collections = await db.collection("reservedHours").doc(doc.id).collection('private')
+    //         //                 .where("email", "==", "chai@bk.ru").get()
+    //         //                 console.log('collections', collections)   
+    //         //                 collections.forEach(collection=>{
+    //         //                     console.log('collection', collection.data()) 
+    //         //                 }) 
+    //         //             } catch (error) {
+    //         //                 console.log('error', error) 
+    //         //             }  
                                    
-            //         })
-            //     }  
-            // )
+    //         //         })
+    //         //     }  
+    //         // )
 
-        }
-    }, [currentUser])
+    //     }
+    // }, [currentUser])
 
     const onChange = e=> {
         console.log(e)

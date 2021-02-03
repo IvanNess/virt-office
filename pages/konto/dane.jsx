@@ -6,7 +6,7 @@ import ProfileBoilerplate from '../../components/profile-boilerplate'
 function Dane() {
     return (
         <div className={styles.dane}>
-            <ProfileBoilerplate>
+            <ProfileBoilerplate  auth={auth} db={db}>
                 <div>
                     <div className={styles.title}>2. <span className={styles.bold}>Moje dane</span></div>
                     <div className={styles.text}>

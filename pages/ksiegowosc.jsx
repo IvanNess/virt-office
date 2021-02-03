@@ -88,9 +88,9 @@ function Ksiegowosc() {
                 </div>
             </div>
 
-            <Billboard>
-                <div className={styles.text}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id, rhoncus a felis. Nulla quam enim, ultrices ac ipsum id, imperdiet venenatis urna.
+            <Billboard noBackground={true}>
+                <div className={styles.noBackgroundBillboardText}>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id
                 </div>
             </Billboard>
 

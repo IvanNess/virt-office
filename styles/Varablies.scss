@@ -287,3 +287,12 @@ $text-color: #121109;
       letter-spacing: 0px;
   }
 }
+
+@mixin noBackgroundBillboardText {
+  color: $text-color;
+  font: normal normal 900 60px/71px "Work Sans Black";
+  margin-left: $main-margin-left;
+  width: 1115px;
+  margin-bottom: 270.5px;
+  margin-top: 276px;
+}

@@ -5,8 +5,10 @@ import Packages from '../components/packages'
 import Block from '../components/block'
 import Sidebar from '../components/side-bar'
 import Billboard from '../components/billboard'
+import { useSelector } from 'react-redux'
 
 export default function Home() {
+
   return (
     <div className={styles.container}>
 
@@ -32,17 +34,17 @@ export default function Home() {
 
       <div className={styles.blocks}>
         <MainWhy text='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id, rhoncus a felis. Nulla quam enim, ultrices ac'/>
-        <Block className='block'>
+        <Block className='block' showMore={true}>
           <div className={styles.blockText}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id, rhoncus a felis. Nulla quam enim, ultrices ac ipsum id, imperdiet venenatis urna.
           </div>
         </Block>
-        <Block className='block'>
+        <Block className='block' showMore={false}>
           <div className={styles.blockText}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id, rhoncus a felis. Nulla quam enim, ultrices ac ipsum id, imperdiet venenatis urna.
           </div>
         </Block>
-        <Block className='block'>
+        <Block className='block' showMore={false}>
           <div className={styles.blockText}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id, rhoncus a felis. Nulla quam enim, ultrices ac ipsum id, imperdiet venenatis urna.
           </div>
@@ -57,9 +59,9 @@ export default function Home() {
       
       {/* <div className={styles.bigBlock}>
         <div className={styles.withBackground}></div> */}
-      <Billboard>
-        <div className={styles.text}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id, rhoncus a felis. Nulla quam enim, ultrices ac ipsum id, imperdiet venenatis urna.
+      <Billboard noBackground={true}>
+        <div className={styles.noBackgroundBillboardText}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id.
         </div>
       </Billboard>
       {/* </div> */}

@@ -13,7 +13,9 @@
     height: 150px;
     width: 100%;
     border-bottom: 1px solid #ffffff;
-    background-color: $main-color;
+    background-color: $main-color;   
+    padding-top: 53px;
+
 }
 
 .rightBarTopBtn{
@@ -22,7 +24,21 @@
     width: 178px;
     height: 44px;
     margin-left: 34px;
-    margin-top: 53px;
+    // margin-top: 53px;
+}
+
+.profilBtn{
+    @include buttonInput();
+    background-color: $text-color;
+    width: 178px;
+    height: 44px;
+    margin-left: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a{
+        color: white;
+    }
 }
 
 .progressBar{

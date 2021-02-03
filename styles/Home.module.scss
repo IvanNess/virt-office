@@ -22,3 +22,7 @@
   background-color: $text-color;
 }
 
+.noBackgroundBillboardText{
+  @include noBackgroundBillboardText();
+}
+

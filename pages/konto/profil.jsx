@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from '../../styles/Profile.module.scss'
 
 import ProfileBoilerplate from '../../components/profile-boilerplate'
 import AuthBoilerplate from '../../components/auth-boilerplate'
 
-function Profile() {
+function Profile({auth, db}) {
+
+    useEffect(()=>{
+        console.log('profile auth', auth)
+    }, [auth])
+
     return (
         <div className={styles.profile}>
-            <ProfileBoilerplate>
+            <ProfileBoilerplate auth={auth} db={db}>
                 <div className={styles.title}>1. <span className={styles.bold}>Mój Profil</span></div>
                 <div className={styles.text}>
                     <div className={styles.small}>Wpisz nazwę lub kod pocztowy miasta, w którym chcesz wybrać adres firmy. Dostępne adresy i miesięczny koszt wyświetlą się poniżej.</div>

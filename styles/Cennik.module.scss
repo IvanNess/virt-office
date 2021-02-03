@@ -1,5 +1,10 @@
 @import '../styles/Varablies.scss';
 
+.buttonInput{
+    @include buttonInput();
+    background-color: $text-color;
+}
+
 .cennik{
     position: relative;
 }

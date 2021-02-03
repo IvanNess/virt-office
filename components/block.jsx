@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import styles from '../styles/Block.module.scss'
 import MoreBtn from './more-btn'
 
-function Block({className, showButton=true, children}) {
+function Block({className, showButton=true, children, showMore}) {
 
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(true)
 
     function mouseEnter(){setShow(true)}
 
-    function mouseLeave(){setShow(false)}
+    function mouseLeave(){setShow(true)}
 
     if(!showButton){
         return(
@@ -25,7 +25,7 @@ function Block({className, showButton=true, children}) {
             <div className={show? styles[className]: styles[`${className}None`]}>
                 {children}
             </div>
-            <MoreBtn show={show}/>
+            <MoreBtn show={showMore}/>
         </div>
     )
 }

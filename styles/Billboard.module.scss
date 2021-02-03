@@ -7,3 +7,7 @@
 .billboardWrapper{
     @include with-background("/images/office.png", $main-color, 0)
 }
+
+.noBackground{
+  color: $text-color;
+}

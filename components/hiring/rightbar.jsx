@@ -5,10 +5,12 @@ import ProgressBar from './progress-bar'
 import HiringChoice from './hiring-choice'
 import Sidebar from '../side-bar'
 import { setShowAuth } from '../../redux/actions'
+import Link from 'next/link'
 
 function Rightbar() {
 
     const hiringChoices = useSelector(state=>state.hiringChoices)
+    const currentUser = useSelector(state=>state.currentUser)
 
     const dispatch = useDispatch()
 
@@ -21,7 +23,10 @@ function Rightbar() {
     return (
         <div className={styles.rightBarWrapper}>
             <div className={styles.rightBarTop}>
-                <button className={styles.rightBarTopBtn} onClick={login}>zaloguj sie</button>
+                {currentUser === false && <button className={styles.rightBarTopBtn} onClick={login}>zaloguj sie</button>}
+                {currentUser && <div className={styles.profilBtn}>
+                    <Link  href="/konto/profil"><a>Profil</a></Link>
+                </div>}
             </div>
             <div className={styles.rightbar}>
                 <Sidebar/>

@@ -2,10 +2,10 @@ import React from 'react'
 
 import styles from '../styles/Billboard.module.scss'
 
-const Billboard = ({children}) => {
+const Billboard = ({children, noBackground=false}) => {
     return (
-        <div className={styles.billboard}>
-            <div className={styles.billboardWrapper}></div>
+        <div className={noBackground? styles.noBackground: styles.billboard}>
+            <div className={noBackground? styles.noBackground: styles.billboardWrapper}></div>
             {children}
         </div>
     )

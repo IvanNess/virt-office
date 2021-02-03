@@ -3,6 +3,7 @@ import styles from '../styles/Packages.module.scss'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 const Package = ({title, text, id, openedId, setOpenedId, children}) => {
 
@@ -31,7 +32,8 @@ const Package = ({title, text, id, openedId, setOpenedId, children}) => {
                 {children}
             </div>
             {isOpen && !isKontoPakiet && <div className={styles.buttonWrapper}>
-                <button className={styles.button} onClick={buynow}>Kup teraz</button>
+                {/* <button className={styles.button} onClick={buynow}>Kup teraz</button> */}
+                <Link href="/wynajecie"><a>Kup Teraz</a></Link>
             </div>}
             <div className={styles.arrowWrapper}>
                 {!isOpen && <ExpandMoreIcon style={{color: '#E2C700', fontSize: '40px'}}/>}

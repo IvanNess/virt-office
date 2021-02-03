@@ -1,11 +1,25 @@
 import {useRouter} from 'next/router'
 import styles from '../styles/ProfileSidebar.module.scss'
 import { Link } from '@material-ui/core'
+import { useState } from 'react'
 
-function ProfileSidebar() {
+function ProfileSidebar({auth, db}) {
 
     const router = useRouter()
     console.log('router', router, router.pathname==="/konto/profil")
+
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false)
+
+    async function logout(){
+        setIsButtonDisabled(true)
+        try {
+            await auth.signOut()
+            router.push('/')
+        } catch (error) {
+            console.log(error)
+        }
+        setIsButtonDisabled(false)
+    }
 
     return (
         <div className={styles.profileSidebar}>
@@ -19,7 +33,7 @@ function ProfileSidebar() {
                 <div><Link href="/konto/profil"><a>&nbsp;&nbsp;&nbsp; — Faktury</a></Link></div>
                 <div className={router.pathname==="/konto/rezerwacja"? styles.active: ""}><Link href="/konto/rezerwacja"><a>5. Rezerwacja biura</a></Link></div>
             </div>
-            <input className={styles.buttonInput} type="button" value="WYLOGUJ"/>
+            <input className={styles.buttonInput} type="button" value="WYLOGUJ" onClick={logout} disabled={isButtonDisabled}/>
         </div>
     )
 }

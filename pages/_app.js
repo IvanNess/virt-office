@@ -11,14 +11,14 @@ function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState)
 
   const db = fire.firestore()
-  const auth = fire.auth()
+  const auth = fire.auth() 
 
   return (
     <>
       <Provider store={store}>
         <Component {...pageProps} db={db} auth={auth}/>  
         <Footer/>
-        <AuthBoilerplate/>
+        <AuthBoilerplate  db={db} auth={auth}/>
       </Provider>
     </>
   )

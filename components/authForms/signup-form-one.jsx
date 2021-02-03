@@ -5,7 +5,7 @@ import AuthFormBoilerplate from './auth-form-boilerplate'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSignupFormProp } from '../../redux/actions' 
 
-function SignupFormOne() {
+function SignupFormOne({db, auth}) {
 
     const signupForm = useSelector(state=>state.signupForm)
     const dispatch = useDispatch()
@@ -18,13 +18,18 @@ function SignupFormOne() {
 
     return (
         <div className={styles.signupForm}>
-            <AuthFormBoilerplate page={1}>
+            <AuthFormBoilerplate page={1}  db={db} auth={auth}>
                 <input type="text" 
                     placeholder={!signupForm.namePlaceholder ? "Nazwa użytkownika": signupForm.namePlaceholder} 
                     data-id="name" value={signupForm.name} 
                     onChange={onChange}
                 />
-                <input type="password" placeholder="Hasło" data-id="password" value={signupForm.password} onChange={onChange}/>
+                <input 
+                    type="password" 
+                    placeholder={!signupForm.passwordPlaceholder ? "Hasło": signupForm.passwordPlaceholder} 
+                    data-id="password" 
+                    value={signupForm.password} 
+                    onChange={onChange}/>
                 <input 
                     type="password" 
                     placeholder="Powtórz hasło" 

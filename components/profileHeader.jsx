@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../styles/Header.module.scss'
-import { Link } from '@material-ui/core'
+import Link from 'next/link'
 
 
 const ProfileHeader = () => {
@@ -10,7 +10,7 @@ const ProfileHeader = () => {
                 <Link href="/"><a>LO/GO</a></Link>
             </div>
             <div className={styles.button}>
-                <Link href="/kupteraz"><a>KUP TERAZ</a></Link>
+                <Link href="/wynajecie"><a>KUP TERAZ</a></Link>
             </div>
         </div>
     )

@@ -1,0 +1,29 @@
+@import './Varablies.scss';
+
+@mixin p {
+    p{
+        font: normal normal bold 16px/19px Work Sans;
+        letter-spacing: 0.8px;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        margin-bottom: 0;  
+    }
+}
+
+.moreBtnShow {
+    position: absolute;
+    bottom: -28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 226px;
+    height: 55px;
+    background: $main-color 0% 0% no-repeat padding-box;
+    margin-top: -28px;
+    cursor: pointer;
+    @include p();
+}
+.moreBtnNone {
+    display: none;
+    @include p();
+}

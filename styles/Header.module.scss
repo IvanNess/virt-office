@@ -70,6 +70,7 @@
     font: normal normal bold 16px/19px "Work Sans Bold";
     letter-spacing: 0.8px;
     text-transform: uppercase;
+    border: none;
 }
 
 .profileHeader .button{
@@ -78,6 +79,25 @@
     a{
         color: white;
     }
+}
+
+.header .profileButton{
+    @include header-button();
+    background: #ffffff 0% 0% no-repeat padding-box;
+    a{
+        color: $main-color;
+        text-decoration: none;
+        &:hover{
+            text-decoration: none;
+        }
+    }
+}
+
+.plug{
+    @include header-button();
+    background-color: none;
+    opacity: 0;
+    cursor: auto;
 }
 
 
