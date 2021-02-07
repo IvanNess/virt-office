@@ -139,7 +139,9 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                             username: signupForm.name,
                             userId
                         })
-                        
+                        dispatch(setShowAuth({show: false}))
+                        const body = document.querySelector("body")
+                        body.style.overflow = "auto"  
                     } catch (error) {
                         alert(`ERROR: ${error}`)
                     }
