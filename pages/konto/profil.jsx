@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Profile.module.scss'
 
 import ProfileBoilerplate from '../../components/profile-boilerplate'
 import AuthBoilerplate from '../../components/auth-boilerplate'
+import { useDispatch, useSelector } from 'react-redux'
+import { editCurrentUser } from '../../redux/actions'
 
 function Profile({auth, db}) {
-
-    useEffect(()=>{
-        console.log('profile auth', auth)
-    }, [auth])
 
     return (
         <div className={styles.profile}>
@@ -17,6 +15,7 @@ function Profile({auth, db}) {
                 <div className={styles.text}>
                     <div className={styles.small}>Wpisz nazwę lub kod pocztowy miasta, w którym chcesz wybrać adres firmy. Dostępne adresy i miesięczny koszt wyświetlą się poniżej.</div>
                 </div>
+
                 <form action="">
                     <input className={styles.login} type="text" placeholder="Login" value="" disabled={false}/>
                     <input className={styles.adress} type="text" placeholder="Adres email" value="" disabled={false}/>
@@ -34,6 +33,7 @@ function Profile({auth, db}) {
                         <input className={styles.buttonInput} type="button" value="ZAPISZ"/>
                     </form>
                 </div>
+
             </ProfileBoilerplate>                       
         </div>
     )

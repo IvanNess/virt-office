@@ -1,0 +1,67 @@
+@import './Varablies.scss';
+
+.title{
+    @include title();
+    width: 597px;
+    margin-top: 60px;
+    .boldFont{
+        text-transform: lowercase;
+    }
+}
+
+.description{
+    @include blockText();
+    padding: 0;
+    width: 670px;
+    margin-top: 34px;
+}
+
+.wynajecieForm{
+    position: relative;
+    @include konto();
+    @include profileInput();
+    .text{
+        @include profileText();
+    }
+    margin-left: $main-margin-left;
+    margin-top: 59px;
+    width: 616px;
+    .form{
+        margin-top: 77px;
+        width: 749px;
+        input{
+            width: 100%;
+        }
+    }
+    .button{
+        @include buttonInput();
+        width: 226px !important;
+        align-self: flex-end;
+        padding: 0;
+    }    
+}
+
+.contact{
+    padding-left: 177px;
+    padding-top: 29px;
+    padding-bottom: 6px;
+    font: normal normal 300 20px/28px "Work Sans Light";
+}
+
+.twoInputs{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    width: 749px;
+    .left{
+        margin-top: 0 !important;
+        width: auto;
+        flex-basis: 50%;
+    }
+    .right{
+        margin-left: 5px;
+        margin-top: 0;
+        width: auto;
+        flex-basis: 50%;
+    }
+}

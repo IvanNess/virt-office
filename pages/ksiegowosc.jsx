@@ -5,6 +5,7 @@ import Billboard from '../components/billboard'
 import Header from '../components/header'
 import Sidebar from '../components/side-bar'
 import Block from '../components/block'
+import Link from 'next/link'
 
 function Ksiegowosc() {
     const Hyphen = ()=> <span className={styles.hyphen}>&mdash;&mdash;&mdash;&mdash;&mdash;</span>
@@ -21,9 +22,11 @@ function Ksiegowosc() {
                 <div className={styles.headerText}>
                     Zarządzaj swoim biznesem z każdego miejsca o dowolnej porze
                 </div>
-                <form className={styles.headerForm}>
-                    <input className={styles.buttonInput} type="button" value="Wynajmij biuro"/>
-                </form>
+                <div className={styles.linkButtonWrapper}>
+                    <div className={styles.linkButton}>
+                        <Link href='/wynajecie'><a cl>Wynajmij biuro</a></Link>
+                    </div> 
+                </div>
             </Billboard>
             
             <div className={styles.title}>
@@ -35,31 +38,31 @@ function Ksiegowosc() {
 
             <div className={styles.blocks}>
                 <Block className='blockMedium'>
-                    <div className={styles.blockTitleTwo}>
+                    <div className={styles.blockTitle}>
                         Menedżer sprzedaży
                     </div>
-                    <div className={styles.blockTextTwo}><Hyphen/><div className={styles.afterHyphen}>Fakturowanie</div></div>
-                    <div className={styles.blockTextTwo}><Hyphen/><div className={styles.afterHyphen}>Magazyn</div></div>
-                    <div className={styles.blockTextTwo}><Hyphen/><div className={styles.afterHyphen}>CRM</div></div>
-                    <div className={styles.blockTextTwo}><Hyphen/><div className={styles.afterHyphen}>e-Commerce</div></div>  
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Fakturowanie</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Magazyn</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>CRM</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>e-Commerce</div></div>  
                 </Block>
                 <Block className='blockMedium'>
-                    <div className={styles.blockTitleTwo}>
+                    <div className={styles.blockTitle}>
                         Kadry i płace
                     </div>
-                    <div className={styles.blockTextTwo}><Hyphen/><div className={styles.afterHyphen}>Generator dokumentów</div></div>
-                    <div className={styles.blockTextTwo}><Hyphen/><div className={styles.afterHyphen}>Integracje z e-ZUS i MF</div></div>
-                    <div className={styles.blockTextTwo}><Hyphen/><div className={styles.afterHyphen}>Ewidencja czasu pracy</div></div>
-                    <div className={styles.blockTextTwo}><Hyphen/><div className={styles.afterHyphen}>Elektroniczne akta osobowe</div></div> 
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Generator dokumentów</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Integracje z e-ZUS i MF</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Ewidencja czasu pracy</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Elektroniczne akta osobowe</div></div> 
                 </Block>
                 <Block className='blockMedium'>
-                    <div className={styles.blockTitleTwo}>
+                    <div className={styles.blockTitle}>
                         Księgowość online
                     </div>
-                    <div className={styles.blockTextTwo}><Hyphen/><div className={styles.afterHyphen}>KPiR, Ryczałt, VAT</div></div>
-                    <div className={styles.blockTextTwo}><Hyphen/><div className={styles.afterHyphen}>JPK, e-Deklaracje</div></div>
-                    <div className={styles.blockTextTwo}><Hyphen/><div className={styles.afterHyphen}>Kasa / Bank</div></div>
-                    <div className={styles.blockTextTwo}><Hyphen/><div className={styles.afterHyphen}>Środki trwałe</div></div> 
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>KPiR, Ryczałt, VAT</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>JPK, e-Deklaracje</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Kasa / Bank</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Środki trwałe</div></div> 
                 </Block>   
             </div>
 

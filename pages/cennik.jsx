@@ -5,6 +5,7 @@ import styles from '../styles/Cennik.module.scss'
 import Header from '../components/header'
 import Sidebar from '../components/side-bar'
 import CennikTable from '../components/cennik-table'
+import Link from 'next/link'
 
 const Cennik = () => {
     return (
@@ -19,9 +20,11 @@ const Cennik = () => {
                 <div className={styles.headerText}>
                     Zarządzaj swoim biznesem z każdego miejsca o dowolnej porze
                 </div>
-                <form className={styles.headerForm}>
-                    <input className={styles.buttonInput} type="button" value="Wynajmij biuro"/>
-                </form>
+                <div className={styles.linkButtonWrapper}>
+                    <div className={styles.linkButton}>
+                        <Link href='/wynajecie'><a cl>Wynajmij biuro</a></Link>
+                    </div> 
+                </div>
             </Billboard>
 
             <div className={styles.title}>

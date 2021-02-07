@@ -6,6 +6,7 @@ import Block from '../components/block'
 import Sidebar from '../components/side-bar'
 import Billboard from '../components/billboard'
 import { useSelector } from 'react-redux'
+import MainPageHeaders from '../components/main-page-headers'
 
 export default function Home() {
 
@@ -16,12 +17,13 @@ export default function Home() {
 
       <Billboard>
         <Header/>
-        <div className={styles.headerTitle}>
+        <MainPageHeaders/>
+        {/* <div className={styles.headerTitle}>
           DZIAŁAJ WYDAJNIE DZIĘKI NOWOCZESNYM <span className={styles.headerBoldFont}>WIRTUALNYM</span> PRZESTRZENIOM DO PRACY
         </div>
         <div className={styles.headerText}>
           Działaj z dowolnego miejsca na świecie dzięki opcji biura wirtualnego. Nasze usługi biura wirtualnego obejmują odbieranie połączeń telefonicznych i obsługę poczty z profesjonalnym adresem firmy w dowolnym centrum biznesowym Regus na świecie.
-        </div>
+        </div> */}
         <form className={styles.headerForm}>
           <input className={styles.textInput} type="text" name="" id="" placeholder="Wpisz miasto"/>
           <input className={styles.buttonInput} type="button" value="WYSZUKAJ"/>
@@ -76,19 +78,19 @@ export default function Home() {
 
       <div className={styles.blocksTwo}>
         <Block className='blockLarge'>
-          <div className={styles.blockTitleTwo}>
+          <div className={styles.blockTitle}>
             Wirtualny podpis od firmy <span className={styles.boldFont}>coblit</span>
           </div>
-          <div className={styles.blockTextTwo}>
+          <div className={styles.blockText}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id, rhoncus a felis. Nulla quam enim, ultrices ac ipsum id, imperdiet venenatis urna.
           </div>        
         </Block> 
 
         <Block className='blockLarge'>
-          <div className={styles.blockTitleTwo}>
+          <div className={styles.blockTitle}>
             On-linowa księgowość z <span className={styles.boldFont}>wfirma.pl</span>
           </div>
-          <div className={styles.blockTextTwo}>
+          <div className={styles.blockText}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id, rhoncus a felis. Nulla quam enim, ultrices ac ipsum id, imperdiet venenatis urna.
           </div>        
         </Block>       

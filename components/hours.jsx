@@ -169,7 +169,7 @@ function Hours({db, auth , outterReset}) {
                     const ref = await db.collection("reservedSessions").add(session)
                     console.log("ref", ref)
                     await ref.collection("privateReservedSessionsData").add({
-                        email: currentUser.email
+                        userId: currentUser.userId
                     })  
                     //update all data
                     dispatch(updateReservedSessions([...sessions, session]))
@@ -207,8 +207,9 @@ function Hours({db, auth , outterReset}) {
         // console.log('privateReservedSessionsData', currentUser.email)
         try {
             const data  = await db.collectionGroup('privateReservedSessionsData')
-                .where("email", "==", currentUser.email)
+                .where("userId", "==", currentUser.userId)
                 .get()
+            console.log('privateReservedSessionData', data)
             let reservations = []
             const promises = data.docs.map(doc=>{
                 return doc.ref.parent.parent.get()

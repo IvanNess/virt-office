@@ -11,3 +11,30 @@
         margin-top: 20px;
     }
 }
+
+
+.noEditFields{
+    display: flex;
+    color: $text-color;
+    margin-top: 60px;
+    .readyField{
+        margin-bottom: 23px;
+        display: flex;
+    }
+    .title{
+        font: normal normal 900 16px/19px "Work Sans Black";
+    }
+    .value{
+        font: normal normal 300 16px/19px "Work Sans Light";
+    }
+    .left{
+        min-width: 287px;
+        padding-right: 52px;
+    }
+}
+
+.editButton{
+    @include buttonInput();
+    margin-top: 76px;
+}
+

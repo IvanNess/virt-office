@@ -1,0 +1,65 @@
+@import './Varablies.scss';
+
+.podpis{
+    position: relative;
+}
+
+.blocks{
+    @include blocks(228px);
+    .blockText{
+        padding-right: 15px;
+        line-height: 2;
+    }
+}
+
+.headerTitle{
+    @include headerTitle();
+    width: 597px;
+    margin-top: 146px;
+}
+
+.headerText{
+    @include headerText();
+    text-transform: lowercase;
+    padding-bottom: 41px;
+}
+
+.headerBoldFont{
+    @include headerBoldFont();
+}
+
+.linkButton{
+    @include linkButton(44px);
+    margin-left: $main-margin-left;
+}
+
+.linkButtonWrapper{
+    padding-bottom: 101px;
+}
+
+.title{
+    @include title()
+}
+
+.smallText{
+    @include smallText();
+    padding-bottom: 68px;
+}
+
+.hyphen{
+    @include hyphen();
+}
+
+.hiddenHyphen{
+    @include hyphen();
+    opacity: 0;
+}
+
+.titleTwo{
+    @include title();
+    margin-top: 215px;
+    padding-bottom: 215px;
+    margin-bottom: 0;
+    display: flex;
+    text-align: center;
+}

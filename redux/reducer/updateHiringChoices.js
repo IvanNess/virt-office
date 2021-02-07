@@ -17,11 +17,12 @@ export const updateHiringChoices = (state, action)=>{
                 isComplete: false
             },
             {
-                choice: "",
+                name: "4. TWOJE DANE",
+                choice: '',
                 isComplete: false
             },
             {
-                choice: "",
+                choice: "5",
                 isComplete: false
             }
         ]

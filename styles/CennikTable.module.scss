@@ -49,7 +49,7 @@ $column-heght: 90px;
         display: flex;
         .left{
             display: flex;
-            margin-left: $main-margin-left;
+            // margin-left: $main-margin-left;
             border-bottom: $border;
             flex: 1;
         }
@@ -87,7 +87,7 @@ $column-heght: 90px;
     .names{
         display: flex;
         flex-direction: column;
-        margin-left: $main-margin-left;
+        // margin-left: $main-margin-left;
         flex: 1;
         .name{
             @include name();

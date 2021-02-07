@@ -1,0 +1,27 @@
+@import './Varablies.scss';
+
+.title{
+    @include title();
+    width: 597px;
+    margin-top: 60px;
+    margin-left: 0;
+    margin-bottom: 0;
+    .boldFont{
+        text-transform: lowercase;
+    }
+}
+
+.description{
+    @include blockText();
+    padding: 0;
+    width: 670px;
+    margin-top: 34px;
+}
+
+.payment{
+    margin-left: $main-margin-left;
+}
+
+.underConstruction{
+    margin-top: 70px;
+}

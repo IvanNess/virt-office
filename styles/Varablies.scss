@@ -37,7 +37,8 @@ $text-color: #121109;
 
 @mixin with-background($url, $background-color, $opacity) {
     background-image: url($url);
-    background-position: center; 
+    // background-position: center; 
+    background-position: 0 0;
     background-repeat: repeat;
     position: absolute;
     left: 0;
@@ -45,6 +46,7 @@ $text-color: #121109;
     width: 100%;
     height: 100%;
     z-index: -1;
+    background-color: $main-color;
     &::after{
       content: '';
       display: block;
@@ -65,6 +67,15 @@ $text-color: #121109;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  .blockTitle{
+    @include blockTitle();
+  }
+  .blockText{
+    @include blockText();
+  }
+  .afterHyphen{
+    margin-left: 30px;       
+  }
 }
 
 @mixin buttonInput {
@@ -78,6 +89,28 @@ $text-color: #121109;
   color: #FFFFFF;
   text-transform: uppercase;
   opacity: 1;
+}
+
+@mixin linkButton($height) {
+  height: $height;
+  width: 178px;
+  background: $text-color 0% 0% no-repeat padding-box;
+  cursor: pointer;
+  margin-right: 211px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  a{
+      text-decoration: none;
+      font: normal normal bold 16px/19px "Work Sans";
+      letter-spacing: 0.8px;
+      color: #ffffff;
+      text-transform: uppercase;    
+      height: 100%;
+      width: 100%;
+      line-height: $height;
+      text-align: center;
+  }    
 }
 
 @mixin profileInput {
@@ -103,35 +136,46 @@ $text-color: #121109;
   padding-bottom: 0;
 }
 
+@mixin blockTitle {
+  padding: 42px 0 0 29px;
+  font: normal normal 900 24px/28px "Work Sans Black";
+  letter-spacing: 0px;
+  color: $text-color;
+  .boldFont{
+    text-transform: uppercase;
+  }
+}
+
 @mixin blockText{
   padding: 20.5px 44px 0 29px;
   font: normal normal 300 16px/19px "Work Sans Light";
   letter-spacing: 0px;
   color: $text-color;
+  display: flex;
 }
 
-.headerTitle{
-    text-align: left;
-    font: normal normal 300 56px/66px "Work Sans Light";
-    letter-spacing: 0px;
-    color: #FFFFFF;
-    text-transform: lowercase;
-    margin-left: $main-margin-left;
-    margin-top: 85px;
-    width: 812px;
+@mixin headerTitle {
+  text-align: left;
+  font: normal normal 300 56px/66px "Work Sans Light";
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  text-transform: lowercase;
+  margin-left: $main-margin-left;
+  margin-top: 85px;
+  width: 812px;
 }
-  
-.headerBoldFont{
-    text-align: left;
-    font: normal normal 900 56px/66px "Work Sans Bold";
-    letter-spacing: 0px;
-    color: #FFFFFF;
-    text-transform: uppercase;
+
+@mixin headerBoldFont{
+  text-align: left;
+  font: normal normal 900 56px/66px "Work Sans Bold";
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  text-transform: uppercase;  
 }
-  
-.headerText{
+
+@mixin headerText {
     margin-left: $main-margin-left;
-    margin-top: 85px;
+    margin-top: 82px;
     padding-bottom: 17px;
     width: 1000px;
     font: normal normal 300 16px/25px "Work Sans Light";
@@ -139,26 +183,27 @@ $text-color: #121109;
     color: #FFFFFF;
     opacity: 1;
 }
-  
-.headerForm{
-    margin-left: $main-margin-left;
-    padding-bottom: 101px;
-    .textInput{
-      width: 436px;
-      height: 55px;
-      border: none;
-      padding-left: 28px;
-      &:focus{
-        outline: none;
-      }
-      &::placeholder{
-        font: normal normal medium 16px/19px Work Sans;
-        letter-spacing: 0px;
-        color: #B9B9B9;
-        text-transform: uppercase;
-      }
+
+@mixin headerForm {
+  margin-left: $main-margin-left;
+  padding-bottom: 101px;
+  .textInput{
+    width: 436px;
+    height: 55px;
+    border: none;
+    padding-left: 28px;
+    &:focus{
+      outline: none;
     }
+    &::placeholder{
+      font: normal normal medium 16px/19px Work Sans;
+      letter-spacing: 0px;
+      color: #B9B9B9;
+      text-transform: uppercase;
+    }
+  }
 }
+  
 
 // .buttonInput{
 //   width: 226px;
@@ -173,11 +218,7 @@ $text-color: #121109;
 //   opacity: 1;
 // }
   
-.title{
-  @include title();
-}
-
-.text{
+@mixin text(){
   margin-left: $main-margin-left;
   padding-bottom: 153px;
   padding-top: 152px;
@@ -187,7 +228,7 @@ $text-color: #121109;
   color: #FFFFFF;
 }
 
-.smallText{
+@mixin smallText{
   margin-left: $main-margin-left;
   width: 1001px;
   font: normal normal 300 16px/25px "Work Sans Light";
@@ -196,41 +237,17 @@ $text-color: #121109;
   padding-bottom: 47px;
 }
 
-.blockTitleTwo{
-  padding: 42px 0 0 29px;
-  font: normal normal 900 24px/28px "Work Sans Black";
-  letter-spacing: 0px;
-  color: $text-color;
-  .boldFont{
-    text-transform: uppercase;
-  }
-}
 
-.blockTextTwo{
-  padding: 20.5px 44px 0 29px;
-  font: normal normal 300 16px/19px "Work Sans Light";
-  letter-spacing: 0px;
-  color: $text-color;
-}
-
-.hyphen{
+@mixin hyphen {
   color: $main-color;
-  letter-spacing: -3px;
+  letter-spacing: -3px;  
 }
 
-.blocks{
-  @include blocks(225.5px);
-}
-
-.blocksTwo{
-  @include blocks(0);
-  justify-content: flex-start;
-  padding-bottom: 282.5px;
-}
-
-.blockText{
-  padding: 30.5px 29px 0 29px;
-}
+// .blocksTwo{
+//   @include blocks(0);
+//   justify-content: flex-start;
+//   padding-bottom: 282.5px;
+// }
 
 @mixin konto{
   color: $text-color;

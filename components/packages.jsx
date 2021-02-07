@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import Package from './package'
 import styles from '../styles/Packages.module.scss'
+import { Collapse } from 'antd';
+import Link from 'next/link';
+const { Panel } = Collapse;
+
 
 const Packages = () => {
 
@@ -8,7 +12,7 @@ const Packages = () => {
 
     return (
         <div className={styles.packages}>
-            <Package 
+            {/* <Package 
                 id={1}
                 openedId={openedId}
                 setOpenedId={setOpenedId}
@@ -28,7 +32,21 @@ const Packages = () => {
                 setOpenedId={setOpenedId}
                 title='Pakiet biura wirtualnego plus' 
                 text='Profesjonalny adres z obsługą poczty i odbieraniem połączeń telefonicznych oraz dostęp bez rezerwacji do naszej globalnej sieci salonów biznesowych'
-            />
+            /> */}
+            <Collapse accordion>
+                <Panel header="Profesjonalny" key="1">
+                    <div className={styles.link}><Link href="/wynajecie"><a>Kup Teraz</a></Link></div>
+                    <p>Profesjonalny adres z obsługą poczty i odbieraniem połączeń telefonicznych oraz dostęp bez rezerwacji do naszej globalnej sieci salonów biznesowych</p>
+                </Panel>
+                <Panel header="Biuro wirtualne" key="2">
+                    <div className={styles.link}><Link href="/wynajecie"><a>Kup Teraz</a></Link></div>
+                    <p>Profesjonalny adres z obsługą poczty i odbieraniem połączeń telefonicznych oraz dostęp bez rezerwacji do naszej globalnej sieci salonów biznesowych</p>
+                </Panel>
+                <Panel header="Pakiet biura wirtualnego plus" key="3">
+                    <div className={styles.link}><Link href="/wynajecie"><a>Kup Teraz</a></Link></div>
+                    <p>Profesjonalny adres z obsługą poczty i odbieraniem połączeń telefonicznych oraz dostęp bez rezerwacji do naszej globalnej sieci salonów biznesowych</p>
+                </Panel>
+            </Collapse>
         </div>
     )
 }

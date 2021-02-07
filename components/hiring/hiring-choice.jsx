@@ -6,6 +6,20 @@ function HiringChoice({idx, choice, name, isComplete}) {
 
     // console.log('choice', choice)
 
+    let choices = []
+    if(typeof choice !== 'string'){
+        for (const key in choice) {
+            if (choice.hasOwnProperty(key)) {
+                choices = [...choices,
+                    {
+                        prop: key,
+                        value: choice[key]
+                    }
+                ]
+            }
+        }
+    }
+
     return (
         <div className={styles.hiringChoice}>
             {isComplete &&
@@ -19,6 +33,15 @@ function HiringChoice({idx, choice, name, isComplete}) {
                             <div className={styles.hiringChoiceValue}>
                                 {choice}
                             </div>
+                        }
+                        {
+                            typeof choice !== 'string' && (
+                                choices.map(choice=>
+                                    <div className={styles.hiringChoiceValue}>
+                                        {choice.value}
+                                    </div>    
+                                )
+                            )
                         }
                     </div>
                 </div>

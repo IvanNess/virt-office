@@ -1,0 +1,52 @@
+@import './Varablies.scss';
+
+.onas{
+    position: relative;
+    .onasBody{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 96.5px;
+        margin-left: $main-margin-left;
+        padding-bottom: 152px;
+        .left{
+            color: $text-color;
+            width: 171px;
+            .title{
+                font: normal normal 900 27px/32px "Work Sans Black";
+                width: 565px;
+                margin-bottom: 50px;
+            }
+            .textOne{
+                font: normal normal 300 16px/19px "Work Sans Light";
+            }
+            .textTwo{
+                font: normal normal 900 16px/19px "Work Sans Black";
+            }
+        }
+        .right{
+            display: flex;
+            margin-right: 260px;
+            .space{
+                width: 57px;
+            }
+        }
+    }
+}
+
+.headerTitle{
+    @include headerTitle();
+    width: 597px;
+    margin-top: 61px;
+}
+
+.headerText{
+    @include headerText();
+    text-transform: lowercase;
+    margin-top: 35px;
+    padding-bottom: 102px;
+}
+
+.headerBoldFont{
+    @include headerBoldFont();
+  }
+  

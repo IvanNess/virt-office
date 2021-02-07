@@ -26,3 +26,39 @@
   @include noBackgroundBillboardText();
 }
 
+.headerTitle{
+  @include headerTitle()
+}
+
+.headerText{
+  @include headerText()
+}
+
+.headerForm{
+  @include headerForm();
+  padding-bottom: 36px;
+  position: absolute;
+  bottom: 0;
+}
+
+.headerBoldFont{
+  @include headerBoldFont();
+}
+
+.smallText{
+  @include smallText()
+}
+
+.blocks{
+  @include blocks(225.5px);
+}
+
+.blocksTwo{
+  @include blocks(0px);
+  padding-bottom: 282.5px;
+}
+
+.title{
+  @include title();
+}
+

@@ -1,8 +1,12 @@
 @import '../styles/Varablies.scss';
 
-.buttonInput{
-    @include buttonInput();
-    background-color: $text-color;
+.linkButton{
+    @include linkButton(44px);
+    margin-left: $main-margin-left;
+}
+
+.linkButtonWrapper{
+    padding-bottom: 101px;
 }
 
 .cennik{
@@ -10,17 +14,20 @@
 }
 
 .headerTitle{
+    @include headerTitle();
     margin-top: 150px;
     margin-bottom: 85px;
 }
 
 .headerText{
+    @include headerText();
     padding: 0;
     margin-top: 0;
     margin-bottom: 44px;
 }
 
 .title{
+    @include title();
     margin-bottom: 0;
     .boldFont{
         text-transform: lowercase;

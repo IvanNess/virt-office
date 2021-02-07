@@ -122,3 +122,56 @@ a {
 .ant-select-selector:hover{
   border-color: #000000 !important;
 }
+
+/* antd collapse accordeon */
+.ant-collapse-arrow{
+  z-index: 2 !important;
+  left: auto !important;
+  right: 0 !important;
+  width: 150px !important;
+  color: #E2C700 !important;
+  font-size: 16px !important;
+}
+
+.ant-collapse-arrow > svg{
+  transform: rotate(90deg);
+}
+
+.ant-collapse-item-active .ant-collapse-arrow > svg{
+  transform: rotate(-90deg) !important;
+}
+
+.ant-collapse-header{
+  background-color: #ffffff !important;
+  border: none !important;
+  padding-left: 0px !important;
+}
+
+.ant-collapse-item-active .ant-collapse-header{
+  font: normal normal 900 24px/28px "Work Sans Black";
+  letter-spacing: 0px;
+  color: #121109;
+}
+
+.ant-collapse{
+  border: none;
+}
+
+.ant-collapse-item{
+  border: none;
+  font: normal normal 24px/28px "Work Sans Medium";
+  letter-spacing: 0px;
+  color: #121109;
+} 
+
+.ant-collapse-content{
+  border: none;
+  font: normal normal 300 16px/19px "Work Sans Light";
+  padding-left: 0;
+  width: 100%;
+  position: relative;
+}
+
+.ant-collapse-content-box{
+  padding-left: 0 !important;
+}

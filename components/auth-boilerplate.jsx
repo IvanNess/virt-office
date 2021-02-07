@@ -10,9 +10,6 @@ import { setShowAuth, setCurrentUser } from '../redux/actions'
 
 function AuthBoilerplate({db, auth}) {
 
-
-    const [isLogin, setIsLogin] = useState(true)
-
     const page = useSelector(state=>state.signupForm.page ?? 1)
     const showAuth = useSelector(state=>state.showAuth)
 
@@ -26,7 +23,9 @@ function AuthBoilerplate({db, auth}) {
             } else{
                 dispatch(setCurrentUser({
                     email: user.email,
-                    username: user.displayName
+                    username: user.displayName,
+                    userId: user.uid,
+                    isFullLoaded: false
                 }))
             }
             
@@ -38,22 +37,22 @@ function AuthBoilerplate({db, auth}) {
         if(!id)
             return
         if(id=='login'){
-            setIsLogin(true)
+            dispatch(setShowAuth({show: true, isLogin: true}))
         }
         if(id=='signup'){
-            setIsLogin(false)
+            dispatch(setShowAuth({show: true, isLogin: false}))
         }
     }
 
     function close(){
         const body = document.querySelector("body")
         body.style.overflow = "auto"
-        dispatch(setShowAuth(false))
+        dispatch(setShowAuth({show: false}))
     }
 
     return (
-        <div className={showAuth? styles.authBoilerplate: styles.authBoilerplateNone}>
-            <div className={styles[`${isLogin? 'login': 'signup'}AuthWrapper`]}>
+        <div className={showAuth.show? styles.authBoilerplate: styles.authBoilerplateNone}>
+            <div className={styles[`${showAuth.isLogin? 'login': 'signup'}AuthWrapper`]}>
                 <div className={styles.authHeader}>
                     <div className={styles.authLogo}>VIRT OFFICE</div>
                     <CloseIcon style={{fontSize: '78px', color: 'white', cursor: "pointer", marginRight: "-22px"}}
@@ -61,18 +60,19 @@ function AuthBoilerplate({db, auth}) {
                     />
                 </div>
                 <div className={styles.authOptions} onClick={onClick}>
-                    <div className={isLogin? styles.loginSelected: styles.login} data-id='login'>Zaloguj się</div>
-                    <div className={!isLogin? styles.signinSelected: styles.signin} data-id='signup'>Zarejestruj się</div>
+                    <div className={showAuth.isLogin? styles.loginSelected: styles.login} data-id='login'>Zaloguj&nbsp;się</div>
+                    <div className={styles.space}>&nbsp;</div>                    
+                    <div className={!showAuth.isLogin? styles.signinSelected: styles.signin} data-id='signup'>Zarejestruj&nbsp;się</div>
                     <div className={styles.rest}>&nbsp;</div>
                 </div>
                 <div className={styles.authStep}>
-                    {!isLogin && <div className={styles.content}>step <span className={styles.stepCount}>{page}</span>/3</div>}
+                    {!showAuth.isLogin && <div className={styles.content}>step <span className={styles.stepCount}>{page}</span>/3</div>}
                 </div>
                 <div className={styles.inner}>
-                    {isLogin && <LoginForm  db={db} auth={auth}/>}
-                    {!isLogin && page===1 && <SignupFormOne  db={db} auth={auth}/>}
-                    {!isLogin && page===2 && <SignupFormTwo  db={db} auth={auth}/>}
-                    {!isLogin && page===3 && <SignupFormThree  db={db} auth={auth}/>}
+                    {showAuth.isLogin && <LoginForm  db={db} auth={auth}/>}
+                    {!showAuth.isLogin && page===1 && <SignupFormOne  db={db} auth={auth}/>}
+                    {!showAuth.isLogin && page===2 && <SignupFormTwo  db={db} auth={auth}/>}
+                    {!showAuth.isLogin && page===3 && <SignupFormThree  db={db} auth={auth}/>}
                 </div>
             </div>
         </div>

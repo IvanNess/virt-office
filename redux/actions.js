@@ -10,6 +10,8 @@ export const setSelectedDate = (date)=> async (dispatch)=>dispatch({type: 'SET_S
 
 export const setCurrentUser = (user)=> async (dispatch)=>dispatch({type: 'SET_CURRENT_USER', user})
 
+export const editCurrentUser = (values)=> async (dispatch)=>dispatch({type: 'EDIT_CURRENT_USER', values})
+
 export const addReservedHour = (hour)=> async (dispatch)=>dispatch({type: 'ADD_RESERVED_HOUR', hour})
 
 export const setReservedSessions = (sessions)=> async (dispatch) => dispatch({type: "SET_RESERVED_SESSIONS", sessions})
@@ -35,6 +37,10 @@ export const setHiringChoiceNumber = (number)=> async (dispatch) => dispatch({ty
 export const updateHiringChoice = ({prop, value, number})=> async (dispatch) => dispatch({type: "UPDATE_HIRING_CHOICE", value, number, prop})
 
 export const setShowAuth = (value)=> async (dispatch) => dispatch({type: "SET_SHOW_AUTH", value})
+
+export const setWynajecieFormProp = (prop, value)=> async (dispatch) => dispatch({type: "SET_WYNAJECIE_FORM_PROP", prop, value})
+
+export const setWynajecieForm = (value)=> async (dispatch) => dispatch({type: "SET_WYNAJECIE_FORM", value})
 
 // import { Auth } from "aws-amplify"
 // import { getUserByUsername, getUserByEmail, getOrders, getAdressByUsername } from "../utils/graphql-utils"

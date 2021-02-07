@@ -1,0 +1,24 @@
+@import './Varablies.scss';
+
+.price{
+    display: flex;
+    color: #ffffff;
+    margin-top: 46px;
+    align-items: center;
+    .wrapper{
+        display: flex;
+        margin-right: 24px;
+        .title{
+            font: normal normal 200 24px/35px "Work Sans Light";
+        }
+        .value{
+            font: normal normal 900 30px/35px "Work Sans Black";
+        }
+    }
+}
+
+.priceButton{
+    @include buttonInput();
+    background-color: $text-color;
+    width: 178px;
+}

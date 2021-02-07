@@ -38,7 +38,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                 console.log('username', username)
                 try {
                     await auth.signInWithEmailAndPassword(username.email, loginForm.password)
-                    dispatch(setShowAuth(false))
+                    dispatch(setShowAuth({show: false}))
                     const body = document.querySelector("body")
                     body.style.overflow = "auto"
                     // router.push('/konto/profil')
@@ -122,22 +122,26 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     try {
                         const user = await auth.createUserWithEmailAndPassword(signupForm.contactEmail, signupForm.password)
                         console.log('user', user)
+                        const userId = auth.currentUser.uid
+                        
                         await db.collection('users').add({
+                            userId,
                             name: signupForm.name,
                             fullName: signupForm.fullName,
                             companyName: signupForm.companyName,
                             NIP: signupForm.NIP,
                             contactName: signupForm.contactName,
+                            email: signupForm.contactEmail,
                             contactEmail: signupForm.contactEmail,
                             phoneNumber: signupForm.phoneNumber
-
                         })
                         await db.collection('usernames').add({
                             username: signupForm.name,
-                            email: signupForm.contactEmail
+                            userId
                         })
+                        
                     } catch (error) {
-                        alert(`ERROR: ${erroe}`)
+                        alert(`ERROR: ${error}`)
                     }
                     break
             }

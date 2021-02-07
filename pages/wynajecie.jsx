@@ -4,13 +4,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import SelectOption from '../components/select-option'
 import { services, periods } from '../accessories/options'
 import Rightbar from '../components/hiring/rightbar'
-import Header from '../components/header'
 import { updateHiringChoice, setHiringChoiceNumber } from '../redux/actions'
 import OfficeSearch from '../components/office-search'
 import Link from 'next/link'
+import WynajecieForm from '../components/hiring/wynajecie-form'
+import Payment from '../components/hiring/payment'
 
 
-function Wynajecie() {
+function Wynajecie({db, auth}) {
 
     const hiringChoiceNumber = useSelector(state=>state.hiringChoiceNumber)
     const hiringChoices = useSelector(state=>state.hiringChoices)
@@ -47,7 +48,13 @@ function Wynajecie() {
                         </div>
                     </SelectOption>
                 }
-                {hiringChoices[hiringChoiceNumber-1].choice !== '' &&
+                {hiringChoiceNumber===4 && 
+                    <WynajecieForm hiringChoiceNumber={hiringChoiceNumber} db={db} auth={auth}/>
+                }
+                {hiringChoiceNumber===5 && 
+                    <Payment hiringChoiceNumber={hiringChoiceNumber} db={db} auth={auth}/>
+                }
+                {hiringChoices[hiringChoiceNumber-1].choice !== '' && ![4, 5].includes(hiringChoiceNumber) &&
                     <div 
                         className={hiringChoiceNumber!==2? styles.confirmSelectOptionWrapper: styles.officeSearchConfirmWrapper}
                     >

@@ -17,24 +17,6 @@
     left: 0;    
 }
 
-@mixin header-button {
-    height: 44px;
-    width: 178px;
-    background: $text-color 0% 0% no-repeat padding-box;
-    cursor: pointer;
-    margin-right: 211px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    a{
-        text-decoration: none;
-        font: normal normal bold 16px/19px "Work Sans";
-        letter-spacing: 0.8px;
-        color: #ffffff;
-        text-transform: uppercase;    
-    }    
-}
-
 .header{
     @include header()
 }
@@ -59,12 +41,12 @@
 
 
 .header .button{
-    @include header-button();
+    @include linkButton(44px);
     margin-right: 20px;
 }
 
 .loginButton{
-    @include header-button();
+    @include linkButton(44px);
     background-color: #ffffff;
     color: $main-color;
     font: normal normal bold 16px/19px "Work Sans Bold";
@@ -74,7 +56,7 @@
 }
 
 .profileHeader .button{
-    @include header-button();
+    @include linkButton(44px);
     background: $main-color 0% 0% no-repeat padding-box;
     a{
         color: white;
@@ -82,7 +64,7 @@
 }
 
 .header .profileButton{
-    @include header-button();
+    @include linkButton(44px);
     background: #ffffff 0% 0% no-repeat padding-box;
     a{
         color: $main-color;
@@ -94,7 +76,7 @@
 }
 
 .plug{
-    @include header-button();
+    @include linkButton(44px);
     background-color: none;
     opacity: 0;
     cursor: auto;

@@ -18,7 +18,7 @@ const Header = () => {
     function login(){
         const body = document.querySelector("body")
         body.style.overflow = "hidden"
-        dispatch(setShowAuth(true))
+        dispatch(setShowAuth({show: true}))
     }
 
 

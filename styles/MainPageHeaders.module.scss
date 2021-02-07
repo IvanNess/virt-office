@@ -1,0 +1,57 @@
+@import './Varablies.scss';
+
+.mainPageHeaders{
+    position: absolute;
+}
+
+.headerTitle{
+    @include headerTitle()
+}
+
+.headerText{
+    @include headerText()
+}
+
+.headerBoldFont{
+    @include headerBoldFont();
+}
+
+.none{
+    opacity: 0;
+    // transition: opacity 500ms linear 0s;
+    position: absolute;
+}
+
+.show{
+    .headerTitle{
+        margin-top: 20px;
+    }
+    opacity: 1;
+    transition: opacity 500ms linear 0s;
+    position: absolute;
+}
+
+.headerOne{
+    .headerTitle{
+        width: 918px;
+    }
+}
+
+.headerTwo{
+    width: auto;
+    .top{
+        width: 1000px;
+        margin-bottom: 20px;
+    }
+    .bottom{
+        width: 1100px;
+    }
+}
+
+.headerThree{
+    .headerTitle{
+        width: 946px;
+    }
+}
+
+  

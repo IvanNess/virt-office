@@ -23,6 +23,7 @@ import { updateSignupForm } from "./updateSignupForm"
 import { updateHiringChoices } from "./updateHiringChoices"
 import { updateHiringChoiceNumber } from "./updateHiringChoiceNumber"
 import { updateShowAuth } from "./updateShowAuth"
+import { updateWynajecieForm } from "./updateWynajecieForm"
 
 const reducer = (state, action)=>{
     return{
@@ -53,6 +54,7 @@ const reducer = (state, action)=>{
         
         hiringChoices: updateHiringChoices(state, action),
         hiringChoiceNumber: updateHiringChoiceNumber(state, action),
+        wynajecieForm: updateWynajecieForm(state, action),
 
         showAuth: updateShowAuth(state, action)
     }

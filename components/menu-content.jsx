@@ -5,8 +5,21 @@ import InstagramIcon from '@material-ui/icons/Instagram'
 
 import styles from '../styles/MenuContent.module.scss'
 import { Link } from '@material-ui/core'
+import { useDispatch, useSelector } from 'react-redux'
+import { setShowAuth } from '../redux/actions'
 
 const MenuContent = () => {
+
+    const dispatch = useDispatch()
+
+    const showAuth = useSelector(state=>state.showAuth)
+
+    function onAuth(isLogin){
+        dispatch(setShowAuth({show: true, isLogin}))
+        const body = document.querySelector("body")
+        body.style.overflow = "hidden"
+    }
+
     return (
         <div className={styles.menuContent}>
             <div className={styles.iconsWrapper}>
@@ -27,14 +40,22 @@ const MenuContent = () => {
             </div>
 
             <div className={styles.options}>
-                <Link href="/ksiegowosc"><a><h2>księgowość</h2></a></Link>
-                <Link href="/wirt-podpis"><a><h2>wirtualny Podpis</h2></a></Link>
-                <Link href="/pakiety"><a><h2>pakiety</h2></a></Link>
-                <Link href="/cennik"><a><h2 className={styles.last}>cennik</h2></a></Link>
-                <Link href="/localizacje"><a><h2 className={styles.last}>localizacje</h2></a></Link>
+                <div><Link href="/onas"><a><h2>o nas</h2></a></Link></div>
+                <div><Link href="/ksiegowosc"><a><h2>księgowość</h2></a></Link></div>
+                <div><Link href="/podpis"><a><h2>wirtualny podpis</h2></a></Link></div>
+                <div><Link href="/cennik"><a><h2 className={styles.last}>cennik</h2></a></Link></div>
+
+                <div className={styles.split}></div>
+
+                <div onClick={()=>onAuth(true)}><Link><a><h2 className={styles.first}>zaloguj</h2></a></Link></div>
+                <div onClick={()=>onAuth(false)}><Link><a><h2>zarejestruj</h2></a></Link></div>
+                
+                {/* <Link href="/pakiety"><a><h2>pakiety</h2></a></Link>
+                
+                <Link href="/localizacje"><a><h2 className={styles.last}>localizacje</h2></a></Link> */}
             </div>
 
-            <div className={styles.cities}>
+            {/* <div className={styles.cities}>
                 <div className={styles.cityWrapper}><p>Poznań</p></div>
                 <div className={styles.cityWrapper}><p>Warszawa</p></div>
                 <div className={styles.cityWrapper}><p>Kraków</p></div>
@@ -44,7 +65,7 @@ const MenuContent = () => {
                 <div className={styles.cityWrapper}><p>Sandomierz</p></div>
                 <div className={styles.cityWrapper}><p>Sopot</p></div>
                 <div className={styles.cityWrapper}><p>Tczew</p></div>          
-            </div>
+            </div> */}
         </div>
     )
 }

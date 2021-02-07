@@ -9,16 +9,28 @@
     background-color: $text-color;
 }
 
+.linkButton{
+    @include linkButton(44px);
+    margin-left: $main-margin-left;
+}
+
+.linkButtonWrapper{
+    padding-bottom: 101px;
+}
+
 .ksiegowosc{
     position: relative;
     .headerTitle{
+        @include headerTitle();
         margin-top: 150px;
         width: 595px;
     }
     .headerText{
+        @include headerText();
         padding-bottom: 44px;
     }
     .title{
+        @include title();
         width: 488px;
         margin-bottom: 31px;
         .boldFont{
@@ -26,22 +38,24 @@
         }
     }
     .smallText{
+        @include smallText();
         padding-bottom: 31px;
     }
+    .headerBoldFont{
+        @include headerBoldFont();
+    }
     .blocks{
-        display: flex;
-        margin-left: $main-margin-left;
+        @include blocks(228px);
         margin-right: 50px;
-        justify-content: space-between;
-        margin-bottom: 228px;
-        .blockTitleTwo{
+        .blockTitle{
             padding-top: 33px;   
         }
-        .blockTextTwo{
+        .blockText{
             display: flex;
-        }
-        .afterHyphen{
-            margin-left: 30px;       
+            padding: 20.5px 44px 0 29px;
+            font: normal normal 300 16px/19px "Work Sans Light";
+            letter-spacing: 0px;
+            color: $text-color;
         }
     }
     .secondTitle{
@@ -55,6 +69,7 @@
     }
     .thirdTitle{
         .title{
+            @include title();
             width: 761px;
             margin-bottom: 75.5px;
             .boldFont{
@@ -91,10 +106,10 @@
     }
     .secondBlocks{
         .blocks{
+            @include blocks(0);
             margin-right: 149px;
             justify-content: space-between;
             padding-bottom: 228px;   
-            margin-bottom: 0;
             .wrapper{
                 display: flex;
                 flex-direction: column;
@@ -119,4 +134,8 @@
             transform: matrix(-1, 0, 0, -1, 0, 0);
         }
     }
+}
+
+.hyphen{
+    @include hyphen();
 }

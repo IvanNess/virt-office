@@ -1,6 +1,23 @@
 @import './Varablies.scss';
 $text-padding: 22px;
 
+.link{
+    @include linkButton(55px);
+    position: absolute;
+    right: 211px;
+    top: 0;
+    margin-right: 0;
+    background-color: $main-color;
+    width: 226px;
+    height: 55px;
+}
+
+.packages{
+    p{
+        width: 576px
+    }
+}
+
 @mixin package {
     display: flex;
     flex-direction: row;

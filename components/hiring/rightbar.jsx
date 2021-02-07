@@ -6,6 +6,7 @@ import HiringChoice from './hiring-choice'
 import Sidebar from '../side-bar'
 import { setShowAuth } from '../../redux/actions'
 import Link from 'next/link'
+import Price from './price'
 
 function Rightbar() {
 
@@ -37,7 +38,7 @@ function Rightbar() {
                         <HiringChoice idx={idx} {...choice} key={idx}/>
                     ))}
                 </div>
-                
+                <Price/>
             </div> 
         </div>
         

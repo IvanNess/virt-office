@@ -2,10 +2,16 @@
 
 .billboard{
     position: relative;
+    height: 738px;
   }
   
 .billboardWrapper{
-    @include with-background("/images/office.png", $main-color, 0)
+    @include with-background("/images/office.png", $main-color, 0);
+}
+
+.onasBillboardWrapper{
+  @include with-background("/images/office.png", $main-color, 0);
+  background-position: 0 100%;
 }
 
 .noBackground{

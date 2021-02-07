@@ -12,10 +12,12 @@ $login-width: 124px;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.3);
+    z-index: 3;
 }
 
 .authBoilerplateNone{
     display: none;
+    overflow: hidden;
 }
 
 .signupAuthWrapper, .loginAuthWrapper{
@@ -59,18 +61,18 @@ $login-width: 124px;
     align-items: center;    
     .login{
         @include regularAuth();
-        width: $login-width;
+        // width: $login-width;
         cursor: pointer;
     }
     .signin{
         @include regularAuth();
-        width: $login-width;
+        // width: $login-width;
         cursor: pointer;
     }
     .loginSelected, .signinSelected{
         @include regularAuth();
         font: normal normal 900 16px/19px "Work Sans Black";
-        width: $login-width;
+        // width: $login-width;
         letter-spacing: 0.56px;
         color: #FFFFFF;
         border-bottom: 5px solid #121109;
@@ -78,8 +80,12 @@ $login-width: 124px;
     }
     .rest{
         @include regularAuth();
-        width: calc(100% - #{$login-width} - #{$login-width});
-
+        // width: calc(100% - #{$login-width} - #{$login-width});
+        width: 100%;
+    }
+    .space{
+        @include regularAuth();
+        width: 42px;
     }
 }
 
