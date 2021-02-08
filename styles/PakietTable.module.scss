@@ -1,6 +1,6 @@
 @import './Varablies.scss';
 
-$column-heght: 90px;
+$column-heght: 45px;
 
 @mixin signWrapper {
     width: $column-heght;
@@ -9,24 +9,25 @@ $column-heght: 90px;
     justify-content: center;
     align-items: center;
     border-bottom: $border;
-    border-left: $border;    
+    // border-left: $border;    
 }
 
 @mixin name {
     display: flex;
     align-items: center;
-    font: normal normal 24px/28px "Work Sans Medium";
+    font: normal normal 16px/19px "Work Sans Medium";
     letter-spacing: 0px;
     color: #411141; 
     border-bottom: $border;
     height: $column-heght;
+    
 }
 
 @mixin cennikTitle{
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: rotate(-90deg) translate(-5px, 0);
+    transform: rotate(-90deg) translate(5px, 0);
     width: $column-heght;
     height: $column-heght;
     font: normal normal 300 24px/28px "Work Sans Light";
@@ -49,7 +50,7 @@ $column-heght: 90px;
         display: flex;
         .left{
             display: flex;
-            margin-left: $main-margin-left;
+            // margin-left: $main-margin-left;
             border-bottom: $border;
             flex: 1;
         }
@@ -59,7 +60,7 @@ $column-heght: 90px;
             .space{
                 width: $column-heght;
                 height: 20px;
-                border-left: $border;
+                // border-left: $border;
                 border-bottom: $border;
             }
         }
@@ -87,7 +88,7 @@ $column-heght: 90px;
     .names{
         display: flex;
         flex-direction: column;
-        margin-left: $main-margin-left;
+        // margin-left: $main-margin-left;
         flex: 1;
         .name{
             @include name();

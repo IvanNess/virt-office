@@ -17,10 +17,10 @@ function Profile({auth, db}) {
                 </div>
 
                 <form action="">
-                    <input className={styles.login} type="text" placeholder="Login" value="" disabled={false}/>
-                    <input className={styles.adress} type="text" placeholder="Adres email" value="" disabled={false}/>
-                    <input className={styles.firm} type="text" placeholder="Nazwa Firmy" value="" disabled={false}/>
-                    <input className={styles.buttonInput} type="button" value="ZAPISZ"/>
+                    <input className={styles.login} type="text" placeholder="Login"  disabled={false}/>
+                    <input className={styles.adress} type="text" placeholder="Adres email" disabled={false}/>
+                    <input className={styles.firm} type="text" placeholder="Nazwa Firmy" disabled={false}/>
+                    <input className={styles.buttonInput} type="submit" value="ZAPISZ"/>
                 </form>
 
                 <div className={styles.changeLogin}>
@@ -30,7 +30,7 @@ function Profile({auth, db}) {
                             <input className={styles.password} type="password" placeholder="Nowe Hasło"/>
                             <input className={styles.repeat} type="password" placeholder="Powtórz nowe hasło"/> 
                         </div>
-                        <input className={styles.buttonInput} type="button" value="ZAPISZ"/>
+                        <input className={styles.buttonInput} type="submit" value="ZAPISZ"/>
                     </form>
                 </div>
 

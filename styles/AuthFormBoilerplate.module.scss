@@ -32,6 +32,11 @@
             background-color: $text-color;
         }
     }
+    button{
+        @include buttonInput();
+        padding: 0;
+        background-color: $text-color;
+    }
 }
 
 .authFooter{

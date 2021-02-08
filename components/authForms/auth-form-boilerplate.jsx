@@ -44,6 +44,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     // router.push('/konto/profil')
 
                 } catch (error) {
+                    console.log(error)
                     dispatch(setLoginFormProp('password', ''))
                     dispatch(setLoginFormProp('passwordPlaceholder', `There is no user or password wrong.`))
                     return
@@ -137,6 +138,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         })
                         await db.collection('usernames').add({
                             username: signupForm.name,
+                            email: signupForm.contactEmail,
                             userId
                         })
                         dispatch(setShowAuth({show: false}))
@@ -162,7 +164,9 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     <div className={styles.left} onClick={leftClicked}>
                         {isLogin? "Nie pamiętam hasła": page!==1?"prev":''}
                     </div>
-                    <input type="submit" onSubmit={submit} value={isLogin? "Zajoguj się": page!==3?"Dalej":"Sign up"} onChange={()=>{}}/>
+                    <button type="submit" onSubmit={submit} onChange={()=>{}}>
+                        {isLogin? "Zajoguj się": page!==3?"Dalej":"Sign up"}
+                    </button>
                 </div>
             </form>   
         </div>

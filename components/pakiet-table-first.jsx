@@ -2,7 +2,7 @@ import React from 'react'
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import CloseIcon from '@material-ui/icons/Close'
 
-import styles from '../styles/CennikTable.module.scss'
+import styles from '../styles/PakietTable.module.scss'
 
 function PakietTableFirst() {
 
