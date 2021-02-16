@@ -39,7 +39,12 @@ export default function Home() {
                   optymalne koszty prowadzenia firmy dzięki <span className={styles.headerBoldFont}>WIRTUALNYM</span> biurom już od <span className={styles.headerBoldFont}>55 PLN </span> miesięcznie
               </div>
               <div className={styles.headerText}>
-                  NIEWIELKIE STAŁE KOSZTY funkcjonowania firmy dają możliwość efektywniejszego zarabiania. Specyfika niektórych rodzajów działalności daje możliwość OSZCZĘDNOŚCI na wynajmie przestrzeni biurowych WYKORZYSTAJCIE to i ZARABIAJCIE WIĘCEJ.
+                <span className={styles.headerTextBoldFont}>NIEWIELKIE STAŁE KOSZTY </span>
+                funkcjonowania firmy dają możliwość efektywniejszego zarabiania. Specyfika niektórych rodzajów działalności daje możliwość 
+                <span className={styles.headerTextBoldFont}> OSZCZĘDNOŚCI </span>
+                na wynajmie przestrzeni biurowych
+                <span className={styles.headerTextBoldFont}> WYKORZYSTAJCIE </span>
+                to i <span className={styles.headerTextBoldFont}>ZARABIAJCIE WIĘCEJ.</span>
               </div>
             </div>  
           </div>
@@ -55,7 +60,11 @@ export default function Home() {
                   </div>
               </div>
               <div className={styles.headerText}>
-                  ZARABIAJ  koncentrując się na procesach, które przynoszą ZYSK. My zajmiemy się OPTYMALIZACJĄ KOSZTÓW, czyli pozostałymi procesami takimi jak obsługa korespondencji, wprowadzanie dokumentów do systemów księgowych, księgowość, marketing.
+                <span className={styles.headerTextBoldFont}>ZARABIAJ </span>
+                koncentrując się na procesach, które przynoszą
+                <span className={styles.headerTextBoldFont}> ZYSK. </span>My zajmiemy się 
+                <span className={styles.headerTextBoldFont}> OPTYMALIZACJĄ KOSZTÓW, </span>
+                czyli pozostałymi procesami takimi jak obsługa korespondencji, wprowadzanie dokumentów do systemów księgowych, księgowość, marketing.
               </div>
             </div>   
           </div>
@@ -72,7 +81,12 @@ export default function Home() {
                   nie tylko <span className={styles.headerBoldFont}>WIRTUALNE</span> – w ramach oferty można korzystać z <span className={styles.headerBoldFont}>PRZESTRZENI KONFERENCYJNEJ</span> oznakowanej <span className={styles.headerBoldFont}>LOGIEM</span> własnej firmy
               </div>
               <div className={styles.headerText}>
-                  Czasami trzeba się SPOTKAĆ dlatego udostępniamy pod adresem rejestracji firmy PRZESTRZEŃ KONFERENCYJNĄ gdzie można przy jednym stole i dobrej „kawie" przeprowadzić negocjacje i podpisać LUKRATYWNE KONTRAKTY.                
+                  Czasami trzeba się 
+                  <span className={styles.headerTextBoldFont}> SPOTKAĆ </span>
+                  dlatego udostępniamy pod adresem rejestracji firmy
+                  <span className={styles.headerTextBoldFont}> PRZESTRZEŃ KONFERENCYJNĄ </span>
+                  gdzie można przy jednym stole i dobrej „kawie" przeprowadzić negocjacje i podpisać
+                  <span className={styles.headerTextBoldFont}> LUKRATYWNE KONTRAKTY.</span>                
               </div>
             </div>
 
@@ -131,11 +145,11 @@ export default function Home() {
 
       {/* <Packages/> */}
       
-      {/* <Billboard noBackground={true}>
+      <Billboard noBackground={true}>
         <div className={styles.noBackgroundBillboardText}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id.
+          <span className={styles.headerBoldFont}>ADRES</span> - obsługa biura – <span className={styles.headerBoldFont}>KSIĘGOWOŚĆ</span> – konsultacje prawne - <span className={styles.headerBoldFont}>MARKETING</span>
         </div>
-      </Billboard> */}
+      </Billboard>
 
       <div className={styles.textBlock}>
         <div className={styles.text}>

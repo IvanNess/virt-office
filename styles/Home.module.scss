@@ -31,6 +31,13 @@
 
 .noBackgroundBillboardText{
   @include noBackgroundBillboardText();
+  width: 892px;
+  font: normal normal 300 56px/66px "Work Sans Light";
+  margin-bottom: 90px;
+  .headerBoldFont{
+      color: $text-color;
+      font: normal normal 900 56px/66px "Work Sans Black";
+  }
 }
 
 .headerTitle{
@@ -132,15 +139,22 @@
 .headerTitle{
     @include headerTitle();
     margin-top: 40px;
+    font: normal normal normal 56px/66px "Work Sans";
 }
 
 .headerText{
     @include headerText();
+    font: normal normal normal 16px/24px "Work Sans";
     margin-top: 0;
 }
 
 .headerBoldFont{
     @include headerBoldFont();
+}
+
+.headerTextBoldFont{
+    @include headerBoldFont();
+    font: normal normal 900 16px/24px "Work Sans Black";
 }
 
 .none{
@@ -160,25 +174,29 @@
 
 .headerOne{
     .headerTitle{
-        width: 918px;
+        // width: 918px;
+        width: 1001px;
     }
 }
 
 .headerTwo{
     width: auto;
     .top{
-        width: 1000px;
+        width: 1020px;
         margin-bottom: 20px;
         // text-align: center;
     }
     .bottom{
         width: 1100px;
     }
+    .headerText{
+        width: 1020px;
+    }
 }
 
 .headerThree{
     .headerTitle{
-        width: 946px;
+        width: 980px;
     }
 }
 

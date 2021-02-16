@@ -194,6 +194,7 @@ a {
 .ant-carousel .slick-dots{
   right: auto;
   left: 300px;
+  z-index: 0;
 }
 
 

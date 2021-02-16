@@ -9,6 +9,9 @@ $block-height: 323px;
     border: 1px solid $main-color;
     // cursor: pointer;    
     background-color: white;
+    &:hover{
+        border-color: $text-color;
+    }
 }
 
 .fullBlock{
@@ -31,6 +34,7 @@ $block-height: 323px;
     transition-duration: 0.4s;
     &:hover{
         background-color: $main-color;
+        border-color: $main-color;
     }
 }
 

@@ -10,6 +10,8 @@ $cities-width: 450px;
     right: $sidebar-width;
     background: $main-color 0% 0% no-repeat padding-box;
     box-shadow: 0px 0px 15px #411141AF;
+    transition-duration: 0.4s;
+    z-index: 111;
     .iconsWrapper{
         a{
             text-decoration: none;
@@ -30,6 +32,9 @@ $cities-width: 450px;
             }
             &.first{
                 margin-top: 39.5px;
+            }
+            &:hover{
+                color: $text-color;
             }
         }
     }
@@ -94,4 +99,9 @@ $cities-width: 450px;
     font: normal normal 900 16px/19px "Work Sans Black";
     letter-spacing: 0px;
     color: $text-color;
+}
+
+.logo svg:hover path{
+    transition-duration: 0.4s;
+    fill: $text-color;
 }

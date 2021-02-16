@@ -15,8 +15,10 @@
         padding-left: $main-margin-left;
         padding-right: 150px;
         display: flex;
+        justify-content: space-between;
         .column{
             padding-right: 100px;
+            transition-duration: 0.4s;
         }
         a{
             text-decoration: none;
@@ -27,6 +29,9 @@
             @include h2;
             &.last{
                 margin-bottom: 80px;
+            }
+            &:hover{
+                color: $text-color
             }
         }
         .regions{
@@ -78,4 +83,13 @@
             }
         }
     }
+}
+
+.thirdColumn{
+    width: 340px;
+}
+
+.footer svg:hover path{
+    transition-duration: 0.4s;
+    fill: $text-color;
 }

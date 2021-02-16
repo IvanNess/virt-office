@@ -112,7 +112,14 @@ $text-color: #121109;
       width: 100%;
       line-height: $height;
       text-align: center;
-  }    
+      &:hover{
+        color: $text-color;
+      }
+  } 
+  &:hover{
+    background-color: #ffffff;
+    color: $text-color;
+  }   
 }
 
 @mixin profileInput {
