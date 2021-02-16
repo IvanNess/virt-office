@@ -21,4 +21,8 @@
     @include buttonInput();
     background-color: $text-color;
     width: 178px;
+    &:disabled{
+        cursor: auto;
+        background-color: whitesmoke;
+    }
 }

@@ -42,6 +42,9 @@ export const setWynajecieFormProp = (prop, value)=> async (dispatch) => dispatch
 
 export const setWynajecieForm = (value)=> async (dispatch) => dispatch({type: "SET_WYNAJECIE_FORM", value})
 
+export const setCurrentPackage = (pack)=> async (dispatch)=>dispatch({type: 'SET_CURRENT_PACKAGE', pack})
+
+
 // import { Auth } from "aws-amplify"
 // import { getUserByUsername, getUserByEmail, getOrders, getAdressByUsername } from "../utils/graphql-utils"
 

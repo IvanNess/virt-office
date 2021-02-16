@@ -67,7 +67,7 @@ function Wynajecie({db, auth}) {
                     </div>
                 }
             </div>
-            <Rightbar/>
+            <Rightbar db={db} auth={auth}/>
         </div>
     )
 }

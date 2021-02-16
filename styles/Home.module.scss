@@ -5,6 +5,13 @@
   position: relative;
 }
 
+.findBtn{
+    @include linkButton(55px);
+    margin-left: $main-margin-left;
+    margin-top: 35px;
+    width: 226px;
+}
+
 .titleTwo{
   @include title();
   width: 670px;
@@ -14,7 +21,7 @@
 .titleThree{
   @include title();
   width: 1114px;
-  margin-bottom: 46.5px;
+  margin-bottom: 31px;
 }
 
 .headerForm input[type=button]{
@@ -27,7 +34,7 @@
 }
 
 .headerTitle{
-  @include headerTitle()
+  @include headerTitle();
 }
 
 .headerText{
@@ -46,19 +53,143 @@
 }
 
 .smallText{
-  @include smallText()
+  @include smallText();
+  padding-bottom: 71px;
+}
+
+.blockWrapper{
+    &:hover{
+        .blockText{
+            color: #ffffff;
+        }
+    }
 }
 
 .blocks{
   @include blocks(225.5px);
+  margin-right: 149px;
+  .blockText{
+    font: normal normal 300 16px/24px "Work Sans Light";
+    display: block;
+    letter-spacing: 0.64px;
+    padding: 30.5px 45px 0 36.05px;
+    transition-duration: 0.4s;
+    &:hover{
+        color: #ffffff;
+    }
+  }
+  .mainBlockWrapper{
+      .blockText{
+          color: #ffffff;
+      }
+  }
+  .boldText{
+    font: normal normal 900 16px/24px "Work Sans Black";
+    letter-spacing: 0.64px;
+    text-transform: uppercase;
+  }
 }
 
 .blocksTwo{
   @include blocks(0px);
-  padding-bottom: 282.5px;
+  padding-bottom: 103.5px;
 }
 
 .title{
   @include title();
+  width: 791px;
 }
+
+.textBlock{
+    display: flex;
+    justify-content: space-between;
+    margin-left: $main-margin-left;
+    margin-right: 150px;
+    font: normal normal 300 16px/26px "Work Sans Light";
+    // font: normal normal 300 60px/71px "Work Sans Light";
+    letter-spacing: 0.64px;
+    color: $text-color;
+    .text{
+        width: 620px;
+    }
+    .boldText{
+        font: normal normal 900 16px/26px "Work Sans Black";
+        // font: normal normal 900 60px/71px "Work Sans Black";
+        letter-spacing: 0.64px;
+        color: $text-color;
+    }
+}
+
+.blockLarge{
+    .blockText{
+        padding: 45.5px 36px 0 35px;
+        font: normal normal 300 16px/24px "Work Sans Light";
+        letter-spacing: 0.64px;
+        color: $text-color;
+    }
+}
+
+.headerTitle{
+    @include headerTitle();
+    margin-top: 40px;
+}
+
+.headerText{
+    @include headerText();
+    margin-top: 0;
+}
+
+.headerBoldFont{
+    @include headerBoldFont();
+}
+
+.none{
+    opacity: 0;
+    // transition: opacity 500ms linear 0s;
+    position: absolute;
+}
+
+.show{
+    .headerTitle{
+        margin-top: 20px;
+    }
+    opacity: 1;
+    transition: opacity 500ms linear 0s;
+    position: absolute;
+}
+
+.headerOne{
+    .headerTitle{
+        width: 918px;
+    }
+}
+
+.headerTwo{
+    width: auto;
+    .top{
+        width: 1000px;
+        margin-bottom: 20px;
+        // text-align: center;
+    }
+    .bottom{
+        width: 1100px;
+    }
+}
+
+.headerThree{
+    .headerTitle{
+        width: 946px;
+    }
+}
+
+.headerOne, .headerTwo, .headerThree{
+    .headerFlex{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 450px;
+    }
+}
+
+  
 

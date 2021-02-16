@@ -10,19 +10,54 @@
     }
 }
 
-.moreBtnShow {
+// .moreBtnShow {
+//     position: absolute;
+//     bottom: -28px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 226px;
+//     height: 55px;
+//     background: $main-color 0% 0% no-repeat padding-box;
+//     margin-top: -28px;
+//     cursor: pointer;
+//     border: 2px solid $text-color;
+//     @include p();
+// }
+
+.moreBtnShow{
+    @include linkButton(55px);
     position: absolute;
     bottom: -28px;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 226px;
-    height: 55px;
-    background: $main-color 0% 0% no-repeat padding-box;
-    margin-top: -28px;
-    cursor: pointer;
-    @include p();
+    margin-right: 0;
+    &:hover{
+        background-color: #FFFFFF;
+        border: 2px solid $text-color;
+        a{
+            color: $main-color
+        }
+    }
 }
+
+.mainColorBg{
+    @include linkButton(55px);
+    position: absolute;
+    bottom: -28px;
+    background-color: $main-color;
+    width: 226px;
+    margin-right: 0;
+    &:hover{
+        background-color: $text-color;
+        a{
+            color: #FFFFFF
+        }
+    }
+}
+
 .moreBtnNone {
     display: none;
     @include p();

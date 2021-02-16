@@ -1,13 +1,32 @@
 import React from 'react'
 import styles from '../styles/MoreBtn.module.scss'
+import Link from 'next/link'
 
-const MoreBtn = ({show}) => {
+const MoreBtn = ({show, mainColorBg=false}) => {
     return (
-        <div className= {show? styles.moreBtnShow: styles.moreBtnNone}>
-            <p>
-                Zobacz więcej
-            </p>
-        </div>
+        <>
+            {!mainColorBg && <div className= {show? styles.moreBtnShow: styles.moreBtnNone}>
+                <Link href="/cennik">
+                    <a>
+                        Zobacz ofertę                    
+                    </a>
+                </Link>
+                {/* <p>
+                    Zobacz ofertę
+                </p> */}            
+            </div>}
+            {mainColorBg && <div className= {styles.mainColorBg}>
+                <Link href="/cennik">
+                    <a>
+                        Zobacz ofertę                    
+                    </a>
+                </Link>
+                {/* <p>
+                    Zobacz ofertę
+                </p> */}
+            </div>}
+        </>
+        
     )
 }
 

@@ -89,6 +89,7 @@ $text-color: #121109;
   color: #FFFFFF;
   text-transform: uppercase;
   opacity: 1;
+  transition-duration: 0.4s;
 }
 
 @mixin linkButton($height) {
@@ -100,6 +101,7 @@ $text-color: #121109;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition-duration: 0.4s;
   a{
       text-decoration: none;
       font: normal normal bold 16px/19px "Work Sans";

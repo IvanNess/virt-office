@@ -175,3 +175,31 @@ a {
 .ant-collapse-content-box{
   padding-left: 0 !important;
 }
+
+/* antd carousel */
+.ant-carousel{
+  /* width: 904px; */
+}
+
+.ant-carousel .slick-dots li button{
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+}
+
+.ant-carousel .slick-dots-bottom{
+  bottom: -73px;
+}
+
+.ant-carousel .slick-dots{
+  right: auto;
+  left: 300px;
+}
+
+
+
+/* rozliczenia */
+.rozliczeniaSelect .ant-select-selector{
+  border: none !important;
+}
+

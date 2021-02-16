@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from '../styles/Block.module.scss'
 import MoreBtn from './more-btn'
 
-function Block({className, showButton=true, children, showMore}) {
+function Block({className, showButton=true, children, showMore, mainColorBg=false}) {
 
     const [show, setShow] = useState(true)
 
@@ -25,7 +25,7 @@ function Block({className, showButton=true, children, showMore}) {
             <div className={show? styles[className]: styles[`${className}None`]}>
                 {children}
             </div>
-            <MoreBtn show={showMore}/>
+            <MoreBtn show={showMore} mainColorBg={mainColorBg}/>
         </div>
     )
 }

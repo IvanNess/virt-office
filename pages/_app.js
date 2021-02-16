@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Provider store={store}>
         <Component {...pageProps} db={db} auth={auth}/>  
-        <Footer/>
+        {/* <Footer/> */}
         <AuthBoilerplate  db={db} auth={auth}/>
       </Provider>
     </>

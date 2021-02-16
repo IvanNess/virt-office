@@ -60,14 +60,14 @@ function Dane({auth, db}) {
         e.preventDefault()
         console.log('form', form)
         try {
-            const arr = await db.collection('users').where('email', '==', currentUser.email).get()
+            const arr = await db.collection('users').where('userId', '==', currentUser.userId).get()
             const user = arr.docs[0]
             const userId = user.id
             console.log('userId', userId)
             if(form.name !== currentUser.name){
                 console.log('change username')
                 const userRef = db.collection('users').doc(userId)
-                const usernamesArr = await db.collection('usernames').where('email', '==', currentUser.email).get()
+                const usernamesArr = await db.collection('usernames').where('userId', '==', currentUser.userId).get()
                 const username = usernamesArr.docs[0]
                 const usernameId = username.id
                 console.log('usernameId', usernameId)

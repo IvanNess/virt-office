@@ -4,7 +4,7 @@ $auth-margin-right: 58px;
 $login-width: 124px;
 
 .authBoilerplate{
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     height: 100vh;
@@ -12,7 +12,7 @@ $login-width: 124px;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.3);
-    z-index: 3;
+    z-index: 111;
 }
 
 .authBoilerplateNone{

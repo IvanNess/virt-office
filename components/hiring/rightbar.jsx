@@ -8,7 +8,7 @@ import { setShowAuth } from '../../redux/actions'
 import Link from 'next/link'
 import Price from './price'
 
-function Rightbar() {
+function Rightbar({db, auth}) {
 
     const hiringChoices = useSelector(state=>state.hiringChoices)
     const currentUser = useSelector(state=>state.currentUser)
@@ -38,7 +38,7 @@ function Rightbar() {
                         <HiringChoice idx={idx} {...choice} key={idx}/>
                     ))}
                 </div>
-                <Price/>
+                <Price db={db} auth={auth}/>
             </div> 
         </div>
         

@@ -7,7 +7,7 @@ $block-height: 323px;
     width: $width;
     height: $height;
     border: 1px solid $main-color;
-    cursor: pointer;    
+    // cursor: pointer;    
     background-color: white;
 }
 
@@ -18,11 +18,25 @@ $block-height: 323px;
     position: relative;
     z-index: 2;
     margin: 0;
+    &:hover{
+        .block{
+            background-color: $main-color;
+        }
+    }
 }
 
 .block{
-    @include block(323px, 323px);
+    @include block(400px, 423px);
     border: 1px solid $main-color;
+    transition-duration: 0.4s;
+    &:hover{
+        background-color: $main-color;
+    }
+}
+
+.mainBlock{
+    @include block(400px, 423px);
+    background-color: $main-color;
 }
 
 .blockNone{

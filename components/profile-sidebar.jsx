@@ -30,7 +30,7 @@ function ProfileSidebar({auth, db}) {
                 <div><Link href="/konto/profil"><a>4. Rozliczenia</a></Link></div>
                 <div><Link href="/konto/profil"><a>&nbsp;&nbsp;&nbsp; — Historia</a></Link></div>
                 <div><Link href="/konto/profil"><a>&nbsp;&nbsp;&nbsp; — Płatności</a></Link></div>
-                <div><Link href="/konto/profil"><a>&nbsp;&nbsp;&nbsp; — Faktury</a></Link></div>
+                <div><Link href="/konto/rozliczenia-faktury"><a>&nbsp;&nbsp;&nbsp; — Faktury</a></Link></div>
                 <div className={router.pathname==="/konto/rezerwacja"? styles.active: ""}><Link href="/konto/rezerwacja"><a>5. Rezerwacja biura</a></Link></div>
             </div>
             <input className={styles.buttonInput} type="button" value="WYLOGUJ" onClick={logout} disabled={isButtonDisabled}/>

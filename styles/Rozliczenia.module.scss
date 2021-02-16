@@ -1,0 +1,36 @@
+@import './Varablies.scss';
+
+.rozliczeniaFaktury{
+    position: relative;
+    @include konto();
+    .text{
+        @include profileText();
+    }
+}
+
+.table{
+    .headerRow{
+        display: flex;
+        font: normal normal 900 16px/19px "Work Sans Black";
+        letter-spacing: 0px;
+        color: $text-color;
+    }
+    .row{
+        display: flex;
+        font: normal normal 300 16px/19px "Work Sans Light";
+        letter-spacing: 0px;
+        color: $text-color
+    }
+    .firstRow{
+        width: 126px;
+    }
+    .secondRow{
+        width: 452px;
+    }
+    .thirdRow{
+        width: 113px;
+    }
+    .fourthRow{
+        width: 195px
+    }
+}
