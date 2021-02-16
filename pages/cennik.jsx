@@ -35,7 +35,7 @@ const Cennik = () => {
                 </div>
                 <div className={styles.linkButtonWrapper}>
                     <div className={styles.linkButton}>
-                        <Link href='/wynajecie'><a cl>Wynajmij biuro</a></Link>
+                        <Link href='/wynajecie'><a>Wynajmij biuro</a></Link>
                     </div> 
                 </div>
             </Billboard>

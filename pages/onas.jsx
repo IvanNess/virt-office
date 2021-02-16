@@ -6,6 +6,7 @@ import Header from '../components/header'
 import TwitterIcon from '@material-ui/icons/Twitter'
 import FacebookIcon from '@material-ui/icons/Facebook'
 import InstagramIcon from '@material-ui/icons/Instagram'
+import Footer from '../components/footer'
 
 function Onas() {
     return (
@@ -47,6 +48,8 @@ function Onas() {
                     <InstagramIcon style={{fontSize: '27px', color: '#121109'}}/>
                 </div>
             </div>
+
+            <Footer/>
         </div>
     )
 }
