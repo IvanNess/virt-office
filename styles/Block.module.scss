@@ -6,7 +6,7 @@ $block-height: 323px;
 @mixin block($width, $height) {
     width: $width;
     height: $height;
-    border: 1px solid $main-color;
+    border: 2px solid $main-color;
     // cursor: pointer;    
     background-color: white;
     &:hover{

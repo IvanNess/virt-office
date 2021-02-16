@@ -6,7 +6,6 @@ import Header from '../components/header'
 import Sidebar from '../components/side-bar'
 import Block from '../components/block'
 import Link from 'next/link'
-import Footer from '../components/footer'
 
 function Ksiegowosc() {
     const Hyphen = ()=> <span className={styles.hyphen}>&mdash;&mdash;&mdash;&mdash;&mdash;</span>
@@ -18,10 +17,10 @@ function Ksiegowosc() {
             <Billboard>
                 <Header/>
                 <div className={styles.headerTitle}>
-                    Księgowość online <span className={styles.headerBoldFont}> dla Ciebie</span>
+                    On-linowa księgowość z<span className={styles.headerBoldFont}> wfirma.pl</span>
                 </div>
                 <div className={styles.headerText}>
-                    Wystawiaj faktury, wyliczaj podatki i rozliczaj się z ZUS
+                    Zarządzaj swoim biznesem z każdego miejsca o dowolnej porze
                 </div>
                 <div className={styles.linkButtonWrapper}>
                     <div className={styles.linkButton}>
@@ -31,37 +30,39 @@ function Ksiegowosc() {
             </Billboard>
             
             <div className={styles.title}>
-                Ponad <span className={styles.boldFont}> 700 nowych </span>przedsiębiorców wybiera wFirmę każdego tygodnia v
+                Jeden system,<div className={styles.boldFont}>wiele możliwości</div>
             </div>
-            {/* <div className={styles.smallText}>
+            <div className={styles.smallText}>
                 Prowadź księgowość online i zyskaj niezależność w zarządzaniu firmą!
-            </div> */}
+            </div>
 
             <div className={styles.blocks}>
                 <Block className='blockMedium'>
                     <div className={styles.blockTitle}>
-                        Prostota i wygoda, którą polubisz.
+                        Menedżer sprzedaży
                     </div>
-                    {/* <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Fakturowanie</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Fakturowanie</div></div>
                     <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Magazyn</div></div>
                     <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>CRM</div></div>
-                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>e-Commerce</div></div>   */}
-                    <div className={styles.blockText}><p>Szybko wystawisz fakturę, bez trudu wyliczysz 
-                        podatki i rozliczysz się z ZUS. Prosto, wygodnie, 
-                        bez zbędnych komplikacji.
-                    </p></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>e-Commerce</div></div>  
                 </Block>
                 <Block className='blockMedium'>
                     <div className={styles.blockTitle}>
-                        Wsparcie, gdy tego potrzebujesz.
+                        Kadry i płace
                     </div>
-                    <div className={styles.blockText}><p>Podpowiadamy skuteczne rozwiązania i dzielimy się wiedzą. Zespół ekspertów jest zawsze do Twojej dyspozycji.</p></div>
-                </Block>  
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Generator dokumentów</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Integracje z e-ZUS i MF</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Ewidencja czasu pracy</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Elektroniczne akta osobowe</div></div> 
+                </Block>
                 <Block className='blockMedium'>
                     <div className={styles.blockTitle}>
-                        Kompleksowość, którą docenisz.
+                        Księgowość online
                     </div>
-                    <div className={styles.blockText}><p>Wszystko, co niezbędne w jednym miejscu, dostępne na każdym urządzeniu i o każdej porze. Twoja firma tam gdzie Ty!</p></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>KPiR, Ryczałt, VAT</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>JPK, e-Deklaracje</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Kasa / Bank</div></div>
+                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Środki trwałe</div></div> 
                 </Block>   
             </div>
 
@@ -73,32 +74,30 @@ function Ksiegowosc() {
 
             <div className={styles.records}>
                 <div className={styles.record}>
-                    <div className={styles.top}>390 tyś</div>
+                    <div className={styles.top}>215 tyś</div>
                     <div className={styles.bottom}>zarejestrowanych użytkowników</div>
                 </div>
                 <div className={styles.record}>
-                    <div className={styles.top}>15 lat</div>
+                    <div className={styles.top}>14 lat</div>
                     <div className={styles.bottom}>na rynku księgowości</div>
                 </div>
                 <div className={styles.record}>
-                    <div className={styles.top}>3 mln.</div>
+                    <div className={styles.top}>1 mln.</div>
                     <div className={styles.bottom}>wysłanych e-deklaracji</div>
                 </div>
                 <div className={styles.record}>
-                    <div className={styles.top}>62 mln.</div>
+                    <div className={styles.top}>41 mln.</div>
                     <div className={styles.bottom}>wystawionych faktur</div>
                 </div>
             </div>
 
             <Billboard noBackground={true}>
                 <div className={styles.noBackgroundBillboardText}>
-                    Zawsze możesz liczyć na naszą pomoc. Zapewniamy stałe wsparcie merytoryczne oraz szybką pomoc techniczną.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id
                 </div>
             </Billboard>
 
-            <Footer/>
-
-            {/* <div className={styles.thirdTitle}>
+            <div className={styles.thirdTitle}>
                 <div className={styles.title}>
                     Poznaj opinie użytkowników, którzy nam <span className={styles.boldFont}>zaufali</span> 
                 </div>
@@ -135,7 +134,7 @@ function Ksiegowosc() {
                     </Block>      
                 </div>
             </div>
-             */}
+            
 
         </div>
     )
