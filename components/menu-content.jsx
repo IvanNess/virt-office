@@ -48,7 +48,7 @@ const MenuContent = () => {
             <div className={styles.options}>
                 <div><Link href="/onas"><a><h2>o nas</h2></a></Link></div>
                 <div><Link href="/ksiegowosc"><a><h2>księgowość</h2></a></Link></div>
-                <div><Link href="/podpis"><a><h2>wirtualny podpis</h2></a></Link></div>
+                {/* <div><Link href="/podpis"><a><h2>wirtualny podpis</h2></a></Link></div> */}
                 <div><Link href="/cennik"><a><h2 className={styles.last}>cennik</h2></a></Link></div>
 
                 <div className={styles.split}></div>
