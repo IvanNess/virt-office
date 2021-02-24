@@ -44,6 +44,9 @@ export const setWynajecieForm = (value)=> async (dispatch) => dispatch({type: "S
 
 export const setCurrentPackage = (pack)=> async (dispatch)=>dispatch({type: 'SET_CURRENT_PACKAGE', pack})
 
+export const setCalendarRedirect = (redirect)=> async (dispatch)=>dispatch({type: 'SET_CALENDAR_REDIRECT', redirect})
+
+
 
 // import { Auth } from "aws-amplify"
 // import { getUserByUsername, getUserByEmail, getOrders, getAdressByUsername } from "../utils/graphql-utils"

@@ -3,8 +3,20 @@ import styles from '../../styles/Dane.module.scss'
 
 import ProfileBoilerplate from '../../components/profile-boilerplate'
 import Calendar from '../calendar'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { setCalendarRedirect } from '../../redux/actions'
 
 function Rezervacja({db, auth}) {
+
+    const dispatch = useDispatch()
+    const calendarRedirect = useSelector(state=>state.calendarRedirect)
+
+    useEffect(()=>{
+        if(calendarRedirect)
+            dispatch(setCalendarRedirect(false))
+    }, [calendarRedirect])
+
     return (
         <div className={styles.dane}>
             <ProfileBoilerplate  auth={auth} db={db}>

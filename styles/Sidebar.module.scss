@@ -10,6 +10,13 @@ $language-taxt-width: 98px;
     height: 100%;
     border: 1px solid #B9B9B9;
     z-index: 1;
+    @media all and (max-width: 1024px){
+        width: 70px;
+        display: flex;
+    }
+    @media all and (max-width: 1024px){
+        display: none;
+    }
 }
 
 .menuIconsWrapper{

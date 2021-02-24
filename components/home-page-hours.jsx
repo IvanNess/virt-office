@@ -5,12 +5,14 @@ import styles from '../styles/Hours.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment'
 
-import { addSelectedHour, removeSelectedHour, addReservedSession, addSelectedDate, getCashedReservedSessions, updateReservedSessions, setUserReservations, addReservation  } from '../redux/actions'
+import { addSelectedHour, removeSelectedHour, addReservedSession, addSelectedDate, getCashedReservedSessions, updateReservedSessions, setUserReservations, addReservation, setShowAuth, setCalendarRedirect  } from '../redux/actions'
 
 import firebase from 'firebase'
 import YourReservation from './your-reservation'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-function Hours({db, auth , outterReset}) {
+function HomePageHours({db, auth , outterReset}) {
 
     const dispatch = useDispatch()
     const selectedHours = useSelector(state => state.selectedHours)
@@ -33,6 +35,8 @@ function Hours({db, auth , outterReset}) {
 
     const [disableConfirmBtn, setDisableConfirmBtn] = useState(false)
 
+    const router = useRouter()
+
     function initUpdHours(){
         console.log('init hours')
         const updHours = hours.map(hour=>{
@@ -44,55 +48,55 @@ function Hours({db, auth , outterReset}) {
             return {
                 ...hour,
                 msTime,
-                className: dateNow + 1*60*60*1000 - msTime <= 0? 'init': 'past'
+                className: dateNow + 1*60*60*1000 - msTime <= 0? 'free': 'free'
             }
         })
         setUpdHours(updHours)
         return updHours
     }
 
-    function reinitUpdHours(updHours){
-        let newUpdHours = [...updHours]
-        console.log('reservedSessions', reservedSessions)
-        updHours.forEach(hour=>{
-            let isReserved = false
-            if(reservedSessions.length===0 && hour.className!== 'past'){
-                newUpdHours = updateHoursClassname(newUpdHours, hour.id, "free")               
-            }
-            reservedSessions.forEach(session=>{
-                // console.log('session ', session.msStart <= hour.msTime, session.msFinish >= hour.msTime, 'hour time', hour.msTime)
-                if(session.msStart<= hour.msTime && session.msFinish >=hour.msTime){
-                    console.log('reserved', hour.msTime)
-                    newUpdHours = updateHoursClassname(newUpdHours, hour.id, "reserved")
-                    isReserved = true
-                } else if(hour.className==='init' && !isReserved ){
-                    console.log('free', hour.msTime)
-                    newUpdHours = updateHoursClassname(newUpdHours, hour.id, "free")
-                }
-            })
-        })
-        for (let idx = 0; idx < newUpdHours.length; idx++) {
-            try {
-                if(newUpdHours[idx].className==="reserved" && newUpdHours[idx-1].className==="free"){
-                    console.log('border')
-                    newUpdHours = updateHoursClassname(newUpdHours, newUpdHours[idx-1].id, "border")
-                }
-            } catch (error) {
+    // function reinitUpdHours(updHours){
+    //     let newUpdHours = [...updHours]
+    //     console.log('reservedSessions', reservedSessions)
+    //     updHours.forEach(hour=>{
+    //         let isReserved = false
+    //         if(reservedSessions.length===0 && hour.className!== 'past'){
+    //             newUpdHours = updateHoursClassname(newUpdHours, hour.id, "free")               
+    //         }
+    //         reservedSessions.forEach(session=>{
+    //             // console.log('session ', session.msStart <= hour.msTime, session.msFinish >= hour.msTime, 'hour time', hour.msTime)
+    //             if(session.msStart<= hour.msTime && session.msFinish >=hour.msTime){
+    //                 console.log('reserved', hour.msTime)
+    //                 newUpdHours = updateHoursClassname(newUpdHours, hour.id, "reserved")
+    //                 isReserved = true
+    //             } else if(hour.className==='init' && !isReserved ){
+    //                 console.log('free', hour.msTime)
+    //                 newUpdHours = updateHoursClassname(newUpdHours, hour.id, "free")
+    //             }
+    //         })
+    //     })
+    //     for (let idx = 0; idx < newUpdHours.length; idx++) {
+    //         try {
+    //             if(newUpdHours[idx].className==="reserved" && newUpdHours[idx-1].className==="free"){
+    //                 console.log('border')
+    //                 newUpdHours = updateHoursClassname(newUpdHours, newUpdHours[idx-1].id, "border")
+    //             }
+    //         } catch (error) {
                 
-            }
-        }
-        setUpdHours(newUpdHours)
-    }
+    //         }
+    //     }
+    //     setUpdHours(newUpdHours)
+    // }
 
     useEffect(()=>{
         console.log('useEffect updHours', updHours, reservedSessions)
         if(updHours.length===0){
             initUpdHours()
         }
-        if(updHours.length > 0 && !isUpdHoursInited){
-            reinitUpdHours(updHours)
-            setIsUpdHoursInited(true)
-        }
+        // if(updHours.length > 0 && !isUpdHoursInited){
+        //     reinitUpdHours(updHours)
+        //     setIsUpdHoursInited(true)
+        // }
     }, [updHours, isUpdHoursInited])
 
     function updateHoursClassname(hours, id, className){
@@ -142,136 +146,73 @@ function Hours({db, auth , outterReset}) {
 
     const reserve = async (e)=>{
         e.preventDefault()
-        setDisableConfirmBtn(true)
-        console.log(startHour, finishHour)
-        if(startHour && finishHour && startHour.id !== finishHour.id){
-            //check if this session is still available
-            try {
-                const data = await db.collection('reservedSessions')
-                    .where('year', '==', selectedDate.year)
-                    .where('month', '==', selectedDate.month)
-                    .where('day', '==', selectedDate.day)
-                    .get()
-                console.log('sessions', data.docs)
-                const sessions = data.docs.map(doc=>{
-                    return doc.data()
-                })
-                const filtered = sessions.filter(session=>{
-                    // console.log('session',
-                    //     startHour.msTime <= session.finishHour.msTime,
-                    //     finishHour.msTime >= session.finishHour.msTime,
-                    //     finishHour.msTime >= session.startHour.msTime,
-                    //     startHour.msTime <= session.startHour.msTime
-                    // )
-                    return (startHour.msTime <= session.finishHour.msTime && finishHour.msTime >= session.finishHour.msTime) ||
-                        (finishHour.msTime >= session.startHour.msTime && startHour.msTime <= session.startHour.msTime)
-                })
-                console.log('sessions', sessions)
-                if(filtered.length === 0){
-                    //add session to firebase collection
-                    const session = {
-                        year: selectedDate.year,
-                        month: selectedDate.month,
-                        day: selectedDate.day,
-                        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                        startHour,
-                        finishHour
-                    }
-                    const ref = await db.collection("reservedSessions").add(session)
-                    console.log("ref", ref)
-                    await ref.collection("privateReservedSessionsData").add({
-                        userId: currentUser.userId
-                    })  
-                    //update all data
-                    dispatch(updateReservedSessions([...sessions, session]))
-                    dispatch(addReservation(session))
-                    // getPrivateReservedSessionsData()        
-                }
-            } catch (error) {
-                console.log('error', error)
-            }
+        if(currentUser){
+            router.push('/konto/rezerwacja')
         }
-        setDisableConfirmBtn(false)
-    }
-
-    async function getReservedSesions(){
-        try {
-            const data = await db.collection('reservedSessions')
-                .where('month', '==', selectedDate.month)
-                .where('day', '==', selectedDate.day)
-                .where('year', '==', selectedDate.year)
-                .get()
-            console.log('sessions', data, data.docs)
-            const sessions = data.docs.map(doc=>{
-                // console.log(doc.data())
-                return doc.data()
-            })
-            // console.log('sessions', sessions)
-            dispatch(addReservedSession(sessions))
-
-        } catch (error) {
-            console.log('error', error)
+        if(currentUser!==null && !currentUser){
+            dispatch(setShowAuth({show: true}))
+            dispatch(setCalendarRedirect(true))
+            const body = document.querySelector("body")
+            body.style.overflow = "hidden"
         }
     }
 
-    async function getPrivateReservedSessionsData(){
-        // console.log('privateReservedSessionsData', currentUser.email)
-        try {
-            const data  = await db.collectionGroup('privateReservedSessionsData')
-                .where("userId", "==", currentUser.userId)
-                .get()
-            console.log('privateReservedSessionData', data)
-            let reservations = []
-            const promises = data.docs.map(doc=>{
-                return doc.ref.parent.parent.get()
-            })
-            const values = await Promise.all(promises)
-            values.forEach(value=>{
-                reservations = [...reservations, value.data()]
-            })
-            // console.log('reservations', reservations)
-            dispatch(setUserReservations(reservations))
-            // console.log('collections', collections)
-        } catch (error) {
-            console.log('error', error)
-        }
-    }
+    // async function getReservedSesions(){
+    //     try {
+    //         const data = await db.collection('reservedSessions')
+    //             .where('month', '==', selectedDate.month)
+    //             .where('day', '==', selectedDate.day)
+    //             .where('year', '==', selectedDate.year)
+    //             .get()
+    //         console.log('sessions', data, data.docs)
+    //         const sessions = data.docs.map(doc=>{
+    //             // console.log(doc.data())
+    //             return doc.data()
+    //         })
+    //         // console.log('sessions', sessions)
+    //         dispatch(addReservedSession(sessions))
+
+    //     } catch (error) {
+    //         console.log('error', error)
+    //     }
+    // }
+
+    // async function getPrivateReservedSessionsData(){
+    //     // console.log('privateReservedSessionsData', currentUser.email)
+    //     try {
+    //         const data  = await db.collectionGroup('privateReservedSessionsData')
+    //             .where("userId", "==", currentUser.userId)
+    //             .get()
+    //         console.log('privateReservedSessionData', data)
+    //         let reservations = []
+    //         const promises = data.docs.map(doc=>{
+    //             return doc.ref.parent.parent.get()
+    //         })
+    //         const values = await Promise.all(promises)
+    //         values.forEach(value=>{
+    //             reservations = [...reservations, value.data()]
+    //         })
+    //         // console.log('reservations', reservations)
+    //         dispatch(setUserReservations(reservations))
+    //         // console.log('collections', collections)
+    //     } catch (error) {
+    //         console.log('error', error)
+    //     }
+    // }
 
     useEffect(()=>{
-        if(currentUser && selectedDate){
-            const date = `${moment(selectedDate.raw).format('YYYY-MM-DD')}`
-            
-            const isThereArr = selectedDates.filter(selected=>selected===date)
-            console.log('isThereArr', isThereArr)
-            if(isThereArr.length > 0){
-                //get cashed data
-                dispatch(getCashedReservedSessions())
-                //redux don't see changes in reversed sessions, so useEffect don't work out and we need to call all functions ourselves               
-                const newUpdHours = initUpdHours()
-                reinitUpdHours(newUpdHours)
-                setStartHour(null)
-                setFinishHour(null)  
-                // getPrivateReservedSessionsData()  
-            } else{
-                console.log('date', date)
-                initUpdHours() //loading
-                getReservedSesions()
-                dispatch(addSelectedDate(date))
-            }
-            if(!userReservations){
-                console.log('NO USER RESERVATIONS', userReservations)
-                getPrivateReservedSessionsData()
-            }
-        }
-    }, [currentUser, selectedDate])
-
-    useEffect(()=>{
-        console.log('new reserved sessions')
-        const newUpdHours = initUpdHours()
-        reinitUpdHours(newUpdHours)
+        initUpdHours()
         setStartHour(null)
-        setFinishHour(null)     
-    }, [reservedSessions])
+        setFinishHour(null)  
+    }, [selectedDate])
+
+    // useEffect(()=>{
+    //     console.log('new reserved sessions')
+    //     const newUpdHours = initUpdHours()
+    //     reinitUpdHours(newUpdHours)
+    //     setStartHour(null)
+    //     setFinishHour(null)     
+    // }, [reservedSessions])
 
     const onClick = (e)=>{
 
@@ -553,7 +494,7 @@ function Hours({db, auth , outterReset}) {
             <div className={styles.board}>
                 <div className={styles.boardString}>
                     <div>{getBoardString()}</div>
-                    <div className={styles.boardResult}>{getBoardResult()}</div>
+                    <div className={styles.homePageBoardResult}>{getBoardResult()}</div>
                 </div>
             </div>
             <div className={styles.hours}>
@@ -567,15 +508,15 @@ function Hours({db, auth , outterReset}) {
                     </div>              
                 ))}
             </div> 
-            <div classname={styles.btns}>
-                <button className={styles.reserveBtn} onClick={reserve} disabled={disableConfirmBtn}>Confirm</button>
-                <button className={styles.cancelBtn} onClick={resetUpdHours}>Cancel</button>
+            <div className={styles.btns}>
+                <button className={styles.sprawdzBtn} onClick={reserve} disabled={disableConfirmBtn}>Sprawdź czy wybrana data jest wolna</button>
+                <button className={styles.homeCancelBtn} onClick={resetUpdHours}>Cancel</button>
             </div>
             
-            <YourReservation/>
+            {/* <YourReservation/> */}
         </div>
         
     )
 }
 
-export default Hours
+export default HomePageHours

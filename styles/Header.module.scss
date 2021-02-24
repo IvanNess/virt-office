@@ -82,9 +82,26 @@
     cursor: auto;
 }
 
-.header svg:hover path{
+.header .logo:hover path{
     transition-duration: 0.4s;
     fill: #ffffff;
+}
+
+.logoText{
+    font: normal normal 300 16px/24px "Work Sans Light";
+    letter-spacing: 0.64px;
+    opacity: 0;
+    transition-duration: 0.3s;
+    color: $text-color;
+}
+
+.header .logo:hover .logoText{
+    color: white;
+    opacity: 1;
+}
+
+.regularHeader .logo:hover .logoText{
+    opacity: 1;
 }
 
 

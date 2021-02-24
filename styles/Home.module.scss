@@ -22,6 +22,30 @@
   @include title();
   width: 1114px;
   margin-bottom: 31px;
+  margin-top: 50px;
+  @media all and (max-width: 1300px){
+    width: auto;
+    margin-right: 150px;
+  }
+//   @media all and (max-width: 1300px){
+//     width: 800px;
+//   }
+//   @media all and (max-width: 1024px){
+//     width: 600px;
+//   }
+//   @media all and (max-width: 740px){
+//     width: 550px;
+//   }
+//   @media all and (max-width: 620px){
+//     width: auto;
+//   }
+}
+
+.calendarTitle{
+    @include title();
+    width: 791px;
+    margin-bottom: 31px;
+    margin-top: 165px;
 }
 
 .headerForm input[type=button]{
@@ -38,6 +62,22 @@
       color: $text-color;
       font: normal normal 900 56px/66px "Work Sans Black";
   }
+  @media all and (max-width: 1300px){
+    width: auto;
+    margin-right: 150px;
+  }
+//   @media all and (max-width: 1300px){
+//     width: 800px;
+//   }
+//   @media all and (max-width: 1024px){
+//     width: 600px;
+//   }
+//   @media all and (max-width: 740px){
+//     width: 550px;
+//   }
+//   @media all and (max-width: 620px){
+//     width: auto;
+//   }
 }
 
 .headerTitle{
@@ -62,6 +102,23 @@
 .smallText{
   @include smallText();
   padding-bottom: 71px;
+  text-transform: lowercase;
+  @media all and (max-width: 1300px){
+    width: auto;
+    margin-right: 150px;
+  }
+//   @media all and (max-width: 1300px){
+//     width: 800px;
+//   }
+//   @media all and (max-width: 1024px){
+//     width: 600px;
+//   }
+//   @media all and (max-width: 740px){
+//     width: 550px;
+//   }
+//   @media all and (max-width: 620px){
+//     width: auto;
+//   }
 }
 
 .blockWrapper{
@@ -70,11 +127,19 @@
             color: #ffffff;
         }
     }
+    @media all and (max-width: 1300px){
+        margin-right: 40px;
+        margin-bottom: 70px;
+    }
+    @media all and (max-width: 1100px){
+        margin-right: 20px;
+    }
 }
 
 .blocks{
   @include blocks(225.5px);
   margin-right: 149px;
+  margin-bottom: 0;
   .blockText{
     font: normal normal 300 16px/24px "Work Sans Light";
     display: block;
@@ -83,6 +148,9 @@
     transition-duration: 0.4s;
     &:hover{
         color: #ffffff;
+    }
+    @media all and (max-width: 1300px){
+        font: normal normal 300 15px "Work Sans Light";
     }
   }
   .mainBlockWrapper{
@@ -94,6 +162,9 @@
     font: normal normal 900 16px/24px "Work Sans Black";
     letter-spacing: 0.64px;
     text-transform: uppercase;
+  }
+  @media all and (max-width: 1300px){
+    margin-right: 0px;
   }
 }
 
@@ -155,6 +226,9 @@
 .headerTextBoldFont{
     @include headerBoldFont();
     font: normal normal 900 16px/24px "Work Sans Black";
+    @media all and (max-width: 1300px){
+        font: normal normal 900 16px/24px "Work Sans Black";
+    }
 }
 
 .none{
@@ -176,6 +250,22 @@
     .headerTitle{
         // width: 918px;
         width: 1001px;
+        @media all and (max-width: 1300px){
+            width: auto;
+            margin-right: 150px;
+        }
+        // @media all and (max-width: 1300px){
+        //     width: 800px;
+        // }
+        // @media all and (max-width: 1024px){
+        //     width: 600px;
+        // }
+        // @media all and (max-width: 740px){
+        //     width: 550px;
+        // }
+        // @media all and (max-width: 620px){
+        //     width: auto;
+        // }
     }
 }
 
@@ -185,18 +275,85 @@
         width: 1020px;
         margin-bottom: 20px;
         // text-align: center;
+        @media all and (max-width: 1300px){
+            width: auto;
+            margin-right: 150px;
+        }
+        // @media all and (max-width: 1300px){
+        //     width: 800px;
+        // }
+        // @media all and (max-width: 1024px){
+        //     width: 600px;
+        // }
+        // @media all and (max-width: 740px){
+        //     width: 550px;
+        // }
+        // @media all and (max-width: 620px){
+        //     width: auto;
+        // }
     }
     .bottom{
         width: 1100px;
+        @media all and (max-width: 1300px){
+            width: auto;
+            margin-right: 150px;
+        }
+        // @media all and (max-width: 1300px){
+        //     width: 800px;
+        // }
+        // @media all and (max-width: 1024px){
+        //     width: 600px;
+        // }
+        // @media all and (max-width: 740px){
+        //     width: 550px;
+        // }
+        // @media all and (max-width: 620px){
+        //     width: auto;
+        // }
     }
     .headerText{
         width: 1020px;
+        @media all and (max-width: 1300px){
+            width: auto;
+            margin-right: 150px;
+        }
+        // @media all and (max-width: 1300px){
+        //     width: 800px;
+        // }
+        // @media all and (max-width: 1024px){
+        //     width: 600px;
+        // }
+        // @media all and (max-width: 740px){
+        //     width: 550px;
+        // }
+        // @media all and (max-width: 620px){
+        //     width: auto;
+        // }
+    }
+    .headerTitle{
+        width: auto;
     }
 }
 
 .headerThree{
     .headerTitle{
         width: 980px;
+        @media all and (max-width: 1300px){
+            width: auto;
+            margin-right: 150px;
+        }
+        // @media all and (max-width: 1300px){
+        //     width: 800px;
+        // }
+        // @media all and (max-width: 1024px){
+        //     width: 600px;
+        // }
+        // @media all and (max-width: 740px){
+        //     width: 550px;
+        // }
+        // @media all and (max-width: 620px){
+        //     width: auto;
+        // }
     }
 }
 
@@ -209,5 +366,37 @@
     }
 }
 
-  
+.fullBlockWrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    @media all and (max-width: 1300px){
+        display: none;
+    }
+}
 
+.splitBlockWrapper{
+    display: none;
+    @media all and (max-width: 1300px){
+        display: flex;
+    }
+    .blockWrapper{
+        height: 300px;
+    }
+}
+  
+.middleText{
+    margin-left: $main-margin-left;
+    margin-right: 262px;
+    margin-top: 165px;
+    max-width: 1031px;
+    p{
+        font: normal normal bold 30px/40px "Work Sans Bold";
+        letter-spacing: 0.6px;
+        color: #121109;  
+    }
+}
+
+.homePageCalendar{
+    margin-left: $main-margin-left;
+}

@@ -59,6 +59,11 @@
         // background-color: lightgrey;
         color: rgba(0, 0, 0, 0.38)
     }
+
+    .init{
+        // background-color: lightgrey;
+        color: $main-color
+    }
     
     .session{
         background-color: navy;
@@ -71,7 +76,8 @@
     
     .border{
         // background-color: tomato;
-        color: rgba(0, 0, 0, 0.38)
+        // color: rgba(0, 0, 0, 0.38);
+        color: $text-color;
     }
 }
 
@@ -89,6 +95,9 @@
     height: 20px;
     .boardResult{    
         padding-right: 215px;
+    }
+    .homePageBoardResult{
+        padding-right: 35px;
     }
 }
 
@@ -113,6 +122,40 @@
     background: #121109 0% 0% no-repeat padding-box;
     color: #FFFFFF;
 }
+
+.sprawdzBtn{
+    @include btn();
+    background: #CDAD00 0% 0% no-repeat padding-box;
+    font: normal normal 900 16px/21px "Work Sans Black";
+    letter-spacing: -0.09px;
+    // color: #FFFFFF;
+    transition-duration: 0.4s;
+    border: 2px solid $main-color;
+    &:hover{
+        background-color: #FFFFFF;
+        color: $main-color;
+        border: 2px solid $text-color;
+    }
+}
+
+.homeCancelBtn{
+    @include btn();
+    background: #121109 0% 0% no-repeat padding-box;
+    font: normal normal 900 16px/21px "Work Sans Black";
+    color: #FFFFFF;
+    transition-duration: 0.4s;
+    &:hover{
+        background-color: #FFFFFF;
+        color: $text-color;
+        border: 2px solid $text-color;
+    }
+}
+
+.btns{
+    display: flex;
+    flex-direction: column;
+}
+
 
 
 

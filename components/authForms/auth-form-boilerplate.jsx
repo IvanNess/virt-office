@@ -9,6 +9,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
 
     const signupForm = useSelector(state=>state.signupForm)
     const loginForm = useSelector(state=>state.loginForm)
+    const calendarRedirect = useSelector(state=>state.calendarRedirect)
     const dispatch = useDispatch()
 
     const router = useRouter()
@@ -42,6 +43,8 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     const body = document.querySelector("body")
                     body.style.overflow = "auto"
                     // router.push('/konto/profil')
+                    if(calendarRedirect)
+                        router.push('/konto/rezerwacja')
 
                 } catch (error) {
                     console.log(error)
@@ -144,6 +147,8 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         dispatch(setShowAuth({show: false}))
                         const body = document.querySelector("body")
                         body.style.overflow = "auto"  
+                        if(calendarRedirect)
+                            router.push('/konto/rezerwacja')
                     } catch (error) {
                         alert(`ERROR: ${error}`)
                     }
@@ -152,7 +157,14 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
         }
     }
 
-    function leftClicked(){
+    async function leftClicked(){
+        console.log('page', page)
+        if(page===undefined){
+            // await fetch('http://localhost:5001/virt-office/us-central1/addMessage?text=upp')
+            const res = await fetch('/api/hello')
+            const data = await res.json()
+            console.log(data)
+        }
         dispatch(setSignupFormProp('page', page-1))
     }
 

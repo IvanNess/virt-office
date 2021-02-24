@@ -66,6 +66,7 @@ $text-color: #121109;
   margin-bottom: $margin-bottom;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   .blockTitle{
     @include blockTitle();
@@ -75,6 +76,9 @@ $text-color: #121109;
   }
   .afterHyphen{
     margin-left: 30px;       
+  }
+  @media all and (max-width: 1300px){
+    justify-content: flex-start;
   }
 }
 
@@ -152,7 +156,7 @@ $text-color: #121109;
   color: $text-color;
   .boldFont{
     text-transform: uppercase;
-  }
+  } 
 }
 
 @mixin blockText{
@@ -172,6 +176,18 @@ $text-color: #121109;
   margin-left: $main-margin-left;
   margin-top: 85px;
   width: 812px;
+  @media all and (max-width: 1300px){
+    font: normal normal 300 44px "Work Sans Light";
+  }
+  @media all and (max-width: 1024px){
+    font: normal normal 300 38px "Work Sans Light";
+  }
+  @media all and (max-width: 740px){
+    font: normal normal 300 36px "Work Sans Light";
+  }
+  @media all and (max-width: 620px){
+    font: normal normal 300 30px "Work Sans Light";
+  }
 }
 
 @mixin headerBoldFont{
@@ -180,6 +196,18 @@ $text-color: #121109;
   letter-spacing: 0px;
   color: #FFFFFF;
   text-transform: uppercase;  
+  @media all and (max-width: 1300px){
+    font: normal normal 900 44px "Work Sans Bold";
+  }
+  @media all and (max-width: 1024px){
+    font: normal normal 900 38px "Work Sans Black";;
+  }
+  @media all and (max-width: 740px){
+    font: normal normal 900 36px "Work Sans Black";;
+  }
+  @media all and (max-width: 620px){
+    font: normal normal 900 30px "Work Sans Black";;
+  }
 }
 
 @mixin headerText {
@@ -191,6 +219,19 @@ $text-color: #121109;
     letter-spacing: 0px;
     color: #FFFFFF;
     opacity: 1;
+    @media all and (max-width: 1300px){
+      width: 800px;
+      margin-right: 150px;
+    }
+    @media all and (max-width: 1024px){
+      width: 600px;
+    }
+    @media all and (max-width: 740px){
+      width: 550px;
+    }
+    @media all and (max-width: 620px){
+      width: auto;
+  }
 }
 
 @mixin headerForm {

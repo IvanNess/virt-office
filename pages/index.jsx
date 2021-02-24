@@ -10,8 +10,10 @@ import MainPageHeaders from '../components/main-page-headers'
 import Link from 'next/link'
 import { Carousel } from 'antd'
 import Footer from '../components/footer'
+import Calendar from './calendar'
+import HomePageCalendar from '../components/home-page-calendar'
 
-export default function Home() {
+export default function Home({db, auth}) {
 
   return (
     <div className={styles.container}>
@@ -32,7 +34,7 @@ export default function Home() {
           <input className={styles.textInput} type="text" name="" id="" placeholder="Wpisz miasto"/>
           <input className={styles.buttonInput} type="button" value="WYSZUKAJ"/>
         </form> */}
-        <Carousel autoplay={true} autoplaySpeed={4000}>
+        <Carousel autoplay={true} autoplaySpeed={4000} pauseOnHover={false}>
           <div className={styles.headerOne}>
             <div className={styles.headerFlex}>
               <div className={styles.headerTitle}>
@@ -103,39 +105,74 @@ export default function Home() {
         {/* <MainWhy 
           text='Oferujemy wynajem adresu wraz z pakietem usług w atrakcyjnej cenie już od 55 PLN miesięcznie. Wirtualne biuro, czyli wirtualny adres, w porównaniu z wynajmem konwencjonalnego biura, umożliwia optymalizację kosztów prowadzenia firmy. Dzięki temu, że możesz skomponować pakiet usług dostosowany do swoich potrzeb, płacisz za to, co jest Ci potrzebne.'
         /> */}
-        <div className={styles.blockWrapper}>
-          <Block className='block' showMore={false}>
-            <div className={styles.blockText}>
-              Oferujemy wynajem adresu wraz z pakietem usług w atrakcyjnej cenie już od  
-              <span className={styles.boldText}> 55 PLN miesięcznie.</span>
-              <br/>
-              <br/>
-              Wirtualne biuro, czyli wirtualny adres, w porównaniu z wynajmem konwencjonalnego biura, umożliwia optymalizację kosztów prowadzenia firmy. Dzięki temu, że możesz skomponować pakiet usług dostosowany do swoich potrzeb, płacisz za to, co jest Ci potrzebne.
-            </div>
-          </Block>
+        
+        <div className={styles.fullBlockWrapper}>
+          <div className={styles.blockWrapper}>
+            <Block className='block' showMore={false}>
+              <div className={styles.blockText}>
+                Oferujemy wynajem adresu wraz z pakietem usług w atrakcyjnej cenie już od  
+                <span className={styles.boldText}> 55&nbsp;PLN miesięcznie.</span>
+                <br/>
+                <br/>
+                Wirtualne biuro, czyli wirtualny adres, w porównaniu z wynajmem konwencjonalnego biura, umożliwia optymalizację kosztów prowadzenia firmy. Dzięki temu, że możesz skomponować pakiet usług dostosowany do swoich potrzeb, płacisz za to, co jest Ci potrzebne.
+              </div>
+            </Block>
+          </div>
+          
+          <div className={styles.blockWrapper}>
+            <Block className='block' showMore={true}>
+              <div className={styles.blockText}>
+                Nasza oferta jest kompleksowa i dostosowana do rzeczywistych potrzeb przedsiębiorcy. 
+                <br/>
+                <br/>
+                Oprócz adresu uzyskujesz obsługę korespondencji, archiwizację dokumentów, dostęp do sali konferencyjne umożliwiający organizację spotkań z klientami. We współpracy z naszym partnerem wfirma.pl oferujemy również usługi księgowe.
+              </div>
+            </Block>
+          </div>
+
+          <div className={styles.blockWrapper}>
+            <Block className='block' showMore={false}>
+              <div className={styles.blockText}>
+                Wszystkie formalności związane z wynajmem biura, czy sali konferencyjnej i korzystaniem z naszych pozostałych usług możesz zrealizować zdalnie. 
+                <br/>
+                <br/>
+                Proces zawarcia umowy z nami zajmuje kilka minut, ponieważ szanujemy Twój czas i pieniądze. Poprzez stronę internetową lub aplikację korzystasz ze swojego wirtualnego biura z dowolnego miejsca i w dowolnym czasie.
+              </div>
+            </Block>   
+          </div> 
         </div>
         
-        <div className={styles.blockWrapper}>
-          <Block className='block' showMore={true}>
-            <div className={styles.blockText}>
-              Nasza oferta jest kompleksowa i dostosowana do rzeczywistych potrzeb przedsiębiorcy. 
-              <br/>
-              <br/>
-              Oprócz adresu uzyskujesz obsługę korespondencji, archiwizację dokumentów, dostęp do sali konferencyjne umożliwiający organizację spotkań z klientami. We współpracy z naszym partnerem wfirma.pl oferujemy również usługi księgowe.
-            </div>
-          </Block>
+        <div className={styles.splitBlockWrapper}>
+          <div className={styles.blockWrapper}>
+            <Block className='block' showMore={false}>
+              <div className={styles.blockText}>
+                Oferujemy wynajem adresu wraz z pakietem usług w atrakcyjnej cenie już od  
+                <span className={styles.boldText}> 55&nbsp;PLN miesięcznie.</span>
+                <br/>
+                <br/>
+                Wirtualne biuro, czyli wirtualny adres, w porównaniu z wynajmem konwencjonalnego biura, umożliwia optymalizację kosztów prowadzenia firmy. Dzięki temu, że możesz skomponować pakiet usług dostosowany do swoich potrzeb, płacisz za to, co jest Ci potrzebne.
+                <br/>
+                <br/>
+                Nasza oferta jest kompleksowa i dostosowana do rzeczywistych potrzeb przedsiębiorcy. 
+              </div>
+            </Block>   
+          </div>
+
+          <div className={styles.blockWrapper}>
+            <Block className='block' showMore={true}>
+              <div className={styles.blockText}>
+                Oprócz adresu uzyskujesz obsługę korespondencji, archiwizację dokumentów, dostęp do sali konferencyjne umożliwiający organizację spotkań z klientami. We współpracy z naszym partnerem wfirma.pl oferujemy również usługi księgowe.
+                <br/>
+                <br/>
+                Wszystkie formalności związane z wynajmem biura, czy sali konferencyjnej i korzystaniem z naszych pozostałych usług możesz zrealizować zdalnie. 
+                <br/>
+                <br/>
+                Proces zawarcia umowy z nami zajmuje kilka minut, ponieważ szanujemy Twój czas i pieniądze. Poprzez stronę internetową lub aplikację korzystasz ze swojego wirtualnego biura z dowolnego miejsca i w dowolnym czasie.
+              </div>
+            </Block>   
+          </div>
         </div>
         
-        <div className={styles.blockWrapper}>
-          <Block className='block' showMore={false}>
-            <div className={styles.blockText}>
-              Wszystkie formalności związane z wynajmem biura, czy sali konferencyjnej i korzystaniem z naszych pozostałych usług możesz zrealizować zdalnie. 
-              <br/>
-              <br/>
-              Proces zawarcia umowy z nami zajmuje kilka minut, ponieważ szanujemy Twój czas i pieniądze. Poprzez stronę internetową lub aplikację korzystasz ze swojego wirtualnego biura z dowolnego miejsca i w dowolnym czasie.
-            </div>
-          </Block>   
-        </div>
              
       </div>
 
@@ -145,13 +182,13 @@ export default function Home() {
 
       {/* <Packages/> */}
       
-      <Billboard noBackground={true}>
+      {/* <Billboard noBackground={true}>
         <div className={styles.noBackgroundBillboardText}>
           <span className={styles.headerBoldFont}>ADRES</span> - obsługa biura – <span className={styles.headerBoldFont}>KSIĘGOWOŚĆ</span> – konsultacje prawne - <span className={styles.headerBoldFont}>MARKETING</span>
         </div>
-      </Billboard>
+      </Billboard> */}
 
-      <div className={styles.textBlock}>
+      {/* <div className={styles.textBlock}>
         <div className={styles.text}>
           <p>
             Wirtualne biuro to nie tylko wirtualny adres, ale również obsługa korespondencji przychodzącej polegająca na jej skanowaniu, przekazywaniu i archiwizacji. 
@@ -169,7 +206,29 @@ export default function Home() {
         <div className={styles.image}>
           <img src="/images/vb-phone.jpg" alt=""/>
         </div>
+      </div> */}
+      
+      <div className={styles.middleText}>
+        <p>
+          Wirtualne biuro to nie tylko wirtualny adres, ale również obsługa korespondencji przychodzącej polegająca na jej skanowaniu, przekazywaniu i archiwizacji. W ramach usługi dajemy dostęp do sali konferencyjnej oznakowanej logiem Twojej firmy w czasie, w którym z niej korzystasz, wyposażonej w stół konferencyjny, rzutnik z ekranem do wyświetlania prezentacji, drukarkę ze skanerem, aneks kuchenny do przygotowania kawy/herbaty, strefę chillout dającą komfort prowadzenia rozmów. 
+          <br/><br/>
+          Każda firma potrzebuje usług księgowych i prawnych. We współpracy z naszym partnerem wfirma.pl dostarczamy również te usługi w ramach naszych pakietów.
+        </p>
       </div>
+
+
+      <div className={styles.calendarTitle}>
+        WYNAJMNIJ BIURO <span className={styles.boldFont}> NA GODZINĘ!</span>
+      </div>
+
+      <div className={styles.smallText}>
+        U NAS ISTNIEJE MOŻLIWOŚĆ WYNAJĘCIA PRRZESTRZENI BIUTROWEJ NA SPOTKANIA Z KLINENTEM. SPRAWDZ DOSTEPNY TERMIN I ZAREZERWUJ !
+      </div>
+
+      <div className={styles.homePageCalendar}>
+        <HomePageCalendar db={db} auth={auth}/>
+      </div>
+      
 
       <div className={styles.titleThree}>
         CENA BEZ UKRYTYCH KOSZTÓW  — <span className={styles.boldFont}>załatw wszystkie formalności online</span>

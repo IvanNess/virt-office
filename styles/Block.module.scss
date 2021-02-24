@@ -36,6 +36,14 @@ $block-height: 323px;
         background-color: $main-color;
         border-color: $main-color;
     }
+    @media all and (max-width: 1300px){
+        width: 500px;
+        height: 430px;
+    }
+    @media all and (max-width: 1150px){
+        width: 450px;
+        height: 430px;
+    }
 }
 
 .mainBlock{

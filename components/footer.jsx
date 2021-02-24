@@ -25,8 +25,6 @@ const Footer = () => {
                 <div className={styles.column}>
                     <div><Link href="/onas"><a><h2>o nas</h2></a></Link></div>
                     <div><Link href="/ksiegowosc"><a><h2>księgowość</h2></a></Link></div>
-                    {/* <div><Link href="/wirt-podpis"><a><h2>wirtualny Podpis</h2></a></Link></div>
-                    <div><Link href="/pakiety"><a><h2>pakiety</h2></a></Link></div> */}
                     <div><Link href="/cennik"><a><h2 className={styles.last}>cennik</h2></a></Link></div>     
                 </div>
                 <div className={styles.column}>

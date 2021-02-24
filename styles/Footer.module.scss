@@ -19,6 +19,11 @@
         .column{
             padding-right: 100px;
             transition-duration: 0.4s;
+            &:nth-child(2){
+                @media all and (max-width: 1300px){
+                    display: none;
+                } 
+            }
         }
         a{
             text-decoration: none;
