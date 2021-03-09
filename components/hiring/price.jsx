@@ -25,6 +25,16 @@ function Price({auth, db}) {
             const invoiceDate = +new Date()
             const packageDuration = hiringChoices[2].choice==='Dzień' ? 24*60*60*1000:
                 hiringChoices[2].choice==='Miesiąc'? 30*24*60*60*1000: 365*24*60*60*1000
+
+            const stripe = await stripePromise
+            console.log(process.env.NEXT_PUBLIC_STRIPE)
+            const response = await fetch("/api/order", {
+                method: "POST",
+            }) 
+            console.log('response', response)
+            const session = await response.json();
+            console.log('session', session)
+
             await db.collection('packages').add({
                 isPaid: false,
                 userId: currentUser?.userId || false,
@@ -40,25 +50,22 @@ function Price({auth, db}) {
                 invoiceDate,
                 expireDate: invoiceDate + packageDuration,
                 price,
+                sessionId: session.session.id //stripeSession
             })
-            const stripe = await stripePromise
-            console.log(process.env.NEXT_PUBLIC_STRIPE)
-            const response = await fetch("/api/order", {
-                method: "POST",
-            })
-            console.log('response', response)
-            const session = await response.json();
-            console.log('session', session)
-          
+
+            //auth
+            console.log('auth', auth.currentUser)
+
             const result = await stripe.redirectToCheckout({
                 sessionId: session.session.id,
-              });
-              if (result.error) {
-                // If `redirectToCheckout` fails due to a browser or network
-                // error, display the localized error message to your customer
-                // using `result.error.message`.
-                console.log('error', result.error.message)
-              }
+            })
+
+            if (result.error) {
+            // If `redirectToCheckout` fails due to a browser or network
+            // error, display the localized error message to your customer
+            // using `result.error.message`.
+            console.log('error', result.error.message)
+            }
 
             setBtnDisabled(false)
             router.push('/')
