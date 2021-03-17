@@ -5,15 +5,22 @@ import Packages from '../components/packages'
 import Block from '../components/block'
 import Sidebar from '../components/side-bar'
 import Billboard from '../components/billboard'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import MainPageHeaders from '../components/main-page-headers'
 import Link from 'next/link'
 import { Carousel } from 'antd'
 import Footer from '../components/footer'
 import Calendar from './calendar'
 import HomePageCalendar from '../components/home-page-calendar'
+import { setShowAuth } from '../redux/actions'
 
 export default function Home({db, auth}) {
+
+  const dispatch = useDispatch()
+
+  function auth(){
+    dispatch(setShowAuth({show: true, isLogin: true}))
+  }
 
   return (
     <div className={styles.container}>
@@ -88,7 +95,7 @@ export default function Home({db, auth}) {
                   dlatego udostępniamy pod adresem rejestracji firmy
                   <span className={styles.headerTextBoldFont}> PRZESTRZEŃ KONFERENCYJNĄ </span>
                   gdzie można przy jednym stole i dobrej „kawie" przeprowadzić negocjacje i podpisać
-                  <span className={styles.headerTextBoldFont}> LUKRATYWNE KONTRAKTY.</span>                
+                  <span className={styles.headerTextBoldFont} > LUKRATYWNE KONTRAKTY.</span>                
               </div>
             </div>
 
@@ -216,6 +223,14 @@ export default function Home({db, auth}) {
         </p>
       </div>
 
+      <div className={styles.wfirmaBlockWrapper}>
+        <div className={styles.wfirmaText}>
+          <h4>Korzystając z usług wirtualnego biura otrzymujesz 
+            <span className={styles.bold}> Pakiet roczny wFirma na rok całkowite za darmo! </span>
+            Przejdź i <span className={styles.underline} onClick={()=>{auth()}}>zaloguj sie</span> 
+          </h4>
+        </div>
+      </div>
 
       <div className={styles.calendarTitle}>
         WYNAJMNIJ BIURO <span className={styles.boldFont}> NA GODZINĘ!</span>

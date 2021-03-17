@@ -45,7 +45,7 @@
     @include title();
     width: 791px;
     margin-bottom: 31px;
-    margin-top: 165px;
+    margin-top: 86px;
 }
 
 .headerForm input[type=button]{
@@ -369,7 +369,8 @@
 .fullBlockWrapper{
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    // width: 100%;
+    min-width: 1240px;
     @media all and (max-width: 1300px){
         display: none;
     }
@@ -394,9 +395,42 @@
         font: normal normal bold 30px/40px "Work Sans Bold";
         letter-spacing: 0.6px;
         color: #121109;  
+        margin: 0;
     }
 }
 
 .homePageCalendar{
     margin-left: $main-margin-left;
+}
+
+.wfirmaBlockWrapper{
+    @include with-background("/images/wfirma.png", none, 1);
+    position: relative;
+    height: auto;
+    background-color: rgba($color: #000000, $alpha: 0.35);
+    background-position: center;
+    height: 532px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    margin-top: 135px;
+    .wfirmaText{
+        text-align: center;
+        font: normal normal 300 45px/77px "Work Sans Light";
+        max-width: 1112px;
+        z-index: 1;
+        h4{
+            margin: 0;
+            color: white;
+        }
+        .bold{
+            font: normal normal 900 45px/77px "Work Sans Black";
+        }
+        .underline{
+            text-decoration: underline;
+            font: normal normal 900 45px/77px "Work Sans Black";
+            cursor: pointer;
+        }
+    }
 }

@@ -7,6 +7,7 @@ import styles from '../styles/MenuContent.module.scss'
 import { Link } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { setShowAuth } from '../redux/actions'
+import { useClickOutside } from 'react-click-outside-hook'
 
 const MenuContent = () => {
 

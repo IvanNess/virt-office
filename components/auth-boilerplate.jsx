@@ -8,6 +8,7 @@ import SignupFormTwo from './authForms/signup-form-two'
 import SignupFormThree from './authForms/signup-form-three'
 import { setShowAuth, setCurrentUser, setCalendarRedirect } from '../redux/actions'
 import Link from 'next/link'
+import { useClickOutside } from 'react-click-outside-hook'
 
 function AuthBoilerplate({db, auth}) {
 

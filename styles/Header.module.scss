@@ -82,7 +82,7 @@
     cursor: auto;
 }
 
-.header .logo:hover path{
+.header .logo:hover path, .header .logo:hover rect{
     transition-duration: 0.4s;
     fill: #ffffff;
 }
