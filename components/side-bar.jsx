@@ -26,7 +26,7 @@ const Sidebar = ({color = 'white'}) => {
                 <div className={styles.menuIcons} onClick={clickMenu}>
                     {isOpen && <CloseIcon style={{fontSize: '70px', color}}/>}
                     {!isOpen && <MenuIcon style={{fontSize: '70px', color}}/>}
-                </div>                
+                </div>                    
             </div>
 
             {isOpen && <MenuContent/>}
