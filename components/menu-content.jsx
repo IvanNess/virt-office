@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import TwitterIcon from '@material-ui/icons/Twitter'
 import FacebookIcon from '@material-ui/icons/Facebook'
 import InstagramIcon from '@material-ui/icons/Instagram'
@@ -6,7 +6,7 @@ import InstagramIcon from '@material-ui/icons/Instagram'
 import styles from '../styles/MenuContent.module.scss'
 import { Link } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import { setShowAuth } from '../redux/actions'
+import { setShowAuth, setShowMenu } from '../redux/actions'
 import { useClickOutside } from 'react-click-outside-hook'
 
 const MenuContent = () => {
@@ -14,6 +14,7 @@ const MenuContent = () => {
     const dispatch = useDispatch()
 
     const showAuth = useSelector(state=>state.showAuth)
+    const [ref, hasClickedOutside] = useClickOutside()
 
     function onAuth(isLogin){
         dispatch(setShowAuth({show: true, isLogin}))
@@ -21,8 +22,14 @@ const MenuContent = () => {
         body.style.overflow = "hidden"
     }
 
+    useEffect(() => {
+        if(hasClickedOutside){
+            dispatch(setShowMenu(false))
+        }
+    }, [hasClickedOutside])
+
     return (
-        <div className={styles.menuContent}>
+        <div className={styles.menuContent} ref={ref}>
             <div className={styles.iconsWrapper}>
                 <Link><a href="/">
                     <div className={styles.logo}>

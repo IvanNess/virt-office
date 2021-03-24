@@ -46,6 +46,9 @@ export const setCurrentPackage = (pack)=> async (dispatch)=>dispatch({type: 'SET
 
 export const setCalendarRedirect = (redirect)=> async (dispatch)=>dispatch({type: 'SET_CALENDAR_REDIRECT', redirect})
 
+export const setShowMenu = (value)=> async (dispatch) => dispatch({type: "SET_SHOW_MENU", value})
+
+
 
 
 // import { Auth } from "aws-amplify"

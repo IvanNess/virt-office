@@ -4,14 +4,20 @@ import CloseIcon from '@material-ui/icons/Close'
 
 import styles from '../styles/Sidebar.module.scss'
 import MenuContent from './menu-content'
+import { setShowMenu } from '../redux/actions'
+import { useSelector, useDispatch } from 'react-redux'
 
 const Sidebar = ({color = 'white'}) => {
 
-    const [isOpen, setIsOpen] = useState(false)
+    // const [isOpen, setIsOpen] = useState(false)
+
+    const dispatch = useDispatch()
 
     function clickMenu(){
-        setIsOpen(isOpen=> isOpen===false? true: false)
+        dispatch(setShowMenu(showMenu===false? true: false))
     }
+
+    const showMenu = useSelector(state=>state.showMenu.show)
 
     const [languageId, setLanguageId] = useState("1")
 
@@ -24,12 +30,12 @@ const Sidebar = ({color = 'white'}) => {
         <div className={styles.sidebar}>
             <div className={styles.menuIconsWrapper}>
                 <div className={styles.menuIcons} onClick={clickMenu}>
-                    {isOpen && <CloseIcon style={{fontSize: '70px', color}}/>}
-                    {!isOpen && <MenuIcon style={{fontSize: '70px', color}}/>}
+                    {showMenu && <CloseIcon style={{fontSize: '70px', color}}/>}
+                    {!showMenu && <MenuIcon style={{fontSize: '70px', color}}/>}
                 </div>                    
             </div>
 
-            {isOpen && <MenuContent/>}
+            {showMenu && <MenuContent/>}
 
             <div className={styles.languageBlock}>
                 <div className={styles.text}>Choose your language</div>
