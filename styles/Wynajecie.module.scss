@@ -56,14 +56,21 @@
 
 .confirmSelectOption{
     @include buttonInput();
-    // margin-left: $main-margin-left;
-    margin-top: 40px;
+    // margin-top: 40px;
+    position: fixed;
+    bottom: 5%;
+    left: calc(100vw - 578px);
+    background-color: $text-color;
 }
 
 .officeSearchConfirm{
     @include buttonInput();
-    margin-left: 486px;
-    margin-top: 40px;
+    // margin-left: 486px;
+    // margin-top: 40px;
+    position: fixed;
+    bottom: 5%;
+    left: calc(100vw - 578px);
+    background-color: $text-color;
 }
 
 .officeSearchConfirmWrapper{

@@ -4,6 +4,7 @@ import styles from '../../styles/Dane.module.scss'
 import ProfileBoilerplate from '../../components/profile-boilerplate'
 import { useDispatch, useSelector } from 'react-redux'
 import { editCurrentUser } from '../../redux/actions'
+import axios from 'axios'
 
 function Dane({auth, db}) {
 
@@ -27,11 +28,21 @@ function Dane({auth, db}) {
 
     async function getUserData(){  
         try {
-            const data = await db.collection('users').where('userId', '==', currentUser.userId).get()
-            console.log(data.docs[0].data())
-            if(data.docs[0]){
-                dispatch(editCurrentUser({...data.docs[0].data(), isFullLoaded: true}))   
-                setForm({...currentUser, ...data.docs[0].data()})         
+            // const data = await db.collection('users').where('userId', '==', currentUser.userId).get()
+            // console.log(data.docs[0].data())
+            // if(data.docs[0]){
+            //     dispatch(editCurrentUser({...data.docs[0].data(), isFullLoaded: true}))   
+            //     setForm({...currentUser, ...data.docs[0].data()})         
+            // }
+            const token = await auth.currentUser.getIdToken()
+            const response = await axios({
+                url: "/api/getuser",
+                method: "POST",
+                data: {token}
+            })
+            if(response.data.user){
+                dispatch(editCurrentUser({...response.data.user, isFullLoaded: true}))   
+                setForm({...currentUser, ...response.data.user})         
             }
         } catch (error) {
             console.log(error)

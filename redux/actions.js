@@ -48,8 +48,7 @@ export const setCalendarRedirect = (redirect)=> async (dispatch)=>dispatch({type
 
 export const setShowMenu = (value)=> async (dispatch) => dispatch({type: "SET_SHOW_MENU", value})
 
-
-
+export const formSubmitted = () => async (dispatch) => dispatch({type: "FORM_SUBMITTED"})
 
 // import { Auth } from "aws-amplify"
 // import { getUserByUsername, getUserByEmail, getOrders, getAdressByUsername } from "../utils/graphql-utils"

@@ -12,8 +12,8 @@ export default async (req, res) => {
           },
         ],
         mode: 'payment',
-        success_url: `${process.env.YOUR_DOMAIN}/success`,
-        cancel_url: `${process.env.YOUR_DOMAIN}/canceled`,
+        success_url: `${process.env.ORIGIN}/buy_package_success`,
+        cancel_url: `${process.env.ORIGIN}/buy_package_canceled`,
     })
     // res.json({ id: session.id });
     res.json({ session });

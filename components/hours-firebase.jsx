@@ -4,15 +4,11 @@ import {hours} from '../accessories/options'
 import styles from '../styles/Hours.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment'
-import { loadStripe } from "@stripe/stripe-js";
 
 import { addSelectedHour, removeSelectedHour, addReservedSession, addSelectedDate, getCashedReservedSessions, updateReservedSessions, setUserReservations, addReservation  } from '../redux/actions'
 
 import firebase from 'firebase'
 import YourReservation from './your-reservation'
-import axios from 'axios'
-
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE);
 
 function Hours({db, auth , outterReset}) {
 
@@ -151,71 +147,46 @@ function Hours({db, auth , outterReset}) {
         if(startHour && finishHour && startHour.id !== finishHour.id){
             //check if this session is still available
             try {
-
-                const token = await auth.currentUser.getIdToken()
-
-                const stripe = await stripePromise
-                console.log(process.env.NEXT_PUBLIC_STRIPE)
-                const response = await axios({
-                    url: "/api/reservationsession", 
-                    method: "POST",
-                    data: {
-                        token, 
-                        year: selectedDate.year, 
-                        month: selectedDate.month, 
-                        day: selectedDate.day, 
-                        startHour, 
-                        finishHour, 
-                        quantity: parseFloat(getBoardResult())
-                    }
-                }) 
-
-                const result = await stripe.redirectToCheckout({
-                    sessionId: response.data.sessionId
+                const data = await db.collection('reservedSessions')
+                    .where('year', '==', selectedDate.year)
+                    .where('month', '==', selectedDate.month)
+                    .where('day', '==', selectedDate.day)
+                    .get()
+                console.log('sessions', data.docs)
+                const sessions = data.docs.map(doc=>{
+                    return doc.data()
                 })
-
-                //stop here
-
-                // const data = await db.collection('reservedSessions')
-                //     .where('year', '==', selectedDate.year)
-                //     .where('month', '==', selectedDate.month)
-                //     .where('day', '==', selectedDate.day)
-                //     .get()
-                // console.log('sessions', data.docs)
-                // const sessions = data.docs.map(doc=>{
-                //     return doc.data()
-                // })
-                // const filtered = sessions.filter(session=>{
-                //     // console.log('session',
-                //     //     startHour.msTime <= session.finishHour.msTime,
-                //     //     finishHour.msTime >= session.finishHour.msTime,
-                //     //     finishHour.msTime >= session.startHour.msTime,
-                //     //     startHour.msTime <= session.startHour.msTime
-                //     // )
-                //     return (startHour.msTime <= session.finishHour.msTime && finishHour.msTime >= session.finishHour.msTime) ||
-                //         (finishHour.msTime >= session.startHour.msTime && startHour.msTime <= session.startHour.msTime)
-                // })
-                // console.log('sessions', sessions)
-                // if(filtered.length === 0){
-                //     //add session to firebase collection
-                //     const session = {
-                //         year: selectedDate.year,
-                //         month: selectedDate.month,
-                //         day: selectedDate.day,
-                //         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                //         startHour,
-                //         finishHour
-                //     }
-                //     const ref = await db.collection("reservedSessions").add(session)
-                //     console.log("ref", ref)
-                //     await ref.collection("privateReservedSessionsData").add({
-                //         userId: currentUser.userId
-                //     })  
-                //     //update all data
-                //     dispatch(updateReservedSessions([...sessions, session]))
-                //     dispatch(addReservation(session))
-                //     // getPrivateReservedSessionsData()        
-                // }
+                const filtered = sessions.filter(session=>{
+                    // console.log('session',
+                    //     startHour.msTime <= session.finishHour.msTime,
+                    //     finishHour.msTime >= session.finishHour.msTime,
+                    //     finishHour.msTime >= session.startHour.msTime,
+                    //     startHour.msTime <= session.startHour.msTime
+                    // )
+                    return (startHour.msTime <= session.finishHour.msTime && finishHour.msTime >= session.finishHour.msTime) ||
+                        (finishHour.msTime >= session.startHour.msTime && startHour.msTime <= session.startHour.msTime)
+                })
+                console.log('sessions', sessions)
+                if(filtered.length === 0){
+                    //add session to firebase collection
+                    const session = {
+                        year: selectedDate.year,
+                        month: selectedDate.month,
+                        day: selectedDate.day,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                        startHour,
+                        finishHour
+                    }
+                    const ref = await db.collection("reservedSessions").add(session)
+                    console.log("ref", ref)
+                    await ref.collection("privateReservedSessionsData").add({
+                        userId: currentUser.userId
+                    })  
+                    //update all data
+                    dispatch(updateReservedSessions([...sessions, session]))
+                    dispatch(addReservation(session))
+                    // getPrivateReservedSessionsData()        
+                }
             } catch (error) {
                 console.log('error', error)
             }
@@ -224,33 +195,19 @@ function Hours({db, auth , outterReset}) {
     }
 
     async function getReservedSesions(){
-
         try {
-
-            const token = await auth.currentUser.getIdToken()
-
-            const response = await axios({
-                url: "/api/getreservations",
-                method: "POST",
-                data:{
-                    token, day: selectedDate.day, month: selectedDate.month, year: selectedDate.year
-                }
+            const data = await db.collection('reservedSessions')
+                .where('month', '==', selectedDate.month)
+                .where('day', '==', selectedDate.day)
+                .where('year', '==', selectedDate.year)
+                .get()
+            console.log('sessions', data, data.docs)
+            const sessions = data.docs.map(doc=>{
+                // console.log(doc.data())
+                return doc.data()
             })
-
-            const reservations = response.data.reservations.map(reservation=>reservation._doc)
-
-            // const data = await db.collection('reservedSessions')
-            //     .where('month', '==', selectedDate.month)
-            //     .where('day', '==', selectedDate.day)
-            //     .where('year', '==', selectedDate.year)
-            //     .get()
-            // console.log('sessions', data, data.docs)
-            // const sessions = data.docs.map(doc=>{
-            //     // console.log(doc.data())
-            //     return doc.data()
-            // })
-            // // console.log('sessions', sessions)
-            dispatch(addReservedSession(reservations))
+            // console.log('sessions', sessions)
+            dispatch(addReservedSession(sessions))
 
         } catch (error) {
             console.log('error', error)
@@ -260,30 +217,19 @@ function Hours({db, auth , outterReset}) {
     async function getPrivateReservedSessionsData(){
         // console.log('privateReservedSessionsData', currentUser.email)
         try {
-
-            const token = await auth.currentUser.getIdToken()
-
-            const response = await axios({
-                url: "/api/getuserreservations",
-                method: "POST",
-                data:{ token }
+            const data  = await db.collectionGroup('privateReservedSessionsData')
+                .where("userId", "==", currentUser.userId)
+                .get()
+            console.log('privateReservedSessionData', data)
+            let reservations = []
+            const promises = data.docs.map(doc=>{
+                return doc.ref.parent.parent.get()
             })
-
-            const reservations = response.data.reservations
-
-            // const data  = await db.collectionGroup('privateReservedSessionsData')
-            //     .where("userId", "==", currentUser.userId)
-            //     .get()
-            // console.log('privateReservedSessionData', data)
-            // let reservations = []
-            // const promises = data.docs.map(doc=>{
-            //     return doc.ref.parent.parent.get()
-            // })
-            // const values = await Promise.all(promises)
-            // values.forEach(value=>{
-            //     reservations = [...reservations, value.data()]
-            // })
-            // // console.log('reservations', reservations)
+            const values = await Promise.all(promises)
+            values.forEach(value=>{
+                reservations = [...reservations, value.data()]
+            })
+            // console.log('reservations', reservations)
             dispatch(setUserReservations(reservations))
             // console.log('collections', collections)
         } catch (error) {

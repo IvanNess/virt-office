@@ -31,6 +31,12 @@
             padding: 0;
             background-color: $text-color;
         }
+        &.error{
+            background-color: red;
+            &::placeholder{
+                color: white;
+            }
+        }
     }
     button{
         @include buttonInput();

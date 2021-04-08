@@ -18,14 +18,14 @@ export default function Home({db, auth}) {
 
   const dispatch = useDispatch()
 
-  function auth(){
+  function showAuth(){
     dispatch(setShowAuth({show: true, isLogin: true}))
   }
 
   return (
     <div className={styles.container}>
 
-      <Sidebar/>
+      <Sidebar auth={auth}/>
 
       <Billboard>
         <Header/>
@@ -227,7 +227,7 @@ export default function Home({db, auth}) {
         <div className={styles.wfirmaText}>
           <h4>Korzystając z usług wirtualnego biura otrzymujesz 
             <span className={styles.bold}> Pakiet roczny wFirma na rok całkowite za darmo! </span>
-            Przejdź i <span className={styles.underline} onClick={()=>{auth()}}>zaloguj sie</span> 
+            Przejdź i <span className={styles.underline} onClick={()=>{showAuth()}}>zaloguj sie</span> 
           </h4>
         </div>
       </div>

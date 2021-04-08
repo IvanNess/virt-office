@@ -7,7 +7,7 @@ import MenuContent from './menu-content'
 import { setShowMenu } from '../redux/actions'
 import { useSelector, useDispatch } from 'react-redux'
 
-const Sidebar = ({color = 'white'}) => {
+const Sidebar = ({color = 'white', auth}) => {
 
     // const [isOpen, setIsOpen] = useState(false)
 
@@ -35,7 +35,7 @@ const Sidebar = ({color = 'white'}) => {
                 </div>                    
             </div>
 
-            {showMenu && <MenuContent/>}
+            {showMenu && <MenuContent auth={auth}/>}
 
             <div className={styles.languageBlock}>
                 <div className={styles.text}>Choose your language</div>

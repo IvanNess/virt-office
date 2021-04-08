@@ -2,8 +2,9 @@ import React from 'react'
 
 import styles from '../../styles/AuthFormBoilerplate.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import { setSignupFormProp, setLoginFormProp, setShowAuth } from '../../redux/actions'
+import { setSignupFormProp, setLoginFormProp, setShowAuth, formSubmitted } from '../../redux/actions'
 import { useRouter } from 'next/router'
+import axios from 'axios'
 
 function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
 
@@ -14,8 +15,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
 
     const router = useRouter()
 
-    async function submit(e){
-        e.preventDefault()
+    async function check(){
         if(isLogin){
             console.log('send login data to firebase')
             if(!loginForm.login || loginForm.login.length ===0){
@@ -124,26 +124,44 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     }
                     console.log('The data is sending to firebase...')
                     try {
-                        const user = await auth.createUserWithEmailAndPassword(signupForm.contactEmail, signupForm.password)
-                        console.log('user', user)
-                        const userId = auth.currentUser.uid
+                        // const user = await auth.createUserWithEmailAndPassword(signupForm.contactEmail, signupForm.password)
+                        // console.log('user', user)
+                        // const userId = auth.currentUser.uid
                         
-                        await db.collection('users').add({
-                            userId,
-                            name: signupForm.name,
-                            fullName: signupForm.fullName,
-                            companyName: signupForm.companyName,
-                            NIP: signupForm.NIP,
-                            contactName: signupForm.contactName,
-                            email: signupForm.contactEmail,
-                            contactEmail: signupForm.contactEmail,
-                            phoneNumber: signupForm.phoneNumber
+                        // await db.collection('users').add({
+                        //     userId,
+                        //     name: signupForm.name,
+                        //     fullName: signupForm.fullName,
+                        //     companyName: signupForm.companyName,
+                        //     NIP: signupForm.NIP,
+                        //     contactName: signupForm.contactName,
+                        //     email: signupForm.contactEmail,
+                        //     contactEmail: signupForm.contactEmail,
+                        //     phoneNumber: signupForm.phoneNumber
+                        // })
+                        // await db.collection('usernames').add({
+                        //     username: signupForm.name,
+                        //     email: signupForm.contactEmail,
+                        //     userId
+                        // })
+                        const createUserResponse = await axios({
+                            url: "/api/createuser",
+                            method: "POST",
+                            data: {
+                                username: signupForm.name, 
+                                password: signupForm.password, 
+                                fullName: signupForm.fullName, 
+                                companyName: signupForm.companyName, 
+                                NIP: signupForm.NIP, 
+                                contactFullName: signupForm.contactFullName, 
+                                contactEmail: signupForm.contactEmail, 
+                                contactPhone: signupForm.phoneNumber
+                            },
+                            withCredentials: true
                         })
-                        await db.collection('usernames').add({
-                            username: signupForm.name,
-                            email: signupForm.contactEmail,
-                            userId
-                        })
+                        console.log('createuserresponse', createUserResponse)
+                        const signInResponse = auth.signInWithCustomToken(createUserResponse.data.token)
+                        console.log('signinresponse', signInResponse)
                         dispatch(setShowAuth({show: false}))
                         const body = document.querySelector("body")
                         body.style.overflow = "auto"  
@@ -155,6 +173,12 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     break
             }
         }
+    }
+
+    async function submit(e){
+        e.preventDefault()
+        await check()
+        dispatch(formSubmitted())
     }
 
     async function leftClicked(){
@@ -176,7 +200,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     <div className={styles.left} onClick={leftClicked}>
                         {isLogin? "Nie pamiętam hasła": page!==1?"prev":''}
                     </div>
-                    <button type="submit" onSubmit={submit} onChange={()=>{}}>
+                    <button onClick={submit}>
                         {isLogin? "Zajoguj się": page!==3?"Dalej":"Sign up"}
                     </button>
                 </div>

@@ -24,6 +24,7 @@
     "google-map-react": "^2.1.9",
     "micro": "^9.3.4",
     "moment": "^2.29.1",
+    "mongoose": "^5.12.3",
     "next": "10.0.4",
     "react": "17.0.1",
     "react-click-outside-hook": "^1.1.1",

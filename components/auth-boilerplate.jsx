@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import styles from '../styles/AuthBoilerplate.module.scss'
 import CloseIcon from '@material-ui/icons/Close'
 import LoginForm from './authForms/login-form'
@@ -30,8 +30,7 @@ function AuthBoilerplate({db, auth}) {
                     userId: user.uid,
                     isFullLoaded: false
                 }))
-            }
-            
+            } 
         })
     }, [auth])
 
@@ -56,9 +55,19 @@ function AuthBoilerplate({db, auth}) {
         } 
     }
 
+    function clickOutside(){
+        const body = document.querySelector("body")
+        dispatch(setShowAuth({show: false}))
+        body.style.overflow = "auto"
+    }
+
+    function innerClick(e){
+        e.stopPropagation()
+    }
+
     return (
-        <div className={showAuth.show? styles.authBoilerplate: styles.authBoilerplateNone}>
-            <div className={styles[`${showAuth.isLogin? 'login': 'signup'}AuthWrapper`]}>
+        <div className={showAuth.show? styles.authBoilerplate: styles.authBoilerplateNone} onClick={clickOutside}>
+            <div className={styles[`${showAuth.isLogin? 'login': 'signup'}AuthWrapper`]} onClick={innerClick}>
                 <div className={styles.authHeader}>
                     <div className={styles.logo}>
                         <Link href="/"><a>

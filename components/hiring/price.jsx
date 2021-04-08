@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 import { loadStripe } from "@stripe/stripe-js";
+import axios from 'axios'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE);
 
@@ -20,7 +21,7 @@ function Price({auth, db}) {
 
     async function pay(){
         console.log('pay')
-        setBtnDisabled(true)
+        setBtnDisabled(true)  
         try {
             const invoiceDate = +new Date()
             const packageDuration = hiringChoices[2].choice==='Dzień' ? 24*60*60*1000:
@@ -35,30 +36,54 @@ function Price({auth, db}) {
             const session = await response.json();
             console.log('session', session)
 
-            await db.collection('packages').add({
-                isPaid: false,
-                userId: currentUser?.userId || false,
-                pakietName: hiringChoices[0].choice,
-                cityId: hiringChoices[1].id,
-                hiredOfficeAdress: hiringChoices[1].choice,
-                hiredPeriod: hiringChoices[2].choice,
-                fullName: hiringChoices[3].choice.fullName,
-                companyName: hiringChoices[3].choice.companyName,
-                NIP: hiringChoices[3].choice.NIP,
-                contactEmail: hiringChoices[3].choice.contactEmail,
-                payDate: +new Date(),
-                invoiceDate,
-                expireDate: invoiceDate + packageDuration,
-                price,
-                sessionId: session.session.id //stripeSession
+            const token = await auth.currentUser.getIdToken()
+            
+            await axios({
+                url: "/api/createpackage",
+                method: "POST",
+                data: {
+                    token,
+                    pakietName: hiringChoices[0].choice,
+                    cityId: hiringChoices[1].id,
+                    hiredOfficeAdress: hiringChoices[1].choice,
+                    hiredPeriod: hiringChoices[2].choice,
+                    fullName: hiringChoices[3].choice.fullName,
+                    companyName: hiringChoices[3].choice.companyName,
+                    NIP: hiringChoices[3].choice.NIP,
+                    contactEmail: hiringChoices[3].choice.contactEmail,
+                    invoiceDate,
+                    expireDate: invoiceDate + packageDuration,
+                    price,
+                    sessionId: session.session.id //stripeSession
+                }
             })
 
+            // await db.collection('packages').add({
+            //     isPaid: false,
+            //     userId: currentUser?.userId || false,
+            //     pakietName: hiringChoices[0].choice,
+            //     cityId: hiringChoices[1].id,
+            //     hiredOfficeAdress: hiringChoices[1].choice,
+            //     hiredPeriod: hiringChoices[2].choice,
+            //     fullName: hiringChoices[3].choice.fullName,
+            //     companyName: hiringChoices[3].choice.companyName,
+            //     NIP: hiringChoices[3].choice.NIP,
+            //     contactEmail: hiringChoices[3].choice.contactEmail,
+            //     payDate: +new Date(),
+            //     invoiceDate,
+            //     expireDate: invoiceDate + packageDuration,
+            //     price,
+            //     sessionId: session.session.id //stripeSession
+            // })
+
             //auth
-            console.log('auth', auth.currentUser)
+            // console.log('auth', auth.currentUser)
 
             const result = await stripe.redirectToCheckout({
                 sessionId: session.session.id,
             })
+
+            console.log('It should havent been seen')
 
             if (result.error) {
             // If `redirectToCheckout` fails due to a browser or network

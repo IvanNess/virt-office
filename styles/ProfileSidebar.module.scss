@@ -1,13 +1,14 @@
 @import './Varablies.scss';
 
 .profileSidebar{
+    position: static;
     display: flex;
     flex-direction: column;
     background-color: $main-color;
-    width: 276px;
-    height: 750px;
     padding: 92px $main-margin-left 79px $main-margin-left;
     justify-content: space-between;
+    width: 278px;
+    min-height: calc(100vh - 150px);
     .categories{
         display: flex;
         flex-direction: column;
@@ -33,5 +34,7 @@
         background-color: $text-color;
         width: 178px;
         padding: 0;
+        position: fixed;
+        bottom: 5%;
     }
 }

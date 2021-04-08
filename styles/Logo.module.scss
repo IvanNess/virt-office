@@ -1,0 +1,8 @@
+.logo{
+    transform: scale(1.5);
+    transform-origin: left;
+}
+
+.logo path, .logo rect{
+    transition-duration: 0.4s;
+}

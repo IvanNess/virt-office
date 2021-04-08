@@ -23,7 +23,7 @@ function SelectOption({options, reducerProp, number, children}) {
         const option = options.find(option=>option.id===id)
         dispatch(updateHiringChoice({value: option.title, number, prop: "choice"}))
         dispatch(updateHiringChoice({value: option.id, number, prop: "id"}))
-        window.scrollTo(0, 150)
+        // window.scrollTo(0, 150)
     }
 
     return (

@@ -41,14 +41,14 @@ const Cennik = () => {
             </Billboard>
 
             <div className={styles.title}>
-                Wirtualne Biuro <div className={styles.boldFont}>cennik</div>
+                Wirtualne Biuro /<span className={styles.boldFont}> cennik</span>
             </div>
 
             <div className={styles.cennikBar} onClick={barClicked}>
                 <div className={currentCennikId===1 ? styles.selectedItem : styles.barItem} data-id={1}>WIRTUALNE BIURO</div>
-                <div className={currentCennikId===2 ? styles.selectedItem : styles.barItem} data-id={2}>Fakturowanie i sprzedaż</div>
+                {/* <div className={currentCennikId===2 ? styles.selectedItem : styles.barItem} data-id={2}>Fakturowanie i sprzedaż</div>
                 <div className={currentCennikId===3 ? styles.selectedItem : styles.barItem} data-id={3}>Księgowość online</div>
-                <div className={currentCennikId===4 ? styles.selectedItem : styles.barItem} data-id={4}>Kadry, płace i ubezpieczenia</div>
+                <div className={currentCennikId===4 ? styles.selectedItem : styles.barItem} data-id={4}>Kadry, płace i ubezpieczenia</div> */}
             </div>
 
             <div className={styles.blocks}>
@@ -79,13 +79,14 @@ const Cennik = () => {
                     </div>                    
                 </div>
 
-                <div className={styles.block}>
+                <div className={styles.mainBlock}>
                     <div className={styles.blockTitle}>Twój pakiet</div>
                     <div className={styles.digit}>?</div>
                     <div className={styles.afterDigit}>PLN/miesiąc</div>
                     <div className={styles.blockLinkButton}>
                         <Link href="/wynajecie"><a>Wynajmij biuro</a></Link>
                     </div>
+                    <div className={styles.slash}>////</div>
                     <div className={styles.description}>
                         <p>
                             Tutaj klient wybiera dowolnie skład pakietu z dostępnych opcji

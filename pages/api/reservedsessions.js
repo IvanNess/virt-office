@@ -8,8 +8,9 @@ import firebase from 'firebase'
 const cors = initMiddleware(
   // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
   Cors({
-    origin: process.env.ORIGIN,
-    credentials: true
+    // origin: process.env.ORIGIN,
+    // credentials: true
+    origin: false
   })
 )
 

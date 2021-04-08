@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import styles from '../../styles/WynajecieForm.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { setWynajecieFormProp, setWynajecieForm, editCurrentUser, updateHiringChoice, setHiringChoiceNumber } from '../../redux/actions'
+import { Popover } from 'antd'
 
 function WynajecieForm({auth, db}) {
 
@@ -81,7 +82,10 @@ function WynajecieForm({auth, db}) {
                 Wpisz nazwę lub kod pocztowy miasta, w którym chcesz wybrać adres firmy. Dostępne adresy i miesięczny koszt wyświetlą się poniżej.
             </div>
             <form onSubmit={submit} className={styles.form}>
-                <input type="text" onChange={(e)=>change(e, "fullName")} value={wynajecieForm.fullName} placeholder={wynajecieForm.fullNamePlaceholder ?? "Imię i Nazwisko"}/>
+                <Popover placement="topLeft" content="full name">
+                    <input type="text" onChange={(e)=>change(e, "fullName")} value={wynajecieForm.fullName} placeholder={wynajecieForm.fullNamePlaceholder ?? "Imię i Nazwisko"}/>
+                </Popover>
+
                 <div className={styles.contact}>osoba kontaktowa</div>
                 <input type="text" onChange={(e)=>change(e, "companyName")} value={wynajecieForm.companyName} placeholder={wynajecieForm.companyNamePlaceholder ?? "Nazwa Firmy"}/>
                 <div className={styles.twoInputs}>
