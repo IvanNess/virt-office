@@ -19,10 +19,15 @@ function SelectOption({options, reducerProp, number, children}) {
         //     case 'selectedPeriodId': return dispatch(updateSelectedPeriodId(id))
         //     default: return
         // }
+        const coeff = id === "0" ? 1 :
+            id === "1" ? 2.5 : 9
+        const updPrice = hiringChoices[0].price * coeff
         setSelectedOptionId(id)
         const option = options.find(option=>option.id===id)
         dispatch(updateHiringChoice({value: option.title, number, prop: "choice"}))
         dispatch(updateHiringChoice({value: option.id, number, prop: "id"}))
+        dispatch(updateHiringChoice({value: true, number, prop: "isComplete"}))
+        dispatch(updateHiringChoice({ number: 2, prop: "price", value: updPrice }))
         // window.scrollTo(0, 150)
     }
 

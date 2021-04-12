@@ -15,6 +15,7 @@ const buffer = require("micro").buffer;
 
 
 // Find your endpoint's secret in your Dashboard's webhook settings
+// stripe listen --forward-to localhost:3000/api/webhook
 const endpointSecret = process.env.WEBHOOK_ENDPOINT_SECRET;
 
 export const config = {
@@ -84,7 +85,7 @@ export default async (req, res) => {
             const paymentIntent = converted.data.object.payment_intent
             if(converted.data.object.success_url === `${process.env.ORIGIN}/buy_package_success`){
                 const pack = await PackageSchema.findOne({ sessionId }).exec()
-                pack.updatePaymentIntent(paymentIntent)
+                pack.pay(paymentIntent)
             }
             if(converted.data.object.success_url === `${process.env.ORIGIN}/konto/rezerwacja`){
                 const reservation = await ReservationSchema.findOne({ sessionId }).exec()

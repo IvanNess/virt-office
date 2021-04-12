@@ -1,0 +1,109 @@
+@import '../styles/Varablies.scss';
+
+.blocks{
+    display: flex;
+    justify-content: space-between;
+    margin-left: $main-margin-left;
+    margin-bottom: 100px;
+}
+
+@mixin cennik-block{
+    // cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: $border;
+    border-width: 2px;
+    width: 32%;
+    // max-width: 400px;
+    transition-duration: 0.3s;
+    &:hover{
+        border: 2px solid $main-color;
+        transform: translateY(-15px);
+        // transform: scale(1.05);
+        -webkit-box-shadow: 0px 15px 10px 6px rgba(0,0,0,0.75); 
+        box-shadow: 0px 15px 10px 6px rgba(0,0,0,0.75);
+    } 
+}
+
+.block{
+    @include cennik-block();
+}
+
+.mainBlock{
+    @include cennik-block();
+    background-color: $main-color;
+    position: relative;
+}
+
+.selectedBlock{
+    @include cennik-block();
+    background-color: $main-color;
+    position: relative;
+    border: 2px solid $main-color;
+    transform: translateY(-15px);
+    // transform: scale(1.05);
+    -webkit-box-shadow: 0px 15px 10px 6px rgba(0,0,0,0.75); 
+    box-shadow: 0px 15px 10px 6px rgba(0,0,0,0.75);
+}
+
+.slash{
+    position: absolute;
+    right: 11.5rem;
+    top: -15rem;
+    color: rgb(226, 204, 0);
+    // opacity: 0.1;
+    font-size: 30rem;
+    font-weight: bolder;
+    letter-spacing: -11rem;
+}
+
+.noslash{
+    display: none;
+}
+
+.blockTitle{
+    font: normal normal 24px/28px "Work Sans Medium";
+    color: $text-color;
+    padding-top: 38px;
+    z-index: 1;
+}
+
+.digit{
+    font: normal normal 900 100px/33px "Work Sans Black";
+    letter-spacing: 4px;
+    color: $text-color;
+    padding-top: 60px;
+    z-index: 1;
+}
+
+.afterDigit{
+    font: normal normal 300 16px/33px "Work Sans Light";
+    letter-spacing: 0.64px;
+    color: $text-color;
+    padding-top: 25px;
+    z-index: 1;
+}
+
+.blockLinkButton{
+    @include linkButton(44px);
+    margin: 0;
+    margin-top: 20px;
+    background-color: $main-color;
+    z-index: 1;
+    &:hover{
+        background-color: $text-color;
+        a{
+            color: #ffffff;
+        }
+    }
+}
+
+.description{
+    font: normal normal 300 16px/28px "Work Sans Light";
+    letter-spacing: 0.64px;
+    color: $text-color;
+    padding: 0 41px;
+    padding-top: 50px;
+    z-index: 1;
+}

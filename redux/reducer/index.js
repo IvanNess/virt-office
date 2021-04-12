@@ -28,6 +28,7 @@ import { updateCurrentPackage } from "./updateCurrentPackage"
 import { updateCalendarRedirect } from "./updateCalendarRedirect"
 import { updateShowMenu } from "./updateShowMenu"
 import { updateFormSubmitted } from "./updateFormSubmitted"
+import { updatePayAfterRegister } from "./updatePayAfterRegister"
 
 const reducer = (state, action)=>{
     return{
@@ -65,7 +66,9 @@ const reducer = (state, action)=>{
         calendarRedirect: updateCalendarRedirect(state, action),
         showMenu: updateShowMenu(state, action),
 
-        formSubmitted: updateFormSubmitted(state, action)
+        formSubmitted: updateFormSubmitted(state, action),
+
+        payAfterRegister: updatePayAfterRegister(state, action)
     }
 }
 

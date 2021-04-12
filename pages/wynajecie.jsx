@@ -12,6 +12,8 @@ import Link from 'next/link'
 import WynajecieForm from '../components/hiring/wynajecie-form'
 import Payment from '../components/hiring/payment'
 import Logo from '../components/logo'
+import UserPackageChoices from '../components/user-package-choices'
+import CennikChoices from '../components/cennik-choices'
 
 
 function Wynajecie({db, auth}) {
@@ -42,17 +44,28 @@ function Wynajecie({db, auth}) {
                         </div>
                     </div>
                 </div>
-                {hiringChoiceNumber===1 && 
-                    <SelectOption options={services} reducerProp="selectedServiceId" number={hiringChoiceNumber}>
+                {hiringChoiceNumber===1 && <>
+                        {/* <SelectOption options={services} reducerProp="selectedServiceId" number={hiringChoiceNumber}>
+                            <div className={styles.servicesTitle}>1. WYBÓR USŁUGI
+                                <span className={styles.boldFont}> BIURA WIRTUALNEGO</span>
+                            </div>
+                        </SelectOption> */}
                         <div className={styles.servicesTitle}>1. WYBÓR USŁUGI
                             <span className={styles.boldFont}> BIURA WIRTUALNEGO</span>
                         </div>
-                    </SelectOption>
+                        <CennikChoices marginRight="20px" showSlash={false}/>
+                        {/* <UserPackageChoices/> */}
+                    </>
                 }
                 {hiringChoiceNumber===2 && 
-                    <OfficeSearch hiringChoiceNumber={hiringChoiceNumber}/>
+                    // <OfficeSearch hiringChoiceNumber={hiringChoiceNumber}/>
+                    <SelectOption options={periods} reducerProp="selectedServiceId" number={hiringChoiceNumber}>
+                        <div className={styles.servicesTitle}>2. WYBIERZ 
+                            <span className={styles.boldFont}> CZAS TRWANIA UMOWY</span>
+                        </div>
+                    </SelectOption>
                 }
-                {hiringChoiceNumber===3 && 
+                {/* {hiringChoiceNumber===3 && 
                     <SelectOption options={periods} reducerProp="selectedServiceId" number={hiringChoiceNumber}>
                         <div className={styles.servicesTitle}>3. WYBIERZ 
                             <span className={styles.boldFont}> CZAS TRWANIA UMOWY</span>
@@ -64,8 +77,8 @@ function Wynajecie({db, auth}) {
                 }
                 {hiringChoiceNumber===5 && 
                     <Payment hiringChoiceNumber={hiringChoiceNumber} db={db} auth={auth}/>
-                }
-                {hiringChoices[hiringChoiceNumber-1].choice !== '' && ![4, 5].includes(hiringChoiceNumber) &&
+                } */}
+                {/* {hiringChoices[hiringChoiceNumber-1].choice !== '' && ![4, 5].includes(hiringChoiceNumber) &&
                     <div 
                         className={hiringChoiceNumber!==2? styles.confirmSelectOptionWrapper: styles.officeSearchConfirmWrapper}
                     >
@@ -76,7 +89,7 @@ function Wynajecie({db, auth}) {
                             Dalej
                         </button>
                     </div>
-                }
+                } */}
             </div>
             <Rightbar db={db} auth={auth}/>
         </div>

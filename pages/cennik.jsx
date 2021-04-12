@@ -4,7 +4,7 @@ import Billboard from '../components/billboard'
 import styles from '../styles/Cennik.module.scss'
 import Header from '../components/header'
 import Sidebar from '../components/side-bar'
-import CennikTable from '../components/cennik-table'
+import CennikChoices from '../components/cennik-choices'
 import Link from 'next/link'
 import Block from '../components/block'
 import Footer from '../components/footer'
@@ -51,89 +51,7 @@ const Cennik = () => {
                 <div className={currentCennikId===4 ? styles.selectedItem : styles.barItem} data-id={4}>Kadry, płace i ubezpieczenia</div> */}
             </div>
 
-            <div className={styles.blocks}>
-                
-                <div className={styles.block}>
-                    <div className={styles.blockTitle}>Wirtualny adres</div>
-                    <div className={styles.digit}>55</div>
-                    <div className={styles.afterDigit}>PLN/miesiąc</div>
-                    <div className={styles.blockLinkButton}>
-                        <Link href="/wynajecie"><a>Wynajmij biuro</a></Link>
-                    </div>
-                    <div className={styles.description}>
-                        <p>
-                            - adres na potrzeby rejestracji firmy 
-                            <br/>
-                            - powiadomienie o korespondencji 
-                            <br/>
-                            - skanowanie korespondencji i udostępnienie w chmurze * do 20 dokumentów miesięcznie do 100 MB 
-                            <br/>
-                            - archiwizacja dokumentów w zabezpieczonym pomieszczeniu * jeden segregator na jeden rok 
-                            <br/>
-                            - dostęp do sali konferencyjnej przez 2 godziny miesięcznie 
-                            <br/>
-                            <br/>
-                            Cena nie zawiera VAT
-
-                        </p>
-                    </div>                    
-                </div>
-
-                <div className={styles.mainBlock}>
-                    <div className={styles.blockTitle}>Twój pakiet</div>
-                    <div className={styles.digit}>?</div>
-                    <div className={styles.afterDigit}>PLN/miesiąc</div>
-                    <div className={styles.blockLinkButton}>
-                        <Link href="/wynajecie"><a>Wynajmij biuro</a></Link>
-                    </div>
-                    <div className={styles.slash}>////</div>
-                    <div className={styles.description}>
-                        <p>
-                            Tutaj klient wybiera dowolnie skład pakietu z dostępnych opcji
-                            <br/>
-                            <br/>
-                            - adres na potrzeby rejestracji firmy 
-                            <br/>
-                            - powiadomienie o korespondencji 
-                            <br/>
-                            - skanowanie korespondencji i udostępnienie w chmurze * do ilości, licznik od 20] dokumentów miesięcznie 
-                            <br/>
-                            - archiwizacja dokumentów w zabezpieczonym pomieszczeniu * segregatorów na lat 
-                            <br/>
-                            - wysyłanie korespondencji na wskazany adres 1 raz w tygodniu 
-                            <br/>
-                            - dostęp do sali konferencyjnej przez godzin miesięcznie 
-                            <br/>
-                            - biuro rachunkowe 
-                            <br/>
-                            <br/>
-                            Cena nie zawiera VAT
-                        </p>
-                    </div>                    
-                </div>
-
-                <div className={styles.block}>
-                    <div className={styles.blockTitle}>Profesjonalne biuro</div>
-                    <div className={styles.digit}>450</div>
-                    <div className={styles.afterDigit}>PLN/miesiąc</div>
-                    <div className={styles.blockLinkButton}>
-                        <Link href="/wynajecie"><a>Wynajmij biuro</a></Link>
-                    </div>
-                    <div className={styles.description}>
-                        <p>
-                            - adres na potrzeby rejestracji firmy <br/>
-                            - powiadomienie o korespondencji <br/>
-                            - nielimitowana liczba skanowanych dokumentów i udostępnienie w chmurze do 2 GB <br/>
-                            - archiwizacja dokumentów w zabezpieczonym pomieszczeniu * pięć segregatorów na jeden rok <br/>
-                            - wysyłanie korespondencji na wskazany adres 1 raz w tygodniu <br/>
-                            - dostęp do sali konferencyjnej przez 10 godzin miesięcznie <br/>
-                            - biuro rachunkowe <br/>
-                            <br/>
-                            Cena nie zawiera VAT
-                        </p>
-                    </div>                    
-                </div>
-            </div>
+            <CennikChoices/>
 
             <Footer/>
 

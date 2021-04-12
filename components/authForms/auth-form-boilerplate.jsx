@@ -2,15 +2,19 @@ import React from 'react'
 
 import styles from '../../styles/AuthFormBoilerplate.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import { setSignupFormProp, setLoginFormProp, setShowAuth, formSubmitted } from '../../redux/actions'
+import { setSignupFormProp, setLoginFormProp, setShowAuth, formSubmitted, setPayAfterRegister } from '../../redux/actions'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+import { packagePay } from '../../utilities'
 
 function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
 
     const signupForm = useSelector(state=>state.signupForm)
     const loginForm = useSelector(state=>state.loginForm)
     const calendarRedirect = useSelector(state=>state.calendarRedirect)
+    const payAfterRegister = useSelector(state=>state.payAfterRegister)
+    const hiringChoices = useSelector(state=>state.hiringChoices)
+
     const dispatch = useDispatch()
 
     const router = useRouter()
@@ -43,6 +47,12 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     const body = document.querySelector("body")
                     body.style.overflow = "auto"
                     // router.push('/konto/profil')
+                    if(payAfterRegister){
+                        dispatch(setPayAfterRegister(false))
+                        //pay actions
+                        console.log('pay action')
+                        await packagePay({auth, hiringChoices})
+                    }
                     if(calendarRedirect)
                         router.push('/konto/rezerwacja')
 
@@ -160,11 +170,17 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                             withCredentials: true
                         })
                         console.log('createuserresponse', createUserResponse)
-                        const signInResponse = auth.signInWithCustomToken(createUserResponse.data.token)
+                        const signInResponse = await auth.signInWithCustomToken(createUserResponse.data.token)
                         console.log('signinresponse', signInResponse)
                         dispatch(setShowAuth({show: false}))
                         const body = document.querySelector("body")
                         body.style.overflow = "auto"  
+                        if(payAfterRegister){
+                            dispatch(setPayAfterRegister(false))
+                            //pay actions
+                            console.log('pay action')
+                            await packagePay({auth, hiringChoices})
+                        }
                         if(calendarRedirect)
                             router.push('/konto/rezerwacja')
                     } catch (error) {

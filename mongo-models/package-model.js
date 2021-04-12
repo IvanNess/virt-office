@@ -21,21 +21,15 @@ const packageSchema = new mongoose.Schema({
     paymentIntent: String
 })
 
-packageSchema.methods.pay = function(receiptUrl){
-    this.isPaid = true
-    this.receiptUrl = receiptUrl
-    this.save()
-    return this
-}
-
 packageSchema.methods.cancel = function(){
     this.isCanceled = true
     this.save()
     return this
 }
 
-packageSchema.methods.updatePaymentIntent = function(paymentIntent){
+packageSchema.methods.pay = function(paymentIntent){
     this.paymentIntent = paymentIntent
+    this.isPaid = true
     this.save()
     return this
 }

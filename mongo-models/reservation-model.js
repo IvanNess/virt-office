@@ -17,6 +17,7 @@ const reservationSchema = new mongoose.Schema({
     month: Number,
     year: Number,
     timestamp: String,
+    payDate: String,
     total: Number,
     isCanceled: Boolean,
     isPaid: Boolean,

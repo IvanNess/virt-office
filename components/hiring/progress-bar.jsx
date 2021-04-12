@@ -11,7 +11,9 @@ function ProgressBar() {
 
     const dispatch = useDispatch()
 
-    const choiceNumbers = [ 1, 2, 3, 4, 5 ]
+    // const choiceNumbers = [ 1, 2, 3, 4, 5 ]
+
+    const choiceNumbers = [ 1, 2 ]
 
     function clicked(e){
         const number = Number(e.target.dataset.number)

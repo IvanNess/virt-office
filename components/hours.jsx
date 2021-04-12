@@ -621,7 +621,7 @@ function Hours({db, auth , outterReset}) {
                     </div>              
                 ))}
             </div> 
-            <div classname={styles.btns}>
+            <div classname={styles.btns1}>
                 <button className={styles.reserveBtn} onClick={reserve} disabled={disableConfirmBtn}>Confirm</button>
                 <button className={styles.cancelBtn} onClick={resetUpdHours}>Cancel</button>
             </div>

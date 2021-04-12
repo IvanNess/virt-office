@@ -19,12 +19,12 @@ export const services = [
 export const periods = [
     {
         id: "0",
-        title: "Dzień",
+        title: "Miesiąc",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id"
     },
     {
         id: "1",
-        title: "Miesiąc",
+        title: "Kwartał",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id"
     },
     {
