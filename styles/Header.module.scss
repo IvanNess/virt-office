@@ -26,8 +26,12 @@
     border-bottom: 2px solid $main-color;
 }
 
-.header .logo, .profileHeader .logo{
+.header .logo{
     margin-left: $main-margin-left;
+}
+
+.profileHeader .logo{
+    margin-left: 50px;
 }
 
 .header .logo a{
