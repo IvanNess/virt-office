@@ -71,7 +71,7 @@ function Rightbar({db, auth}) {
                         Dalej
                     </button>
                 }
-                {hiringChoices[1].isComplete && hiringChoiceNumber===2 &&
+                {hiringChoices[1].isComplete && hiringChoiceNumber===2 && currentUser &&
                     <button className={styles.nextBtn} onClick={pay} disabled={btnDisabled}>
                         {`Zaplać (${hiringChoices[1].price} zł)`}
                     </button>

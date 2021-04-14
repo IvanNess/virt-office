@@ -42,6 +42,11 @@
         @include buttonInput();
         padding: 0;
         background-color: $text-color;
+        &:disabled{
+            background-color: $main-color;
+            color: $main-color;
+            cursor: auto;
+        }
     }
 }
 

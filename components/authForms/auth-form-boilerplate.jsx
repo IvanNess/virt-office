@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import styles from '../../styles/AuthFormBoilerplate.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
@@ -14,6 +14,8 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
     const calendarRedirect = useSelector(state=>state.calendarRedirect)
     const payAfterRegister = useSelector(state=>state.payAfterRegister)
     const hiringChoices = useSelector(state=>state.hiringChoices)
+
+    const [btnDisabled, setBtnDisabled] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -32,17 +34,23 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                 return
             }
             try {
-                const usernameDocs = await db.collection("usernames").where("username", "==", loginForm.login).get()
-                console.log('usernameDocs', usernameDocs)
-                if(usernameDocs.docs.length===0){
-                    dispatch(setLoginFormProp('password', ''))
-                    dispatch(setLoginFormProp('passwordPlaceholder', `There is no user or password wrong.`))
-                    return
-                }
-                const username = usernameDocs.docs[0].data()
-                console.log('username', username)
+                // const usernameDocs = await db.collection("usernames").where("username", "==", loginForm.login).get()
+                const emailresponse = await axios({
+                    url: "/api/getuseremail",
+                    method: "POST",
+                    data: { username: loginForm.login }
+                })
+                const email = emailresponse.data.email
+                // console.log('usernameDocs', usernameDocs)
+                // if(usernameDocs.docs.length===0){
+                //     dispatch(setLoginFormProp('password', ''))
+                //     dispatch(setLoginFormProp('passwordPlaceholder', `There is no user or password wrong.`))
+                //     return
+                // }
+                // const username = usernameDocs.docs[0].data()
+                // console.log('username', username)
                 try {
-                    await auth.signInWithEmailAndPassword(username.email, loginForm.password)
+                    await auth.signInWithEmailAndPassword(email, loginForm.password)
                     dispatch(setShowAuth({show: false}))
                     const body = document.querySelector("body")
                     body.style.overflow = "auto"
@@ -110,7 +118,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         dispatch(setSignupFormProp('companyNamePlaceholder', 'There is no empty string allowed'))
                         break
                     }
-                    if(!signupForm.NIP || signupForm.NIP.length !==10 || !Number(signupForm.NIP)){
+                    if(!signupForm.NIP || signupForm.NIP.trim().length !==10 || !Number(signupForm.NIP)){
                         dispatch(setSignupFormProp('NIP', ''))
                         dispatch(setSignupFormProp('NIPPlaceholder', 'NIP should be ten digit number'))
                         break
@@ -184,7 +192,8 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         if(calendarRedirect)
                             router.push('/konto/rezerwacja')
                     } catch (error) {
-                        alert(`ERROR: ${error}`)
+                        console.log(error)
+                        alert(`ERROR: ${error.message}`)
                     }
                     break
             }
@@ -193,7 +202,9 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
 
     async function submit(e){
         e.preventDefault()
+        setBtnDisabled(true)
         await check()
+        setBtnDisabled(false)
         dispatch(formSubmitted())
     }
 
@@ -216,7 +227,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     <div className={styles.left} onClick={leftClicked}>
                         {isLogin? "Nie pamiętam hasła": page!==1?"prev":''}
                     </div>
-                    <button onClick={submit}>
+                    <button onClick={submit} disabled={btnDisabled}>
                         {isLogin? "Zajoguj się": page!==3?"Dalej":"Sign up"}
                     </button>
                 </div>

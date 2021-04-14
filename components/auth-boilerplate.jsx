@@ -27,7 +27,7 @@ function AuthBoilerplate({db, auth}) {
             } else{
                 dispatch(setCurrentUser({
                     email: user.email,
-                    username: user.displayName,
+                    // username: user.displayName,
                     userId: user.uid,
                     isFullLoaded: false
                 }))

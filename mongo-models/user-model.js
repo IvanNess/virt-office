@@ -12,10 +12,4 @@ const userSchema = new mongoose.Schema({
     contactPhone: String,
 })
 
-userSchema.methods.updateUser = function(date){
-    // this = {...this, ...date}
-    this.save()
-    return this
-}
-
 module.exports = mongoose.models.UserSchema || mongoose.model('UserSchema', userSchema)

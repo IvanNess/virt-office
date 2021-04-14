@@ -13,6 +13,8 @@ function MyApp({ Component, pageProps }) {
   const db = fire.firestore()
   const auth = fire.auth() 
 
+  auth
+
   return (
     <>
       <Provider store={store}>

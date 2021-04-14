@@ -8,7 +8,29 @@
         @include profileText();
     }
     .buttonInput{
-        margin-top: 20px;
+        // margin-top: 20px;
+        height: 52px !important;
+        width: auto !important;
+        padding-left: 80px !important;
+        padding-right: 80px !important;
+        &:disabled{
+            background-color: white;
+            cursor: auto;
+        }
+    }
+    .cancelBtn{
+        @include buttonInput();
+        margin-left: 10px;
+        margin-top: 10px;
+        height: 52px;
+        background-color: $text-color;
+        color: white;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
 
