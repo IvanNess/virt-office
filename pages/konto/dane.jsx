@@ -20,7 +20,7 @@ function Dane({auth, db}) {
     
     const [isEditMode, setIsEditMode] = useState(false)
     const [isZapiszDiasabled, setIsZapiszDiasabled] = useState(false)
-    const [form, setForm] = useState({})
+    const [form, setForm] = useState({init: true})
     const [token, setToken] = useState(null)
 
     const dispatch = useDispatch()
@@ -68,7 +68,10 @@ function Dane({auth, db}) {
         if(currentUser!==null && !currentUser.isFullLoaded && token){
             getUserData()
         }
-    }, [currentUser, token])
+        if(currentUser!==null && currentUser.isFullLoaded && token && form.init){
+            setForm({...currentUser})         
+        }
+    }, [currentUser, token, form])
 
     function edit(){
         if(!currentUser.isFullLoaded)

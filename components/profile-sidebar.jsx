@@ -1,6 +1,7 @@
 import {useRouter} from 'next/router'
 import styles from '../styles/ProfileSidebar.module.scss'
-import { Link } from '@material-ui/core'
+import Link from 'next/link'
+
 import { useState } from 'react'
 
 function ProfileSidebar({auth, db}) {
