@@ -48,6 +48,10 @@ a {
   box-sizing: border-box;
 }
 
+input{
+  border-color: rgba(1, 1, 1, 0.1);
+}
+
 .MuiPickersStaticWrapper-staticWrapperRoot {
   min-width: 578px !important;
   margin-top: -180px;
@@ -222,5 +226,12 @@ a {
 /* rozliczenia */
 .rozliczeniaSelect .ant-select-selector{
   border: none !important;
+}
+
+/* react-phone-number-input */
+.PhoneInputCountryIcon.PhoneInputCountryIcon--border{
+  height: 3rem;
+  margin-top: 10px;
+  width: 4.5rem;
 }
 

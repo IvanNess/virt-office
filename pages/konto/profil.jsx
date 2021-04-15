@@ -9,6 +9,12 @@ import { Popover, Tooltip, Skeleton } from 'antd'
 import { useRef } from 'react'
 import ChangePassword from '../../components/change-password'
 
+import 'react-phone-number-input/style.css'
+import PhoneInput, {isPossiblePhoneNumber} from 'react-phone-number-input'
+import pl from 'react-phone-number-input/locale/pl'
+
+import flags from '../../accessories/flags'
+
 function Dane({auth, db}) {
 
     const ReadyField = ({title, value, skeleton})=>(
@@ -41,6 +47,7 @@ function Dane({auth, db}) {
     const fullNameRef = useRef(null)
     const NIPRef = useRef(null)
     const emailRef = useRef(null)
+    const phoneRef = useRef(null)
 
     useEffect(()=>{
         async function getToken(){
@@ -110,6 +117,12 @@ function Dane({auth, db}) {
             fullNameRef.current.focus()
             return
         }
+        if(form.contactPhone && !isPossiblePhoneNumber(form.contactPhone)){
+            setForm(form=>({...form, phoneError : 'Pole wymagane'}))
+            setIsZapiszDiasabled(false)
+            phoneRef.current.focus()
+            return
+        }
         if((form.email+'').trim().length ===0 || !form.email.includes('@')){
             setForm(form=>({...form, emailError : 'Nie wygląda jak prawdziwy e-mail.'}))
             setIsZapiszDiasabled(false)
@@ -157,7 +170,7 @@ function Dane({auth, db}) {
                     NIP,
                     companyName: form.companyName.trim(),
                     contactEmail: form.contactEmail.trim(),
-                    contactPhone: form.contactPhone.trim(),
+                    contactPhone: form.contactPhone || '',
                     fullName: form.fullName.trim(),
                     username: form.username.trim(),
                     adress: form.adress?.trim() || ''
@@ -178,7 +191,7 @@ function Dane({auth, db}) {
     }
 
     function onFocus(name){
-        const names = ['username', 'fullName', 'adress', 'NIP', 'companyName']
+        const names = ['username', 'fullName', 'adress', 'NIP', 'companyName', 'phone']
         names.forEach(item=>{
             if(item !== name){
                 setForm(form=>({...form, [`${item}Error`]: null}))
@@ -189,6 +202,11 @@ function Dane({auth, db}) {
     function cancel(){
         setIsEditMode(false)
         setForm({...currentUser})         
+    }
+
+    function changePhoneNumber(value){
+        console.log('phone code value', value)
+        setForm({...form, contactPhone: value, phoneError: null})
     }
 
     return (
@@ -244,6 +262,22 @@ function Dane({auth, db}) {
                                 <input className={styles.name} type="text" placeholder="Imię i Nazwisko" 
                                     value={form?.fullName} onChange={(e)=>changeField(e, 'fullName')}
                                     onFocus={(e)=>onFocus('fullName')} ref={fullNameRef}
+                                />
+                            </Tooltip></Tooltip>
+
+                            <Tooltip title="Telefon" placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
+                            <Tooltip title={form.phoneError} color={"red"} placement="bottomLeft" visible={form.phoneError}>
+                                <PhoneInput 
+                                    placeholder="Telefon" 
+                                    defaultCountry="PL"
+                                    labels={pl}
+                                    international={true}
+                                    countryCallingCodeEditable={true}
+                                    value={form?.contactPhone || null} 
+                                    onChange={changePhoneNumber}
+                                    flags={flags}
+                                    countryOptionsOrder={["PL", "RU", "UA", "BY", "|", "..."]}
+                                    ref={phoneRef}
                                 />
                             </Tooltip></Tooltip>
 
