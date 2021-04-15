@@ -99,6 +99,9 @@ $text-color: #121109;
   &:disabled{
     background-color: white;
   }
+  &:hover{
+    background-color: $text-color;
+  }
 }
 
 @mixin linkButton($height) {
