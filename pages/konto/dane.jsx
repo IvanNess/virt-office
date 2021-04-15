@@ -7,6 +7,7 @@ import { editCurrentUser } from '../../redux/actions'
 import axios from 'axios'
 import { Popover, Tooltip, Skeleton } from 'antd'
 import { useRef } from 'react'
+import ChangePassword from '../../components/change-password'
 
 function Dane({auth, db}) {
 
@@ -215,7 +216,10 @@ function Dane({auth, db}) {
                                     <ReadyField title='Adres:' value={currentUser?.adress} skeleton={skeletonInput}/>
                                 </div>
                             </div>
-                            {currentUser && currentUser.isFullLoaded && <button className={styles.editButton} onClick={edit}>EDYTUJ</button>}
+                            <div className={styles.editBtnWrapper}>
+                                <button className={styles.editButton} onClick={edit} disabled={!currentUser?.isFullLoaded}>EDYTUJ</button>
+                            </div>
+                            <ChangePassword auth={auth}/>
                         </div>
                     :
                     <div className={styles.edit}>
