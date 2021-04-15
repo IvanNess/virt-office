@@ -5,6 +5,7 @@ import ProfileBoilerplate from '../../components/profile-boilerplate'
 import KontoPackages from '../../components/konto-packages'
 
 function Pakiet({auth, db}) {
+
     return (
         <div className={styles.pakiet}>
             <ProfileBoilerplate  auth={auth} db={db}>

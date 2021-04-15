@@ -4,12 +4,13 @@ import FacebookIcon from '@material-ui/icons/Facebook'
 import InstagramIcon from '@material-ui/icons/Instagram'
 
 import styles from '../styles/MenuContent.module.scss'
-import { Link } from '@material-ui/core'
+// import { Link } from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 import { setShowAuth, setShowMenu } from '../redux/actions'
 import { useClickOutside } from 'react-click-outside-hook'
 import axios from 'axios'
 import Logo from './logo'
+import { Link } from '@material-ui/core'
 
 const MenuContent = ({auth}) => {
 
@@ -61,7 +62,7 @@ const MenuContent = ({auth}) => {
     return (
         <div className={styles.menuContent} ref={ref}>
             <div className={styles.iconsWrapper}>
-                <Link><a href="/">
+                <Link href="/"><a>
                     <Logo/>
                 </a></Link>
                 <div className={styles.icons}>
@@ -85,7 +86,7 @@ const MenuContent = ({auth}) => {
 
                 <div className={styles.split}></div>
 
-                {currentUser===false && <div onClick={()=>onAuth(true)}><Link><a><h2 className={styles.first}>zaloguj</h2></a></Link></div>}
+                {currentUser===false && <div onClick={()=>onAuth(true)}><Link ><a><h2 className={styles.first}>zaloguj</h2></a></Link></div>}
                 {currentUser===false && <div onClick={()=>onAuth(false)}><Link><a><h2>zarejestruj</h2></a></Link></div>}
 
                 {currentUser && <div onClick={logout}><Link><a><h2 className={styles.first}>wyloguj</h2 ></a></Link></div>}

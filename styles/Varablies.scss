@@ -96,6 +96,9 @@ $text-color: #121109;
   text-transform: uppercase;
   opacity: 1;
   transition-duration: 0.4s;
+  &:disabled{
+    background-color: white;
+  }
 }
 
 @mixin linkButton($height) {

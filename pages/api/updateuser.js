@@ -73,6 +73,46 @@ export default async(req, res) => {
             }
         }
 
+        //check if it is necessary to update email
+        if(data.email && user.email !== data.email){
+            //create an record that we're going to update an email.
+            const record = {
+                oldEmail: user.email,
+                newEmail: data.email,
+                isChangedInFirebase: false,
+                isCompleted: false
+            }
+            //save this record in UpdateEmailRecords db.
+            // implement here...
+
+            try {
+                // update email in firebase
+                await admin.auth().updateUser(uid, {
+                    email: data.email
+                })
+
+                // update an updateEmailRecord with "isChangedInFirebase: true" prop.
+                // implement here...
+                
+                const upd = await user.updateOne(data)
+
+                // update an updateEmailRecord with "isCompleted: true" prop.
+                // implement here...
+
+                return res.status(200).json({
+                    message: "user data was updated",
+                    user: upd
+                })
+        
+            } catch (error) {
+                console.log('Error in email updating:', error)
+                // update an updateEmailRecord with error message
+                // implement here...
+
+                return res.status(500).json('email updating error.')       
+            }
+        }
+
         const upd = await user.updateOne(data)
 
         res.status(200).json({

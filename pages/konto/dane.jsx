@@ -5,18 +5,26 @@ import ProfileBoilerplate from '../../components/profile-boilerplate'
 import { useDispatch, useSelector } from 'react-redux'
 import { editCurrentUser } from '../../redux/actions'
 import axios from 'axios'
-import { Popover, Tooltip } from 'antd'
+import { Popover, Tooltip, Skeleton } from 'antd'
 import { useRef } from 'react'
 
 function Dane({auth, db}) {
 
-    const ReadyField = ({title, value})=>(
+    const ReadyField = ({title, value, skeleton})=>(
         <div className={styles.readyField}>
             <div className={styles.title}>{title}</div>
             &nbsp;
-            <div className={styles.value}>{value}</div>
+            {
+                value || (currentUser && currentUser.isFullLoaded) ?
+                <div className={styles.value}>{value}</div> :
+                skeleton
+            }
         </div>
     )
+
+    const skeletonBtn =  <Skeleton.Button active={true} size="small"/>
+    const skeletonAvtr = <Skeleton.Avatar active={true} size="small"/>
+    const skeletonInput = <Skeleton.Input style={{ width: 200 }} active={true} size="small" />
     
     const [isEditMode, setIsEditMode] = useState(false)
     const [isZapiszDiasabled, setIsZapiszDiasabled] = useState(false)
@@ -31,6 +39,7 @@ function Dane({auth, db}) {
     const companyNameRef = useRef(null)
     const fullNameRef = useRef(null)
     const NIPRef = useRef(null)
+    const emailRef = useRef(null)
 
     useEffect(()=>{
         async function getToken(){
@@ -100,13 +109,19 @@ function Dane({auth, db}) {
             fullNameRef.current.focus()
             return
         }
+        if((form.email+'').trim().length ===0 || !form.email.includes('@')){
+            setForm(form=>({...form, emailError : 'Nie wygląda jak prawdziwy e-mail.'}))
+            setIsZapiszDiasabled(false)
+            emailRef.current.focus()
+            return
+        }
         if(form.companyName.trim()===''){
             setForm(form=>({...form, companyNameError : 'Pole wymagane'}))
             setIsZapiszDiasabled(false)
             companyNameRef.current.focus()
             return
         }
-        if(form.NIP.trim().length !==10 || !Number(form.NIP)){
+        if(form.NIP && (form.NIP+'').trim().length !==0 && (form.NIP && (form.NIP+'').trim().length !==10 || !Number(form.NIP))){
             setForm(form=>({...form, NIPError : 'Nie wygląda jak numer NIP.'}))
             setIsZapiszDiasabled(false)
             NIPRef.current.focus()
@@ -137,12 +152,13 @@ function Dane({auth, db}) {
                 url: "/api/updateuser",
                 method: "POST",
                 data: {token, data: {
-                    NIP: form.NIP.trim(),
+                    NIP: form.NIP?.trim() || '',
                     companyName: form.companyName.trim(),
                     contactEmail: form.contactEmail.trim(),
                     contactPhone: form.contactPhone.trim(),
                     fullName: form.fullName.trim(),
-                    username: form.username.trim()
+                    username: form.username.trim(),
+                    adress: form.adress?.trim() || ''
                 }}
             })
             dispatch(editCurrentUser(form))
@@ -150,9 +166,10 @@ function Dane({auth, db}) {
             setIsZapiszDiasabled(false)
             setForm(form=>({...form, usernameError: null}))
         } catch (error) {
-            console.log(error.response.data)
-            if(error.response.data==="this name is not available."){
+            console.log(error)
+            if(error.response?.data==="this name is not available."){
                 setForm(form=>({...form, usernameError: "this name is not available."}))
+                loginRef.current.focus()
             }
             setIsZapiszDiasabled(false)
         }
@@ -169,7 +186,7 @@ function Dane({auth, db}) {
 
     function cancel(){
         setIsEditMode(false)
-        getUserData()
+        setForm({...currentUser})         
     }
 
     return (
@@ -185,16 +202,16 @@ function Dane({auth, db}) {
                         <div className={styles.noEdit}>
                             <div className={styles.noEditFields}>
                                 <div className={styles.left}>
-                                    <ReadyField title='Login:' value={currentUser?.username}/>
-                                    <ReadyField title='Adres email:' value={currentUser?.email}/>
-                                    <ReadyField title='Nazwa Firmy:' value={currentUser?.companyName}/>
-                                    <ReadyField title='Imię i Nazwisko:' value={currentUser?.fullName}/>
+                                    <ReadyField title='Login:' value={currentUser?.username} skeleton={skeletonBtn}/>
+                                    <ReadyField title='Adres email:' value={currentUser?.email} skeleton={skeletonBtn}/>
+                                    <ReadyField title='Nazwa Firmy:' value={currentUser?.companyName} skeleton={skeletonBtn}/>
+                                    <ReadyField title='Imię i Nazwisko:' value={currentUser?.fullName} skeleton={skeletonBtn}/>
                                 </div>
                                 <div className={styles.right}>
-                                    <ReadyField title='Nazwa Firmy:' value={currentUser?.companyName}/>
-                                    <ReadyField title='NIP:' value={currentUser?.NIP}/>
-                                    <ReadyField title='Adres email osoby kontaktowej:' value={currentUser?.contactEmail}/>
-                                    <ReadyField title='Adres:' value={currentUser?.adress}/>
+                                    <ReadyField title='Nazwa Firmy:' value={currentUser?.companyName} skeleton={skeletonInput}/>
+                                    <ReadyField title='NIP:' value={currentUser?.NIP} skeleton={skeletonBtn}/>
+                                    <ReadyField title='Adres email osoby kontaktowej:' value={currentUser?.contactEmail} skeleton={skeletonBtn}/>
+                                    <ReadyField title='Adres:' value={currentUser?.adress} skeleton={skeletonInput}/>
                                 </div>
                             </div>
                             {currentUser && currentUser.isFullLoaded && <button className={styles.editButton} onClick={edit}>EDYTUJ</button>}
@@ -222,6 +239,14 @@ function Dane({auth, db}) {
                                 <input className={styles.name} type="text" placeholder="Imię i Nazwisko" 
                                     value={form?.fullName} onChange={(e)=>changeField(e, 'fullName')}
                                     onFocus={(e)=>onFocus('fullName')} ref={fullNameRef}
+                                />
+                            </Tooltip></Tooltip>
+
+                            <Tooltip title="E-mail" placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
+                            <Tooltip title={form.emailError} color={"red"} placement="bottomLeft" visible={form.emailError}>
+                                <input className={styles.name} type="text" placeholder="E-mail" 
+                                    value={form?.email} onChange={(e)=>changeField(e, 'email')}
+                                    onFocus={(e)=>onFocus('email')} ref={emailRef}
                                 />
                             </Tooltip></Tooltip>
 
