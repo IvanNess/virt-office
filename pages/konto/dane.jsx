@@ -121,7 +121,8 @@ function Dane({auth, db}) {
             companyNameRef.current.focus()
             return
         }
-        if(form.NIP && (form.NIP+'').trim().length !==0 && (form.NIP && (form.NIP+'').trim().length !==10 || !Number(form.NIP))){
+        const NIP = form.NIP ? form.NIP+''.trim() : ''
+        if(NIP.length !==0 && (NIP.length !==10 || !Number(NIP))){
             setForm(form=>({...form, NIPError : 'Nie wygląda jak numer NIP.'}))
             setIsZapiszDiasabled(false)
             NIPRef.current.focus()
@@ -152,7 +153,7 @@ function Dane({auth, db}) {
                 url: "/api/updateuser",
                 method: "POST",
                 data: {token, data: {
-                    NIP: form.NIP?.trim() || '',
+                    NIP,
                     companyName: form.companyName.trim(),
                     contactEmail: form.contactEmail.trim(),
                     contactPhone: form.contactPhone.trim(),
