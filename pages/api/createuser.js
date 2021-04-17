@@ -58,13 +58,21 @@ export default async(req, res) => {
         }
     }
 
+
+
     try {
+
+        const checkedUser = await UserSchema.findOne({ username }).exec()
+        if(checkedUser){
+            return res.status(500).json('This username is already in use by another account.') 
+        }
+
         const userRecord = await admin.auth().createUser({
             email: contactEmail,
             emailVerified: false,
             // phoneNumber: contactPhone,
             password,
-            displayName: username,
+            // displayName: username,
             // photoURL: 'http://www.example.com/12345678/photo.png',
             disabled: false,
         })
@@ -86,6 +94,12 @@ export default async(req, res) => {
 
     } catch (error) {
         console.log('Error creating new user:', error)
-        res.status(500).json('ad record saving error in db.')        
+        if(error.message==="The email address is improperly formatted."){
+            return res.status(500).json('The email address is improperly formatted.') 
+        }
+        if(error.message==="The email address is already in use by another account."){
+            return res.status(500).json('The email address is already in use by another account.') 
+        }
+        return res.status(500).json('ad record saving error in db.')        
     }
 }

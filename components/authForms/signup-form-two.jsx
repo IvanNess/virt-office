@@ -4,6 +4,7 @@ import styles from '../../styles/AuthFormBoilerplate.module.scss'
 import AuthFormBoilerplate from './auth-form-boilerplate'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSignupFormProp } from '../../redux/actions' 
+import AuthInput from './auth-input'
 
 function SignupFormTwo({db, auth}) {
 
@@ -62,27 +63,28 @@ function SignupFormTwo({db, auth}) {
     return (
         <div className={styles.signupForm}>
             <AuthFormBoilerplate page={2}  db={db} auth={auth}>
-                <input type="text" 
-                    placeholder={!signupForm.fullNamePlaceholder ? "Imię i Nazwisko": signupForm.fullNamePlaceholder} 
-                    className={!signupForm.fullNamePlaceholder ? "fullName" : styles.error} 
+
+                <AuthInput
+                    type="text"  
+                    propName="fullName"
+                    placeholder="Imię i Nazwisko"
                     ref={fullNameRef}
-                    data-id="fullName" value={signupForm.fullName} 
-                    onChange={onChange}
                 />
-                <input type="text" 
-                    placeholder={!signupForm.companyNamePlaceholder ? "Nazwa firmy": signupForm.companyNamePlaceholder} 
-                    className={!signupForm.companyNamePlaceholder ? "companyName" : styles.error} 
+
+                <AuthInput
+                    type="text"  
+                    propName="companyName"
+                    placeholder="Nazwa firmy"
                     ref={companyNameRef}
-                    data-id="companyName" value={signupForm.companyName} 
-                    onChange={onChange}
-                />                
-                <input type="text" 
-                    placeholder={!signupForm.NIPPlaceholder ? "NIP": signupForm.NIPPlaceholder} 
-                    className={!signupForm.NIPPlaceholder ? "fullName" : styles.error} 
+                />
+
+                <AuthInput
+                    type="text"  
+                    propName="NIP"
+                    placeholder="NIP"
                     ref={NIPRef}
-                    data-id="NIP" value={signupForm.NIP} 
-                    onChange={onChange}
-                /> 
+                />
+
             </AuthFormBoilerplate>
         </div>
     )

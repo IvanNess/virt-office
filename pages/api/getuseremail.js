@@ -60,7 +60,11 @@ export default async(req, res) => {
         
         const user = await UserSchema.findOne({ username }).exec()
 
-        res.status(200).json({
+        if(!user){
+            return res.status(500).json('there is no user or password wrong')        
+        }
+
+        return res.status(200).json({
             message: "email was recieved",
             email: user.email
         })

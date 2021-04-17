@@ -70,12 +70,16 @@
                 color: #FFFFFF;
                 .logo{
                     margin-bottom: 0;
+                    width: 10%;
                 }
                 .textOne{
                     padding: 21px 0;
                 }
                 .textTwo{
                     width: 350px;
+                    a:hover{
+                        color: $text-color;
+                    }
                 }
                 .bold{
                     font: normal normal 900 16px/19px "Work Sans Bold";

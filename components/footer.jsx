@@ -1,12 +1,12 @@
 import React from 'react'
 import styles from '../styles/Footer.module.scss'
-import { Link } from '@material-ui/core'
 import TwitterIcon from '@material-ui/icons/Twitter'
 import FacebookIcon from '@material-ui/icons/Facebook'
 import InstagramIcon from '@material-ui/icons/Instagram'
 import { useDispatch, useSelector } from 'react-redux'
 import { setShowAuth } from '../redux/actions'
 import Logo from './logo'
+import Link from 'next/link'
 
 const Footer = () => {
 
@@ -54,8 +54,8 @@ const Footer = () => {
                             </div>
                         </div>
                     </div> */}
-                    <div onClick={()=>onAuth(true)}><Link><a><h2 className={styles.first}>zaloguj</h2></a></Link></div>
-                    <div onClick={()=>onAuth(false)}><Link><a><h2>zarejestruj</h2></a></Link></div>
+                    <div onClick={()=>onAuth(true)}><Link href="/"><a><h2 className={styles.first}>zaloguj</h2></a></Link></div>
+                    <div onClick={()=>onAuth(false)}><Link href="/"><a><h2>zarejestruj</h2></a></Link></div>
 
                 </div>
                 <div className={styles.thirdColumn}>
@@ -71,13 +71,13 @@ const Footer = () => {
                             </div>
                             <div className={styles.textOne}>Działaj z dowolnego miejsca na świecie dzięki opcji biura wirtualnego.</div>
                             <div className={styles.textTwo}>Skontaktuj sie z nami: 
-                                <span className={styles.bold}>{` zawodzie20@biuro.pl`}</span>
+                                <Link href="/"><a><span className={styles.bold}>{` zawodzie20@biuro.pl`}</span></a></Link>
                             </div>
                         </div>
                         <div className={styles.bottom}>
-                            <TwitterIcon style={{fontSize: '27px', color: '#FFFFFF'}}/>
-                            <FacebookIcon style={{fontSize: '27px', color: '#FFFFFF'}}/>
-                            <InstagramIcon style={{fontSize: '27px', color: '#FFFFFF'}}/>
+                            <Link href="/"><a><TwitterIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
+                            <Link href="/"><a><FacebookIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
+                            <Link href="/"><a><InstagramIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
                         </div>
                     </div>
                 </div>

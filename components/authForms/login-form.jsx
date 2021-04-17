@@ -2,24 +2,15 @@ import React, {useRef} from 'react'
 
 import styles from '../../styles/AuthFormBoilerplate.module.scss'
 import AuthFormBoilerplate from './auth-form-boilerplate'
-import { useSelector, useDispatch } from 'react-redux'
-import { setLoginFormProp } from '../../redux/actions' 
+import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
+import AuthLoginInput from './auth-login-input'
 
 function LoginForm({db, auth}) {
 
     const loginForm = useSelector(state=>state.loginForm)
     const showAuth = useSelector(state=>state.showAuth)
     const formSubmitted = useSelector(state=>state.formSubmitted)
-
-    const dispatch = useDispatch()
-
-    function onChange(e){
-        const prop = e.target.dataset.id
-        const value = e.target.value
-        dispatch(setLoginFormProp(prop, value))
-        dispatch(setLoginFormProp(`${prop}Placeholder`, undefined))
-    }
 
     const loginRef = useRef(null)
     const passwordRef = useRef(null)
@@ -55,7 +46,15 @@ function LoginForm({db, auth}) {
     return (
         <div className={styles.loginForm}>
             <AuthFormBoilerplate isLogin={true}  db={db} auth={auth}>
-                <input 
+
+                <AuthLoginInput
+                    type="text"  
+                    propName="login"
+                    placeholder="Login"
+                    ref={loginRef}
+                />
+
+                {/* <input 
                     label="Login" 
                     variant="outlined" 
                     type="text" 
@@ -65,8 +64,16 @@ function LoginForm({db, auth}) {
                     value={loginForm.login} 
                     onChange={onChange}
                     ref={loginRef}
+                /> */}
+
+                <AuthLoginInput
+                    type="password"  
+                    propName="password"
+                    placeholder="Hasło"
+                    ref={passwordRef}
                 />
-                <input 
+
+                {/* <input 
                     label="Hasło" 
                     variant="outlined" 
                     type="password" 
@@ -76,7 +83,7 @@ function LoginForm({db, auth}) {
                     value={loginForm.password} 
                     onChange={onChange}
                     ref={passwordRef}
-                />
+                /> */}
             </AuthFormBoilerplate>
         </div>
     )

@@ -50,6 +50,7 @@ function Dane({auth, db}) {
     const phoneRef = useRef(null)
 
     useEffect(()=>{
+        console.log('profil use effect auth currentUser', auth, currentUser)
         async function getToken(){
             const token = await auth.currentUser.getIdToken()
             setToken(token)
@@ -82,10 +83,10 @@ function Dane({auth, db}) {
     }
 
     useEffect(()=>{
-        if(currentUser!==null && !currentUser.isFullLoaded && token){
+        if(currentUser!==null && currentUser && !currentUser.isFullLoaded && token){
             getUserData()
         }
-        if(currentUser!==null && currentUser.isFullLoaded && token && form.init){
+        if(currentUser!==null && currentUser && currentUser.isFullLoaded && token && form.init){
             setForm({...currentUser})         
         }
     }, [currentUser, token, form])
@@ -118,7 +119,7 @@ function Dane({auth, db}) {
             return
         }
         if(form.contactPhone && !isPossiblePhoneNumber(form.contactPhone)){
-            setForm(form=>({...form, phoneError : 'Pole wymagane'}))
+            setForm(form=>({...form, phoneError : 'Nie wygląda jak prawdziwy numer telefonu.'}))
             setIsZapiszDiasabled(false)
             phoneRef.current.focus()
             return

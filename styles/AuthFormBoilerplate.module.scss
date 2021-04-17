@@ -1,10 +1,22 @@
 @import './Varablies.scss';
 
+@import './auth-phone-input.scss';
+
 @mixin authFooter {
     display: flex;
     justify-content: space-between;
     margin-top: 42px;
     align-items: center;
+}
+
+@mixin info{
+    position: absolute;
+    z-index: 3;
+    background-color: $main-color;
+    left: 17px;
+    top: 0px;
+    padding: 0 5px;
+    color: white;
 }
 
 .authFormBoilerplate{
@@ -21,6 +33,7 @@
     input{
         border: 1px solid #ffffff;
         height: 52px;
+        // height: 3rem;
         margin-top: 10px;
         padding-left: 18px;
         font: normal normal 300 16px/19px "Work Sans Light";
@@ -46,6 +59,18 @@
             background-color: $main-color;
             color: $main-color;
             cursor: auto;
+        }
+    }
+    .inputWrapper{
+        position: relative;
+        width: 100%;
+        // margin-left: 10px;
+        .info{
+            @include info();
+        }
+        .infoError{
+            @include info();
+            color: red;
         }
     }
 }

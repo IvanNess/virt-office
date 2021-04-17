@@ -4,6 +4,7 @@ import styles from '../../styles/AuthFormBoilerplate.module.scss'
 import AuthFormBoilerplate from './auth-form-boilerplate'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSignupFormProp } from '../../redux/actions' 
+import AuthInput from './auth-input'
 
 function SignupFormOne({db, auth}) {
 
@@ -19,6 +20,7 @@ function SignupFormOne({db, auth}) {
     function onChange(e){
         const prop = e.target.dataset.id
         const value = e.target.value
+        console.log('input prop value', prop, value)
         dispatch(setSignupFormProp(prop, value))
         dispatch(setSignupFormProp(`${prop}Placeholder`, undefined))
     }
@@ -62,32 +64,28 @@ function SignupFormOne({db, auth}) {
     return (
         <div className={styles.signupForm}>
             <AuthFormBoilerplate page={1}  db={db} auth={auth}>
-                <input type="text" 
-                    placeholder={!signupForm.namePlaceholder ? "Nazwa użytkownika": signupForm.namePlaceholder} 
-                    className={!signupForm.namePlaceholder ? "login" : styles.error} 
-                    data-id="name" value={signupForm.name} 
-                    onChange={onChange}
+
+                <AuthInput
+                    type="text"  
+                    propName="name"
+                    placeholder="Nazwa użytkownika"
                     ref={nameRef}
                 />
-                <input 
-                    type="password" 
-                    placeholder={!signupForm.passwordPlaceholder ? "Hasło": signupForm.passwordPlaceholder} 
-                    className={!signupForm.passwordPlaceholder ? "password" : styles.error} 
-                    data-id="password" 
-                    value={signupForm.password} 
-                    onChange={onChange}
+
+                <AuthInput
+                    type="password"  
+                    propName="password"
+                    placeholder="Hasło"
                     ref={passwordRef}
                 />
-                <input 
-                    type="password" 
-                    placeholder="Powtórz hasło" 
-                    placeholder={!signupForm.repeatPlaceholder ? "Powtórz hasło": signupForm.repeatPlaceholder} 
-                    className={!signupForm.repeatPlaceholder ? "repeat" : styles.error} 
-                    data-id="repeat" 
-                    value={signupForm.repeat} 
-                    onChange={onChange}
+
+                <AuthInput
+                    type="password"  
+                    propName="repeat"
+                    placeholder="Powtórz hasło"
                     ref={repeatRef}
                 />
+
             </AuthFormBoilerplate>
         </div>
     )

@@ -3,6 +3,7 @@ import styles from '../styles/ProfileSidebar.module.scss'
 import Link from 'next/link'
 
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 
 function ProfileSidebar({auth, db}) {
 
@@ -11,15 +12,17 @@ function ProfileSidebar({auth, db}) {
 
     const [isButtonDisabled, setIsButtonDisabled] = useState(false)
 
+    const currentUser = useSelector(state=>state.currentUser)
+
     async function logout(){
-        setIsButtonDisabled(true)
+        // setIsButtonDisabled(true)
         try {
             await auth.signOut()
             router.push('/')
         } catch (error) {
             console.log(error)
         }
-        setIsButtonDisabled(false)
+        // setIsButtonDisabled(false)
     }
 
     return (
@@ -34,7 +37,7 @@ function ProfileSidebar({auth, db}) {
                 <div><Link href="/konto/rozliczenia-faktury"><a>&nbsp;&nbsp;&nbsp; — Faktury</a></Link></div> */}
                 <div className={router.pathname==="/konto/rezerwacja"? styles.active: ""}><Link href="/konto/rezerwacja"><a>4. Rezerwacja biura</a></Link></div>
             </div>
-            <input className={styles.buttonInput} type="button" value="WYLOGUJ" onClick={logout} disabled={isButtonDisabled}/>
+            <input className={styles.buttonInput} type="button" value="WYLOGUJ" onClick={logout} disabled={!currentUser?.isFullLoaded}/>
         </div>
     )
 }

@@ -292,6 +292,7 @@ function Hours({db, auth , outterReset}) {
     }
 
     useEffect(()=>{
+        console.log('hours current user', currentUser)
         if(currentUser && selectedDate){
             const date = `${moment(selectedDate.raw).format('YYYY-MM-DD')}`
             

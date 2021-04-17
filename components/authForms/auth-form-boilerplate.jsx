@@ -6,6 +6,8 @@ import { setSignupFormProp, setLoginFormProp, setShowAuth, formSubmitted, setPay
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import { packagePay } from '../../utilities'
+import { isPossiblePhoneNumber } from 'react-phone-number-input'
+import { Modal } from 'antd'
 
 function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
 
@@ -60,18 +62,34 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         //pay actions
                         console.log('pay action')
                         await packagePay({auth, hiringChoices})
+                        return
                     }
                     if(calendarRedirect)
-                        router.push('/konto/rezerwacja')
-
+                        return router.push('/konto/rezerwacja')
+                    router.push('/konto/profil')
                 } catch (error) {
                     console.log(error)
-                    dispatch(setLoginFormProp('password', ''))
-                    dispatch(setLoginFormProp('passwordPlaceholder', `There is no user or password wrong.`))
+                    if(error?.message==='The password is invalid or the user does not have a password.'){
+                        dispatch(setLoginFormProp('passwordPlaceholder', 'there is no user or password wrong'))
+                        return
+                    }
+                    Modal.error({
+                        title: 'This is an error message',
+                        content: `${error.response?.data || error.message}`,
+                    });
                     return
                 }
             } catch (error) {
                 console.log(error)
+                if(error.response?.data==='there is no user or password wrong'){
+                    dispatch(setLoginFormProp('passwordPlaceholder', 'there is no user or password wrong'))
+                    return
+                }
+                Modal.error({
+                    title: 'This is an error message',
+                    content: `${error.response?.data || error.message}`,
+                });
+                return
             }
         } else{
             switch (page){
@@ -80,34 +98,49 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         dispatch(setSignupFormProp('namePlaceholder', 'There is no empty string allowed'))
                         break
                     }
+                    try {
+                        // console.log('auth', auth)
+                        // console.log('user', auth.currentUser)
+
+                        // const usernameData = await db.collection('usernames').where('username', '==', signupForm.name).get()
+                        // console.log('usernameData', usernameData.d)
+                        const checkUserResponse = await axios({
+                            url: "/api/checkuser",
+                            method: "POST",
+                            data: {username: signupForm.name},
+                            withCredentials: true
+                        })
+                        // if(usernameData.docs.length === 0){
+                        //     dispatch(setSignupFormProp('page', 2))
+                        // } else{
+                        //     // dispatch(setSignupFormProp('name', ''))
+                        //     dispatch(setSignupFormProp('namePlaceholder', `Username ${signupForm.name} is already exists.`))    
+                        // }
+                    } catch (error) {
+                        console.log(error)
+                        // dispatch(setSignupFormProp('name', ''))
+                        if(error.response?.data==='This username is already in use by another account.'){
+                            dispatch(setSignupFormProp('namePlaceholder', 'This username is already in use by another account.'))
+                            return
+                        }
+                        // alert(`ERROR: ${error.response?.data || error.message}`)
+                        Modal.error({
+                            title: 'This is an error message',
+                            content: `${error.response?.data || error.message}`,
+                        });
+                        break
+                    }
                     if(!signupForm.password || signupForm.password.length < 6 ){
                         dispatch(setSignupFormProp('passwordPlaceholder', 'Password should be at least 6 digits'))
-                        dispatch(setSignupFormProp('password', ''))
+                        // dispatch(setSignupFormProp('password', ''))
                         break
                     }
                     if(!signupForm.password || !signupForm.repeat || signupForm.password !== signupForm.repeat){
                         dispatch(setSignupFormProp('repeatPlaceholder', 'Passwords are not the same...'))
-                        dispatch(setSignupFormProp('repeat', ''))
+                        // dispatch(setSignupFormProp('repeat', ''))
                         break
                     }
-                    try {
-                        console.log('auth', auth)
-                        console.log('user', auth.currentUser)
-
-                        const usernameData = await db.collection('usernames').where('username', '==', signupForm.name).get()
-                        console.log('usernameData', usernameData.d)
-                        if(usernameData.docs.length === 0){
-                            dispatch(setSignupFormProp('page', 2))
-                        } else{
-                            dispatch(setSignupFormProp('name', ''))
-                            dispatch(setSignupFormProp('namePlaceholder', `Username ${signupForm.name} is already exists.`))    
-                        }
-                    } catch (error) {
-                        console.log(error)
-                        dispatch(setSignupFormProp('name', ''))
-                        dispatch(setSignupFormProp('namePlaceholder', `${error}`))
-                        break
-                    }
+                    dispatch(setSignupFormProp('page', 2))
                     break
                 case 2: 
                     if(!signupForm.fullName || signupForm.fullName.length ===0){
@@ -119,7 +152,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         break
                     }
                     if(!signupForm.NIP || signupForm.NIP.trim().length !==10 || !Number(signupForm.NIP)){
-                        dispatch(setSignupFormProp('NIP', ''))
+                        // dispatch(setSignupFormProp('NIP', ''))
                         dispatch(setSignupFormProp('NIPPlaceholder', 'NIP should be ten digit number'))
                         break
                     }
@@ -132,12 +165,16 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     }
                     if(!signupForm.contactEmail || signupForm.contactEmail.length ===0 || !signupForm.contactEmail.includes('@')){
                         dispatch(setSignupFormProp('contactEmailPlaceholder', 'Its not looks like an email adress...'))
-                        dispatch(setSignupFormProp('contactEmail', ''))
+                        // dispatch(setSignupFormProp('contactEmail', ''))
                         break
                     }
                     if(!signupForm.phoneNumber || signupForm.phoneNumber.length ===0){
-                        dispatch(setSignupFormProp('phoneNumber', ''))
+                        // dispatch(setSignupFormProp('phoneNumber', ''))
                         dispatch(setSignupFormProp('phoneNumberPlaceholder', 'There is no empty string allowed'))
+                        break
+                    }
+                    if(signupForm.phoneNumber && !isPossiblePhoneNumber(signupForm.phoneNumber)){
+                        dispatch(setSignupFormProp('phoneNumberPlaceholder', 'Nie wygląda jak prawdziwy numer telefonu.'))
                         break
                     }
                     console.log('The data is sending to firebase...')
@@ -188,12 +225,39 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                             //pay actions
                             console.log('pay action')
                             await packagePay({auth, hiringChoices})
+                            return
                         }
                         if(calendarRedirect)
-                            router.push('/konto/rezerwacja')
+                            return router.push('/konto/rezerwacja')
+                        router.push('/konto/profil')
                     } catch (error) {
                         console.log(error)
-                        alert(`ERROR: ${error.message}`)
+                        if(error.response?.data==="The email address is improperly formatted."){
+                            dispatch(setSignupFormProp('contactEmailPlaceholder', 'The email address is improperly formatted.'))
+                            // dispatch(setSignupFormProp('contactEmail', ''))
+                            return
+                        }
+                        if(error.response?.data==="The email address is already in use by another account."){
+                            dispatch(setSignupFormProp('contactEmailPlaceholder', 'The email address is already in use by another account.'))
+                            // dispatch(setSignupFormProp('contactEmail', ''))
+                            return
+                        }
+                        if(error.response?.data==="The email address is already in use by another account."){
+                            dispatch(setSignupFormProp('contactEmailPlaceholder', 'The email address is already in use by another account.'))
+                            // dispatch(setSignupFormProp('contactEmail', ''))
+                            return
+                        }
+                        if(error.response?.data==='This username is already in use by another account.'){
+                            dispatch(setSignupFormProp('namePlaceholder', 'This username is already in use by another account.'))
+                            // dispatch(setSignupFormProp('contactEmail', ''))
+                            dispatch(setSignupFormProp('page', 1))
+                            return
+                        }
+                        // alert(`ERROR: ${error.response?.data || error.message}`)
+                        Modal.error({
+                            title: 'This is an error message',
+                            content: `${error.response?.data || error.message}`,
+                        });
                     }
                     break
             }

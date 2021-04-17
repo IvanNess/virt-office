@@ -229,9 +229,18 @@ input{
 }
 
 /* react-phone-number-input */
-.PhoneInputCountryIcon.PhoneInputCountryIcon--border{
-  height: 3rem;
+.PhoneInputCountryIcon.PhoneInputCountryIcon--border, .PhoneInputCountryIcon{
+  height: 3rem !important;
   margin-top: 10px;
-  width: 4.5rem;
+  width: 4.5rem !important;
+}
+
+.PhoneInputCountrySelect option{
+  color: black !important;
+}
+
+/* ant-d icons */
+.MuiSvgIcon-root:hover{
+  color: #121109 !important;
 }
 

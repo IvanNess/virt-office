@@ -10,7 +10,7 @@ import { setShowAuth, setShowMenu } from '../redux/actions'
 import { useClickOutside } from 'react-click-outside-hook'
 import axios from 'axios'
 import Logo from './logo'
-import { Link } from '@material-ui/core'
+import Link from 'next/link'
 
 const MenuContent = ({auth}) => {
 
@@ -86,12 +86,17 @@ const MenuContent = ({auth}) => {
 
                 <div className={styles.split}></div>
 
-                {currentUser===false && <div onClick={()=>onAuth(true)}><Link ><a><h2 className={styles.first}>zaloguj</h2></a></Link></div>}
-                {currentUser===false && <div onClick={()=>onAuth(false)}><Link><a><h2>zarejestruj</h2></a></Link></div>}
+                {currentUser===false && <div onClick={()=>onAuth(true)}>
+                    <h2 className={styles.first}>zaloguj</h2>
+                </div>}
+                {currentUser===false && <div onClick={()=>onAuth(false)}>
+                    <h2>zarejestruj</h2>
+                </div>}
 
-                {currentUser && <div onClick={logout}><Link><a><h2 className={styles.first}>wyloguj</h2 ></a></Link></div>}
+                {currentUser && <div onClick={logout}>
+                    <h2 className={styles.first}>wyloguj</h2 >
+                </div>}
 
-                
                 {/* <Link href="/pakiety"><a><h2>pakiety</h2></a></Link>
                 
                 <Link href="/localizacje"><a><h2 className={styles.last}>localizacje</h2></a></Link> */}
