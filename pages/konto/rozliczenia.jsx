@@ -68,7 +68,7 @@ function Rozliczenia({db, auth}) {
         const packages = response.data.packages
         const records = packages.map(({pakietName, hiredPeriod, payDate, price, fullPrice, paymentIntent})=>{
             return {
-                name: `Pakiet ${pakietName} - ${hiredPeriod}`,
+                name: pakietName.includes('zaktualizowany')? `Pakiet ${pakietName}` : `Pakiet ${pakietName} - ${hiredPeriod}`,
                 data: payDate,
                 price: fullPrice,
                 paymentIntent

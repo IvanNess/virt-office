@@ -84,7 +84,8 @@ const KontoPackages = ({auth}) => {
 
         const updPriceToMiddlePakiet = packageName === "Wirtualny adres" || packageName === "Profesjonalne biuro" ? 
             Math.ceil((midlePrice - pakiet.price) * pakiet.lengthCoeff / days * leftDays) : undefined
-        const updPriceToHighPakiet =  Math.ceil((highPrice - pakiet.price) * pakiet.lengthCoeff / days * leftDays)
+        const updPriceToHighPakiet =  packageName !== "Profesjonalne biuro" ? 
+            Math.ceil((highPrice - pakiet.price) * pakiet.lengthCoeff / days * leftDays) : undefined
         setUpdPriceToMiddlePakiet(updPriceToMiddlePakiet)
         setUpdPriceToHighPakiet(updPriceToHighPakiet)
 
