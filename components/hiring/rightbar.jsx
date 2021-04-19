@@ -73,12 +73,12 @@ function Rightbar({db, auth}) {
                 }
                 {hiringChoices[1].isComplete && hiringChoiceNumber===2 && currentUser &&
                     <button className={styles.nextBtn} onClick={pay} disabled={btnDisabled}>
-                        {`Zaplać (${hiringChoices[1].price} zł)`}
+                        {`Zaplać (${hiringChoices[1].fullPrice} zł)`}
                     </button>
                 }
                 {hiringChoices[1].isComplete && hiringChoiceNumber===2 && !currentUser &&
                     <button className={styles.nextBtn} onClick={loginAndPay} disabled={btnDisabled}>
-                        {`Zaloguj się i zaplać (${hiringChoices[1].price} zł)`}
+                        {`Zaloguj się i zaplać (${hiringChoices[1].fullPrice} zł)`}
                     </button>
                 }
                 <Price db={db} auth={auth}/>

@@ -37,6 +37,8 @@ export const packagePay = async ({ auth, hiringChoices }) =>{
                 invoiceDate,
                 expireDate: invoiceDate + packageDuration,
                 price: hiringChoices[1].price,
+                fullPrice: hiringChoices[1].fullPrice,
+                lengthCoeff: hiringChoices[1].lengthCoeff,
                 sessionId: session.session.id //stripeSession
             }
         })
