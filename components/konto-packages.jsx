@@ -9,12 +9,23 @@ import axios from 'axios'
 import { setPackages } from '../redux/actions'
 import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment'
+import { updatePackagePay } from '../utilities'
 const { Panel } = Collapse;
 
-const Header = ({isMain, packageName, endDate, updPrice=null})=>{
+const Header = ({isMain, packageName, endDate, updPrice=null, auth, price, pakiet})=>{
     const update = (e)=>{
         e.stopPropagation(); 
         console.log('update pakiet')
+        updatePackagePay({
+            auth, 
+            pakietTitle: packageName, 
+            pakietName: `zaktualizowany - ${packageName} (${price} PLN/miesiąc)`, 
+            hiredPeriod: pakiet.hiredPeriod, 
+            price, 
+            fullPrice: updPrice, 
+            lengthCoeff: pakiet.lengthCoeff, 
+            startDate: pakiet.startDate
+        })
     }
 
     return(
@@ -35,6 +46,7 @@ const KontoPackages = ({auth}) => {
 
     const [packageName, setPackageName] = useState(null)
     const [endDate, setEndDate] = useState(null)
+    const [pakiet, setPakiet] = useState(null)
 
     const currentUser = useSelector(state=>state.currentUser)
     const packages = useSelector(state=>state.packages)
@@ -53,6 +65,7 @@ const KontoPackages = ({auth}) => {
         if(!packages)
             return
         const pakiet = packages[0]
+        setPakiet(pakiet)
 
         const packageName = pakiet.pakietName.includes('Wirtualny adres') ? "Wirtualny adres" :
             pakiet.pakietName.includes('Profesjonalne biuro') ? "Profesjonalne biuro" : "Optymalny pakiet"
@@ -62,7 +75,7 @@ const KontoPackages = ({auth}) => {
         const days = pakiet.hiredPeriod === "Miesiąc" ? 31 :
             pakiet.hiredPeriod === "Kwartał" ? 93 : 366
 
-        const endDate =  moment(Number(pakiet.payDate)).add(days, "d")
+        const endDate =  moment(pakiet.startDate).add(days, "d")
         setEndDate(endDate.format("DD.MM.YYYY"))
 
         const leftDays = - moment().diff(endDate, "days")
@@ -127,7 +140,11 @@ const KontoPackages = ({auth}) => {
             <Collapse accordion>
                 {packageName && packageName === "Wirtualny adres" && 
                     <Panel 
-                        header={<Header  isMain={packageName === "Wirtualny adres"} packageName="Wirtualny adres" endDate={endDate}/>}
+                        header={<Header 
+                            isMain={packageName === "Wirtualny adres"} 
+                            packageName="Wirtualny adres" 
+                            endDate={endDate}
+                        />}
                         // header={`Wirtualny adres ${packageName==="Wirtualny adres" ? ` - kończy się ${endDate}` : ''}`} 
                         key="1"
                     >
@@ -137,7 +154,15 @@ const KontoPackages = ({auth}) => {
                 </Panel>}
                 {packageName && packageName !== "Profesjonalne biuro" &&  
                     <Panel 
-                        header={<Header  isMain={packageName === "Optymalny pakiet"} packageName="Optymalny pakiet" endDate={endDate} updPrice={updPriceToMiddlePakiet}/>}
+                        header={<Header 
+                            isMain={packageName === "Optymalny pakiet"} 
+                            packageName="Optymalny pakiet" 
+                            endDate={endDate} 
+                            updPrice={updPriceToMiddlePakiet}
+                            auth={auth}
+                            price={150}
+                            pakiet = {pakiet}                            
+                        />}
                         key="2"
                     >
                     <p>Profesjonalny adres z obsługą poczty i odbieraniem połączeń telefonicznych oraz dostęp bez rezerwacji do naszej globalnej sieci salonów biznesowych</p>
@@ -146,7 +171,15 @@ const KontoPackages = ({auth}) => {
                 </Panel>}
                 {packageName && 
                     <Panel 
-                        header={<Header  isMain={packageName === "Profesjonalne biuro"} packageName="Profesjonalne biuro" endDate={endDate} updPrice={updPriceToHighPakiet}/>}
+                        header={<Header  
+                            isMain={packageName === "Profesjonalne biuro"} 
+                            packageName="Profesjonalne biuro" 
+                            endDate={endDate} 
+                            updPrice={updPriceToHighPakiet}
+                            auth={auth}
+                            price={450}
+                            pakiet={pakiet}
+                        />}
                         key="3">
                     <p>Profesjonalny adres z obsługą poczty i odbieraniem połączeń telefonicznych oraz dostęp bez rezerwacji do naszej globalnej sieci salonów biznesowych</p>
                     <PakietTableFirst/>

@@ -60,3 +60,49 @@ export const packagePay = async ({ auth, hiringChoices }) =>{
         console.log('package pay error', err)
     }
 }
+
+export const updatePackagePay = async ({ auth, pakietTitle, pakietName, hiredPeriod, price, fullPrice, lengthCoeff, startDate}) =>{
+
+    try {
+
+        const token = await auth.currentUser.getIdToken()
+        console.log('auth token', auth, token)
+
+        const stripe = await stripePromise
+        console.log(process.env.NEXT_PUBLIC_STRIPE)
+        const response = await axios({
+            url: "/api/order",
+            method: "POST",
+            data: {
+                token, 
+                pakietTitle,
+                hiredPeriod,
+                price: fullPrice
+            }
+        }) 
+        const session = response.data.session;
+        
+        await axios({
+            url: "/api/createpackage",
+            method: "POST",
+            data: {
+                token,
+                pakietName,
+                pakietTitle,
+                hiredPeriod,
+                price,
+                fullPrice,
+                lengthCoeff,
+                startDate,
+                sessionId: session.id //stripeSession
+            }
+        })
+
+        await stripe.redirectToCheckout({
+            sessionId: session.id,
+        })
+
+    } catch(err){
+        console.log('package pay error', err)
+    }
+}

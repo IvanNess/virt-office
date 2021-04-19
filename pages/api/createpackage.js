@@ -56,7 +56,7 @@ export default async(req, res) => {
     }
 
     const {token, pakietName, cityId, hiredOfficeAdress, hiredPeriod, fullName,
-        companyName, NIP, contactEmail, price, fullPrice, lengthCoeff, sessionId
+        companyName, NIP, contactEmail, price, fullPrice, lengthCoeff, sessionId, startDate
     } = req.body
 
     try {
@@ -78,6 +78,7 @@ export default async(req, res) => {
             NIP,
             contactEmail,
             payDate: +new Date(),
+            startDate,
             price,
             fullPrice,
             lengthCoeff,

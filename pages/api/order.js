@@ -56,7 +56,7 @@ export default async (req, res) => {
             price_data: {
               currency: 'pln',
               product_data: {
-                name: `${pakietTitle} - ${hiredPeriod}`,
+                name: `Aktualizacja do pakietu ${pakietTitle}`,
               },
               unit_amount: price * 100,
             },
