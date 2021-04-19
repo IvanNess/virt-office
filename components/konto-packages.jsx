@@ -65,10 +65,12 @@ const KontoPackages = ({auth}) => {
         const endDate =  moment(Number(pakiet.payDate)).add(days, "d")
         setEndDate(endDate.format("DD.MM.YYYY"))
 
-        const leftDays = moment().diff(endDate, "days")
+        const leftDays = - moment().diff(endDate, "days")
 
-        const updPriceToMiddlePakiet =  (midlePrice - pakiet.price) * pakiet.lengthCoeff / endDate * leftDays
-        const updPriceToHighPakiet =  (highPrice - pakiet.price) * pakiet.lengthCoeff / endDate * leftDays
+        console.log('useEffect packages', midlePrice, pakiet.price, pakiet.lengthCoeff, days, leftDays)
+
+        const updPriceToMiddlePakiet =  Math.ceil((midlePrice - pakiet.price) * pakiet.lengthCoeff / days * leftDays)
+        const updPriceToHighPakiet =  Math.ceil((highPrice - pakiet.price) * pakiet.lengthCoeff / days * leftDays)
         setUpdPriceToMiddlePakiet(updPriceToMiddlePakiet)
         setUpdPriceToHighPakiet(updPriceToHighPakiet)
 
