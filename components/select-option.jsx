@@ -19,6 +19,7 @@ function SelectOption({options, reducerProp, number, children}) {
         //     case 'selectedPeriodId': return dispatch(updateSelectedPeriodId(id))
         //     default: return
         // }
+        console.log('option clicked')
         const coeff = id === "0" ? 1 :
             id === "1" ? 2.5 : 9
         const updPrice = hiringChoices[0].price * coeff
@@ -27,8 +28,8 @@ function SelectOption({options, reducerProp, number, children}) {
         dispatch(updateHiringChoice({value: option.title, number, prop: "choice"}))
         dispatch(updateHiringChoice({value: option.id, number, prop: "id"}))
         dispatch(updateHiringChoice({value: true, number, prop: "isComplete"}))
-        dispatch(updateHiringChoice({ number: 2, prop: "fullPrice", updPrice }))
-        dispatch(updateHiringChoice({ number: 2, prop: "lengthCoeff", coeff }))
+        dispatch(updateHiringChoice({ number: 2, prop: "fullPrice", value: updPrice }))
+        dispatch(updateHiringChoice({ number: 2, prop: "lengthCoeff", value: coeff }))
         dispatch(updateHiringChoice({ number: 2, prop: "price", value: hiringChoices[0].price }))
         // window.scrollTo(0, 150)
     }
