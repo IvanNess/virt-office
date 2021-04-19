@@ -53,19 +53,12 @@ export default async (req, res) => {
         payment_method_types: ['card', 'p24'],
         line_items: [
           {
-            price: 'price_1IKLYEBhtsW91uv7VQeUHpHd',
-            quantity: 1
-          },
-          
-        ],
-        line_items: [
-          {
             price_data: {
               currency: 'pln',
               product_data: {
                 name: `${pakietTitle} - ${hiredPeriod}`,
               },
-              unit_amount: price,
+              unit_amount: price * 100,
             },
             quantity: 1,
           },

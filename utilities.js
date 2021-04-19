@@ -11,10 +11,12 @@ export const packagePay = async ({ auth, hiringChoices }) =>{
             hiringChoices[1].choice==='Kwartał'? 3*30*24*60*60*1000: 365*24*60*60*1000
 
         const token = await auth.currentUser.getIdToken()
+        console.log('auth token', auth, token)
 
         const stripe = await stripePromise
         console.log(process.env.NEXT_PUBLIC_STRIPE)
-        const response = await fetch("/api/order", {
+        const response = await axios({
+            url: "/api/order",
             method: "POST",
             data: {
                 token, 
@@ -24,7 +26,7 @@ export const packagePay = async ({ auth, hiringChoices }) =>{
             }
         }) 
         console.log('response', response)
-        const session = await response.json();
+        const session = response.data.session;
         console.log('session', session)
         
         await axios({
@@ -46,12 +48,12 @@ export const packagePay = async ({ auth, hiringChoices }) =>{
                 price: hiringChoices[1].price,
                 fullPrice: hiringChoices[1].fullPrice,
                 lengthCoeff: hiringChoices[1].lengthCoeff,
-                sessionId: session.session.id //stripeSession
+                sessionId: session.id //stripeSession
             }
         })
 
         await stripe.redirectToCheckout({
-            sessionId: session.session.id,
+            sessionId: session.id,
         })
 
     } catch(err){
