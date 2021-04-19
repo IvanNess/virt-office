@@ -10,16 +10,22 @@ export const packagePay = async ({ auth, hiringChoices }) =>{
         const packageDuration = hiringChoices[1].choice==='Miesiąc' ? 30*24*60*60*1000:
             hiringChoices[1].choice==='Kwartał'? 3*30*24*60*60*1000: 365*24*60*60*1000
 
+        const token = await auth.currentUser.getIdToken()
+
         const stripe = await stripePromise
         console.log(process.env.NEXT_PUBLIC_STRIPE)
         const response = await fetch("/api/order", {
             method: "POST",
+            data: {
+                token, 
+                pakietTitle: hiringChoices[0].pakietTitle,
+                hiredPeriod: hiringChoices[1].choice,
+                price: hiringChoices[1].fullPrice
+            }
         }) 
         console.log('response', response)
         const session = await response.json();
         console.log('session', session)
-
-        const token = await auth.currentUser.getIdToken()
         
         await axios({
             url: "/api/createpackage",
@@ -27,6 +33,7 @@ export const packagePay = async ({ auth, hiringChoices }) =>{
             data: {
                 token,
                 pakietName: hiringChoices[0].choice,
+                pakietTitle: hiringChoices[0].pakietTitle,
                 // cityId: hiringChoices[1].id,
                 // hiredOfficeAdress: hiringChoices[1].choice,
                 hiredPeriod: hiringChoices[1].choice,

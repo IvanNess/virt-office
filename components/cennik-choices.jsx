@@ -32,6 +32,7 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
             prop: "choice", 
             value: `Twój pakiet (${updPrice} PLN/miesiąc)`
         }))
+        dispatch(updateHiringChoice({ number: 1, prop: "pakietTitle", value: `Twój pakiet` }))
         dispatch(updateHiringChoice({ number: 1, prop: "price", value: updPrice }))
         dispatch(updateHiringChoice({ number: 1, prop: "isComplete", value: true }))
     }
@@ -46,6 +47,11 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
             value: idx===0 ? "Wirtualny adres (55 PLN/miesiąc)":
                 idx===2 ? "Profesjonalne biuro (450 PLN/miesiąc)":
                 `Twój pakiet (${price} PLN/miesiąc)`
+        }))
+        dispatch(updateHiringChoice({
+            number: 1, 
+            prop: "pakietTitle", 
+            value: idx===0 ? "Wirtualny adres": idx===2 ? "Profesjonalne biuro":`Twój pakiet`
         }))
         dispatch(updateHiringChoice({
             number: 1, 

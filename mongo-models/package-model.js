@@ -6,6 +6,7 @@ const packageSchema = new mongoose.Schema({
     isCanceled: Boolean,
     userId: String,
     pakietName: String,
+    pakietTitle: String,
     cityId: String,
     hiredOfficeAdress: String,
     hiredPeriod: String,
@@ -13,7 +14,8 @@ const packageSchema = new mongoose.Schema({
     companyName: String,
     NIP: Number,
     contactEmail: String,
-    payDate: String,
+    payDate: Number,
+    startDate: Number,
     invoiceDate: Number,
     expireDate: Number,
     price: Number,
@@ -32,6 +34,7 @@ packageSchema.methods.cancel = function(){
 packageSchema.methods.pay = function(paymentIntent){
     this.paymentIntent = paymentIntent
     this.isPaid = true
+    this.startDate = this.startDate || +new Date()
     this.save()
     return this
 }
