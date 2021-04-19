@@ -17,6 +17,8 @@ const packageSchema = new mongoose.Schema({
     invoiceDate: Number,
     expireDate: Number,
     price: Number,
+    fullPrice: Number,
+    lengthCoeff: Number,
     sessionId: String,
     paymentIntent: String
 })

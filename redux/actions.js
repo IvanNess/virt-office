@@ -52,6 +52,8 @@ export const formSubmitted = () => async (dispatch) => dispatch({type: "FORM_SUB
 
 export const setPayAfterRegister = (value) => async (dispatch) => dispatch({type: "SET_PAY_AFTER_REGISTER", value})
 
+export const setPackages = (value) => async (dispatch) => dispatch({type: "SET_PACKAGES", value})
+
 
 // import { Auth } from "aws-amplify"
 // import { getUserByUsername, getUserByEmail, getOrders, getAdressByUsername } from "../utils/graphql-utils"

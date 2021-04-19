@@ -24,7 +24,7 @@ function Rozliczenia({db, auth}) {
         if(currentUser){
             Promise.all([getUserPackagesRecords(), getUserReservationsRecords()])
             .then(recordsArrs=>{
-                const records = [...recordsArrs[0], ...recordsArrs[1]]
+                const records = [...recordsArrs[0], ...recordsArrs[1]].sort((a, b)=>a.data - b.data)
                 setRecords(records)
                 console.log(records)
             })
@@ -66,11 +66,11 @@ function Rozliczenia({db, auth}) {
         })
         console.log('response', response)
         const packages = response.data.packages
-        const records = packages.map(({pakietName, hiredPeriod, payDate, price, paymentIntent})=>{
+        const records = packages.map(({pakietName, hiredPeriod, payDate, price, fullPrice, paymentIntent})=>{
             return {
                 name: `Pakiet ${pakietName} - ${hiredPeriod}`,
                 data: payDate,
-                price,
+                price: fullPrice,
                 paymentIntent
             }
         })

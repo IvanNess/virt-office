@@ -27,7 +27,9 @@ function SelectOption({options, reducerProp, number, children}) {
         dispatch(updateHiringChoice({value: option.title, number, prop: "choice"}))
         dispatch(updateHiringChoice({value: option.id, number, prop: "id"}))
         dispatch(updateHiringChoice({value: true, number, prop: "isComplete"}))
-        dispatch(updateHiringChoice({ number: 2, prop: "price", value: updPrice }))
+        dispatch(updateHiringChoice({ number: 2, prop: "fullPrice", updPrice }))
+        dispatch(updateHiringChoice({ number: 2, prop: "lengthCoeff", coeff }))
+        dispatch(updateHiringChoice({ number: 2, prop: "price", value: hiringChoices[0].price }))
         // window.scrollTo(0, 150)
     }
 

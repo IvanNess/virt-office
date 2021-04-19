@@ -19,8 +19,7 @@ $column-heght: 45px;
     letter-spacing: 0px;
     color: #411141; 
     border-bottom: $border;
-    height: $column-heght;
-    
+    height: $column-heght;  
 }
 
 @mixin cennikTitle{
@@ -79,6 +78,10 @@ $column-heght: 45px;
             .signWrapper{
                 @include signWrapper();
             }
+            .lastSignWrapper{
+                @include signWrapper();
+                border: none;
+            }
             .signWrapperWOBorder{
                 @include signWrapper();
                 border-left: none;
@@ -92,6 +95,9 @@ $column-heght: 45px;
         flex: 1;
         .name{
             @include name();
+        }
+        .name:last-child{
+            border: none;
         }
         .nameWMargin{
             @include name();

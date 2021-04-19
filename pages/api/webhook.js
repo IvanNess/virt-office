@@ -83,7 +83,7 @@ export default async (req, res) => {
             //update isPaid field with true in packages db
             const sessionId = converted.data.object.id
             const paymentIntent = converted.data.object.payment_intent
-            if(converted.data.object.success_url === `${process.env.ORIGIN}/buy_package_success`){
+            if(converted.data.object.success_url === `${process.env.ORIGIN}/konto/pakiet`){
                 const pack = await PackageSchema.findOne({ sessionId }).exec()
                 pack.pay(paymentIntent)
             }

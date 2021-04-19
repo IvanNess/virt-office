@@ -97,7 +97,7 @@ export default async(req, res) => {
                 ],
                 mode: 'payment',
                 success_url: `${process.env.ORIGIN}/konto/rezerwacja`,
-                cancel_url: `${process.env.ORIGIN}/canceled`,
+                cancel_url: `${process.env.ORIGIN}/konto/rezerwacja`,
             })
 
             await reservation.addSessionId(session.id)

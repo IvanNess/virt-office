@@ -9,7 +9,7 @@ function PakietTableFirst() {
     return (
         <div className={styles.cennikTable}>
             <div className={styles.titles}>
-                <div className={styles.title}>Pakiet2</div>
+                {/* <div className={styles.title}>Pakiet2</div> */}
             </div>
 
             <div className={styles.spaces}>
@@ -52,7 +52,7 @@ function PakietTableFirst() {
                         <div className={styles.signWrapper}><CloseIcon style={{fontSize: '20px', color: '#CD0000'}}/></div>
                     </div>
                     <div className={styles.row}>
-                        <div className={styles.signWrapper}><CloseIcon style={{fontSize: '20px', color: '#CD0000'}}/></div>
+                        <div className={styles.lastSignWrapper}><CloseIcon style={{fontSize: '20px', color: '#CD0000'}}/></div>
                     </div>
                     {/* <div className={styles.row}>
                         <div className={styles.signWrapperWOBorder}>40zł/m-c</div>

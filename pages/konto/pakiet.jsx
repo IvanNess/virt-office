@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Pakiet.module.scss'
 
 import ProfileBoilerplate from '../../components/profile-boilerplate'
 import KontoPackages from '../../components/konto-packages'
+import useSWR from 'swr'
+import { useSelector, useDispatch } from 'react-redux'
+import axios from 'axios'
+import {setPackages} from '../../redux/actions'
 
 function Pakiet({auth, db}) {
 
@@ -13,7 +17,7 @@ function Pakiet({auth, db}) {
                 <div className={styles.text}>
                     <div className={styles.small}>Wpisz nazwę lub kod pocztowy miasta, w którym chcesz wybrać adres firmy. Dostępne adresy i miesięczny koszt wyświetlą się poniżej.</div>
                 </div>
-                <KontoPackages/>
+                <KontoPackages auth={auth}/>
             </ProfileBoilerplate>       
         </div>
     )
