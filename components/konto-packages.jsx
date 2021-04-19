@@ -69,7 +69,8 @@ const KontoPackages = ({auth}) => {
 
         console.log('useEffect packages', midlePrice, pakiet.price, pakiet.lengthCoeff, days, leftDays)
 
-        const updPriceToMiddlePakiet =  Math.ceil((midlePrice - pakiet.price) * pakiet.lengthCoeff / days * leftDays)
+        const updPriceToMiddlePakiet = packageName === "Wirtualny adres" || packageName === "Profesjonalne biuro" ? 
+            Math.ceil((midlePrice - pakiet.price) * pakiet.lengthCoeff / days * leftDays) : undefined
         const updPriceToHighPakiet =  Math.ceil((highPrice - pakiet.price) * pakiet.lengthCoeff / days * leftDays)
         setUpdPriceToMiddlePakiet(updPriceToMiddlePakiet)
         setUpdPriceToHighPakiet(updPriceToHighPakiet)
