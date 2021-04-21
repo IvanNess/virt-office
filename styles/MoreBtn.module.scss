@@ -35,10 +35,12 @@
     width: 226px;
     margin-right: 0;
     &:hover{
-        background-color: #FFFFFF;
-        border: 2px solid $text-color;
+        background-color: $main-color;
+        // background-color: #FFFFFF;
+        // border: 2px solid $text-color;
         a{
-            color: $main-color
+            // color: $main-color
+            color: white;
         }
     }
 }

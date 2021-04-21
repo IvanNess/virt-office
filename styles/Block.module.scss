@@ -10,7 +10,7 @@ $block-height: 323px;
     // cursor: pointer;    
     background-color: white;
     &:hover{
-        border-color: $text-color;
+        // border-color: $text-color;
     }
 }
 
@@ -23,7 +23,7 @@ $block-height: 323px;
     margin: 0;
     &:hover{
         .block{
-            background-color: $main-color;
+            // background-color: $main-color;
         }
     }
 }
@@ -33,8 +33,8 @@ $block-height: 323px;
     border: 1px solid $main-color;
     transition-duration: 0.4s;
     &:hover{
-        background-color: $main-color;
-        border-color: $main-color;
+        // background-color: $main-color;
+        // border-color: $main-color;
     }
     @media all and (max-width: 1300px){
         width: 500px;

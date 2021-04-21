@@ -36,7 +36,7 @@ const Header = () => {
                 </div>
                 {(!currentUser && currentUser !== null) && <button className={styles.loginButton} onClick={login}>Zaloguj się</button>}
                 {currentUser && <div className={styles.profileButton} >
-                        <Link href="/konto/profil"><a>profile page</a></Link>
+                        <Link href="/konto/profil"><a>profil</a></Link>
                     </div>}
                 {currentUser === null && <button className={styles.plug}></button>}
             </div>

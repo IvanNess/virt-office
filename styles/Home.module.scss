@@ -124,7 +124,7 @@
 .blockWrapper{
     &:hover{
         .blockText{
-            color: #ffffff;
+            // color: #ffffff;
         }
     }
     @media all and (max-width: 1300px){
@@ -147,7 +147,7 @@
     padding: 30.5px 45px 0 36.05px;
     transition-duration: 0.4s;
     &:hover{
-        color: #ffffff;
+        // color: #ffffff;
     }
     @media all and (max-width: 1300px){
         font: normal normal 300 15px "Work Sans Light";
@@ -155,7 +155,7 @@
   }
   .mainBlockWrapper{
       .blockText{
-          color: #ffffff;
+        //   color: #ffffff;
       }
   }
   .boldText{

@@ -509,7 +509,7 @@ function HomePageHours({db, auth , outterReset}) {
                 ))}
             </div> 
             <div className={styles.btns}>
-                <button className={styles.sprawdzBtn} onClick={reserve} disabled={disableConfirmBtn}>Sprawdź czy wybrana data jest wolna</button>
+                <button className={styles.sprawdzBtn} onClick={reserve} disabled={disableConfirmBtn}>Sprawdź czy wybrany termin jest wolny</button>
                 <button className={styles.homeCancelBtn} onClick={resetUpdHours}>Cancel</button>
             </div>
             

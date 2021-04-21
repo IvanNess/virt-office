@@ -47,6 +47,10 @@
         line-height: 44px;
         text-align: center;
     }
+    &:disabled{
+        background-color: $main-color;
+        cursor: auto;
+      }
 }
 
 .nextBtn{

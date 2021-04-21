@@ -27,7 +27,7 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
         const updPrice = newPrice >= 30 ? newPrice : 30
         setPrice(updPrice)
         setCheckboxes(upd)
-        
+
         dispatch(updateHiringChoice({
             number: 1, 
             prop: "choice", 
@@ -102,7 +102,7 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                     onClick={()=>selectBlock(1)}
                     style={{cursor: router.pathname==='/cennik'? 'auto': 'pointer'}}
                 >
-                    <div className={styles.blockTitle}>Twój pakiet</div>
+                    <div className={styles.blockTitle}>Optymalny pakiet</div>
                     <div className={styles.digit}>{price}</div>
                     <div className={styles.afterDigit}>PLN/miesiąc</div>
                     {router.pathname === '/cennik' && <div className={styles.blockLinkButton}>
@@ -116,9 +116,10 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                             <br/>
                             {checkBoxes.map(({idx, text})=>( 
                                 <>
-                                    <Checkbox onChange={(value)=>{checkChanged(value, idx)}} key={idx} defaultChecked={true}>
+                                    {/* <Checkbox onChange={(value)=>{checkChanged(value, idx)}} key={idx} defaultChecked={true}>
                                         {text}
-                                    </Checkbox>
+                                    </Checkbox> */}
+                                    <div key={idx}>{`- ${text}`}</div>
                                     <br/>
                                 </>    
                             ))}

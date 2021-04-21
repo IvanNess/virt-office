@@ -9,6 +9,7 @@ import Link from 'next/link'
 import Price from './price'
 import { useEffect, useState } from 'react'
 import { packagePay } from '../../utilities'
+import { LoadingOutlined } from '@ant-design/icons'
 
 function Rightbar({db, auth}) {
 
@@ -73,12 +74,14 @@ function Rightbar({db, auth}) {
                 }
                 {hiringChoices[1].isComplete && hiringChoiceNumber===2 && currentUser &&
                     <button className={styles.nextBtn} onClick={pay} disabled={btnDisabled}>
-                        {`Zaplać (${hiringChoices[1].fullPrice} zł)`}
+                        {!btnDisabled && `Zaplać (${hiringChoices[1].fullPrice} zł)`}
+                        {btnDisabled && <LoadingOutlined style={{color: "white"}}/>}
                     </button>
                 }
                 {hiringChoices[1].isComplete && hiringChoiceNumber===2 && !currentUser &&
                     <button className={styles.nextBtn} onClick={loginAndPay} disabled={btnDisabled}>
-                        {`Zaloguj się i zaplać (${hiringChoices[1].fullPrice} zł)`}
+                        {!btnDisabled && `Zaloguj się i zaplać (${hiringChoices[1].fullPrice} zł)`}
+                        {btnDisabled && <LoadingOutlined style={{color: "white"}}/>}
                     </button>
                 }
                 <Price db={db} auth={auth}/>
