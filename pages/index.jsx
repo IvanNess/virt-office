@@ -233,7 +233,7 @@ export default function Home({db, auth}) {
       </div>
 
       <div className={styles.calendarTitle}>
-        WYNAJMNIJ BIURO <span className={styles.boldFont}> NA GODZINĘ!</span>
+        <span className={styles.boldFont}>WYNAJMIJ BIURO NA GODZINY</span>
       </div>
 
       <div className={styles.smallText}>
