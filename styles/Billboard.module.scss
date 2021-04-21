@@ -6,7 +6,7 @@
   }
   
 .billboardWrapper{
-    @include with-background("/images/office.png", $main-color, 0);
+    @include with-background("/images/main.png", $main-color, 0);
 }
 
 .noBackground{
@@ -19,6 +19,6 @@
 }
 
 .onasBillboardWrapper{
-  @include with-background("/images/office.png", $main-color, 0);
+  @include with-background("/images/o_nas.png", $main-color, 0);
   background-position: 0 100%;
 }

@@ -65,12 +65,12 @@ input{
 }
 
 .MuiPickersDay-daySelected{
-  background-color: #CDAD00 !important;
+  background-color: #4CAED5 !important;
 }
 
 .MuiTypography-body1{
   font: normal normal 900 29px/35px "Work Sans Black" !important;
-  color: #CDAD00;
+  color: #4CAED5;
 }
 
 .MuiPickersCalendarHeader-transitionContainer {
@@ -134,7 +134,7 @@ input{
   left: auto !important;
   right: 0 !important;
   width: 150px !important;
-  color: #E2C700 !important;
+  color: #4CAED5 !important;
   font-size: 16px !important;
 }
 
@@ -212,7 +212,7 @@ input{
 }
 
 .ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-checkbox:hover .ant-checkbox-inner{
-  border-color: #E2C700;
+  border-color: #4CAED5;
 }
 
 .ant-checkbox-input:focus + .ant-checkbox-inner{
@@ -220,7 +220,7 @@ input{
 }
 
 .ant-checkbox-checked::after{
-  border-color: #E2C700 !important;
+  border-color: #4CAED5 !important;
 }
 
 /* rozliczenia */

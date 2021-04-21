@@ -21,7 +21,7 @@
     color: #121109;
     cursor: default;
     .selected{
-        background-color: yellowgreen;
+        background-color: $main-color;
     }
     
     .free{
@@ -113,7 +113,7 @@
 
 .reserveBtn{
     @include btn();
-    background: #CDAD00 0% 0% no-repeat padding-box;
+    background: $main-color 0% 0% no-repeat padding-box;
     // color: #FFFFFF;
 }
 
@@ -125,7 +125,7 @@
 
 .sprawdzBtn{
     @include btn();
-    background: #CDAD00 0% 0% no-repeat padding-box;
+    background: $main-color 0% 0% no-repeat padding-box;
     font: normal normal 900 16px/21px "Work Sans Black";
     letter-spacing: -0.09px;
     // color: #FFFFFF;
