@@ -3,12 +3,17 @@ import styles from '../styles/ProfileSidebar.module.scss'
 import Link from 'next/link'
 
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { logout as logoutAction } from '../redux/actions'
+import { LoadingOutlined } from '@ant-design/icons'
+
 
 function ProfileSidebar({auth, db}) {
 
     const router = useRouter()
     console.log('router', router, router.pathname==="/konto/profil")
+
+    const dispatch = useDispatch()
 
     const [isButtonDisabled, setIsButtonDisabled] = useState(false)
 
@@ -18,6 +23,7 @@ function ProfileSidebar({auth, db}) {
         // setIsButtonDisabled(true)
         try {
             await auth.signOut()
+            dispatch(logoutAction())
             router.push('/')
         } catch (error) {
             console.log(error)
@@ -37,7 +43,10 @@ function ProfileSidebar({auth, db}) {
                 <div><Link href="/konto/rozliczenia-faktury"><a>&nbsp;&nbsp;&nbsp; — Faktury</a></Link></div> */}
                 <div className={router.pathname==="/konto/rezerwacja"? styles.active: ""}><Link href="/konto/rezerwacja"><a>4. Rezerwacja biura</a></Link></div>
             </div>
-            <input className={styles.buttonInput} type="button" value="WYLOGUJ" onClick={logout} disabled={!currentUser?.isFullLoaded}/>
+            <div className={styles.buttonInputWrapper}>
+                {currentUser && <input className={styles.buttonInput} type="button" value="WYLOGUJ" onClick={logout} disabled={!currentUser}/>}
+                {!currentUser && <LoadingOutlined style={{color: "black"}}/>}
+            </div>
         </div>
     )
 }

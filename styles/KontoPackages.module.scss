@@ -18,6 +18,11 @@
     .updateBtn{
         @include buttonInput();
     }
+    .linkBtn{
+        @include linkButton(55px);
+        margin-right: 0;
+        background-color: $main-color;
+    }
 }
 
 .kontoPackages{

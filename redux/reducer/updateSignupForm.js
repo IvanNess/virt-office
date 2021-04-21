@@ -8,6 +8,8 @@ export const updateSignupForm = (state, action)=>{
                 ...state.signupForm,
                 [action.prop]: action.value
             }
+        case "LOGOUT":
+            return {}
         default:
             return state.signupForm
     }

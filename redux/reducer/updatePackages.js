@@ -5,6 +5,8 @@ export const updatePackages = (state, action)=>{
     switch(action.type){
         case "SET_PACKAGES":
             return action.value
+        case "LOGOUT":
+            return null
         default:
             return state.packages
     }

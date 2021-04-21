@@ -4,7 +4,7 @@ import moment from 'moment'
 
 import ProfileBoilerplate from '../../components/profile-boilerplate'
 
-import { Select } from 'antd';
+import { Select, Skeleton } from 'antd';
 import axios from 'axios';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -17,7 +17,12 @@ function Rozliczenia({db, auth}) {
 
     const currentUser = useSelector(state=>state.currentUser)
 
-    const [records, setRecords] = useState([])
+    const [records, setRecords] = useState(null)
+
+    const skeletonBtn =  <Skeleton.Button active={true} size="small"/>
+    const skeletonAvtr = <Skeleton.Avatar active={true} size="small"/>
+    const skeletonInput = <Skeleton.Input style={{ width: 400, marginTop: '2px' }} active={true} size="small" />
+
 
     useEffect(()=>{
         console.log('use effect rozliczenia', currentUser)
@@ -108,7 +113,15 @@ function Rozliczenia({db, auth}) {
                         <div className={styles.thirdRow}>23/12/2020</div>
                         <div className={styles.fourthRow}>1 500 zł Brutto</div>
                     </div> */}
-                    {records.map((record, idx)=>(
+                    {records===null && [0, 1, 2].map((record, idx)=>(
+                        <div className={styles.row}>
+                            <div className={styles.firstRow}>{skeletonAvtr}</div>
+                            <div className={styles.secondRow}>{skeletonInput}</div>
+                            <div className={styles.thirdRow}>{skeletonBtn}</div>
+                            <div className={styles.fourthRow}>{skeletonBtn}</div>
+                        </div>
+                    ))}
+                    {records && records.map((record, idx)=>(
                         <div className={styles.row}>
                             <div className={styles.firstRow}>{idx+1}</div>
                             <div className={styles.secondRow}>{record.name}</div>

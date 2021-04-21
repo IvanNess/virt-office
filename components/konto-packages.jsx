@@ -32,7 +32,8 @@ const Header = ({isMain, packageName, endDate, updPrice=null, auth, price, pakie
     <div className={styles.header}>
         <div className={isMain? styles.mainPackageName : styles.packageName}>{packageName}</div>
         {isMain && <div className={styles.endDate}>{`kończy się ${endDate}`}</div>}
-        {updPrice && <button className={styles.updateBtn} onClick={update}>{`aktualizacja (${updPrice}zł)`}</button>}
+        {updPrice && <button className={styles.updateBtn} onClick={update}>{`aktualizacja (${updPrice} zł)`}</button>}
+        {!isMain && !updPrice && <div className={styles.linkBtn}><Link href='/wynajecie'><a>kup teraz</a></Link></div>}
     </div>
 )}
 
@@ -65,6 +66,11 @@ const KontoPackages = ({auth}) => {
         if(!packages)
             return
         const pakiet = packages[0]
+
+        if(!pakiet){
+            setPakiet(false)
+            return
+        }
         setPakiet(pakiet)
 
         const packageName = pakiet.pakietName.includes('Wirtualny adres') ? "Wirtualny adres" :
@@ -139,7 +145,7 @@ const KontoPackages = ({auth}) => {
                 <PackietButtons/>
             </Package> */}
             <Collapse accordion>
-                {packageName && packageName === "Wirtualny adres" && 
+                {(pakiet === false || (packageName && packageName === "Wirtualny adres")) && 
                     <Panel 
                         header={<Header 
                             isMain={packageName === "Wirtualny adres"} 
@@ -153,7 +159,7 @@ const KontoPackages = ({auth}) => {
                     <PakietTableFirst/>
                     {/* <PackietButtons/> */}
                 </Panel>}
-                {packageName && packageName !== "Profesjonalne biuro" &&  
+                {(pakiet===false || (packageName && packageName !== "Profesjonalne biuro")) &&  
                     <Panel 
                         header={<Header 
                             isMain={packageName === "Optymalny pakiet"} 
@@ -170,7 +176,7 @@ const KontoPackages = ({auth}) => {
                     <PakietTableFirst/>
                     {/* <PackietButtons/> */}
                 </Panel>}
-                {packageName && 
+                {(pakiet===false || packageName) && 
                     <Panel 
                         header={<Header  
                             isMain={packageName === "Profesjonalne biuro"} 

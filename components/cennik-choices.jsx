@@ -27,6 +27,7 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
         const updPrice = newPrice >= 30 ? newPrice : 30
         setPrice(updPrice)
         setCheckboxes(upd)
+        
         dispatch(updateHiringChoice({
             number: 1, 
             prop: "choice", 

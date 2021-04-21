@@ -8,6 +8,7 @@ import axios from 'axios'
 import { packagePay } from '../../utilities'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 import { Modal } from 'antd'
+import {LoadingOutlined} from '@ant-design/icons'
 
 function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
 
@@ -25,14 +26,15 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
 
     async function check(){
         if(isLogin){
-            console.log('send login data to firebase')
+            dispatch(setLoginFormProp('loginPlaceholder', ''))
+            dispatch(setLoginFormProp('passwordPlaceholder', ''))            
             if(!loginForm.login || loginForm.login.length ===0){
                 dispatch(setLoginFormProp('loginPlaceholder', 'No empty string allowed in login.'))
                 return
             }
             if(!loginForm.password || loginForm.password.length === 0){
                 dispatch(setLoginFormProp('passwordPlaceholder', 'No empty string allowed in password.'))
-                dispatch(setLoginFormProp('password', ''))
+                // dispatch(setLoginFormProp('password', ''))
                 return
             }
             try {
@@ -293,6 +295,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     </div>
                     <button onClick={submit} disabled={btnDisabled}>
                         {isLogin? "Zajoguj się": page!==3?"Dalej":"Sign up"}
+                        {btnDisabled && <LoadingOutlined style={{color: "white"}}/>}
                     </button>
                 </div>
             </form>   

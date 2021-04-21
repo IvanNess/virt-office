@@ -36,7 +36,15 @@ $main-margin-left: 50px;
         background-color: $text-color;
         width: 178px;
         padding: 0;
+ 
+    }
+    .buttonInputWrapper{
         position: fixed;
         bottom: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 178px;
+        height: 55px;
     }
 }
