@@ -256,9 +256,10 @@ function Dane({auth, db}) {
 
         if(info.file.status==="done"){
             let reader = new FileReader();
+            console.log('reader', reader)
             reader.readAsDataURL(info.file.originFileObj)
-
             reader.onload = function() {
+                console.log('reader', onload)
                 const result = reader.result;
                 console.log('result', result)
 
