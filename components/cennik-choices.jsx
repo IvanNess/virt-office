@@ -108,20 +108,25 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                     {router.pathname === '/cennik' && <div className={styles.blockLinkButton}>
                         <Link href="/wynajecie"><a>Wynajmij biuro</a></Link>
                     </div>}
-                    {showSlash && <div className={selectedBlock===1 || selectedBlock===null ? styles.slash : styles.noslash}>////</div>}
+                    {/* {showSlash && <div className={selectedBlock===1 || selectedBlock===null ? styles.slash : styles.noslash}>////</div>} */}
+                    
+                    <div className={styles.slashWrapper}> 
+                        <div className={styles.slash}></div>
+                    </div>
+
                     <div className={styles.description}>
                         <p>
                             Tutaj klient wybiera dowolnie skład pakietu z dostępnych opcji
                             <br/>
                             <br/>
                             {checkBoxes.map(({idx, text})=>( 
-                                <>
+                                <span key={idx}>
                                     {/* <Checkbox onChange={(value)=>{checkChanged(value, idx)}} key={idx} defaultChecked={true}>
                                         {text}
                                     </Checkbox> */}
-                                    <div key={idx}>{`- ${text}`}</div>
+                                    <span key={idx}>{`- ${text}`}</span>
                                     <br/>
-                                </>    
+                                </span>    
                             ))}
                             <br/>
                             <br/>

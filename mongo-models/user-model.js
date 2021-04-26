@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
     firebaseId: String,
+    postgresId: String,
     username: String,
     email: String,
     fullName: String,

@@ -7,6 +7,15 @@ const mongoose = require('mongoose')
 const UserSchema = require('../../mongo-models/user-model')
 const admin = require('firebase-admin')
 
+const { Pool } = require('pg')
+const pool = new Pool()
+// the pool will emit an error on behalf of any idle clients
+// it contains if a backend error or network partition happens
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err)
+  process.exit(-1)
+})
+
 // Initialize the cors middleware
 const cors = initMiddleware(
   // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
@@ -80,17 +89,40 @@ export default async(req, res) => {
 
         const token = await admin.auth().createCustomToken(userRecord.uid)
 
-        const user = new UserSchema({
-            firebaseId: userRecord.uid,
-            username, email: contactEmail, fullName, companyName, NIP, contactFullName, contactEmail, contactPhone
-        })
+        //create postgres user
+        ;await (async () => {
+            const client = await pool.connect()
+            const company_name = username
+            const inner_logo = ''
+            const outer_logo = ''
+           
+            try {
+                const resp = await client.query("INSERT INTO companies(company_name, inner_logo, outer_logo) VALUES ($1, decode($2, 'base64'), decode($3, 'base64')) RETURNING id", 
+                    [company_name, inner_logo, outer_logo]
+                )            
+                console.log(resp)
 
-        await user.save()
+                const user = new UserSchema({
+                    firebaseId: userRecord.uid, postgresId: resp.rows[0].id,
+                    username, email: contactEmail, fullName, companyName, NIP, contactFullName, contactEmail, contactPhone
+                })
+        
+                await user.save()
+        
+                res.status(200).json({
+                    message: "user was created",
+                    token
+                })
 
-        res.status(200).json({
-            message: "user was created",
-            token
-        })
+            } finally {
+            // Make sure to release the client before any error handling,
+            // just in case the error handling itself throws an error.
+            client.release()
+            }
+        })().catch((e)=>{
+            console.log('error', e)
+            return res.status(500).json('user record saving error in db.')        
+        })    
 
     } catch (error) {
         console.log('Error creating new user:', error)
@@ -100,6 +132,6 @@ export default async(req, res) => {
         if(error.message==="The email address is already in use by another account."){
             return res.status(500).json('The email address is already in use by another account.') 
         }
-        return res.status(500).json('ad record saving error in db.')        
+        return res.status(500).json('user record saving error in db.')        
     }
 }

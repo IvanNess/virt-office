@@ -45,8 +45,8 @@ const Cennik = () => {
             </div>
 
             <div className={styles.cennikBar} onClick={barClicked}>
-                <div className={currentCennikId===1 ? styles.selectedItem : styles.barItem} data-id={1}>WIRTUALNE BIURO</div>
-                {/* <div className={currentCennikId===2 ? styles.selectedItem : styles.barItem} data-id={2}>Fakturowanie i sprzedaż</div>
+                {/* <div className={currentCennikId===1 ? styles.selectedItem : styles.barItem} data-id={1}>WIRTUALNE BIURO</div>
+                <div className={currentCennikId===2 ? styles.selectedItem : styles.barItem} data-id={2}>Fakturowanie i sprzedaż</div>
                 <div className={currentCennikId===3 ? styles.selectedItem : styles.barItem} data-id={3}>Księgowość online</div>
                 <div className={currentCennikId===4 ? styles.selectedItem : styles.barItem} data-id={4}>Kadry, płace i ubezpieczenia</div> */}
             </div>

@@ -1,8 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 const stripe = require('stripe')(process.env.STRIPE_SECRET)
 const mongoose = require('mongoose')
+const moment = require('moment')
 const ReceiptSchema = require('../../mongo-models/receipt-model')
 const PackageSchema = require('../../mongo-models/package-model')
+const UserSchema = require('../../mongo-models/user-model')
 const ReservationSchema = require('../../mongo-models/reservation-model')
 
 //https://stripe.com/docs/payments/checkout/fulfill-orders
@@ -12,6 +14,15 @@ const ReservationSchema = require('../../mongo-models/reservation-model')
 const firebase = require('firebase')
 
 const buffer = require("micro").buffer;
+
+const { Pool } = require('pg')
+const pool = new Pool()
+// the pool will emit an error on behalf of any idle clients
+// it contains if a backend error or network partition happens
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err)
+  process.exit(-1)
+})
 
 
 // Find your endpoint's secret in your Dashboard's webhook settings
@@ -89,7 +100,40 @@ export default async (req, res) => {
             }
             if(converted.data.object.success_url === `${process.env.ORIGIN}/konto/rezerwacja`){
                 const reservation = await ReservationSchema.findOne({ sessionId }).exec()
-                reservation.pay(paymentIntent)
+                const code = Math.floor(Math.random()*10000)
+                reservation.pay(paymentIntent, code)
+
+                try{
+                    ;await (async () => {
+                        const client = await pool.connect()
+                        try {
+                            const start_date = moment(reservation.startHour.msTime).format('YYYY-MM-DD HH:mm:ss')
+                            const stop_date = moment(reservation.finishHour.msTime).format('YYYY-MM-DD HH:mm:ss')
+                            console.log('webhook 1', start_date, stop_date, code)
+                            const resp = await client.query('INSERT INTO access (start_date, stop_date, code) VALUES ($1, $2, $3)', 
+                                [start_date, stop_date, code]
+                            )
+                            console.log('webhook first resp', resp)
+                            const user = await UserSchema.findById(reservation.userId)
+                            console.log('webhook user', user)
+                            const companyName = user.companyName
+                            const companyResp = await client.query("SELECT id FROM companies WHERE company_name = $1", [companyName])
+                            console.log('companyResp', companyResp)
+                            const company_id = companyResp.rows[0].id
+                            console.log('company_id', company_id)
+                            await client.query('INSERT INTO displays (start_date, stop_date, company_id) VALUES ($1, $2, $3)', 
+                                [start_date, stop_date, company_id]
+                            )                                                               
+                        } finally {
+                            // Make sure to release the client before any error handling,
+                            // just in case the error handling itself throws an error.
+                            console.log('finally')
+                            client.release()
+                        }
+                    })()
+                }catch (e){
+                    return res.status(500).json('postgres webhook error.')
+                }            
             }
         }
     

@@ -25,14 +25,14 @@ function YourReservation() {
     return (
         <div className={styles.yourReservation}>
             <div className={styles.title}>Twoje rezerwacje</div>
-            {viewed.map(({year, month, day, startHour, finishHour})=>{
+            {viewed.map(({year, month, day, startHour, finishHour, code})=>{
                 return(
                     <div className={styles.reservation}>
                         <div className={styles.left}>
                             {`${day}/${month}/${year}`}
                         </div>
                         <div className={styles.right}>
-                            {`${startHour?.title}`}
+                            {`${startHour?.title}, kod dostępu: ${code}`}
                         </div>
                     </div>
                 )

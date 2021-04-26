@@ -149,7 +149,7 @@ export default function Home({db, auth}) {
           </div> 
         </div>
         
-        <div className={styles.splitBlockWrapper}>
+        {/* <div className={styles.splitBlockWrapper}>
           <div className={styles.blockWrapper}>
             <Block className='block' showMore={false}>
               <div className={styles.blockText}>
@@ -179,7 +179,7 @@ export default function Home({db, auth}) {
             </Block>   
           </div>
         </div>
-        
+         */}
              
       </div>
 
@@ -217,17 +217,18 @@ export default function Home({db, auth}) {
       
       <div className={styles.middleText}>
         <p>
-          Wirtualne biuro to nie tylko wirtualny adres, ale również obsługa korespondencji przychodzącej polegająca na jej skanowaniu, przekazywaniu i archiwizacji. W ramach usługi dajemy dostęp do sali konferencyjnej oznakowanej logiem Twojej firmy w czasie, w którym z niej korzystasz, wyposażonej w stół konferencyjny, rzutnik z ekranem do wyświetlania prezentacji, drukarkę ze skanerem, aneks kuchenny do przygotowania kawy/herbaty, strefę chillout dającą komfort prowadzenia rozmów. 
+          Wirtualne biuro to nie tylko wirtualny adres, ale również obsługa korespondencji przychodzącej polegająca na jej skanowaniu, przekazywaniu i archiwizacji. 
+          W ramach usługi dajemy dostęp do sali konferencyjnej oznakowanej logiem Twojej firmy w czasie, w&nbsp;którym z niej korzystasz, wyposażonej w stół konferencyjny, rzutnik z ekranem do wyświetlania prezentacji, drukarkę ze skanerem, aneks kuchenny do przygotowania kawy/herbaty, strefę chillout dającą komfort prowadzenia rozmów. 
           <br/><br/>
-          Każda firma potrzebuje usług księgowych i prawnych. We współpracy z naszym partnerem wfirma.pl dostarczamy również te usługi w ramach naszych pakietów.
+          Każda firma potrzebuje usług księgowych i prawnych. We&nbsp;współpracy z naszym partnerem wfirma.pl dostarczamy również te usługi w ramach naszych pakietów.
         </p>
       </div>
 
       <div className={styles.wfirmaBlockWrapper}>
         <div className={styles.wfirmaText}>
           <h4>Korzystając z usług wirtualnego biura otrzymujesz 
-            <span className={styles.bold}> Pakiet roczny wFirma na rok całkowite za darmo! </span>
-            Przejdź i <span className={styles.underline} onClick={()=>{showAuth()}}>zaloguj sie</span> 
+            <span className={styles.bold}> Pakiet roczny wFirma na rok całkowite za&nbsp;darmo! </span>
+            {/* Przejdź i <span className={styles.underline} onClick={()=>{showAuth()}}>zaloguj sie</span>  */}
           </h4>
         </div>
       </div>

@@ -8,6 +8,15 @@ const PackageSchema = require('../../mongo-models/package-model')
 const UserSchema = require('../../mongo-models/user-model')
 const admin = require('firebase-admin')
 
+const { Pool } = require('pg')
+const pool = new Pool()
+// the pool will emit an error on behalf of any idle clients
+// it contains if a backend error or network partition happens
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err)
+  process.exit(-1)
+})
+
 // Initialize the cors middleware
 const cors = initMiddleware(
   // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
@@ -57,6 +66,7 @@ export default async(req, res) => {
 
     const {token, data} = req.body
 
+    console.log('data', data)
     try {
 
         const decodedToken = await admin.auth().verifyIdToken(token)
@@ -99,6 +109,31 @@ export default async(req, res) => {
                 // update an updateEmailRecord with "isCompleted: true" prop.
                 // implement here...
 
+                if(data.innerLogoChanged || data.companyNameChanged){
+                    ;await (async () => {
+                        const client = await pool.connect()
+                        const postgresId = user.postgresId
+                        try {
+                            let resp
+                            if(data.innerLogoChanged){
+                                resp = await client.query("UPDATE companies SET inner_logo = decode($1, 'base64') company_name = $2 WHERE id = $3", 
+                                    [data.innerLogo, data.companyName,  postgresId]
+                                )
+                            } else{
+                                resp = await client.query("UPDATE companies SET company_name = $1 WHERE id = $2", 
+                                    [data.companyName,  postgresId]
+                                )
+                            }
+                                                                    
+                        } finally {
+                            // Make sure to release the client before any error handling,
+                            // just in case the error handling itself throws an error.
+                            console.log('finally')
+                            client.release()
+                        }
+                    })().catch(err => res.status(500).json('postgres user update error.'))            
+                }
+
                 return res.status(200).json({
                     message: "user data was updated",
                     user: upd
@@ -115,7 +150,37 @@ export default async(req, res) => {
 
         const upd = await user.updateOne(data)
 
-        res.status(200).json({
+        if(data.innerLogoChanged || data.companyNameChanged){
+            console.log('inner logo changed or companyname')
+            ;await (async () => {
+                const client = await pool.connect()
+                const postgresId = user.postgresId
+                try {
+                    let resp
+                    if(data.innerLogoChanged){
+                        console.log('inner logo changed postgresId', postgresId)
+                        resp = await client.query("UPDATE companies SET inner_logo = decode($1, 'base64'), company_name = $2 WHERE id = $3", 
+                            [data.innerLogo, data.companyName,  postgresId]
+                        )
+                        console.log('resp', resp)
+                    } else{
+                        console.log('company name changed postgresId', postgresId)
+                        resp = await client.query("UPDATE companies SET company_name = $1 WHERE id = $2", 
+                            [data.companyName,  postgresId]
+                        )
+                    }
+                    
+                } finally {
+                    // Make sure to release the client before any error handling,
+                    // just in case the error handling itself throws an error.
+                    console.log('finally')
+                    client.release()
+                }
+            })().catch(err => res.status(500).json('postgres user update error.'))            
+        }
+
+        console.log('end')
+        return res.status(200).json({
             message: "user data was updated",
             user: upd
         })

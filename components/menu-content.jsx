@@ -59,6 +59,10 @@ const MenuContent = ({auth}) => {
         }
     }
 
+    function linkClicked(){
+        dispatch(setShowMenu(false))
+    }
+
     return (
         <div className={styles.menuContent} ref={ref}>
             <div className={styles.iconsWrapper}>
@@ -66,9 +70,9 @@ const MenuContent = ({auth}) => {
                     <Logo/>
                 </a></Link>
                 <div className={styles.icons}>
-                    <Link href="/"><a><TwitterIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
-                    <Link href="/"><a><FacebookIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
-                    <Link href="/"><a><InstagramIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
+                    <Link href="/"><a><div><TwitterIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></div></a></Link>
+                    <Link href="/"><a><div><FacebookIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></div></a></Link>
+                    <Link href="/"><a><div><InstagramIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></div></a></Link>
                 </div>
             </div>
 
@@ -79,10 +83,10 @@ const MenuContent = ({auth}) => {
             </div>
 
             <div className={styles.options}>
-                <div><Link href="/onas"><a><h2>o nas</h2></a></Link></div>
-                <div><Link href="/ksiegowosc"><a><h2>księgowość</h2></a></Link></div>
+                {/* <div><Link href="/onas"><a><h2 onClick={linkClicked}>o nas</h2></a></Link></div> */}
+                <div><Link href="/cennik"><a><h2 className={styles.last} onClick={linkClicked}>cennik</h2></a></Link></div>
+                <div><Link href="/ksiegowosc"><a><h2 onClick={linkClicked}>księgowość</h2></a></Link></div>
                 {/* <div><Link href="/podpis"><a><h2>wirtualny podpis</h2></a></Link></div> */}
-                <div><Link href="/cennik"><a><h2 className={styles.last}>cennik</h2></a></Link></div>
 
                 <div className={styles.split}></div>
 

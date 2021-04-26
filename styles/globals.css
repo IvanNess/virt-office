@@ -239,8 +239,13 @@ input{
   color: black !important;
 }
 
+option[value="PL"], option[value="UA"], option[value="RU"], option[value="BY"]{
+  /* background-color: rgb(142, 195, 255) !important;  */
+  background-color: white !important; 
+}
+
 /* ant-d icons */
 .MuiSvgIcon-root:hover{
-  color: #121109 !important;
+  /* color: #121109 !important; */
 }
 

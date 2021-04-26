@@ -5,7 +5,7 @@ import ProfileBoilerplate from '../../components/profile-boilerplate'
 import { useDispatch, useSelector } from 'react-redux'
 import { editCurrentUser } from '../../redux/actions'
 import axios from 'axios'
-import { Popover, Tooltip, Skeleton } from 'antd'
+import { Popover, Tooltip, Skeleton, Upload } from 'antd'
 import { useRef } from 'react'
 import ChangePassword from '../../components/change-password'
 
@@ -48,6 +48,7 @@ function Dane({auth, db}) {
     const NIPRef = useRef(null)
     const emailRef = useRef(null)
     const phoneRef = useRef(null)
+    const logoRef = useRef(null)
 
     useEffect(()=>{
         console.log('profil use effect auth currentUser', auth, currentUser)
@@ -74,8 +75,14 @@ function Dane({auth, db}) {
                 data: {token}
             })
             if(response.data.user){
-                dispatch(editCurrentUser({...response.data.user, isFullLoaded: true}))   
-                setForm({...currentUser, ...response.data.user})         
+                console.log('innerLogo', response.data.innerLogo)
+                dispatch(editCurrentUser({...response.data.user, innerLogo: response.data.innerLogo, isFullLoaded: true}))   
+                setForm({
+                    ...currentUser, 
+                    ...response.data.user, 
+                    imgDataChanged: false,
+                    innerLogo: response.data.innerLogo
+                })         
             }
         } catch (error) {
             console.log(error)
@@ -104,6 +111,10 @@ function Dane({auth, db}) {
 
     async function submit(e){
         e.preventDefault()
+        const names = ['username', 'fullName', 'adress', 'NIP', 'companyName', 'contactPhone', 'email']
+        names.forEach(item=>{
+            setForm(form=>({...form, [`${item}Error`]: null}))
+        })
         console.log('form', form)
         setIsZapiszDiasabled(true)
         if(form.username.trim()===''){
@@ -118,16 +129,22 @@ function Dane({auth, db}) {
             fullNameRef.current.focus()
             return
         }
-        if(form.contactPhone && !isPossiblePhoneNumber(form.contactPhone)){
-            setForm(form=>({...form, phoneError : 'Nie wygląda jak prawdziwy numer telefonu.'}))
-            setIsZapiszDiasabled(false)
-            phoneRef.current.focus()
-            return
-        }
         if((form.email+'').trim().length ===0 || !form.email.includes('@')){
             setForm(form=>({...form, emailError : 'Nie wygląda jak prawdziwy e-mail.'}))
             setIsZapiszDiasabled(false)
             emailRef.current.focus()
+            return
+        }
+        if(form.contactPhone && !isPossiblePhoneNumber(form.contactPhone)){
+            setForm(form=>({...form, contactPhoneError : 'Nie wygląda jak prawdziwy numer telefonu.'}))
+            setIsZapiszDiasabled(false)
+            phoneRef.current.focus()
+            return
+        }
+        if(!form.contactPhone){
+            setForm(form=>({...form, contactPhoneError : 'Pole wymagane'}))
+            setIsZapiszDiasabled(false)
+            phoneRef.current.focus()
             return
         }
         if(form.companyName.trim()===''){
@@ -170,11 +187,14 @@ function Dane({auth, db}) {
                 data: {token, data: {
                     NIP,
                     companyName: form.companyName.trim(),
+                    companyNameChanged: form.companyName.trim() !== currentUser.companyName,
                     contactEmail: form.contactEmail.trim(),
                     contactPhone: form.contactPhone || '',
                     fullName: form.fullName.trim(),
                     username: form.username.trim(),
-                    adress: form.adress?.trim() || ''
+                    adress: form.adress?.trim() || '',
+                    innerLogo: (form.innerLogo && form.imgDataChanged) ? form.innerLogo : null,
+                    innerLogoChanged: form.imgDataChanged
                 }}
             })
             dispatch(editCurrentUser(form))
@@ -192,7 +212,7 @@ function Dane({auth, db}) {
     }
 
     function onFocus(name){
-        const names = ['username', 'fullName', 'adress', 'NIP', 'companyName', 'phone']
+        const names = ['username', 'fullName', 'adress', 'NIP', 'companyName', 'contactPhone', 'email']
         names.forEach(item=>{
             if(item !== name){
                 setForm(form=>({...form, [`${item}Error`]: null}))
@@ -202,7 +222,7 @@ function Dane({auth, db}) {
 
     function cancel(){
         setIsEditMode(false)
-        setForm({...currentUser})         
+        setForm({...currentUser, imgDataChanged: false})         
     }
 
     function changePhoneNumber(value){
@@ -210,11 +230,57 @@ function Dane({auth, db}) {
         setForm({...form, contactPhone: value, phoneError: null})
     }
 
+    async function logoChanged(info){
+        // console.log('logo changed', logoRef.current.files)
+        // const url = window.URL.createObjectURL(logoRef.current.files[0])
+        // const res = await axios({
+        //     url,
+        //     method: "GET",
+        //     responseType: "blob"
+        // })
+
+        // console.log('res', res)
+        // const arrayBuffer = res.data
+        // console.log('byteLength', arrayBuffer.byteLength)
+        // const bufferLength = arrayBuffer.byteLength
+        // const updBufferLength = bufferLength % 2 === 0 ? bufferLength : bufferLength - 1        
+        // const uint16Array = new Uint16Array(arrayBuffer, 0, updBufferLength / 2)
+
+        // console.log('uint16array', uint16Array)
+
+        // const uint16Array = new Uint16Array(arrayBuffer)
+        // const decoded = new TextDecoder().decode(uint16Array)
+        // console.log('decoded', decoded)
+
+        // const blob = res.data
+
+        if(info.file.status==="done"){
+            let reader = new FileReader();
+            reader.readAsDataURL(info.file.originFileObj)
+
+            reader.onload = function() {
+                const result = reader.result;
+                console.log('result', result)
+
+                const base64String = reader.result
+                    .replace("data:", "")
+                    .replace(/^.+,/, "");
+                // console.log('result', base64String)
+
+                setForm({...form, innerLogo: base64String, imgDataChanged: true})
+            }
+        
+        }
+    }
+
     return (
         <div className={styles.dane}>
             <ProfileBoilerplate  auth={auth} db={db}>
                 <div>
-                    <div className={styles.title}>1. <span className={styles.bold}>Mój Profil</span></div>
+                    <div className={styles.title}>
+                        1. <span className={styles.bold}>Mój Profil</span>
+                        {form.innerLogo && !isEditMode && <img className={styles.logoImg} src={`data:image/png;base64,${form.innerLogo}`}/>}
+                    </div>
                     {/* <div className={styles.text}>
                         <div className={styles.small}>Wpisz nazwę lub kod pocztowy miasta, w którym chcesz wybrać adres firmy. Dostępne adresy i miesięczny koszt wyświetlą się poniżej.</div>
                     </div> */}
@@ -224,15 +290,15 @@ function Dane({auth, db}) {
                             <div className={styles.noEditFields}>
                                 <div className={styles.left}>
                                     <ReadyField title='Login:' value={currentUser?.username} skeleton={skeletonBtn}/>
-                                    <ReadyField title='Adres email:' value={currentUser?.email} skeleton={skeletonBtn}/>
-                                    <ReadyField title='Nazwa Firmy:' value={currentUser?.companyName} skeleton={skeletonBtn}/>
                                     <ReadyField title='Imię i Nazwisko:' value={currentUser?.fullName} skeleton={skeletonBtn}/>
+                                    <ReadyField title='Adres:' value={currentUser?.adress} skeleton={skeletonInput}/>
+                                    <ReadyField title='Adres email:' value={currentUser?.email} skeleton={skeletonBtn}/>
                                 </div>
                                 <div className={styles.right}>
+                                    <ReadyField title='Telefon:' value={currentUser?.contactPhone} skeleton={skeletonBtn}/>
                                     <ReadyField title='Nazwa Firmy:' value={currentUser?.companyName} skeleton={skeletonInput}/>
                                     <ReadyField title='NIP:' value={currentUser?.NIP} skeleton={skeletonBtn}/>
-                                    <ReadyField title='Adres email osoby kontaktowej:' value={currentUser?.contactEmail} skeleton={skeletonBtn}/>
-                                    <ReadyField title='Adres:' value={currentUser?.adress} skeleton={skeletonInput}/>
+                                    {/* <ReadyField title='Adres email osoby kontaktowej:' value={currentUser?.contactEmail} skeleton={skeletonBtn}/> */}
                                 </div>
                             </div>
                             <div className={styles.editBtnWrapper}>
@@ -242,7 +308,24 @@ function Dane({auth, db}) {
                         </div>
                     :
                     <div className={styles.edit}>
+                        <Tooltip title="Logo" placement="left" trigger={['focus', 'hover']} color="#121109" mouseEnterDelay={0} mouseLeaveDelay={0}>
+                            <Upload
+                                name="avatar"
+                                listType="picture-card"
+                                className={styles.avatarUploader}
+                                showUploadList={false}
+                                // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                // beforeUpload={beforeUpload}
+                                onChange={logoChanged}
+                            >
+                                {form.innerLogo ? <img src={`data:image/png;base64,${form.innerLogo}`} alt="avatar" className={styles.editLogo} /> : "Logo"}
+                            </Upload>
+                        </Tooltip>
+
                         <form onSubmit={submit}>
+
+                            {/* <input type="file" name="logo" onChange={logoChanged} ref={logoRef}/> */}
+
                             <Tooltip title="Login" placement="left" trigger={['focus', 'hover']} color="#121109" mouseEnterDelay={0} mouseLeaveDelay={0}>
                             <Tooltip title={form.usernameError} 
                                 color={"red"} placement="bottomLeft" visible={form.usernameError}
@@ -266,19 +349,11 @@ function Dane({auth, db}) {
                                 />
                             </Tooltip></Tooltip>
 
-                            <Tooltip title="Telefon" placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
-                            <Tooltip title={form.phoneError} color={"red"} placement="bottomLeft" visible={form.phoneError}>
-                                <PhoneInput 
-                                    placeholder="Telefon" 
-                                    defaultCountry="PL"
-                                    labels={pl}
-                                    international={true}
-                                    countryCallingCodeEditable={true}
-                                    value={form?.contactPhone || null} 
-                                    onChange={changePhoneNumber}
-                                    flags={flags}
-                                    countryOptionsOrder={["PL", "RU", "UA", "BY", "|", "..."]}
-                                    ref={phoneRef}
+                            <Tooltip title="Adres" placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
+                            <Tooltip title={form.adressError} color={"red"} placement="bottomLeft" visible={form.adressError}>
+                                <input className={styles.name} type="text" placeholder="Adres" 
+                                    value={form?.adress} onChange={(e)=>changeField(e, 'adress')}
+                                    onFocus={(e)=>onFocus('adress')}
                                 />
                             </Tooltip></Tooltip>
 
@@ -290,11 +365,20 @@ function Dane({auth, db}) {
                                 />
                             </Tooltip></Tooltip>
 
-                            <Tooltip title="Adres" placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
-                            <Tooltip title={form.adressError} color={"red"} placement="bottomLeft" visible={form.adressError}>
-                                <input className={styles.name} type="text" placeholder="Adres" 
-                                    value={form?.adress} onChange={(e)=>changeField(e, 'adress')}
-                                    onFocus={(e)=>onFocus('adress')}
+                            <Tooltip title="Telefon" placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
+                            <Tooltip title={form.contactPhoneError} color={"red"} placement="bottomLeft" visible={form.contactPhoneError}>
+                                <PhoneInput 
+                                    placeholder="Telefon" 
+                                    defaultCountry="PL"
+                                    labels={pl}
+                                    international={true}
+                                    countryCallingCodeEditable={true}
+                                    value={form?.contactPhone || null} 
+                                    onChange={changePhoneNumber}
+                                    flags={flags}
+                                    countryOptionsOrder={["PL", "RU", "UA", "BY", "|", "..."]}
+                                    ref={phoneRef}
+                                    onFocus={(e)=>onFocus('contactPhone')}
                                 />
                             </Tooltip></Tooltip>
 
@@ -319,10 +403,10 @@ function Dane({auth, db}) {
                                 <input className={styles.firm} type="text" placeholder="Nazwa Firmy" value={form?.companyName} onChange={(e)=>changeField(e, 'companyName')}/>
                             </Tooltip></Tooltip> */}
 
-                            <div className={styles.twoColumns}>
+                            <div className={styles.threeColumns}>
                                 <Tooltip title="NIP" placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
                                 <Tooltip title={form.NIPError} color={"red"} placement="bottomLeft" visible={form.NIPError}>
-                                    <input className={styles.login} type="text" placeholder="NIP" 
+                                    <input className={styles.NIP} type="text" placeholder="NIP" 
                                         value={form?.NIP} onChange={(e)=>changeField(e, 'NIP')}
                                         onFocus={(e)=>onFocus('NIP')} ref={NIPRef}
                                     />

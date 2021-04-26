@@ -66,7 +66,7 @@ export default async(req, res) => {
         }
     }
 
-    const { token, year, month, day, startHour, finishHour, quantity } = req.body
+    const { imageData } = req.body
 
     ;(async () => {
         const client = await pool.connect()
@@ -85,61 +85,63 @@ export default async(req, res) => {
         }
     })().catch(err => console.log(err.stack))
 
-    try {
+    res.status(200).json('ok')
 
-        const decodedToken = await admin.auth().verifyIdToken(token)
-        const uid = decodedToken.uid
+    // try {
 
-        const user = await UserSchema.findOne({ firebaseId: uid }).exec()
+    //     const decodedToken = await admin.auth().verifyIdToken(token)
+    //     const uid = decodedToken.uid
 
-        const dayReservations = await ReservationSchema.find({year, month, day, isCanceled: false}).exec()
+    //     const user = await UserSchema.findOne({ firebaseId: uid }).exec()
+
+    //     const dayReservations = await ReservationSchema.find({year, month, day, isCanceled: false}).exec()
         
-        const filtered = dayReservations.filter(session=>{
-            return (startHour.msTime <= session.finishHour.msTime && finishHour.msTime >= session.finishHour.msTime) ||
-                (finishHour.msTime >= session.startHour.msTime && startHour.msTime <= session.startHour.msTime)
-        })
+    //     const filtered = dayReservations.filter(session=>{
+    //         return (startHour.msTime <= session.finishHour.msTime && finishHour.msTime >= session.finishHour.msTime) ||
+    //             (finishHour.msTime >= session.startHour.msTime && startHour.msTime <= session.startHour.msTime)
+    //     })
 
-        if(filtered.length === 0){
+    //     if(filtered.length === 0){
 
-            const reservation = new ReservationSchema({
-                startHour, finishHour, day, month, year, 
-                total: quantity / 0.5 * 50, 
-                timestamp: new Date(),
-                payDate: +new Date(),
-                isCanceled: false,
-                isPaid: false,
-                userId: user._id
-            })
+    //         const reservation = new ReservationSchema({
+    //             startHour, finishHour, day, month, year, 
+    //             total: quantity / 0.5 * 50, 
+    //             timestamp: new Date(),
+    //             payDate: +new Date(),
+    //             isCanceled: false,
+    //             isPaid: false,
+    //             userId: user._id
+    //         })
 
-            await reservation.save()
+    //         await reservation.save()
 
-            const session = await stripe.checkout.sessions.create({
-                payment_method_types: ['card', 'p24'],
-                line_items: [
-                  {
-                    price: 'price_1Id7T9BhtsW91uv72N4gRACY',
-                    quantity: quantity / 0.5
-                  },
-                ],
-                mode: 'payment',
-                success_url: `${process.env.ORIGIN}/konto/rezerwacja`,
-                cancel_url: `${process.env.ORIGIN}/konto/rezerwacja`,
-            })
+    //         const session = await stripe.checkout.sessions.create({
+    //             payment_method_types: ['card', 'p24'],
+    //             line_items: [
+    //               {
+    //                 price: 'price_1Id7T9BhtsW91uv72N4gRACY',
+    //                 quantity: quantity / 0.5
+    //               },
+    //             ],
+    //             mode: 'payment',
+    //             success_url: `${process.env.ORIGIN}/konto/rezerwacja`,
+    //             cancel_url: `${process.env.ORIGIN}/konto/rezerwacja`,
+    //         })
 
-            await reservation.addSessionId(session.id)
+    //         await reservation.addSessionId(session.id)
 
-            res.status(200).json({
-                message: "reservation was created",
-                sessionId: session.id
-            })
+    //         res.status(200).json({
+    //             message: "reservation was created",
+    //             sessionId: session.id
+    //         })
     
-        } else{
-            res.status(500).json('this time is not available.')        
-        }
+    //     } else{
+    //         res.status(500).json('this time is not available.')        
+    //     }
 
-    } catch (error) {
-        console.log('Error in reservation creation:', error)
-        res.status(500).json('reservation creation error.')        
-    }
+    // } catch (error) {
+    //     console.log('Error in reservation creation:', error)
+    //     res.status(500).json('reservation creation error.')        
+    // }
 
 }

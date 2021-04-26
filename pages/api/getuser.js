@@ -7,6 +7,15 @@ const mongoose = require('mongoose')
 const UserSchema = require('../../mongo-models/user-model')
 const admin = require('firebase-admin')
 
+const { Pool } = require('pg')
+const pool = new Pool()
+// the pool will emit an error on behalf of any idle clients
+// it contains if a backend error or network partition happens
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err)
+  process.exit(-1)
+})
+
 // Initialize the cors middleware
 const cors = initMiddleware(
   // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
@@ -63,13 +72,33 @@ export default async(req, res) => {
 
         const user = await UserSchema.findOne({ firebaseId: uid }).exec()
 
-        res.status(200).json({
-            message: "getting user success",
-            user
-        })
+        let innerLogo
+
+        ;await (async () => {
+            const client = await pool.connect()
+            const postgresId = user.postgresId
+            try {
+                const resp = await client.query("SELECT encode(inner_logo, 'base64') FROM companies WHERE id = $1", 
+                    [postgresId]
+                )            
+                // console.log(resp)
+                innerLogo = resp.rows[0].encode
+                
+            } finally {
+                // Make sure to release the client before any error handling,
+                // just in case the error handling itself throws an error.
+                console.log('finally')
+                client.release()
+                return res.status(200).json({
+                    message: "getting user success",
+                    user,
+                    innerLogo
+                })
+            }
+        })().catch(err => res.status(500).json('get user error.'))
 
     } catch (error) {
         console.log('Error in getting an user:', error)
-        res.status(500).json('get user error.')        
+        return res.status(500).json('get user error.')        
     }
 }

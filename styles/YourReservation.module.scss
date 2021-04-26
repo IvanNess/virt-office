@@ -7,8 +7,7 @@
     }
     .reservation{
         display: flex;
-        justify-content: space-between;
-        width: 40%;
+        justify-content: flex-start;
         margin-top: 19px;
         .left{
             font: normal normal 900 16px/19px "Work Sans Black";
@@ -19,6 +18,7 @@
             font: normal normal 300 16px/19px "Work Sans Light";
             letter-spacing: 0px;
             color: #121109;
+            margin-left: 30px;
         }
     }
 }
