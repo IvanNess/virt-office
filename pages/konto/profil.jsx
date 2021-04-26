@@ -231,6 +231,7 @@ function Dane({auth, db}) {
     }
 
     async function logoChanged(info){
+        console.log('logo changed', info)
         // console.log('logo changed', logoRef.current.files)
         // const url = window.URL.createObjectURL(logoRef.current.files[0])
         // const res = await axios({
