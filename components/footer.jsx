@@ -24,9 +24,9 @@ const Footer = () => {
         <div className={styles.footer}>
             <div className={styles.wrapper}>
                 <div className={styles.column}>
-                    <div><Link href="/onas"><a><h2>o nas</h2></a></Link></div>
-                    <div><Link href="/ksiegowosc"><a><h2>księgowość</h2></a></Link></div>
-                    <div><Link href="/cennik"><a><h2 className={styles.last}>cennik</h2></a></Link></div>     
+                    {/* <div><Link href="/onas"><a><h2>o nas</h2></a></Link></div> */}
+                    <div><Link href="/cennik"><a><h2 >cennik</h2></a></Link></div>     
+                    <div><Link href="/ksiegowosc"><a><h2 className={styles.last}>księgowość</h2></a></Link></div>
                 </div>
                 <div className={styles.column}>
                     {/* <div className={styles.columnWrapper}>
@@ -71,7 +71,7 @@ const Footer = () => {
                             </div>
                             <div className={styles.textOne}>Działaj z dowolnego miejsca na świecie dzięki opcji biura wirtualnego.</div>
                             <div className={styles.textTwo}>Skontaktuj sie z nami: 
-                                <Link href="/"><a><span className={styles.bold}>{` zawodzie20@biuro.pl`}</span></a></Link>
+                                <Link href="/"><a><div className={styles.bold}>{` zawodzie20@biuro.pl`}</div></a></Link>
                             </div>
                         </div>
                         <div className={styles.bottom}>

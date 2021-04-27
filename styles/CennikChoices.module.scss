@@ -17,6 +17,7 @@
     width: 32%;
     // max-width: 400px;
     transition-duration: 0.3s;
+    position: relative;
     &:hover{
         border: 2px solid $main-color;
         transform: translateY(-15px);
@@ -26,6 +27,30 @@
     } 
 }
 
+.cennikBlock{
+    @include cennik-block();
+    &:hover{
+        border: $border;
+        border-width: 2px;
+        transform: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+}
+
+.cennikMainBlock{
+    @include cennik-block();
+    background-color: $main-color;
+    position: relative;
+    &:hover{
+        border: $border;
+        border-width: 2px;
+        transform: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+}
+
 .block{
     @include cennik-block();
 }
@@ -33,7 +58,6 @@
 .mainBlock{
     @include cennik-block();
     background-color: $main-color;
-    position: relative;
 }
 
 .selectedBlock{

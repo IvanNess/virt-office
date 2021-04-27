@@ -144,7 +144,10 @@
     font: normal normal 300 16px/24px "Work Sans Light";
     display: block;
     letter-spacing: 0.64px;
-    padding: 30.5px 45px 0 36.05px;
+    // padding: 30.5px 45px 0 36.05px;
+    padding-top: 15px;
+    padding-left: 28px;
+    padding-right: 45px;
     transition-duration: 0.4s;
     &:hover{
         // color: #ffffff;
@@ -166,6 +169,33 @@
   @media all and (max-width: 1300px){
     margin-right: 0px;
   }
+}
+
+.blockHeader{
+    position: relative;
+    margin-top: 40px;
+    margin-left: 28px;
+    // height: 88px;
+    padding-bottom: 15px;
+    font: normal normal 900 20px/24px "Work Sans Black";
+    letter-spacing: 0px;
+    color: $text-color;
+    text-transform: capitalize;
+    &::after{
+        content: "";
+        position: absolute;
+        background-color: $main-color;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        width: 70px;
+    }
+    // .blockHeaderFirst{
+    //     max-width: 240px;
+    // }
+    // .blockHeaderThird{
+    //     max-width: 343px;
+    // }
 }
 
 .blocksTwo{
@@ -199,11 +229,22 @@
 }
 
 .blockLarge{
-    .blockText{
-        padding: 45.5px 36px 0 35px;
-        font: normal normal 300 16px/24px "Work Sans Light";
-        letter-spacing: 0.64px;
-        color: $text-color;
+    // .blockText{
+    //     padding: 45.5px 36px 0 35px;
+    //     font: normal normal 300 16px/24px "Work Sans Light";
+    //     letter-spacing: 0.64px;
+    //     color: $text-color;
+    // }
+    width: 100%;
+    .blockLargeInner{
+        display: flex;
+        .left{
+            margin-right: 130px;
+            max-width: 395px;
+        }
+        .right{
+            max-width: 425px;
+        }
     }
 }
 
@@ -419,7 +460,7 @@
     .wfirmaText{
         text-align: center;
         font: normal normal 300 45px/77px "Work Sans Light";
-        max-width: 1112px;
+        max-width: 1152px;
         z-index: 1;
         h4{
             margin: 0;

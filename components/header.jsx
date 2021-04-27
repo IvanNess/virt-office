@@ -27,7 +27,7 @@ const Header = () => {
         <div className={styles.header}>
             <div className={styles.logo}>
                 <Link href="/"><a>
-                    <Logo scale={1.3}/>
+                    <Logo scale={1.0}/>
                 </a></Link>
             </div>
             <div className={styles.headerButtons}>

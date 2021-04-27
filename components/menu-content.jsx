@@ -67,7 +67,9 @@ const MenuContent = ({auth}) => {
         <div className={styles.menuContent} ref={ref}>
             <div className={styles.iconsWrapper}>
                 <Link href="/"><a>
-                    <Logo/>
+                    <div onClick={linkClicked}>
+                        <Logo/>
+                    </div>
                 </a></Link>
                 <div className={styles.icons}>
                     <Link href="/"><a><div><TwitterIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></div></a></Link>

@@ -67,7 +67,7 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
         <div className={styles.cennikChoices}>
             <div className={styles.blocks} style={{marginRight}}>
                 
-                <div className={selectedBlock===0 ? styles.selectedBlock : styles.block} 
+                <div className={router.pathname==='/cennik'? styles.cennikBlock: selectedBlock===0 ? styles.selectedBlock : styles.block} 
                     onClick={()=>selectBlock(0)}
                     style={{cursor: router.pathname==='/cennik'? 'auto': 'pointer'}}
                 >
@@ -91,13 +91,13 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                             - dostęp do sali konferencyjnej przez 2 godziny miesięcznie 
                             <br/>
                             <br/>
-                            Cena nie zawiera VAT
+                            Cena nie zawiera podatku VAT
 
                         </p>
                     </div>                    
                 </div>
 
-                <div className={selectedBlock===1 ? styles.selectedBlock : 
+                <div className={router.pathname==='/cennik'? styles.cennikMainBlock: selectedBlock===1 ? styles.selectedBlock : 
                     selectedBlock===null? styles.mainBlock: styles.block} 
                     onClick={()=>selectBlock(1)}
                     style={{cursor: router.pathname==='/cennik'? 'auto': 'pointer'}}
@@ -130,13 +130,13 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                             ))}
                             <br/>
                             <br/>
-                            Cena nie zawiera VAT
+                            Cena nie zawiera podatku VAT
                         </p>
                     </div>                    
                 </div>
 
                 <div 
-                    className={selectedBlock===2 ? styles.selectedBlock : styles.block} 
+                    className={router.pathname==='/cennik'? styles.cennikBlock: selectedBlock===2 ? styles.selectedBlock : styles.block} 
                     onClick={()=>selectBlock(2)}
                     style={{cursor: router.pathname==='/cennik'? 'auto': 'pointer'}}
                 >
@@ -157,7 +157,7 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                             - dostęp do sali konferencyjnej przez 10 godzin miesięcznie <br/>
                             - biuro rachunkowe <br/>
                             <br/>
-                            Cena nie zawiera VAT
+                            Cena nie zawiera podatku VAT
                         </p>
                     </div>                    
                 </div>

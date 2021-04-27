@@ -29,7 +29,7 @@ $block-height: 323px;
 }
 
 .block{
-    @include block(400px, 423px);
+    @include block(400px, 528px);
     border: 1px solid $main-color;
     transition-duration: 0.4s;
     &:hover{
@@ -47,7 +47,7 @@ $block-height: 323px;
 }
 
 .mainBlock{
-    @include block(400px, 423px);
+    @include block(400px, 528px);
     background-color: $main-color;
 }
 
@@ -57,8 +57,9 @@ $block-height: 323px;
 }
 
 .blockLarge{
-    @include block(692px, 262px);
-    margin-right: 16px;
+    @include block(100%, 262px);
+    // margin-right: 16px;
+    
 }
 
 .blockLargeNone{

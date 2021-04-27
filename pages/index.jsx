@@ -105,7 +105,7 @@ export default function Home({db, auth}) {
       </Billboard>
               
       <div className={styles.title}>
-        dlaczego warto wybrać adres z oferty <span className={styles.boldFont}>VIRTOFFICE</span>
+        dlaczego warto skorzystać z <span className={styles.boldFont}>VIRTOFFICE</span>
       </div>
 
       <div className={styles.blocks}>
@@ -116,22 +116,42 @@ export default function Home({db, auth}) {
         <div className={styles.fullBlockWrapper}>
           <div className={styles.blockWrapper}>
             <Block className='block' showMore={false}>
+              <div className={styles.blockHeader}>
+                <div className={styles.blockHeaderFirst}>
+                  Atrakcyjna Cena
+                </div>
+              </div>
               <div className={styles.blockText}>
                 Oferujemy wynajem adresu wraz z pakietem usług w atrakcyjnej cenie już od  
                 <span className={styles.boldText}> 55&nbsp;PLN miesięcznie.</span>
-                <br/>
-                <br/>
-                Wirtualne biuro, czyli wirtualny adres, w porównaniu z wynajmem konwencjonalnego biura, umożliwia optymalizację kosztów prowadzenia firmy. Dzięki temu, że możesz skomponować pakiet usług dostosowany do swoich potrzeb, płacisz za to, co jest Ci potrzebne.
+              </div>
+              <div className={styles.blockHeader}>
+                <div className={styles.blockHeaderFirst}>
+                  Optymalizacja Kosztów
+                </div>
+              </div>
+              <div className={styles.blockText}>
+                Wirtualne biuro, czyli wirtualny adres, w&nbsp;porównaniu z wynajmem konwencjonalnego biura, umożliwia optymalizację kosztów prowadzenia firmy. Dzięki temu, że możesz skomponować pakiet usług dostosowany do swoich potrzeb, płacisz za to, co jest Ci potrzebne.
               </div>
             </Block>
           </div>
           
           <div className={styles.blockWrapper}>
-            <Block className='block' showMore={true}>
+            <Block className='block' showMore={false}>
+              <div className={styles.blockHeader}>
+                <div className={styles.blockHeaderFirst}>
+                  Kompleksowa Oferta
+                </div>
+              </div>
               <div className={styles.blockText}>
                 Nasza oferta jest kompleksowa i dostosowana do rzeczywistych potrzeb przedsiębiorcy. 
-                <br/>
-                <br/>
+              </div>
+              <div className={styles.blockHeader}>
+                <div className={styles.blockHeaderFirst}>
+                  Obsługa Korespondencji
+                </div>
+              </div>
+              <div className={styles.blockText}>
                 Oprócz adresu uzyskujesz obsługę korespondencji, archiwizację dokumentów, dostęp do sali konferencyjne umożliwiający organizację spotkań z klientami. We współpracy z naszym partnerem wfirma.pl oferujemy również usługi księgowe.
               </div>
             </Block>
@@ -139,10 +159,20 @@ export default function Home({db, auth}) {
 
           <div className={styles.blockWrapper}>
             <Block className='block' showMore={false}>
+              <div className={styles.blockHeader}>
+                <div className={styles.blockHeaderFirst}>
+                  Możliwość Wykonania Wszystkich Czynności Zdalnie
+                </div>
+              </div>
               <div className={styles.blockText}>
                 Wszystkie formalności związane z wynajmem biura, czy sali konferencyjnej i korzystaniem z naszych pozostałych usług możesz zrealizować zdalnie. 
-                <br/>
-                <br/>
+              </div>
+              <div className={styles.blockHeader}>
+                <div className={styles.blockHeaderFirst}>
+                  Minimum Formalności
+                </div>
+              </div>
+              <div className={styles.blockText}>
                 Proces zawarcia umowy z nami zajmuje kilka minut, ponieważ szanujemy Twój czas i pieniądze. Poprzez stronę internetową lub aplikację korzystasz ze swojego wirtualnego biura z dowolnego miejsca i w dowolnym czasie.
               </div>
             </Block>   
@@ -269,9 +299,28 @@ export default function Home({db, auth}) {
             {/* <div className={styles.blockTitle}>
               On-linowa księgowość z <span className={styles.boldFont}>wfirma.pl</span>
             </div> */}
-            <div className={styles.blockText}>
-              Płać tylko za wykorzystane usługi – obsługę poczty, biuro wirtualne z pełnym pakietem usług czy dowolną inną opcję Sala konferencyjna to świetne miejsce do spotkań i prowadzenia negocjacji. Umożliwiamy Ci wynajem sali konferencyjnej na godziny.
-            </div>        
+            <div className={styles.blockLargeInner}>
+              <div className={styles.left}>
+                <div className={styles.blockHeader}>
+                  <div className={styles.blockHeaderFirst}>
+                    Płać tylko za wykorzystane usługi
+                  </div>
+                </div>
+                <div className={styles.blockText}>
+                  obsługę poczty, biuro wirtualne z pełnym pakietem usług czy dowolną inną opcję  
+                </div>
+              </div>
+              <div className={styles.right}>
+                <div className={styles.blockHeader}>
+                  <div className={styles.blockHeaderFirst}>
+                    Sala konferencyjna
+                  </div>
+                </div>
+                <div className={styles.blockText}>
+                  to świetne miejsce do spotkań i prowadzenia negocjacji. Umożliwiamy Ci wynajem sali konferencyjnej na godziny.
+                </div>   
+              </div>
+            </div>   
           </Block>
         </div>
                
