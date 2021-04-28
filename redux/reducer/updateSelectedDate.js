@@ -7,7 +7,7 @@ export const updateSelectedDate = (state, action)=>{
             day: moment(date).format('DD'),
             month: moment(date).format('MM'),
             year: moment(date).format('YYYY'),
-            raw: null
+            raw: new Date()
         }
     }
     switch(action.type){

@@ -54,6 +54,8 @@ export const setPayAfterRegister = (value) => async (dispatch) => dispatch({type
 
 export const setPackages = (value) => async (dispatch) => dispatch({type: "SET_PACKAGES", value})
 
+export const setLogo = (value) => async (dispatch) => dispatch({type: "SET_LOGO", value})
+
 export const logout = () => async (dispatch) => dispatch({type: "LOGOUT"})
 
 // import { Auth } from "aws-amplify"

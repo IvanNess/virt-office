@@ -17,7 +17,7 @@ const Calendar = ({db, auth}) => {
 
     const dispatch = useDispatch()
 
-    const selectedDate = useSelector(state=>state.selectedDate?.raw)
+    const selectedDate = useSelector(state=>{return (state.selectedDate?.raw || new Date())})
 
     const selectedHours = useSelector(state=>state.selectedHours)
 
@@ -102,6 +102,7 @@ const Calendar = ({db, auth}) => {
 
     const onChange = e=> {
         console.log(e)
+        console.log(new Date())
         console.log(+new Date(e))
         console.log(moment(e).format('DD MM YY'))
         dispatch(setSelectedDate(e))

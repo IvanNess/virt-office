@@ -189,6 +189,7 @@ function Dane({auth, db}) {
                     companyName: form.companyName.trim(),
                     companyNameChanged: form.companyName.trim() !== currentUser.companyName,
                     contactEmail: form.contactEmail.trim(),
+                    email: form.email.trim(),
                     contactPhone: form.contactPhone || '',
                     fullName: form.fullName.trim(),
                     username: form.username.trim(),
@@ -310,7 +311,7 @@ function Dane({auth, db}) {
                         </div>
                     :
                     <div className={styles.edit}>
-                        <Tooltip title="Logo" placement="left" trigger={['focus', 'hover']} color="#121109" mouseEnterDelay={0} mouseLeaveDelay={0}>
+                        {/* <Tooltip title="Logo" placement="left" trigger={['focus', 'hover']} color="#121109" mouseEnterDelay={0} mouseLeaveDelay={0}>
                             <Upload
                                 name="avatar"
                                 listType="picture-card"
@@ -322,7 +323,7 @@ function Dane({auth, db}) {
                             >
                                 {form.innerLogo ? <img src={`data:image/png;base64,${form.innerLogo}`} alt="avatar" className={styles.editLogo} /> : "Logo"}
                             </Upload>
-                        </Tooltip>
+                        </Tooltip> */}
 
                         <form onSubmit={submit}>
 

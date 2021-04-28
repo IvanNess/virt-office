@@ -341,6 +341,10 @@ function Hours({db, auth , outterReset}) {
         const id = e.target.dataset.id
         console.log('newUpdHours', newUpdHours, id)
 
+        if(startHour && startHour.id===id){
+            return resetUpdHours()
+        }
+
         const clickedHour = updHours.find(hour=>hour.id===id)
         const clickedHourIndex = updHours.findIndex(hour=>hour.id===id)
         console.log('clicked', clickedHour)
