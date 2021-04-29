@@ -62,6 +62,8 @@ export const logout = () => async (dispatch) => dispatch({type: "LOGOUT"})
 
 export const setReservedHoursUtilitiesProp = (prop, value)=> async (dispatch) => dispatch({type: "SET_RESERVED_HOURS_UTILITIES_PROP", prop, value})
 
+export const registerAndReserve = (registerAndReserve) => async (dispatch) => dispatch({type: "REGISTER_AND_RESERVE", registerAndReserve})
+
 // import { Auth } from "aws-amplify"
 // import { getUserByUsername, getUserByEmail, getOrders, getAdressByUsername } from "../utils/graphql-utils"
 

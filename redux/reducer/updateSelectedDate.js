@@ -8,7 +8,8 @@ export const updateSelectedDate = (state, action)=>{
             month: moment(date).format('MM'),
             year: moment(date).format('YYYY'),
             raw: new Date(),
-            reinitHours: true
+            reinitHours: true,
+            registerAndReserve: false
         }
     }
     switch(action.type){
@@ -24,6 +25,11 @@ export const updateSelectedDate = (state, action)=>{
             return {
                 ...state.selectedDate,
                 reinitHours: action.reinitHours || false
+            }
+        case "REGISTER_AND_RESERVE":
+            return {
+                ...state.selectedDate,
+                registerAndReserve: action.registerAndReserve || false
             }
         default:
             return state.selectedDate

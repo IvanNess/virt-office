@@ -2,10 +2,10 @@ import React, {useState} from 'react'
 
 import styles from '../../styles/AuthFormBoilerplate.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import { setSignupFormProp, setLoginFormProp, setShowAuth, formSubmitted, setPayAfterRegister } from '../../redux/actions'
+import { setSignupFormProp, setLoginFormProp, setShowAuth, formSubmitted, setPayAfterRegister, registerAndReserve } from '../../redux/actions'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import { packagePay } from '../../utilities'
+import { packagePay, reservationPay } from '../../utilities'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 import { Modal } from 'antd'
 import {LoadingOutlined} from '@ant-design/icons'
@@ -17,6 +17,9 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
     const calendarRedirect = useSelector(state=>state.calendarRedirect)
     const payAfterRegister = useSelector(state=>state.payAfterRegister)
     const hiringChoices = useSelector(state=>state.hiringChoices)
+    const selectedDate = useSelector(state=>state.selectedDate)
+    const startHour = useSelector(state=>state.reservedHoursUtilities.startHour)
+    const finishHour = useSelector(state=>state.reservedHoursUtilities.finishHour)
 
     const [btnDisabled, setBtnDisabled] = useState(false)
 
@@ -64,6 +67,11 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         //pay actions
                         console.log('pay action')
                         await packagePay({auth, hiringChoices})
+                        return
+                    }
+                    if(selectedDate.registerAndReserve){
+                        dispatch(registerAndReserve(false))
+                        await reservationPay({auth, selectedDate, startHour, finishHour})
                         return
                     }
                     if(calendarRedirect)

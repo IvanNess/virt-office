@@ -6,11 +6,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment'
 import { loadStripe } from "@stripe/stripe-js";
 
-import { addSelectedHour, removeSelectedHour, addReservedSession, addSelectedDate, getCashedReservedSessions, updateReservedSessions, setUserReservations, addReservation, setReservedHoursUtilitiesProp, editSelectedDate  } from '../redux/actions'
+import { addSelectedHour, removeSelectedHour, addReservedSession, addSelectedDate, getCashedReservedSessions, updateReservedSessions, setUserReservations, addReservation, setReservedHoursUtilitiesProp, editSelectedDate, setShowAuth, registerAndReserve  } from '../redux/actions'
 
 import firebase from 'firebase'
 import YourReservation from './your-reservation'
 import axios from 'axios'
+import { reservationPay } from '../utilities'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE);
 
@@ -72,11 +73,11 @@ function Hours({db, auth , outterReset}) {
             reservedSessions.forEach(session=>{
                 // console.log('session ', session.msStart <= hour.msTime, session.msFinish >= hour.msTime, 'hour time', hour.msTime)
                 if(session.msStart<= hour.msTime && session.msFinish >=hour.msTime){
-                    console.log('reserved', hour.msTime)
+                    // console.log('reserved', hour.msTime)
                     newUpdHours = updateHoursClassname(newUpdHours, hour.id, "reserved")
                     isReserved = true
                 } else if(hour.className==='init' && !isReserved ){
-                    console.log('free', hour.msTime)
+                    // console.log('free', hour.msTime)
                     newUpdHours = updateHoursClassname(newUpdHours, hour.id, "free")
                 }
             })
@@ -84,7 +85,7 @@ function Hours({db, auth , outterReset}) {
         for (let idx = 0; idx < newUpdHours.length; idx++) {
             try {
                 if(newUpdHours[idx].className==="reserved" && newUpdHours[idx-1].className==="free"){
-                    console.log('border')
+                    // console.log('border')
                     newUpdHours = updateHoursClassname(newUpdHours, newUpdHours[idx-1].id, "border")
                 }
             } catch (error) {
@@ -161,75 +162,12 @@ function Hours({db, auth , outterReset}) {
         setDisableConfirmBtn(true)
         console.log(startHour, finishHour)
         if(startHour && finishHour && startHour.id !== finishHour.id){
-            //check if this session is still available
-            try {
-
-                const token = await auth.currentUser.getIdToken()
-
-                const stripe = await stripePromise
-                console.log(process.env.NEXT_PUBLIC_STRIPE)
-                const response = await axios({
-                    url: "/api/reservationsession", 
-                    method: "POST",
-                    data: {
-                        token, 
-                        year: selectedDate.year, 
-                        month: selectedDate.month, 
-                        day: selectedDate.day, 
-                        startHour, 
-                        finishHour, 
-                        quantity: parseFloat(getBoardResult())
-                    }
-                }) 
-
-                const result = await stripe.redirectToCheckout({
-                    sessionId: response.data.sessionId
-                })
-
-                //stop here
-
-                // const data = await db.collection('reservedSessions')
-                //     .where('year', '==', selectedDate.year)
-                //     .where('month', '==', selectedDate.month)
-                //     .where('day', '==', selectedDate.day)
-                //     .get()
-                // console.log('sessions', data.docs)
-                // const sessions = data.docs.map(doc=>{
-                //     return doc.data()
-                // })
-                // const filtered = sessions.filter(session=>{
-                //     // console.log('session',
-                //     //     startHour.msTime <= session.finishHour.msTime,
-                //     //     finishHour.msTime >= session.finishHour.msTime,
-                //     //     finishHour.msTime >= session.startHour.msTime,
-                //     //     startHour.msTime <= session.startHour.msTime
-                //     // )
-                //     return (startHour.msTime <= session.finishHour.msTime && finishHour.msTime >= session.finishHour.msTime) ||
-                //         (finishHour.msTime >= session.startHour.msTime && startHour.msTime <= session.startHour.msTime)
-                // })
-                // console.log('sessions', sessions)
-                // if(filtered.length === 0){
-                //     //add session to firebase collection
-                //     const session = {
-                //         year: selectedDate.year,
-                //         month: selectedDate.month,
-                //         day: selectedDate.day,
-                //         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                //         startHour,
-                //         finishHour
-                //     }
-                //     const ref = await db.collection("reservedSessions").add(session)
-                //     console.log("ref", ref)
-                //     await ref.collection("privateReservedSessionsData").add({
-                //         userId: currentUser.userId
-                //     })  
-                //     //update all data
-                //     dispatch(updateReservedSessions([...sessions, session]))
-                //     dispatch(addReservation(session))
-                //     // getPrivateReservedSessionsData()        
-                // }
-            } catch (error) {
-                console.log('error', error)
+            if(currentUser){
+                await reservationPay({auth, selectedDate, startHour, finishHour})
+            } else{
+                dispatch(registerAndReserve(true))
+                dispatch(setShowAuth({show: true, isLogin: true}))
+                // document.body.style.overflow = "hidden"
             }
         }
         setDisableConfirmBtn(false)
@@ -334,20 +272,20 @@ function Hours({db, auth , outterReset}) {
                 // getPrivateReservedSessionsData()
             }
         }
-    }, [currentUser, selectedDate])
+    }, [currentUser, selectedDate, reservedSessions])
 
-    useEffect(()=>{
-        if(selectedDate.reinitHours){
-            console.log('new reserved sessions')
-            const newUpdHours = initUpdHours()
-            reinitUpdHours(newUpdHours)
-            // setStartHour(null)
-            dispatch(setReservedHoursUtilitiesProp('startHour', null))
-            // setFinishHour(null) 
-            dispatch(setReservedHoursUtilitiesProp('finishHour', null))
-        }
+    // useEffect(()=>{
+    //     // if(selectedDate.reinitHours){
+    //         console.log('new reserved sessions')
+    //         const newUpdHours = initUpdHours()
+    //         reinitUpdHours(newUpdHours)
+    //         // setStartHour(null)
+    //         // dispatch(setReservedHoursUtilitiesProp('startHour', null))
+    //         // setFinishHour(null) 
+    //         // dispatch(setReservedHoursUtilitiesProp('finishHour', null))
+    //     // }
      
-    }, [reservedSessions, selectedDate])
+    // }, [reservedSessions])
 
     const onClick = (e)=>{
 
@@ -420,6 +358,10 @@ function Hours({db, auth , outterReset}) {
                 }
                 if(clickedHourIndex < idx && newUpdHours[idx].className==="border" && !isReservedMet){
                     newUpdHours = updateHoursClassname(newUpdHours, newUpdHours[idx].id, 'possible')
+                    continue
+                }
+                if(clickedHourIndex < idx && newUpdHours[idx].className==="border" && isReservedMet){
+                    newUpdHours = updateHoursClassname(newUpdHours, newUpdHours[idx].id, 'noaccess')
                     continue
                 }
                 if(clickedHourIndex > idx && newUpdHours[idx].className==="border" ){

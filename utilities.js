@@ -106,3 +106,35 @@ export const updatePackagePay = async ({ auth, pakietTitle, pakietName, hiredPer
         console.log('package pay error', err)
     }
 }
+
+export const reservationPay = async ({auth, selectedDate, startHour, finishHour})=>{
+    try {
+
+        const token = await auth.currentUser.getIdToken()
+
+        const stripe = await stripePromise
+        console.log(process.env.NEXT_PUBLIC_STRIPE)
+        const msDuration = finishHour.msTime - startHour.msTime
+        const hours = msDuration / 1000 / 60 / 60
+        const response = await axios({
+            url: "/api/reservationsession", 
+            method: "POST",
+            data: {
+                token, 
+                year: selectedDate.year, 
+                month: selectedDate.month, 
+                day: selectedDate.day, 
+                startHour: startHour, 
+                finishHour: finishHour, 
+                quantity: hours
+            }
+        }) 
+
+        const result = await stripe.redirectToCheckout({
+            sessionId: response.data.sessionId
+        })
+
+    } catch (error) {
+        console.log('error', error)
+    }
+}

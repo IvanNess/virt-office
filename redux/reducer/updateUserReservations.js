@@ -2,12 +2,12 @@ export const updateUserReservations = (state, action)=>{
     if(state===undefined){
         return null
     }
-    console.log('action', action)
+    // console.log('action', action)
 
     switch(action.type){
         
         case "SET_USER_RESERVATIONS":
-            console.log('SET_USER_RESERVATIONS', action.reservations)
+            // console.log('SET_USER_RESERVATIONS', action.reservations)
             return action.reservations
         case "ADD_RESERVATION":
             // console.log("ADD_RESERVED_SESSIONS")

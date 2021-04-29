@@ -30,7 +30,7 @@ export const updateReservedSessions = (state, action)=>{
             // }
         ]
     }
-    console.log('action', action)
+    // console.log('action', action)
     const sessions = action.sessions?.map(session=>({
         year: session.year,
         month: session.month,
