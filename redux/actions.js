@@ -6,7 +6,9 @@ export const addSelectedHour = (id)=> async (dispatch)=>dispatch({type: 'ADD_SEL
 
 export const removeSelectedHour = (idx)=> async (dispatch)=>dispatch({type: 'REMOVE_SELECTED_HOUR', idx})
 
-export const setSelectedDate = (date)=> async (dispatch)=>dispatch({type: 'SET_SELECTED_DATE', date})
+export const setSelectedDate = (date, reinitHours)=> async (dispatch)=>dispatch({type: 'SET_SELECTED_DATE', date, reinitHours})
+
+export const editSelectedDate = (reinitHours)=> async (dispatch)=>dispatch({type: 'EDIT_SELECTED_DATE', reinitHours})
 
 export const setCurrentUser = (user)=> async (dispatch)=>dispatch({type: 'SET_CURRENT_USER', user})
 
@@ -57,6 +59,8 @@ export const setPackages = (value) => async (dispatch) => dispatch({type: "SET_P
 export const setLogo = (value) => async (dispatch) => dispatch({type: "SET_LOGO", value})
 
 export const logout = () => async (dispatch) => dispatch({type: "LOGOUT"})
+
+export const setReservedHoursUtilitiesProp = (prop, value)=> async (dispatch) => dispatch({type: "SET_RESERVED_HOURS_UTILITIES_PROP", prop, value})
 
 // import { Auth } from "aws-amplify"
 // import { getUserByUsername, getUserByEmail, getOrders, getAdressByUsername } from "../utils/graphql-utils"

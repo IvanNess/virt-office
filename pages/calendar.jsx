@@ -105,7 +105,7 @@ const Calendar = ({db, auth}) => {
         console.log(new Date())
         console.log(+new Date(e))
         console.log(moment(e).format('DD MM YY'))
-        dispatch(setSelectedDate(e))
+        dispatch(setSelectedDate(e, true))
         setHoursReset(hoursReset=>hoursReset+1)
     }
 

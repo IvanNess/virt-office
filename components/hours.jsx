@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment'
 import { loadStripe } from "@stripe/stripe-js";
 
-import { addSelectedHour, removeSelectedHour, addReservedSession, addSelectedDate, getCashedReservedSessions, updateReservedSessions, setUserReservations, addReservation  } from '../redux/actions'
+import { addSelectedHour, removeSelectedHour, addReservedSession, addSelectedDate, getCashedReservedSessions, updateReservedSessions, setUserReservations, addReservation, setReservedHoursUtilitiesProp, editSelectedDate  } from '../redux/actions'
 
 import firebase from 'firebase'
 import YourReservation from './your-reservation'
@@ -25,13 +25,18 @@ function Hours({db, auth , outterReset}) {
 
     const currentUser = useSelector(state=>state.currentUser)
 
-    const [startHour, setStartHour] = useState(null)
-    const [finishHour, setFinishHour] = useState(null)
+    // const [startHour, setStartHour] = useState(null)
+    const startHour = useSelector(state=>state.reservedHoursUtilities.startHour)
+    const finishHour = useSelector(state=>state.reservedHoursUtilities.finishHour)
+    // const [finishHour, setFinishHour] = useState(null)
 
     const [middleHours, setMiddleHours] = useState([])
 
-    const [updHours, setUpdHours] = useState([])
-    const [isUpdHoursInited, setIsUpdHoursInited] = useState(false)
+    // const [updHours, setUpdHours] = useState([])
+    const updHours = useSelector(state=>state.reservedHoursUtilities.updHours)
+
+    // const [isUpdHoursInited, setIsUpdHoursInited] = useState(false)
+    const isUpdHoursInited = useSelector(state=>state.reservedHoursUtilities.isUpdHoursInited)
 
     const [isStartHour, setIsStartHour] = useState(false)
 
@@ -51,7 +56,8 @@ function Hours({db, auth , outterReset}) {
                 className: dateNow + 1*60*60*1000 - msTime <= 0? 'init': 'past'
             }
         })
-        setUpdHours(updHours)
+        // setUpdHours(updHours)
+        dispatch(setReservedHoursUtilitiesProp('updHours', updHours))
         return updHours
     }
 
@@ -85,7 +91,8 @@ function Hours({db, auth , outterReset}) {
                 
             }
         }
-        setUpdHours(newUpdHours)
+        // setUpdHours(newUpdHours)
+        dispatch(setReservedHoursUtilitiesProp('updHours', newUpdHours))
     }
 
     useEffect(()=>{
@@ -94,8 +101,10 @@ function Hours({db, auth , outterReset}) {
             initUpdHours()
         }
         if(updHours.length > 0 && !isUpdHoursInited){
+            console.log('reinit updhours')
             reinitUpdHours(updHours)
-            setIsUpdHoursInited(true)
+            // setIsUpdHoursInited(true)
+            dispatch(setReservedHoursUtilitiesProp('isUpdHoursInited', true))
         }
     }, [updHours, isUpdHoursInited])
 
@@ -131,9 +140,12 @@ function Hours({db, auth , outterReset}) {
                 
             }
         }  
-        setStartHour(null)
-        setFinishHour(null) 
-        setUpdHours(newUpdHours)     
+        // setStartHour(null)
+        dispatch(setReservedHoursUtilitiesProp('startHour', null))
+        // setFinishHour(null) 
+        dispatch(setReservedHoursUtilitiesProp('finishHour', null))
+        // setUpdHours(newUpdHours)  
+        dispatch(setReservedHoursUtilitiesProp('updHours', newUpdHours))   
     }
 
     useEffect(()=>{
@@ -295,7 +307,7 @@ function Hours({db, auth , outterReset}) {
         console.log('hours current user', currentUser)
         console.log('selected date', selectedDate)
         // if(currentUser && selectedDate){ getting reservations for 'user is required' case
-        if(selectedDate){
+        if(selectedDate && selectedDate.reinitHours){
             const date = `${moment(selectedDate.raw).format('YYYY-MM-DD')}`
             
             const isThereArr = selectedDates.filter(selected=>selected===date)
@@ -306,8 +318,10 @@ function Hours({db, auth , outterReset}) {
                 //redux don't see changes in reversed sessions, so useEffect don't work out and we need to call all functions ourselves               
                 const newUpdHours = initUpdHours()
                 reinitUpdHours(newUpdHours)
-                setStartHour(null)
-                setFinishHour(null)  
+                // setStartHour(null)
+                dispatch(setReservedHoursUtilitiesProp('startHour', null))
+                // setFinishHour(null)  
+                dispatch(setReservedHoursUtilitiesProp('finishHour', null))
                 // getPrivateReservedSessionsData()  
             } else{
                 console.log('date', date)
@@ -323,14 +337,21 @@ function Hours({db, auth , outterReset}) {
     }, [currentUser, selectedDate])
 
     useEffect(()=>{
-        console.log('new reserved sessions')
-        const newUpdHours = initUpdHours()
-        reinitUpdHours(newUpdHours)
-        setStartHour(null)
-        setFinishHour(null)     
-    }, [reservedSessions])
+        if(selectedDate.reinitHours){
+            console.log('new reserved sessions')
+            const newUpdHours = initUpdHours()
+            reinitUpdHours(newUpdHours)
+            // setStartHour(null)
+            dispatch(setReservedHoursUtilitiesProp('startHour', null))
+            // setFinishHour(null) 
+            dispatch(setReservedHoursUtilitiesProp('finishHour', null))
+        }
+     
+    }, [reservedSessions, selectedDate])
 
     const onClick = (e)=>{
+
+        dispatch(editSelectedDate(false))
 
         let newUpdHours = [...updHours]
 
@@ -361,16 +382,19 @@ function Hours({db, auth , outterReset}) {
 
         let isReservedMet = false
         if(!startHour){
-            setStartHour(updHours.find(hour=>hour.id===id))
+            // setStartHour(updHours.find(hour=>hour.id===id))
+            dispatch(setReservedHoursUtilitiesProp('startHour', updHours.find(hour=>hour.id===id)))
             // newUpdHours = updateHoursClassname(newUpdHours, id, 'start')
         }
         if(startHour && !finishHour){
-            setFinishHour(updHours.find(hour=>hour.id===id))
+            // setFinishHour(updHours.find(hour=>hour.id===id))
+            dispatch(setReservedHoursUtilitiesProp('finishHour', updHours.find(hour=>hour.id===id)))
             // newUpdHours = updateHoursClassname(newUpdHours, id, 'finish')
         }
 
         if(startHour){
-            setFinishHour(updHours.find(hour=>hour.id===id))
+            // setFinishHour(updHours.find(hour=>hour.id===id))
+            dispatch(setReservedHoursUtilitiesProp('finishHour', updHours.find(hour=>hour.id===id)))
         }
 
         for (let idx = 0; idx < updHours.length; idx++) {
@@ -512,7 +536,8 @@ function Hours({db, auth , outterReset}) {
         //     }
         // }
 
-        setUpdHours(newUpdHours)
+        // setUpdHours(newUpdHours)
+        dispatch(setReservedHoursUtilitiesProp('updHours', newUpdHours))   
 
         // console.log(e.target.dataset.id)
         // const selectedIdx = selectedHours.findIndex(hour=>{
