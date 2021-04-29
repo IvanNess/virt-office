@@ -47,6 +47,8 @@ export default async(req, res) => {
 
     const {token, year, month, day} = req.body
 
+    console.log('getreservations', year, month, day)
+
     try {
         admin.initializeApp({
             credential: admin.credential.cert(serviceAccount)
@@ -59,12 +61,13 @@ export default async(req, res) => {
 
     try {
 
-        const decodedToken = await admin.auth().verifyIdToken(token)
-        const uid = decodedToken.uid
+        // const decodedToken = await admin.auth().verifyIdToken(token)
+        // const uid = decodedToken.uid
 
-        const user = await UserSchema.findOne({ firebaseId: uid }).exec()
+        // const user = await UserSchema.findOne({ firebaseId: uid }).exec()
 
         const dayReservations = await ReservationSchema.find({year, month, day, isCanceled: false}).exec()
+
 
         const updated =  dayReservations.map(reservation=>({...reservation, 
             userId: undefined,

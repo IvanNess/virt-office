@@ -227,13 +227,13 @@ function Hours({db, auth , outterReset}) {
 
         try {
 
-            const token = await auth.currentUser.getIdToken()
+            // const token = await auth.currentUser.getIdToken()
 
             const response = await axios({
                 url: "/api/getreservations",
                 method: "POST",
                 data:{
-                    token, day: selectedDate.day, month: selectedDate.month, year: selectedDate.year
+                    day: selectedDate.day, month: selectedDate.month, year: selectedDate.year
                 }
             })
 
@@ -293,7 +293,9 @@ function Hours({db, auth , outterReset}) {
 
     useEffect(()=>{
         console.log('hours current user', currentUser)
-        if(currentUser && selectedDate){
+        console.log('selected date', selectedDate)
+        // if(currentUser && selectedDate){ getting reservations for 'user is required' case
+        if(selectedDate){
             const date = `${moment(selectedDate.raw).format('YYYY-MM-DD')}`
             
             const isThereArr = selectedDates.filter(selected=>selected===date)
@@ -315,7 +317,7 @@ function Hours({db, auth , outterReset}) {
             }
             if(!userReservations){
                 console.log('NO USER RESERVATIONS', userReservations)
-                getPrivateReservedSessionsData()
+                // getPrivateReservedSessionsData()
             }
         }
     }, [currentUser, selectedDate])
@@ -627,11 +629,11 @@ function Hours({db, auth , outterReset}) {
                 ))}
             </div> 
             <div classname={styles.btns1}>
-                <button className={styles.reserveBtn} onClick={reserve} disabled={disableConfirmBtn}>Confirm</button>
-                <button className={styles.cancelBtn} onClick={resetUpdHours}>Cancel</button>
+                <button className={styles.reserveBtn} onClick={reserve} disabled={disableConfirmBtn}>zarezerwuj</button>
+                <button className={styles.cancelBtn} onClick={resetUpdHours}>Anuluj</button>
             </div>
             
-            <YourReservation/>
+            {/* <YourReservation/> */}
         </div>
         
     )

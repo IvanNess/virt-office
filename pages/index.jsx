@@ -272,7 +272,7 @@ export default function Home({db, auth}) {
       </div>
 
       <div className={styles.homePageCalendar}>
-        <HomePageCalendar db={db} auth={auth}/>
+        <Calendar db={db} auth={auth}/>
       </div>
       
 
