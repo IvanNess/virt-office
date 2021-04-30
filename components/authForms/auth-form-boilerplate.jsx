@@ -70,7 +70,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         return
                     }
                     if(selectedDate.registerAndReserve){
-                        dispatch(registerAndReserve(false))
+                        // dispatch(registerAndReserve(false))
                         await reservationPay({auth, selectedDate, startHour, finishHour})
                         return
                     }

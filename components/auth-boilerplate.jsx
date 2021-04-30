@@ -6,7 +6,7 @@ import SignupFormOne from './authForms/signup-form-one'
 import { useSelector, useDispatch } from 'react-redux'
 import SignupFormTwo from './authForms/signup-form-two'
 import SignupFormThree from './authForms/signup-form-three'
-import { setShowAuth, setCurrentUser, setCalendarRedirect, setPayAfterRegister } from '../redux/actions'
+import { setShowAuth, setCurrentUser, setCalendarRedirect, setPayAfterRegister, registerAndReserve } from '../redux/actions'
 import Link from 'next/link'
 import { useClickOutside } from 'react-click-outside-hook'
 
@@ -16,6 +16,7 @@ function AuthBoilerplate({db, auth}) {
     const calendarRedirect = useSelector(state=>state.calendarRedirect)
     const showAuth = useSelector(state=>state.showAuth)
     const payAfterRegister = useSelector(state=>state.payAfterRegister)
+    const reserveBtnDisabled = useSelector(state=>state.selectedDate.registerAndReserve)
 
     const dispatch = useDispatch()
 
@@ -57,6 +58,9 @@ function AuthBoilerplate({db, auth}) {
         if(payAfterRegister){
             dispatch(setPayAfterRegister(false))
         }
+        if(reserveBtnDisabled){
+            dispatch(registerAndReserve(false))
+        }
     }
 
     function clickOutside(){
@@ -65,6 +69,9 @@ function AuthBoilerplate({db, auth}) {
         body.style.overflow = "auto"
         if(payAfterRegister){
             dispatch(setPayAfterRegister(false))
+        }
+        if(reserveBtnDisabled){
+            dispatch(registerAndReserve(false))
         }
     }
 

@@ -10,12 +10,34 @@
     width: 96px;
 }
 
+.hoursWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .hour{
     @include hour();
 }
 
+.price{
+    display: flex;
+    align-items: baseline;
+    .title{
+        @include blockText();
+        padding-top: 0;
+        padding-right: 0;
+    }
+    .result{
+        @include blockTitle();
+        padding-top: 0;
+        padding-left: 8px;
+    }
+}
+
 .hours{
     display: flex;
+    margin-top: 10px;
     width: 390px;
     flex-wrap: wrap;
     color: #121109;
@@ -79,11 +101,12 @@
         // background-color: tomato;
         // color: rgba(0, 0, 0, 0.38);
         color: $text-color;
-    }
+    }  
 }
 
 .board{
     position: relative;
+    margin-top: 25px;
 }
 
 .boardString{
@@ -95,7 +118,7 @@
     color: #121109;
     height: 20px;
     .boardResult{    
-        padding-right: 215px;
+        padding-right: 35px;
     }
     .homePageBoardResult{
         padding-right: 35px;
@@ -115,13 +138,31 @@
 .reserveBtn{
     @include btn();
     background: $main-color 0% 0% no-repeat padding-box;
-    // color: #FFFFFF;
+    color: #FFFFFF;
+    transition-duration: 0.4s;
+    &:hover{
+        background-color: white;
+        color: $main-color;
+        border: 2px solid $main-color;
+    }
+    &:disabled{
+        cursor: auto;
+        color: white;
+        border: 2px solid white;
+        background-color: $main-color;
+    }
 }
 
 .cancelBtn{
     @include btn();
     background: #121109 0% 0% no-repeat padding-box;
     color: #FFFFFF;
+    transition-duration: 0.4s;
+    &:hover{
+        background-color: white;
+        border: 2px solid red;
+        color: $text-color;
+    }
 }
 
 .sprawdzBtn{
@@ -155,7 +196,8 @@
 .btns{
     display: flex;
     flex-direction: column;
-}
+    margin-bottom: 80px;
+}  
 
 
 

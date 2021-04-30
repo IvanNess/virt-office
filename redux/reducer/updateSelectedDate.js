@@ -15,6 +15,7 @@ export const updateSelectedDate = (state, action)=>{
     switch(action.type){
         case "SET_SELECTED_DATE":
             return {
+                ...state.selectedDate,
                 day: moment(action.date).format('DD'),
                 month: moment(action.date).format('MM'),
                 year: moment(action.date).format('YYYY'),

@@ -12,6 +12,7 @@ import firebase from 'firebase'
 import YourReservation from './your-reservation'
 import axios from 'axios'
 import { reservationPay } from '../utilities'
+import { LoadingOutlined } from '@ant-design/icons'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE);
 
@@ -23,6 +24,7 @@ function Hours({db, auth , outterReset}) {
     const selectedDates = useSelector(state => state.selectedDates)
     const reservedSessions = useSelector(state => state.reservedSessions)
     const userReservations = useSelector(state => state.userReservations)
+    const showAuth = useSelector(state=>state.showAuth)
 
     const currentUser = useSelector(state=>state.currentUser)
 
@@ -41,7 +43,7 @@ function Hours({db, auth , outterReset}) {
 
     const [isStartHour, setIsStartHour] = useState(false)
 
-    const [disableConfirmBtn, setDisableConfirmBtn] = useState(false)
+    const disableConfirmBtn = useSelector(state=>state.selectedDate.registerAndReserve)
 
     function initUpdHours(){
         console.log('init hours')
@@ -159,19 +161,28 @@ function Hours({db, auth , outterReset}) {
 
     const reserve = async (e)=>{
         e.preventDefault()
-        setDisableConfirmBtn(true)
+        // setDisableConfirmBtn(true)
         console.log(startHour, finishHour)
         if(startHour && finishHour && startHour.id !== finishHour.id){
+            dispatch(registerAndReserve(true))
             if(currentUser){
                 await reservationPay({auth, selectedDate, startHour, finishHour})
             } else{
-                dispatch(registerAndReserve(true))
+                // dispatch(registerAndReserve(true))
                 dispatch(setShowAuth({show: true, isLogin: true}))
                 // document.body.style.overflow = "hidden"
             }
         }
-        setDisableConfirmBtn(false)
+        // setDisableConfirmBtn(false)
     }
+
+    useEffect(()=>{
+        if(showAuth.show){
+            document.body.style.overflow = "hidden"
+        } else{
+            document.body.style.overflow = "auto"
+        }
+    }, [showAuth])
 
     async function getReservedSesions(){
 
@@ -201,7 +212,7 @@ function Hours({db, auth , outterReset}) {
             // })
             // // console.log('sessions', sessions)
             dispatch(addReservedSession(reservations))
-
+            return
         } catch (error) {
             console.log('error', error)
         }
@@ -242,34 +253,38 @@ function Hours({db, auth , outterReset}) {
     }
 
     useEffect(()=>{
-        console.log('hours current user', currentUser)
-        console.log('selected date', selectedDate)
-        // if(currentUser && selectedDate){ getting reservations for 'user is required' case
-        if(selectedDate && selectedDate.reinitHours){
-            const date = `${moment(selectedDate.raw).format('YYYY-MM-DD')}`
-            
-            const isThereArr = selectedDates.filter(selected=>selected===date)
-            console.log('isThereArr', isThereArr)
-            if(isThereArr.length > 0){
-                //get cashed data
-                dispatch(getCashedReservedSessions())
-                //redux don't see changes in reversed sessions, so useEffect don't work out and we need to call all functions ourselves               
-                const newUpdHours = initUpdHours()
-                reinitUpdHours(newUpdHours)
-                // setStartHour(null)
-                dispatch(setReservedHoursUtilitiesProp('startHour', null))
-                // setFinishHour(null)  
-                dispatch(setReservedHoursUtilitiesProp('finishHour', null))
-                // getPrivateReservedSessionsData()  
-            } else{
-                console.log('date', date)
-                initUpdHours() //loading
-                getReservedSesions()
-                dispatch(addSelectedDate(date))
-            }
-            if(!userReservations){
-                console.log('NO USER RESERVATIONS', userReservations)
-                // getPrivateReservedSessionsData()
+        asyncUseEffect()
+
+        async function asyncUseEffect(){
+            console.log('hours current user', currentUser)
+            console.log('selected date', selectedDate)
+            // if(currentUser && selectedDate){ getting reservations for 'user is required' case
+            if(selectedDate && selectedDate.reinitHours){
+                const date = `${moment(selectedDate.raw).format('YYYY-MM-DD')}`
+                
+                const isThereArr = selectedDates.filter(selected=>selected===date)
+                console.log('isThereArr', isThereArr)
+                if(isThereArr.length > 0){
+                    //get cashed data
+                    dispatch(getCashedReservedSessions())
+                    //redux don't see changes in reversed sessions, so useEffect don't work out and we need to call all functions ourselves               
+                    const newUpdHours = initUpdHours()
+                    reinitUpdHours(newUpdHours)
+                    // setStartHour(null)
+                    dispatch(setReservedHoursUtilitiesProp('startHour', null))
+                    // setFinishHour(null)  
+                    dispatch(setReservedHoursUtilitiesProp('finishHour', null))
+                    // getPrivateReservedSessionsData()  
+                } else{
+                    console.log('date', date)
+                    initUpdHours() //loading
+                    await getReservedSesions()
+                    dispatch(addSelectedDate(date))
+                }
+                if(!userReservations){
+                    console.log('NO USER RESERVATIONS', userReservations)
+                    // getPrivateReservedSessionsData()
+                }
             }
         }
     }, [currentUser, selectedDate, reservedSessions])
@@ -576,29 +591,48 @@ function Hours({db, auth , outterReset}) {
         return ''
     }
 
+    function getPriceResult(){
+        const hourPrice = 100
+        if(startHour && finishHour && startHour.title !== finishHour.title){
+            const msDuration = finishHour.msTime - startHour.msTime
+            const hours = msDuration / 1000 / 60 / 60
+            return hours * hourPrice
+        }
+        return ''
+    }
+
     return (
         <div className={styles.hoursWrapper}>
-            <div className={styles.board}>
-                <div className={styles.boardString}>
-                    <div>{getBoardString()}</div>
-                    <div className={styles.boardResult}>{getBoardResult()}</div>
+            <div className={styles.top}>
+                <div className={styles.board}>
+                    <div className={styles.boardString}>
+                        <div>{getBoardString()}</div>
+                        <div className={styles.boardResult}>{getBoardResult()}</div>
+                    </div>
                 </div>
+                <div className={styles.hours}>
+                    {updHours && updHours.map(hour=>(
+                        <div key={hour.id}  className={styles[hour.className]} onClick={onClick}>
+                            <div  
+                                className={styles.hour} data-id={hour.id}
+                            >
+                                {hour.title}
+                            </div>  
+                        </div>              
+                    ))}
+                </div>  
             </div>
-            <div className={styles.hours}>
-                {updHours && updHours.map(hour=>(
-                    <div key={hour.id}  className={styles[hour.className]} onClick={onClick}>
-                        <div  
-                            className={styles.hour} data-id={hour.id}
-                        >
-                            {hour.title}
-                        </div>  
-                    </div>              
-                ))}
-            </div> 
-            <div classname={styles.btns1}>
-                <button className={styles.reserveBtn} onClick={reserve} disabled={disableConfirmBtn}>zarezerwuj</button>
-                <button className={styles.cancelBtn} onClick={resetUpdHours}>Anuluj</button>
+            <div className={styles.bottom}>
+                {getPriceResult() > 0 && <div className={styles.price}>
+                    <div className={styles.title}>Cena:</div>
+                    <div className={styles.result}>{` ${getPriceResult()}zł netto`}</div>
+                </div>}
+                <div className={styles.btns}>
+                    <button className={styles.reserveBtn} onClick={reserve} disabled={disableConfirmBtn}>{ disableConfirmBtn ?<LoadingOutlined style={{color: "black"}}/> : 'zarezerwuj'}</button>
+                    <button className={styles.cancelBtn} onClick={resetUpdHours}>Anuluj</button>
+                </div> 
             </div>
+            
             
             {/* <YourReservation/> */}
         </div>
