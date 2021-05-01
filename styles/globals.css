@@ -249,3 +249,10 @@ option[value="PL"], option[value="UA"], option[value="RU"], option[value="BY"]{
   /* color: #121109 !important; */
 }
 
+/* ant-d upload */
+.ant-upload.ant-upload-select.ant-upload-select-picture-card{
+  width: 200px;
+  height: 200px;
+  margin-bottom: 0;
+}
+

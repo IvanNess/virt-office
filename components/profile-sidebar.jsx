@@ -42,6 +42,7 @@ function ProfileSidebar({auth, db}) {
                 <div><Link href="/konto/profil"><a>&nbsp;&nbsp;&nbsp; — Płatności</a></Link></div>
                 <div><Link href="/konto/rozliczenia-faktury"><a>&nbsp;&nbsp;&nbsp; — Faktury</a></Link></div> */}
                 <div className={router.pathname==="/konto/rezerwacja"? styles.active: ""}><Link href="/konto/rezerwacja"><a>4. Rezerwacja biura</a></Link></div>
+                <div className={router.pathname==="/konto/moje-rezerwacje"? styles.active: ""}><Link href="/konto/moje-rezerwacje"><a>&nbsp;&nbsp;&nbsp; — Moje Rezerwacje</a></Link></div>
             </div>
             <div className={styles.buttonInputWrapper}>
                 {currentUser && <input className={styles.buttonInput} type="button" value="WYLOGUJ" onClick={logout} disabled={!currentUser}/>}

@@ -23,7 +23,7 @@ function Hours({db, auth , outterReset}) {
     const selectedDate = useSelector(state => state.selectedDate)
     const selectedDates = useSelector(state => state.selectedDates)
     const reservedSessions = useSelector(state => state.reservedSessions)
-    const userReservations = useSelector(state => state.userReservations)
+    // const userReservations = useSelector(state => state.userReservations)
     const showAuth = useSelector(state=>state.showAuth)
 
     const currentUser = useSelector(state=>state.currentUser)
@@ -218,39 +218,39 @@ function Hours({db, auth , outterReset}) {
         }
     }
 
-    async function getPrivateReservedSessionsData(){
-        // console.log('privateReservedSessionsData', currentUser.email)
-        try {
+    // async function getPrivateReservedSessionsData(){
+    //     // console.log('privateReservedSessionsData', currentUser.email)
+    //     try {
 
-            const token = await auth.currentUser.getIdToken()
+    //         const token = await auth.currentUser.getIdToken()
 
-            const response = await axios({
-                url: "/api/getuserreservations",
-                method: "POST",
-                data:{ token }
-            })
+    //         const response = await axios({
+    //             url: "/api/getuserreservations",
+    //             method: "POST",
+    //             data:{ token }
+    //         })
 
-            const reservations = response.data.reservations
+    //         const reservations = response.data.reservations
 
-            // const data  = await db.collectionGroup('privateReservedSessionsData')
-            //     .where("userId", "==", currentUser.userId)
-            //     .get()
-            // console.log('privateReservedSessionData', data)
-            // let reservations = []
-            // const promises = data.docs.map(doc=>{
-            //     return doc.ref.parent.parent.get()
-            // })
-            // const values = await Promise.all(promises)
-            // values.forEach(value=>{
-            //     reservations = [...reservations, value.data()]
-            // })
-            // // console.log('reservations', reservations)
-            dispatch(setUserReservations(reservations))
-            // console.log('collections', collections)
-        } catch (error) {
-            console.log('error', error)
-        }
-    }
+    //         // const data  = await db.collectionGroup('privateReservedSessionsData')
+    //         //     .where("userId", "==", currentUser.userId)
+    //         //     .get()
+    //         // console.log('privateReservedSessionData', data)
+    //         // let reservations = []
+    //         // const promises = data.docs.map(doc=>{
+    //         //     return doc.ref.parent.parent.get()
+    //         // })
+    //         // const values = await Promise.all(promises)
+    //         // values.forEach(value=>{
+    //         //     reservations = [...reservations, value.data()]
+    //         // })
+    //         // // console.log('reservations', reservations)
+    //         dispatch(setUserReservations(reservations))
+    //         // console.log('collections', collections)
+    //     } catch (error) {
+    //         console.log('error', error)
+    //     }
+    // }
 
     useEffect(()=>{
         asyncUseEffect()
@@ -281,10 +281,10 @@ function Hours({db, auth , outterReset}) {
                     await getReservedSesions()
                     dispatch(addSelectedDate(date))
                 }
-                if(!userReservations){
-                    console.log('NO USER RESERVATIONS', userReservations)
-                    // getPrivateReservedSessionsData()
-                }
+                // if(!userReservations){
+                //     console.log('NO USER RESERVATIONS', userReservations)
+                //     // getPrivateReservedSessionsData()
+                // }
             }
         }
     }, [currentUser, selectedDate, reservedSessions])

@@ -2,7 +2,7 @@
     .title{
         color: #E58963;
         letter-spacing: -0.1px;
-        margin-top: 27.5px;
+        // margin-top: 27.5px;
         font-size: 20px;
     }
     .reservation{
@@ -21,4 +21,8 @@
             margin-left: 30px;
         }
     }
+}
+
+.row{
+    display: flex;
 }

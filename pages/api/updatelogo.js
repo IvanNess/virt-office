@@ -1,11 +1,19 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
 import Cors from 'cors'
 import initMiddleware from '../../init-middleware'
 
 const mongoose = require('mongoose')
+const PackageSchema = require('../../mongo-models/package-model')
 const UserSchema = require('../../mongo-models/user-model')
 const admin = require('firebase-admin')
+
+const { Pool } = require('pg')
+const pool = new Pool()
+// the pool will emit an error on behalf of any idle clients
+// it contains if a backend error or network partition happens
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err)
+  process.exit(-1)
+})
 
 // Initialize the cors middleware
 const cors = initMiddleware(
@@ -44,8 +52,6 @@ export default async(req, res) => {
     // Run cors
     await cors(req, res)
 
-    const {token} = req.body
-
     try {
         admin.initializeApp({
             credential: admin.credential.cert(serviceAccount)
@@ -56,20 +62,43 @@ export default async(req, res) => {
         }
     }
 
+    const {token, data} = req.body
+
+    console.log('data', data)
     try {
 
-        const decodedToken = await admin.auth().verifyIdToken(token)
-        const uid = decodedToken.uid
+        const decoded = await admin.auth().verifyIdToken(token)
+        console.log('decoded', decoded)
+        const uid = decoded.uid
 
         const user = await UserSchema.findOne({ firebaseId: uid }).exec()
+        console.log('user', user)
 
+        ;await (async () => {
+            const client = await pool.connect()
+            const postgresId = user.postgresId
+            try {
+                const resp = await client.query("UPDATE companies SET inner_logo = decode($1, 'base64') WHERE id = $2", 
+                    [data,  postgresId]
+                )
+                console.log('resp', resp)
+            } finally {
+                // Make sure to release the client before any error handling,
+                // just in case the error handling itself throws an error.
+                console.log('finally')
+                client.release()
+            }
+        })()
+        // .catch(err => res.status(500).json('postgres user update error.'))            
+
+        console.log('end')
         return res.status(200).json({
-            message: "getting user success",
-            user
+            message: "logo data was updated",
         })
 
     } catch (error) {
-        console.log('Error in getting an user:', error)
-        return res.status(500).json('get user error.')        
+        console.log('Error in logo updating:', error)
+        res.status(500).json({message: error.message})        
     }
+
 }

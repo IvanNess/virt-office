@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
-import { Upload } from 'antd'
+import { Upload, Skeleton, Modal } from 'antd'
 import { setLogo, editCurrentUser } from '../redux/actions'
 import styles from '../styles/Display.module.scss'
 import { useRef } from 'react'
+import SkeletonImage from 'antd/lib/skeleton/Image'
+import { getData64FromTextImg } from '../utilities'
 // import textToImage from 'text-to-image'
 
 const Display = ({auth, db}) => {
@@ -12,12 +14,11 @@ const Display = ({auth, db}) => {
     const currentUser = useSelector(state=>state.currentUser)
     const logo = useSelector(state=>state.logo)
     const [token, setToken] = useState(null)
+    const [btnDisabled, setBtnDisabled] = useState(true)
 
     const dispatch = useDispatch()
 
     const [value, setValue] = useState('')
-    const [canvas, setCanvas] = useState(null)
-    const canvasLogoRef = useRef(null)
     const imgRef = useRef(null)
 
     useEffect(()=>{
@@ -58,77 +59,71 @@ const Display = ({auth, db}) => {
                 console.log(error)
             }
         }
-    }, [auth, currentUser, token])
+    }, [auth, currentUser, token, logo])
 
-    useEffect(()=>{
-        let canvas = document.createElement("canvas");
-        canvas.width = 300;
-        canvas.height = 300;
-        setCanvas(canvas)
-    }, [])
+    // useEffect(()=>{
+    //     let canvas = document.createElement("canvas");
+    //     canvas.width = 300;
+    //     canvas.height = 300;
+    //     setCanvas(canvas)
+    // }, [])
 
-    const submit = (e)=>{
+    const submit = async (e)=>{
         e.preventDefault()
+        console.log('submit')
+        setBtnDisabled(true)
+        const imgRefUrl = imgRef.current.src
+        const data = imgRefUrl.replace("data:", "").replace(/^.+,/, "").replaceAll("%0A", "")
+        // console.log('data', data)
+        try {
+            // console.log('submit', token, data)
+            await axios({
+                url: "/api/updatelogo",
+                method: "POST",
+                data: {token , data}
+            })
+            dispatch(setLogo(data))
+        } catch (error) {
+            // console.log('error', error)
+            Modal.error({
+                title: 'This is an error message',
+                content: error.response.data.message,
+            })
+        }
+        // setBtnDisabled(false)
     }
 
     const change = async (e)=>{
-        const fontSize = 30
+        setBtnDisabled(false)
         const text = e.target.value
         setValue(text)
         if(text===''){
             return imgRef.current.src = `data:image/png;base64,${logo}`
         }
-        var ctx = canvas.getContext('2d');
-        ctx.fillStyle='#4CAED5';
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-        ctx.fillStyle='white';
-        ctx.font = `${fontSize}px Work Sans Black`;
-        ctx.textAlign = "center"
-        ctx.textBaseline= "middle"
-        const textWidth = ctx.measureText(text).width
-        if(textWidth > canvas.width){
-            const textArr = text.split(" ")
-            textArr.forEach((item, idx, arr)=>{
-                const textWidth = ctx.measureText(item).width
-                console.log('canvas mes', textWidth, canvas.width)
-                if(textWidth > canvas.width){
-                    canvas.width += fontSize
-                    ctx.fillStyle='#4CAED5';
-                    ctx.fillRect(0, 0, textWidth + fontSize , canvas.height);
-                }
-            })
-            textArr.forEach((item, idx, arr)=>{
-                ctx.fillStyle='white';
-                ctx.textBaseline= "bottom"
-                ctx.textAlign = "center"
-                ctx.font = "30px Work Sans Black";
-                const space = 20
-                const length = arr.length
-                ctx.fillText(item, canvas.width/2, ((canvas.height-20 - (fontSize*length + space*length))/2) + (fontSize+space)*(idx+1));
-            })
-            imgRef.current.src = canvas.toDataURL()
-            return
-        }
-        ctx.fillText(text, canvas.width/2, canvas.height/2);
-        imgRef.current.src = canvas.toDataURL()
-
+        imgRef.current.src = getData64FromTextImg(text)
     }
 
     async function beforeUpload(file){
         console.log('before upload', file)
+        setBtnDisabled(false)
         let reader = new FileReader();
         console.log('reader', reader)
         reader.readAsDataURL(file)
         reader.onload = function() {
-            console.log('reader', onload)
+            // console.log('reader', onload)
             const result = reader.result;
-            console.log('result', result)
+            // console.log('result', result)
             imgRef.current.src = result
         }
     }    
 
     return (
         <div className={styles.display}>
+            <div className={styles.description}>
+                Tak będzie wyglądał ekran przed biurem oraz w samym biurze. <br/>
+                Aby zmienić, kliknij na obrazek i wybierz swój. <br/>
+                Zalecany rozmiar to 1200 na 800 pikseli.
+            </div>
             {logo !== null ? <Upload
                 name="avatar"
                 listType="picture-card"
@@ -137,14 +132,13 @@ const Display = ({auth, db}) => {
                 // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                 beforeUpload={beforeUpload}
                 // onChange={logoChanged}
-            >
-                {logo ? 
-                    <img src={`data:image/png;base64,${logo}`} alt="avatar" className={styles.editLogo} ref={imgRef} className={styles.editLogo}/> :
-                    'Loading...'
-                }
-            </Upload> : 'Loading...'}
-            <form onSubmit={submit}>
+            >   
+                <img src={`data:image/png;base64,${logo}`} alt="avatar" className={styles.editLogo} ref={imgRef} className={styles.editLogo}/> 
+            </Upload> : <SkeletonImage style={{width: '200px', height: '200px'}}/>}
+            <div className={styles.altDescription}>Lub wprowadź żądany tekst.</div>
+            <form className={styles.displayForm} onSubmit={submit}>
                 <input value={value} placeholder="Twoja fraza" onChange={change}/>
+                <input className={styles.buttonInput} type="submit" value="ZAPISZ" disabled={btnDisabled}/>
             </form>
         </div>
     )

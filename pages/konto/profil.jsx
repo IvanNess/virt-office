@@ -75,13 +75,12 @@ function Dane({auth, db}) {
                 data: {token}
             })
             if(response.data.user){
-                console.log('innerLogo', response.data.innerLogo)
-                dispatch(editCurrentUser({...response.data.user, innerLogo: response.data.innerLogo, isFullLoaded: true}))   
+                dispatch(editCurrentUser({...response.data.user, isFullLoaded: true}))   
                 setForm({
                     ...currentUser, 
                     ...response.data.user, 
-                    imgDataChanged: false,
-                    innerLogo: response.data.innerLogo
+                    // imgDataChanged: false,
+                    // innerLogo: response.data.innerLogo
                 })         
             }
         } catch (error) {
@@ -194,8 +193,8 @@ function Dane({auth, db}) {
                     fullName: form.fullName.trim(),
                     username: form.username.trim(),
                     adress: form.adress?.trim() || '',
-                    innerLogo: (form.innerLogo && form.imgDataChanged) ? form.innerLogo : null,
-                    innerLogoChanged: form.imgDataChanged
+                    // innerLogo: (form.innerLogo && form.imgDataChanged) ? form.innerLogo : null,
+                    // innerLogoChanged: form.imgDataChanged
                 }}
             })
             dispatch(editCurrentUser(form))
@@ -223,7 +222,7 @@ function Dane({auth, db}) {
 
     function cancel(){
         setIsEditMode(false)
-        setForm({...currentUser, imgDataChanged: false})         
+        // setForm({...currentUser, imgDataChanged: false})         
     }
 
     function changePhoneNumber(value){
@@ -231,50 +230,50 @@ function Dane({auth, db}) {
         setForm({...form, contactPhone: value, phoneError: null})
     }
 
-    async function logoChanged(info){
-        console.log('logo changed', info)
-        // console.log('logo changed', logoRef.current.files)
-        // const url = window.URL.createObjectURL(logoRef.current.files[0])
-        // const res = await axios({
-        //     url,
-        //     method: "GET",
-        //     responseType: "blob"
-        // })
+    // async function logoChanged(info){
+    //     console.log('logo changed', info)
+    //     // console.log('logo changed', logoRef.current.files)
+    //     // const url = window.URL.createObjectURL(logoRef.current.files[0])
+    //     // const res = await axios({
+    //     //     url,
+    //     //     method: "GET",
+    //     //     responseType: "blob"
+    //     // })
 
-        // console.log('res', res)
-        // const arrayBuffer = res.data
-        // console.log('byteLength', arrayBuffer.byteLength)
-        // const bufferLength = arrayBuffer.byteLength
-        // const updBufferLength = bufferLength % 2 === 0 ? bufferLength : bufferLength - 1        
-        // const uint16Array = new Uint16Array(arrayBuffer, 0, updBufferLength / 2)
+    //     // console.log('res', res)
+    //     // const arrayBuffer = res.data
+    //     // console.log('byteLength', arrayBuffer.byteLength)
+    //     // const bufferLength = arrayBuffer.byteLength
+    //     // const updBufferLength = bufferLength % 2 === 0 ? bufferLength : bufferLength - 1        
+    //     // const uint16Array = new Uint16Array(arrayBuffer, 0, updBufferLength / 2)
 
-        // console.log('uint16array', uint16Array)
+    //     // console.log('uint16array', uint16Array)
 
-        // const uint16Array = new Uint16Array(arrayBuffer)
-        // const decoded = new TextDecoder().decode(uint16Array)
-        // console.log('decoded', decoded)
+    //     // const uint16Array = new Uint16Array(arrayBuffer)
+    //     // const decoded = new TextDecoder().decode(uint16Array)
+    //     // console.log('decoded', decoded)
 
-        // const blob = res.data
+    //     // const blob = res.data
 
-        if(info.file.status==="done"){
-            let reader = new FileReader();
-            console.log('reader', reader)
-            reader.readAsDataURL(info.file.originFileObj)
-            reader.onload = function() {
-                console.log('reader', onload)
-                const result = reader.result;
-                console.log('result', result)
+    //     if(info.file.status==="done"){
+    //         let reader = new FileReader();
+    //         console.log('reader', reader)
+    //         reader.readAsDataURL(info.file.originFileObj)
+    //         reader.onload = function() {
+    //             console.log('reader', onload)
+    //             const result = reader.result;
+    //             console.log('result', result)
 
-                const base64String = reader.result
-                    .replace("data:", "")
-                    .replace(/^.+,/, "");
-                // console.log('result', base64String)
+    //             const base64String = reader.result
+    //                 .replace("data:", "")
+    //                 .replace(/^.+,/, "");
+    //             // console.log('result', base64String)
 
-                setForm({...form, innerLogo: base64String, imgDataChanged: true})
-            }
+    //             setForm({...form, innerLogo: base64String, imgDataChanged: true})
+    //         }
         
-        }
-    }
+    //     }
+    // }
 
     return (
         <div className={styles.dane}>
@@ -282,7 +281,7 @@ function Dane({auth, db}) {
                 <div>
                     <div className={styles.title}>
                         1. <span className={styles.bold}>Mój Profil</span>
-                        {form.innerLogo && !isEditMode && <img className={styles.logoImg} src={`data:image/png;base64,${form.innerLogo}`}/>}
+                        {/* {form.innerLogo && !isEditMode && <img className={styles.logoImg} src={`data:image/png;base64,${form.innerLogo}`}/>} */}
                     </div>
                     {/* <div className={styles.text}>
                         <div className={styles.small}>Wpisz nazwę lub kod pocztowy miasta, w którym chcesz wybrać adres firmy. Dostępne adresy i miesięczny koszt wyświetlą się poniżej.</div>

@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import {setPackages} from '../../redux/actions'
 import Display from '../../components/display'
+import YourReservation from '../../components/your-reservation'
 
 function MojeRezerwacje({auth, db}) {
 
@@ -18,7 +19,11 @@ function MojeRezerwacje({auth, db}) {
                 <div className={styles.text}>
                     <div className={styles.small}>Wpisz nazwę lub kod pocztowy miasta, w którym chcesz wybrać adres firmy. Dostępne adresy i miesięczny koszt wyświetlą się poniżej.</div>
                 </div>
-                <Display auth={auth} db={db}/>
+                <div className={styles.main}>
+                    <div className={styles.yourReservation}><YourReservation auth={auth}/></div>
+                    <div className={styles.display}><Display auth={auth} db={db}/></div>
+                </div>
+                
             </ProfileBoilerplate>       
         </div>
     )

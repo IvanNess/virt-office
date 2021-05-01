@@ -4,9 +4,17 @@ import Cors from 'cors'
 import initMiddleware from '../../init-middleware'
 
 const mongoose = require('mongoose')
-const PackageSchema = require('../../mongo-models/package-model')
 const UserSchema = require('../../mongo-models/user-model')
 const admin = require('firebase-admin')
+
+const { Pool } = require('pg')
+const pool = new Pool()
+// the pool will emit an error on behalf of any idle clients
+// it contains if a backend error or network partition happens
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err)
+  process.exit(-1)
+})
 
 // Initialize the cors middleware
 const cors = initMiddleware(
@@ -45,6 +53,8 @@ export default async(req, res) => {
     // Run cors
     await cors(req, res)
 
+    const {token} = req.body
+
     try {
         admin.initializeApp({
             credential: admin.credential.cert(serviceAccount)
@@ -55,8 +65,6 @@ export default async(req, res) => {
         }
     }
 
-    const {token, data} = req.body
-
     try {
 
         const decodedToken = await admin.auth().verifyIdToken(token)
@@ -64,65 +72,32 @@ export default async(req, res) => {
 
         const user = await UserSchema.findOne({ firebaseId: uid }).exec()
 
-        //check if new username is available
-        if(user.username !== data.username){
-            const found = await UserSchema.findOne({ username: data.username }).exec()
-            if(found){
-                console.log('Error in user updating: this name is not available.')
-                return res.status(500).json('this name is not available.')                
-            }
-        }
+        let innerLogo
 
-        //check if it is necessary to update email
-        if(data.email && user.email !== data.email){
-            //create an record that we're going to update an email.
-            const record = {
-                oldEmail: user.email,
-                newEmail: data.email,
-                isChangedInFirebase: false,
-                isCompleted: false
-            }
-            //save this record in UpdateEmailRecords db.
-            // implement here...
-
+        ;await (async () => {
+            const client = await pool.connect()
+            const postgresId = user.postgresId
             try {
-                // update email in firebase
-                await admin.auth().updateUser(uid, {
-                    email: data.email
-                })
-
-                // update an updateEmailRecord with "isChangedInFirebase: true" prop.
-                // implement here...
+                const resp = await client.query("SELECT encode(inner_logo, 'base64') FROM companies WHERE id = $1", 
+                    [postgresId]
+                )            
+                // console.log(resp)
+                innerLogo = resp.rows[0].encode
                 
-                const upd = await user.updateOne(data)
-
-                // update an updateEmailRecord with "isCompleted: true" prop.
-                // implement here...
-
+            } finally {
+                // Make sure to release the client before any error handling,
+                // just in case the error handling itself throws an error.
+                console.log('finally')
+                client.release()
                 return res.status(200).json({
-                    message: "user data was updated",
-                    user: upd
+                    message: "getting inner_logo success",
+                    innerLogo
                 })
-        
-            } catch (error) {
-                console.log('Error in email updating:', error)
-                // update an updateEmailRecord with error message
-                // implement here...
-
-                return res.status(500).json('email updating error.')       
             }
-        }
-
-        const upd = await user.updateOne(data)
-
-        res.status(200).json({
-            message: "user data was updated",
-            user: upd
-        })
+        })().catch(err => res.status(500).json('get inner_logo error.'))
 
     } catch (error) {
-        console.log('Error in user updating:', error)
-        res.status(500).json('user update error.')        
+        console.log('Error in getting an inner_logo:', error)
+        return res.status(500).json('get inner_logo error.')        
     }
-
 }

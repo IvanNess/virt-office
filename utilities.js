@@ -138,3 +138,42 @@ export const reservationPay = async ({auth, selectedDate, startHour, finishHour}
         console.log('error', error)
     }
 }
+
+export const getData64FromTextImg = text =>{
+    const fontSize = 50
+    const canvas = document.createElement("canvas");
+    canvas.width = 300;
+    canvas.height = 300;
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle='#4CAED5';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='white';
+    ctx.font = `${fontSize}px Work Sans Black`;
+    ctx.textAlign = "center"
+    ctx.textBaseline= "middle"
+    const textWidth = ctx.measureText(text).width
+    if(textWidth > canvas.width){
+        const textArr = text.split(" ")
+        textArr.forEach((item, idx, arr)=>{
+            const textWidth = ctx.measureText(item).width
+            // console.log('canvas mes', textWidth, canvas.width)
+            if(textWidth > canvas.width){
+                canvas.width = textWidth + fontSize
+                ctx.fillStyle='#4CAED5';
+                ctx.fillRect(0, 0, textWidth + fontSize , canvas.height);
+            }
+        })
+        textArr.forEach((item, idx, arr)=>{
+            ctx.fillStyle='white';
+            ctx.textBaseline= "bottom"
+            ctx.textAlign = "center"
+            ctx.font = `${fontSize}px Work Sans Black`;
+            const space = 30
+            const length = arr.length
+            ctx.fillText(item, canvas.width/2, ((canvas.height-20 - (fontSize*length + space*length))/2) + (fontSize+space)*(idx+1));
+        })
+        return canvas.toDataURL()
+    }
+    ctx.fillText(text, canvas.width/2, canvas.height/2);
+    return canvas.toDataURL()
+}
