@@ -2,10 +2,10 @@ import React, {useState} from 'react'
 
 import styles from '../../styles/AuthFormBoilerplate.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import { setSignupFormProp, setLoginFormProp, setShowAuth, formSubmitted, setPayAfterRegister, registerAndReserve } from '../../redux/actions'
+import { setSignupFormProp, setLoginFormProp, setShowAuth, formSubmitted, setPayAfterRegister, registerAndReserve, setForgetFormProp } from '../../redux/actions'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import { packagePay, reservationPay } from '../../utilities'
+import { packagePay, reservationPay, getData64FromTextImg } from '../../utilities'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 import { Modal } from 'antd'
 import {LoadingOutlined} from '@ant-design/icons'
@@ -14,6 +14,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
 
     const signupForm = useSelector(state=>state.signupForm)
     const loginForm = useSelector(state=>state.loginForm)
+    const forgetForm = useSelector(state=>state.forgetForm)
     const calendarRedirect = useSelector(state=>state.calendarRedirect)
     const payAfterRegister = useSelector(state=>state.payAfterRegister)
     const hiringChoices = useSelector(state=>state.hiringChoices)
@@ -103,6 +104,25 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
             }
         } else{
             switch (page){
+                case 0:   
+                    if(!forgetForm.email || forgetForm.email.length ===0 || !forgetForm.email.includes('@')){
+                        dispatch(setForgetFormProp('emailPlaceholder', 'Nie wygląda jak prawdziwy email adress...'))
+                        break
+                    }
+                    await auth.sendPasswordResetEmail(forgetForm.email)
+                    Modal.info({
+                        // title: 'This is a notification message',
+                        content: (
+                          <div>
+                            <p>{`Link do zresetowania hasła został wysłany na e-mail ${forgetForm.email}`}</p>
+                          </div>
+                        ),
+                        onOk() {
+                            dispatch(setSignupFormProp('page', undefined))
+                            dispatch(setShowAuth({isLogin: true}))
+                        },
+                    });
+
                 case 1: 
                     if(!signupForm.name || signupForm.name.length ===0){
                         dispatch(setSignupFormProp('namePlaceholder', 'There is no empty string allowed'))
@@ -174,7 +194,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         break
                     }
                     if(!signupForm.contactEmail || signupForm.contactEmail.length ===0 || !signupForm.contactEmail.includes('@')){
-                        dispatch(setSignupFormProp('contactEmailPlaceholder', 'Its not looks like an email adress...'))
+                        dispatch(setSignupFormProp('contactEmailPlaceholder', 'Nie wygląda jak prawdziwy email adress...'))
                         // dispatch(setSignupFormProp('contactEmail', ''))
                         break
                     }
@@ -187,7 +207,6 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         dispatch(setSignupFormProp('phoneNumberPlaceholder', 'Nie wygląda jak prawdziwy numer telefonu.'))
                         break
                     }
-                    console.log('The data is sending to firebase...')
                     try {
                         // const user = await auth.createUserWithEmailAndPassword(signupForm.contactEmail, signupForm.password)
                         // console.log('user', user)
@@ -209,6 +228,8 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         //     email: signupForm.contactEmail,
                         //     userId
                         // })
+                        const innerLogo = getData64FromTextImg(signupForm.companyName).replace("data:", "").replace(/^.+,/, "").replaceAll("%0A", "")
+
                         const createUserResponse = await axios({
                             url: "/api/createuser",
                             method: "POST",
@@ -220,7 +241,8 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                                 NIP: signupForm.NIP, 
                                 contactFullName: signupForm.contactFullName, 
                                 contactEmail: signupForm.contactEmail, 
-                                contactPhone: signupForm.phoneNumber
+                                contactPhone: signupForm.phoneNumber,
+                                innerLogo
                             },
                             withCredentials: true
                         })
@@ -285,10 +307,12 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
     async function leftClicked(){
         console.log('page', page)
         if(page===undefined){
-            // await fetch('http://localhost:5001/virt-office/us-central1/addMessage?text=upp')
-            const res = await fetch('/api/hello')
-            const data = await res.json()
-            console.log(data)
+            dispatch(setShowAuth({isLogin: false}))
+            return dispatch(setSignupFormProp('page', 0))            
+        }
+        if(page===0){
+            dispatch(setShowAuth({isLogin: true}))
+            return dispatch(setSignupFormProp('page', undefined))            
         }
         dispatch(setSignupFormProp('page', page-1))
     }
@@ -299,7 +323,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                 {children}
                 <div className={styles.authFooter}>
                     <div className={styles.left} onClick={leftClicked}>
-                        {isLogin? "Nie pamiętam hasła": page!==1?"prev":''}
+                        {isLogin? "Nie pamiętam hasła": page!==1? "powrót": ''}
                     </div>
                     <button onClick={submit} disabled={btnDisabled}>
                         {isLogin? "Zajoguj się": page!==3?"Dalej":"Sign up"}

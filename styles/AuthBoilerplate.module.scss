@@ -69,7 +69,7 @@ $login-width: 124px;
         // width: $login-width;
         cursor: pointer;
     }
-    .loginSelected, .signinSelected{
+    .loginSelected, .signinSelected, .recovery{
         @include regularAuth();
         font: normal normal 900 16px/19px "Work Sans Black";
         // width: $login-width;
@@ -77,6 +77,9 @@ $login-width: 124px;
         color: #FFFFFF;
         border-bottom: 5px solid #121109;
         cursor: pointer;
+    }
+    .recovery{
+        cursor: auto;
     }
     .rest{
         @include regularAuth();

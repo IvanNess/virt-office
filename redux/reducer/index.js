@@ -32,6 +32,7 @@ import { updatePayAfterRegister } from "./updatePayAfterRegister"
 import { updatePackages } from "./updatePackages"
 import { updateLogo } from "./updateLogo"
 import { updateReservedHoursUtilities } from "./updateReservedHoursUtilities"
+import { updateForgetForm } from "./updateForgetForm"
 
 const reducer = (state, action)=>{
     return{
@@ -59,6 +60,7 @@ const reducer = (state, action)=>{
 
         loginForm: updateLoginForm(state, action),
         signupForm: updateSignupForm(state, action),
+        forgetForm: updateForgetForm(state, action),
         reservedHoursUtilities: updateReservedHoursUtilities(state, action),
         
         hiringChoices: updateHiringChoices(state, action),

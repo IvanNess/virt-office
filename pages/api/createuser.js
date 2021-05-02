@@ -54,7 +54,7 @@ export default async(req, res) => {
     await cors(req, res)
 
     const {
-        username, password, fullName, companyName, NIP, contactFullName, contactEmail, contactPhone
+        username, password, fullName, companyName, NIP, contactFullName, contactEmail, contactPhone, innerLogo
     } = req.body
 
     try {
@@ -93,7 +93,7 @@ export default async(req, res) => {
         ;await (async () => {
             const client = await pool.connect()
             const company_name = username
-            const inner_logo = ''
+            const inner_logo = innerLogo
             const outer_logo = ''
            
             try {

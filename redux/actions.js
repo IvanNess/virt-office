@@ -34,6 +34,8 @@ export const setLoginFormProp = (prop, value)=> async (dispatch) => dispatch({ty
 
 export const setSignupFormProp = (prop, value)=> async (dispatch) => dispatch({type: "SET_SIGNUP_FORM_PROP", prop, value})
 
+export const setForgetFormProp = (prop, value)=> async (dispatch) => dispatch({type: "SET_FORGET_FORM_PROP", prop, value})
+
 export const setHiringChoiceNumber = (number)=> async (dispatch) => dispatch({type: "SET_HIRING_CHOICE_NUMBER", number})
 
 export const updateHiringChoice = ({prop, value, number})=> async (dispatch) => dispatch({type: "UPDATE_HIRING_CHOICE", value, number, prop})

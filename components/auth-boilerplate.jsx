@@ -9,6 +9,7 @@ import SignupFormThree from './authForms/signup-form-three'
 import { setShowAuth, setCurrentUser, setCalendarRedirect, setPayAfterRegister, registerAndReserve } from '../redux/actions'
 import Link from 'next/link'
 import { useClickOutside } from 'react-click-outside-hook'
+import ForgetForm from './authForms/forget-form'
 
 function AuthBoilerplate({db, auth}) {
 
@@ -81,7 +82,7 @@ function AuthBoilerplate({db, auth}) {
 
     return (
         <div className={showAuth.show? styles.authBoilerplate: styles.authBoilerplateNone} onClick={clickOutside}>
-            <div className={styles[`${showAuth.isLogin? 'login': 'signup'}AuthWrapper`]} onClick={innerClick}>
+            <div className={styles[`${(showAuth.isLogin || page ===0) ? 'login': 'signup'}AuthWrapper`]} onClick={innerClick}>
                 <div className={styles.authHeader}>
                     <div className={styles.logo}>
                         <Link href="/"><a>
@@ -96,16 +97,18 @@ function AuthBoilerplate({db, auth}) {
                     />
                 </div>
                 <div className={styles.authOptions} onClick={onClick}>
-                    <div className={showAuth.isLogin? styles.loginSelected: styles.login} data-id='login'>Zaloguj&nbsp;się</div>
+                    {page !== 0 && <div className={showAuth.isLogin? styles.loginSelected: styles.login} data-id='login'>Zaloguj&nbsp;się</div>}
+                    {page === 0 && <div className={styles.recovery} data-id='recovery'>Odzyskiwanie&nbsp;hasła</div>}
                     <div className={styles.space}>&nbsp;</div>                    
-                    <div className={!showAuth.isLogin? styles.signinSelected: styles.signin} data-id='signup'>Zarejestruj&nbsp;się</div>
+                    {page !== 0 && <div className={!showAuth.isLogin? styles.signinSelected: styles.signin} data-id='signup'>Zarejestruj&nbsp;się</div>}
                     <div className={styles.rest}>&nbsp;</div>
                 </div>
                 <div className={styles.authStep}>
-                    {!showAuth.isLogin && <div className={styles.content}>step <span className={styles.stepCount}>{page}</span>/3</div>}
+                    {!showAuth.isLogin && page !== 0 && <div className={styles.content}>step <span className={styles.stepCount}>{page}</span>/3</div>}
                 </div>
                 <div className={styles.inner}>
-                    {showAuth.isLogin && <LoginForm  db={db} auth={auth}/>}
+                    {showAuth.show && page===0  && <ForgetForm db={db} auth={auth}/>}
+                    {showAuth.isLogin && page !== 0 && <LoginForm  db={db} auth={auth}/>}
                     {!showAuth.isLogin && page===1 && <SignupFormOne  db={db} auth={auth}/>}
                     {!showAuth.isLogin && page===2 && <SignupFormTwo  db={db} auth={auth}/>}
                     {!showAuth.isLogin && page===3 && <SignupFormThree  db={db} auth={auth}/>}
