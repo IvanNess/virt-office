@@ -104,7 +104,7 @@ function AuthBoilerplate({db, auth}) {
                     <div className={styles.rest}>&nbsp;</div>
                 </div>
                 <div className={styles.authStep}>
-                    {!showAuth.isLogin && page !== 0 && <div className={styles.content}>step <span className={styles.stepCount}>{page}</span>/3</div>}
+                    {!showAuth.isLogin && page !== 0 && <div className={styles.content}>step <span className={styles.stepCount}>{page}</span>/2</div>}
                 </div>
                 <div className={styles.inner}>
                     {showAuth.show && page===0  && <ForgetForm db={db} auth={auth}/>}

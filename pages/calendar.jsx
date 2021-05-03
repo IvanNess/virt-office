@@ -157,7 +157,7 @@ const Calendar = ({db, auth}) => {
                     onChange={onChange}
                     onMonthChange={onChange}
                     disablePast={true}
-                    shouldDisableDate={shouldDisableDate}
+                    // shouldDisableDate={shouldDisableDate}
                     renderDay={renderDay}
                 />
             </MuiPickersUtilsProvider>

@@ -30,7 +30,7 @@ const AuthInput = forwardRef( (props, ref) => {
             <input type={type}  
                 placeholder={placeholder}
                 data-id={propName} 
-                value={signupForm[propName]} 
+                value={signupForm[propName] || ''} 
                 onChange={onChange}
                 ref={ref}
             />   

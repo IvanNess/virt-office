@@ -181,18 +181,11 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         dispatch(setSignupFormProp('companyNamePlaceholder', 'There is no empty string allowed'))
                         break
                     }
-                    if(!signupForm.NIP || signupForm.NIP.trim().length !==10 || !Number(signupForm.NIP)){
-                        // dispatch(setSignupFormProp('NIP', ''))
-                        dispatch(setSignupFormProp('NIPPlaceholder', 'NIP should be ten digit number'))
-                        break
-                    }
-                    dispatch(setSignupFormProp('page', 3))
-                    break
-                case 3: 
-                    if(!signupForm.contactName || signupForm.contactName.length === 0){
-                        dispatch(setSignupFormProp('contactNamePlaceholder', 'There is no empty string allowed'))
-                        break
-                    }
+                    // if(!signupForm.NIP || signupForm.NIP.trim().length !==10 || !Number(signupForm.NIP)){
+                    //     // dispatch(setSignupFormProp('NIP', ''))
+                    //     dispatch(setSignupFormProp('NIPPlaceholder', 'NIP should be ten digit number'))
+                    //     break
+                    // }
                     if(!signupForm.contactEmail || signupForm.contactEmail.length ===0 || !signupForm.contactEmail.includes('@')){
                         dispatch(setSignupFormProp('contactEmailPlaceholder', 'Nie wygląda jak prawdziwy email adress...'))
                         // dispatch(setSignupFormProp('contactEmail', ''))
@@ -207,6 +200,27 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         dispatch(setSignupFormProp('phoneNumberPlaceholder', 'Nie wygląda jak prawdziwy numer telefonu.'))
                         break
                     }
+                    // dispatch(setSignupFormProp('page', 3))
+                    // break
+                // case 3: 
+                //     if(!signupForm.contactName || signupForm.contactName.length === 0){
+                //         dispatch(setSignupFormProp('contactNamePlaceholder', 'There is no empty string allowed'))
+                //         break
+                //     }
+                //     if(!signupForm.contactEmail || signupForm.contactEmail.length ===0 || !signupForm.contactEmail.includes('@')){
+                //         dispatch(setSignupFormProp('contactEmailPlaceholder', 'Nie wygląda jak prawdziwy email adress...'))
+                //         // dispatch(setSignupFormProp('contactEmail', ''))
+                //         break
+                //     }
+                //     if(!signupForm.phoneNumber || signupForm.phoneNumber.length ===0){
+                //         // dispatch(setSignupFormProp('phoneNumber', ''))
+                //         dispatch(setSignupFormProp('phoneNumberPlaceholder', 'There is no empty string allowed'))
+                //         break
+                //     }
+                //     if(signupForm.phoneNumber && !isPossiblePhoneNumber(signupForm.phoneNumber)){
+                //         dispatch(setSignupFormProp('phoneNumberPlaceholder', 'Nie wygląda jak prawdziwy numer telefonu.'))
+                //         break
+                //     }
                     try {
                         // const user = await auth.createUserWithEmailAndPassword(signupForm.contactEmail, signupForm.password)
                         // console.log('user', user)
@@ -326,7 +340,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         {isLogin? "Nie pamiętam hasła": page!==1? "powrót": ''}
                     </div>
                     <button onClick={submit} disabled={btnDisabled}>
-                        {isLogin? "Zajoguj się": page!==3?"Dalej":"Sign up"}
+                        {isLogin? "Zajoguj się": page!==2?"Dalej":"Sign up"}
                         {btnDisabled && <LoadingOutlined style={{color: "white"}}/>}
                     </button>
                 </div>
