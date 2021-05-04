@@ -2,6 +2,7 @@
 
 import Cors from 'cors'
 import initMiddleware from '../../init-middleware'
+import nodemailer from 'nodemailer'
 
 const mongoose = require('mongoose')
 const PackageSchema = require('../../mongo-models/package-model')
@@ -86,6 +87,47 @@ export default async(req, res) => {
         })
 
         await pack.save()
+
+        // https://www.freecodecamp.org/news/use-nodemailer-to-send-emails-from-your-node-js-server/
+        // https://www.youtube.com/watch?v=-rcRf7yswfM
+
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
+            auth: {
+                type: 'OAuth2',
+                user: process.env.EMAIL,
+                pass: process.env.EMAIL_PASS,
+                clientId: process.env.OAUTH_CLIENTID,
+                clientSecret: process.env.OAUTH_CLIENT_SECRET,
+                refreshToken: process.env.OAUTH_REFRESH_TOKEN
+            }
+        })
+      
+        const message = {
+            from: process.env.EMAIL,
+            to: ["ivan@hrex.eu"],
+            subject: "Comment to approve",
+            html: 'test'
+            // html: `
+            //     <p>There is new comment for article with adress:</p>
+            //     <p>http://dyktighandverker.no${data.path}</p>
+            //     <p>Name:</p>
+            //     <p>${data.name}</p>
+            //     <p>E-mail</p>
+            //     <p>${data.email}</p>
+            //     <p>Comment:</p>
+            //     <p>${data.comment}</p>
+            //     <a href='https://gh-comments-api.vercel.app/api/approvecomment?id=${writeResult.id}'>To approve this comment click here</a>
+            // `
+        };
+      
+        const info = await transporter.sendMail(message)
+      
+        console.log("Message sent: %s", info.messageId);      
 
         res.status(200).json({
             message: "package was created",

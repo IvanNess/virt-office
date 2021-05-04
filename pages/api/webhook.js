@@ -81,6 +81,10 @@ export default async (req, res) => {
 
     try {
 
+        if(converted.type === 'payment_intent.canceled'){
+            console.log('!!!! payment_intent.canceled')
+        }
+
         if(converted.type === 'charge.succeeded'){
             const paymentIntent = converted.data.object.payment_intent
             const receiptUrl = converted.data.object.receipt_url
@@ -137,10 +141,10 @@ export default async (req, res) => {
             }
         }
     
-        res.status(200).json('ok')
+        return res.status(200).json('ok')
     
     } catch (error) {
         console.log(error)
-        res.status(500).json('webhook error')        
+        return res.status(500).json('webhook error')        
     }
 }

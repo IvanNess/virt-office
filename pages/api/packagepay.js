@@ -2,6 +2,8 @@
 
 import Cors from 'cors'
 import initMiddleware from '../../init-middleware'
+import nodemailer from 'nodemailer'
+
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
 const mongoose = require('mongoose')
@@ -93,14 +95,39 @@ export default async(req, res) => {
             cancel_url: `${process.env.ORIGIN}/canceled`,
         })
 
- 
-
-
-
-
-
-
         const user = await UserSchema.findOne({ firebaseId: uid }).exec()
+
+        // const transporter = nodemailer.createTransport({
+        //     host: "smtp.gmail.com",
+        //     port: 465,
+        //     secure: true,
+        //     auth: {
+        //       user: process.env.EMAIL,
+        //       pass: process.env.EMAIL_PASS
+        //     }
+        // })
+      
+        // const message = {
+        //     from: process.env.EMAIL,
+        //     to: ["ivan@hrex.eu"],
+        //     subject: "Comment to approve",
+        //     html: 'test'
+        //     // html: `
+        //     //     <p>There is new comment for article with adress:</p>
+        //     //     <p>http://dyktighandverker.no${data.path}</p>
+        //     //     <p>Name:</p>
+        //     //     <p>${data.name}</p>
+        //     //     <p>E-mail</p>
+        //     //     <p>${data.email}</p>
+        //     //     <p>Comment:</p>
+        //     //     <p>${data.comment}</p>
+        //     //     <a href='https://gh-comments-api.vercel.app/api/approvecomment?id=${writeResult.id}'>To approve this comment click here</a>
+        //     // `
+        // };
+      
+        // const info = await transporter.sendMail(message)
+      
+        // console.log("Message sent: %s", info.messageId);      
 
         res.status(200).json({
             message: "user was created",
