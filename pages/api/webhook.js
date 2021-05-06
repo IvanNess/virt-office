@@ -81,17 +81,20 @@ export default async (req, res) => {
 
     try {
 
-        if(converted.type === 'payment_intent.canceled'){
-            console.log('!!!! payment_intent.canceled')
-        }
-
         if(converted.type === 'charge.succeeded'){
             const paymentIntent = converted.data.object.payment_intent
             const receiptUrl = converted.data.object.receipt_url
             //get payment_intent and add receipt with receipt_url and payment_intent fields in receipt db
-            const receipt = new ReceiptSchema({paymentIntent, receiptUrl})
-            await receipt.save()
+            // const receipt = new ReceiptSchema({paymentIntent, receiptUrl})
+            // await receipt.save()
             // console.log('receipt_url', receiptUrl)
+            const reservation = await ReservationSchema.findOne({ paymentIntent }).exec()
+            if(reservation){
+                reservation.addReceiptUrl(receiptUrl)
+            } else{
+                const pack = await ReservationSchema.findOne({ paymentIntent }).exec()
+                pack.addReceiptUrl(receiptUrl)
+            } 
         }
     
         if(converted.type === 'checkout.session.completed'){
@@ -102,7 +105,7 @@ export default async (req, res) => {
                 const pack = await PackageSchema.findOne({ sessionId }).exec()
                 pack.pay(paymentIntent)
             }
-            if(converted.data.object.success_url === `${process.env.ORIGIN}/konto/rezerwacja`){
+            if(converted.data.object.success_url === `${process.env.ORIGIN}/konto/moje-rezerwacje`){
                 const reservation = await ReservationSchema.findOne({ sessionId }).exec()
                 const code = Math.floor(Math.random()*10000)
                 reservation.pay(paymentIntent, code)
@@ -120,10 +123,11 @@ export default async (req, res) => {
                             console.log('webhook first resp', resp)
                             const user = await UserSchema.findById(reservation.userId)
                             console.log('webhook user', user)
-                            const companyName = user.companyName
-                            const companyResp = await client.query("SELECT id FROM companies WHERE company_name = $1", [companyName])
-                            console.log('companyResp', companyResp)
-                            const company_id = companyResp.rows[0].id
+                            // const companyName = user.companyName
+                            // const companyResp = await client.query("SELECT id FROM companies WHERE company_name = $1", [companyName])
+                            // console.log('companyResp', companyResp)
+                            // const company_id = companyResp.rows[0].id
+                            const company_id = user.postgresId
                             console.log('company_id', company_id)
                             await client.query('INSERT INTO displays (start_date, stop_date, company_id) VALUES ($1, $2, $3)', 
                                 [start_date, stop_date, company_id]

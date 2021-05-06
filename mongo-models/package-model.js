@@ -39,4 +39,10 @@ packageSchema.methods.pay = function(paymentIntent){
     return this
 }
 
+packageSchema.methods.addReceiptUrl = function(receiptUrl){
+    this.receiptUrl = receiptUrl
+    this.save()
+    return this
+}
+
 module.exports = mongoose.models.Package || mongoose.model('Package', packageSchema)

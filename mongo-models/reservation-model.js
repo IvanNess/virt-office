@@ -25,7 +25,7 @@ const reservationSchema = new mongoose.Schema({
     sessionId: String,
     paymentIntent: String,
     userId: String,
-    code: String
+    code: String,
 })
 
 
@@ -35,8 +35,9 @@ reservationSchema.methods.cancel = function(){
     return this
 }
 
-reservationSchema.methods.addSessionId = function(sessionId){
+reservationSchema.methods.addSession = function(sessionId, paymentIntent){
     this.sessionId = sessionId
+    this.paymentIntent = paymentIntent
     this.save()
     return this
 }
@@ -45,6 +46,12 @@ reservationSchema.methods.pay = function(paymentIntent, code){
     this.paymentIntent = paymentIntent
     this.isPaid = true
     this.code = code
+    this.save()
+    return this
+}
+
+reservationSchema.methods.addReceiptUrl = function(receiptUrl){
+    this.receiptUrl = receiptUrl
     this.save()
     return this
 }

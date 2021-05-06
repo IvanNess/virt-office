@@ -273,6 +273,11 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                             await packagePay({auth, hiringChoices})
                             return
                         }
+                        if(selectedDate.registerAndReserve){
+                            // dispatch(registerAndReserve(false))
+                            await reservationPay({auth, selectedDate, startHour, finishHour})
+                            return
+                        }
                         if(calendarRedirect)
                             return router.push('/konto/rezerwacja')
                         router.push('/konto/profil')

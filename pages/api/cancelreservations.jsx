@@ -4,9 +4,10 @@ import Cors from 'cors'
 import initMiddleware from '../../init-middleware'
 
 const mongoose = require('mongoose')
-const PackageSchema = require('../../mongo-models/package-model')
 const UserSchema = require('../../mongo-models/user-model')
+const ReservationSchema = require('../../mongo-models/reservation-model')
 const admin = require('firebase-admin')
+const stripe = require('stripe')(process.env.STRIPE_SECRET)
 
 // Initialize the cors middleware
 const cors = initMiddleware(
@@ -45,6 +46,10 @@ export default async(req, res) => {
     // Run cors
     await cors(req, res)
 
+    const {token} = req.body
+
+    console.log('getreservations', token)
+
     try {
         admin.initializeApp({
             credential: admin.credential.cert(serviceAccount)
@@ -55,8 +60,6 @@ export default async(req, res) => {
         }
     }
 
-    const {token, data} = req.body
-
     try {
 
         const decodedToken = await admin.auth().verifyIdToken(token)
@@ -64,68 +67,34 @@ export default async(req, res) => {
 
         const user = await UserSchema.findOne({ firebaseId: uid }).exec()
 
-        //check if new username is available
-        if(user.username !== data.username){
-            const found = await UserSchema.findOne({ username: data.username }).exec()
-            if(found){
-                console.log('Error in user updating: this name is not available.')
-                return res.status(500).json('this name is not available.')                
-            }
-        }
+        console.log('user', user)
 
-        //check if it is necessary to update email
-        if(data.email && user.email !== data.email){
-            //create an record that we're going to update an email.
-            const record = {
-                oldEmail: user.email,
-                newEmail: data.email,
-                isChangedInFirebase: false,
-                isCompleted: false
-            }
-            //save this record in UpdateEmailRecords db.
-            // implement here...
+        const reservations = await ReservationSchema.find({userId: user.id, isCanceled: false, isPaid: false}).exec()
 
+        for (let i = 0; i < reservations.length; i++) {
+            // console.log('reservation', reservations[i])      
+            // await reservations[i].cancel()      
+            // console.log(`reservation id ${reservations[i]._id} canceled`)
             try {
-                // update email in firebase
-                await admin.auth().updateUser(uid, {
-                    email: data.email
-                })
-
-                // update an updateEmailRecord with "isChangedInFirebase: true" prop.
-                // implement here...
-                
-                const upd = await user.updateOne(data)
-
-                // update an updateEmailRecord with "isCompleted: true" prop.
-                // implement here...
-
-                // update companyname in postgresdb
-                // implement here...
-
-                return res.status(200).json({
-                    message: "user data was updated",
-                    user: upd
-                })
-        
+                await reservations[i].cancel()
+                await stripe.paymentIntents.cancel(reservations[i].paymentIntent)
             } catch (error) {
-                console.log('Error in email updating:', error)
-                // update an updateEmailRecord with error message
-                // implement here...
-
-                return res.status(500).json('email updating error.')       
+                console.log('cancel payment error', error)
             }
         }
-
-        const upd = await user.updateOne(data)
+        
+        // const updated =  dayReservations.map(reservation=>({...reservation, 
+        //     userId: undefined,
+        //     sessionId: undefined
+        // }))
 
         res.status(200).json({
-            message: "user data was updated",
-            user: upd
+            message: "reservations were canceled",
+            reservations
         })
 
     } catch (error) {
-        console.log('Error in user updating:', error)
-        res.status(500).json('user update error.')        
+        console.log('Error in cancel reservations:', error)
+        res.status(500).json('cancel reservations error.')        
     }
-
 }

@@ -33,7 +33,7 @@ function Hours({db, auth , outterReset}) {
     const finishHour = useSelector(state=>state.reservedHoursUtilities.finishHour)
     // const [finishHour, setFinishHour] = useState(null)
 
-    const [middleHours, setMiddleHours] = useState([])
+    const [isCancelRedirect, setIsCancelRedirect] = useState(null)
 
     // const [updHours, setUpdHours] = useState([])
     const updHours = useSelector(state=>state.reservedHoursUtilities.updHours)
@@ -259,7 +259,7 @@ function Hours({db, auth , outterReset}) {
             console.log('hours current user', currentUser)
             console.log('selected date', selectedDate)
             // if(currentUser && selectedDate){ getting reservations for 'user is required' case
-            if(selectedDate && selectedDate.reinitHours){
+            if(selectedDate && selectedDate.reinitHours && isCancelRedirect !== null){
                 const date = `${moment(selectedDate.raw).format('YYYY-MM-DD')}`
                 
                 const isThereArr = selectedDates.filter(selected=>selected===date)
@@ -278,6 +278,8 @@ function Hours({db, auth , outterReset}) {
                 } else{
                     console.log('date', date)
                     initUpdHours() //loading
+                    if(isCancelRedirect)
+                        return
                     await getReservedSesions()
                     dispatch(addSelectedDate(date))
                 }
@@ -287,7 +289,29 @@ function Hours({db, auth , outterReset}) {
                 // }
             }
         }
-    }, [currentUser, selectedDate, reservedSessions])
+    }, [currentUser, selectedDate, reservedSessions, isCancelRedirect])
+
+    useEffect(()=>{
+        const isCancelRedirect = document.location.search === '?canceled=true'
+        setIsCancelRedirect(isCancelRedirect)
+    }, [])
+
+    useEffect(()=>{
+        if(isCancelRedirect && currentUser)
+            cancelReservations()
+
+        async function cancelReservations(){
+            const token = await auth.currentUser.getIdToken()
+
+            await axios({
+                url: "/api/cancelreservations",
+                method: "POST",
+                data: {token}
+            })
+
+            setIsCancelRedirect(false)
+        }
+    }, [isCancelRedirect, auth, currentUser])
 
     // useEffect(()=>{
     //     // if(selectedDate.reinitHours){

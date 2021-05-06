@@ -68,24 +68,24 @@ export default async(req, res) => {
 
     const { token, year, month, day, startHour, finishHour, quantity } = req.body
 
-    ;(async () => {
-        const client = await pool.connect()
-        const start_date = moment(startHour).format('YYYY-MM-DD HH:mm:ss')
-        const stop_date = moment(finishHour).format('YYYY-MM-DD HH:mm:ss')
-        const code = 4444
-        try {
-            const res = await client.query('INSERT INTO access (start_date, stop_date, code) VALUES ($1, $2, $3)', 
-                [start_date, stop_date, code]
-            )            
-            console.log(res.rows[0])
-        } finally {
-        // Make sure to release the client before any error handling,
-        // just in case the error handling itself throws an error.
-        client.release()
-        }
-    })().catch(err => console.log(err.stack))
-
     try {
+
+        ;(async () => {
+            const client = await pool.connect()
+            const start_date = moment(startHour).format('YYYY-MM-DD HH:mm:ss')
+            const stop_date = moment(finishHour).format('YYYY-MM-DD HH:mm:ss')
+            const code = 4444
+            try {
+                const res = await client.query('INSERT INTO access (start_date, stop_date, code) VALUES ($1, $2, $3)', 
+                    [start_date, stop_date, code]
+                )            
+                console.log(res.rows[0])
+            } finally {
+            // Make sure to release the client before any error handling,
+            // just in case the error handling itself throws an error.
+            client.release()
+            }
+        })()
 
         const decodedToken = await admin.auth().verifyIdToken(token)
         const uid = decodedToken.uid
@@ -122,11 +122,22 @@ export default async(req, res) => {
                   },
                 ],
                 mode: 'payment',
-                success_url: `${process.env.ORIGIN}/konto/rezerwacja`,
-                cancel_url: `${process.env.ORIGIN}/konto/rezerwacja`,
+                success_url: `${process.env.ORIGIN}/konto/moje-rezerwacje`,
+                cancel_url: `${process.env.ORIGIN}/konto/rezerwacja/?canceled=true`,
             })
 
-            await reservation.addSessionId(session.id)
+            console.log('session', session)
+
+            await reservation.addSession(session.id, session.payment_intent)
+
+            setTimeout(async ()=>{
+                try {
+                    await stripe.paymentIntents.cancel(session.payment_intent)
+                    await reservation.cancel()
+                } catch (error) {
+                    console.log('cancel payment error', error)
+                }
+            }, 5 * 60 * 1000)
 
             res.status(200).json({
                 message: "reservation was created",

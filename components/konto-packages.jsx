@@ -28,12 +28,16 @@ const Header = ({isMain, packageName, endDate, updPrice=null, auth, price, pakie
         })
     }
 
+    const linkBtnClicked = (e)=>{
+        e.stopPropagation()
+    }
+
     return(
     <div className={styles.header}>
         <div className={isMain? styles.mainPackageName : styles.packageName}>{packageName}</div>
         {isMain && <div className={styles.endDate}>{`kończy się ${endDate}`}</div>}
         {updPrice && <button className={styles.updateBtn} onClick={update}>{`aktualizacja (${updPrice} zł)`}</button>}
-        {!isMain && !updPrice && <div className={styles.linkBtn}><Link href='/wynajecie'><a>kup teraz</a></Link></div>}
+        {!isMain && !updPrice && <div className={styles.linkBtn} onClick={linkBtnClicked}><Link href='/wynajecie'><a>kup teraz</a></Link></div>}
     </div>
 )}
 
