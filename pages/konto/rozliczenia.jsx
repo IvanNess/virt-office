@@ -8,6 +8,7 @@ import { Select, Skeleton } from 'antd';
 import axios from 'axios';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import Link from 'next/link';
 
 const { Option } = Select;
 
@@ -49,12 +50,13 @@ function Rozliczenia({db, auth}) {
 
         const reservations = response.data.reservations
 
-        const records = reservations.map(({day, month, year, total, startHour, finishHour, payDate, paymentIntent})=>{
+        const records = reservations.map(({day, month, year, total, startHour, finishHour, payDate, paymentIntent, receiptUrl})=>{
             return {
                 name: `Rezerwacja Biura ${day}/${month}/${year} ${startHour.title}-${finishHour.title}`,
                 data: payDate,
                 price: total,
-                paymentIntent
+                paymentIntent,
+                receiptUrl
             }
         })
         console.log('getUserReservationsRecords', records)
@@ -71,12 +73,13 @@ function Rozliczenia({db, auth}) {
         })
         console.log('response', response)
         const packages = response.data.packages
-        const records = packages.map(({pakietName, hiredPeriod, payDate, price, fullPrice, paymentIntent})=>{
+        const records = packages.map(({pakietName, hiredPeriod, payDate, price, fullPrice, paymentIntent, receiptUrl})=>{
             return {
                 name: pakietName.includes('zaktualizowany')? `Pakiet ${pakietName}` : `Pakiet ${pakietName} - ${hiredPeriod}`,
                 data: payDate,
                 price: fullPrice,
-                paymentIntent
+                paymentIntent,
+                receiptUrl
             }
         })
         console.log('getUserPackagesRecords', records)
@@ -106,6 +109,7 @@ function Rozliczenia({db, auth}) {
                         <div className={styles.secondRow}>Nazwa</div>
                         <div className={styles.thirdRow}>Data</div>
                         <div className={styles.fourthRow}>Wartość</div>
+                        {/* <div className={styles.fifthRow}>Paragon</div> */}
                     </div>
                     {/* <div className={styles.row}>
                         <div className={styles.firstRow}>3/234/234</div>
@@ -119,6 +123,7 @@ function Rozliczenia({db, auth}) {
                             <div className={styles.secondRow}>{skeletonInput}</div>
                             <div className={styles.thirdRow}>{skeletonBtn}</div>
                             <div className={styles.fourthRow}>{skeletonBtn}</div>
+                            <div className={styles.fifthRow}>{skeletonBtn}</div>
                         </div>
                     ))}
                     {records && records.map((record, idx)=>(
@@ -127,6 +132,7 @@ function Rozliczenia({db, auth}) {
                             <div className={styles.secondRow}>{record.name}</div>
                             <div className={styles.thirdRow}>{moment(Number(record.data)).format('DD/MM/YYYY')}</div>
                             <div className={styles.fourthRow}>{`${record.price} zł`}</div>
+                            <div className={styles.fifthRow}><a href={record.receiptUrl} target="_blank">Paragon</a></div>
                         </div>
                     ))}
                 </div>

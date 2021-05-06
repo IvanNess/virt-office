@@ -114,8 +114,9 @@ export default async (req, res) => {
                     ;await (async () => {
                         const client = await pool.connect()
                         try {
-                            const start_date = moment(reservation.startHour.msTime).format('YYYY-MM-DD HH:mm:ss')
-                            const stop_date = moment(reservation.finishHour.msTime).format('YYYY-MM-DD HH:mm:ss')
+                            // add 2 hours as server time is two hours less.
+                            const start_date = moment(reservation.startHour.msTime + 2*60*60*1000).format('YYYY-MM-DD HH:mm:ss')
+                            const stop_date = moment(reservation.finishHour.msTime + 2*60*60*1000).format('YYYY-MM-DD HH:mm:ss')
                             console.log('webhook 1', start_date, stop_date, code)
                             const resp = await client.query('INSERT INTO access (start_date, stop_date, code) VALUES ($1, $2, $3)', 
                                 [start_date, stop_date, code]
