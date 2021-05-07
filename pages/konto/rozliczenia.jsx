@@ -123,7 +123,7 @@ function Rozliczenia({db, auth}) {
                             <div className={styles.secondRow}>{skeletonInput}</div>
                             <div className={styles.thirdRow}>{skeletonBtn}</div>
                             <div className={styles.fourthRow}>{skeletonBtn}</div>
-                            <div className={styles.fifthRow}>{skeletonBtn}</div>
+                            {/* <div className={styles.fifthRow}>{skeletonBtn}</div> */}
                         </div>
                     ))}
                     {records && records.map((record, idx)=>(

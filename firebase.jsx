@@ -1,12 +1,12 @@
 import firebase from 'firebase'
 
 const firebaseConfig = {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
+    apiKey: 'AIzaSyAYZ65E-ZXOAwukWAT5jYwUM5Ah7kKZ69g',
+    authDomain:'virt-office.firebaseapp.com',
+    projectId: 'virt-office',
+    storageBucket: 'virt-office.appspot.com',
+    messagingSenderId: '854614542993',
+    appId: '1:854614542993:web:00f466be9c6955fd0a0d30'
   };
 
 
