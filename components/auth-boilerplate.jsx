@@ -52,8 +52,12 @@ function AuthBoilerplate({db, auth, posts}) {
 
     useEffect(()=>{
         console.log('router', router)
-        const isKontoPage = ['/wynajecie', '/konto/moje-rezerwacje', '/konto/pakiet', '/konto/profil', '/konto/rezerwacja', '/konto/rozliczeniz'].includes(router.pathname)
+        const isKontoPage = ['/konto/moje-rezerwacje', '/konto/pakiet', '/konto/profil', '/konto/rezerwacja', '/konto/rozliczeniz'].includes(router.pathname)
         if(isKontoPage && currentUser === false){
+            router.push('/')
+        }
+        const isWynajeciePage = router.pathname === '/wynajecie'
+        if(isWynajeciePage && packages && packages.length > 0){
             router.push('/')
         }
     }, [currentUser])
