@@ -92,7 +92,7 @@ export default async (req, res) => {
             if(reservation){
                 reservation.addReceiptUrl(receiptUrl)
             } else{
-                const pack = await ReservationSchema.findOne({ paymentIntent }).exec()
+                const pack = await PackageSchema.findOne({ paymentIntent }).exec()
                 pack.addReceiptUrl(receiptUrl)
             } 
         }
