@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setShowAuth } from '../redux/actions'
 import Logo from './logo'
 import Link from 'next/link'
+import { email } from '../accessories/constants'
 
 const Footer = () => {
 
@@ -71,7 +72,7 @@ const Footer = () => {
                             </div>
                             <div className={styles.textOne}>Działaj z dowolnego miejsca na świecie dzięki opcji biura wirtualnego.</div>
                             <div className={styles.textTwo}>Skontaktuj sie z nami: 
-                                <Link href="/"><a><div className={styles.bold}>{` zawodzie20@biuro.pl`}</div></a></Link>
+                                <a href={`mailto:${email}`}><div className={styles.bold}>{email}</div></a>
                             </div>
                         </div>
                         <div className={styles.bottom}>

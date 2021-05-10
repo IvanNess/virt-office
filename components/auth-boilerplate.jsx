@@ -6,20 +6,26 @@ import SignupFormOne from './authForms/signup-form-one'
 import { useSelector, useDispatch } from 'react-redux'
 import SignupFormTwo from './authForms/signup-form-two'
 import SignupFormThree from './authForms/signup-form-three'
-import { setShowAuth, setCurrentUser, setCalendarRedirect, setPayAfterRegister, registerAndReserve } from '../redux/actions'
+import { setShowAuth, setCurrentUser, setCalendarRedirect, setPayAfterRegister, registerAndReserve, setPackages } from '../redux/actions'
 import Link from 'next/link'
 import { useClickOutside } from 'react-click-outside-hook'
 import ForgetForm from './authForms/forget-form'
+import axios from 'axios'
+import { useRouter } from 'next/router'
 
-function AuthBoilerplate({db, auth}) {
+function AuthBoilerplate({db, auth, posts}) {
 
     const page = useSelector(state=>state.signupForm.page ?? 1)
     const calendarRedirect = useSelector(state=>state.calendarRedirect)
     const showAuth = useSelector(state=>state.showAuth)
     const payAfterRegister = useSelector(state=>state.payAfterRegister)
     const reserveBtnDisabled = useSelector(state=>state.selectedDate.registerAndReserve)
+    const currentUser = useSelector(state=>state.currentUser)
+    const packages = useSelector(state=>state.packages)
 
     const dispatch = useDispatch()
+
+    const router = useRouter()
 
     useEffect(()=>{
         auth.onAuthStateChanged((user)=>{
@@ -36,6 +42,36 @@ function AuthBoilerplate({db, auth}) {
             } 
         })
     }, [auth])
+
+    useEffect(()=>{
+        console.log('use effect pakiet', currentUser)
+        if(currentUser && !packages){
+            getUserPackages()
+        }
+    }, [currentUser, packages])
+
+    useEffect(()=>{
+        console.log('router', router)
+        const isKontoPage = ['/konto/moje-rezerwacje', '/konto/pakiet', '/konto/profil', '/konto/rezerwacja', '/konto/rozliczeniz'].includes(router.pathname)
+        if(isKontoPage && currentUser === false){
+            router.push('/')
+        }
+    }, [currentUser])
+
+    async function getUserPackages(){
+        console.log('getUserPackagesRecords')
+        const token = await auth.currentUser.getIdToken()
+        const response = await axios({
+            url: "/api/getuserpackages",
+            method: "POST",
+            data:{ token }
+        })
+        console.log('response', response)
+        const packages = response.data.packages.sort((a,b)=>b.payDate - a.payDate)
+        console.log('getUserPackagesRecords', packages)
+        dispatch(setPackages(packages))
+        return packages
+    }
 
     function onClick(e){
         const id = e.target.dataset?.id

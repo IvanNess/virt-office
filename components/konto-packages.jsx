@@ -58,12 +58,12 @@ const KontoPackages = ({auth}) => {
 
     const dispatch = useDispatch()
 
-    useEffect(()=>{
-        console.log('use effect pakiet', currentUser)
-        if(currentUser && !packages){
-            getUserPackages()
-        }
-    }, [currentUser, packages])
+    // useEffect(()=>{
+    //     console.log('use effect pakiet', currentUser)
+    //     if(currentUser && !packages){
+    //         getUserPackages()
+    //     }
+    // }, [currentUser, packages])
 
     useEffect(()=>{
         console.log('packages', packages)
@@ -82,11 +82,13 @@ const KontoPackages = ({auth}) => {
         console.log('packageName', packageName)
         setPackageName(packageName)
 
-        const days = pakiet.hiredPeriod === "Miesiąc" ? 31 :
-            pakiet.hiredPeriod === "Kwartał" ? 93 : 366
+        const days = pakiet.days || (pakiet.hiredPeriod === "Miesiąc" ? 31 : pakiet.hiredPeriod === "Kwartał" ? 93 : 366)
+        // const days = pakiet.hiredPeriod === "Miesiąc" ? 31 :
+        //     pakiet.hiredPeriod === "Kwartał" ? 93 : 366
 
-        const endDate =  moment(pakiet.startDate).add(days, "d")
-        setEndDate(endDate.format("DD.MM.YYYY"))
+        // const endDate =  moment(pakiet.startDate).add(days, "d")
+        const endDate = pakiet.endDate || moment(pakiet.startDate).add(days, "d")
+        setEndDate(moment(endDate).format("DD.MM.YYYY"))
 
         const leftDays = - moment().diff(endDate, "days")
 

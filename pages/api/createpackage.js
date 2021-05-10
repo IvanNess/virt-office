@@ -3,6 +3,7 @@
 import Cors from 'cors'
 import initMiddleware from '../../init-middleware'
 import nodemailer from 'nodemailer'
+import moment from 'moment'
 
 const mongoose = require('mongoose')
 const PackageSchema = require('../../mongo-models/package-model')
@@ -67,6 +68,12 @@ export default async(req, res) => {
 
         const user = await UserSchema.findOne({ firebaseId: uid }).exec()
 
+        const days = hiredPeriod === "Miesiąc" ? 31 :
+        hiredPeriod === "Kwartał" ? 93 : 366
+
+        const updStartDate = moment(startDate).startOf('date')
+        const endDate =  moment(updStartDate).add(days-1, "d").endOf('date')
+
         const pack = new PackageSchema({
             isPaid: false,
             userId: user._id,
@@ -79,7 +86,9 @@ export default async(req, res) => {
             NIP,
             contactEmail,
             payDate: +new Date(),
-            startDate,
+            startDate: updStartDate,
+            endDate,
+            days,
             price,
             fullPrice,
             lengthCoeff,

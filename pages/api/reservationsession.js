@@ -70,22 +70,22 @@ export default async(req, res) => {
 
     try {
 
-        ;(async () => {
-            const client = await pool.connect()
-            const start_date = moment(startHour).format('YYYY-MM-DD HH:mm:ss')
-            const stop_date = moment(finishHour).format('YYYY-MM-DD HH:mm:ss')
-            const code = 4444
-            try {
-                const res = await client.query('INSERT INTO access (start_date, stop_date, code) VALUES ($1, $2, $3)', 
-                    [start_date, stop_date, code]
-                )            
-                console.log(res.rows[0])
-            } finally {
-            // Make sure to release the client before any error handling,
-            // just in case the error handling itself throws an error.
-            client.release()
-            }
-        })()
+        // ;(async () => {
+        //     const client = await pool.connect()
+        //     const start_date = moment(startHour).format('YYYY-MM-DD HH:mm:ss')
+        //     const stop_date = moment(finishHour).format('YYYY-MM-DD HH:mm:ss')
+        //     const code = 4444
+        //     try {
+        //         const res = await client.query('INSERT INTO access (start_date, stop_date, code) VALUES ($1, $2, $3)', 
+        //             [start_date, stop_date, code]
+        //         )            
+        //         console.log(res.rows[0])
+        //     } finally {
+        //     // Make sure to release the client before any error handling,
+        //     // just in case the error handling itself throws an error.
+        //     client.release()
+        //     }
+        // })()
 
         const decodedToken = await admin.auth().verifyIdToken(token)
         const uid = decodedToken.uid

@@ -17,15 +17,16 @@ function Rightbar({db, auth}) {
     const hiringChoiceNumber = useSelector(state=>state.hiringChoiceNumber)
     const currentUser = useSelector(state=>state.currentUser)
     const showAuth = useSelector(state=>state.showAuth)
+    const payAfterRegister = useSelector(state=>state.payAfterRegister)
     const [btnDisabled, setBtnDisabled] = useState(false)
 
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        if(!showAuth.show){
+        if(!showAuth.show && (!currentUser || !(currentUser && payAfterRegister))){
             setBtnDisabled(false)
         }
-    }, [showAuth])
+    }, [showAuth, currentUser, payAfterRegister])
 
     function login(){
         const body = document.querySelector("body")
@@ -68,21 +69,30 @@ function Rightbar({db, auth}) {
                     ))}
                 </div>
                 {hiringChoices[0].isComplete && hiringChoiceNumber===1 &&
-                    <button className={styles.nextBtn} onClick={nextClicked} disabled={btnDisabled}>
-                        Dalej
-                    </button>
+                    <div className={styles.nextBtnWrapper}>
+                        <button className={styles.nextBtn} onClick={nextClicked} disabled={btnDisabled}>
+                            Dalej
+                        </button>
+                    </div>
                 }
                 {hiringChoices[1].isComplete && hiringChoiceNumber===2 && currentUser &&
-                    <button className={styles.nextBtn} onClick={pay} disabled={btnDisabled}>
-                        {!btnDisabled && `Zaplać (${hiringChoices[1].fullPrice} zł)`}
-                        {btnDisabled && <LoadingOutlined style={{color: "white"}}/>}
-                    </button>
+                    <div className={styles.nextBtnWrapper}>
+                        <div className={styles.priceDiv}><span className={styles.priceLeft}>Cena:</span>{`${hiringChoices[1].fullPrice}zł`}</div>
+                        <button className={styles.nextBtn} onClick={pay} disabled={btnDisabled}>
+                            {!btnDisabled && `Zaplać`}
+                            {btnDisabled && <LoadingOutlined style={{color: "white"}}/>}
+                        </button>
+                    </div>
+                    
                 }
                 {hiringChoices[1].isComplete && hiringChoiceNumber===2 && !currentUser &&
-                    <button className={styles.nextBtn} onClick={loginAndPay} disabled={btnDisabled}>
-                        {!btnDisabled && `Zaloguj się i zaplać (${hiringChoices[1].fullPrice} zł)`}
-                        {btnDisabled && <LoadingOutlined style={{color: "white"}}/>}
-                    </button>
+                    <div className={styles.nextBtnWrapper}>
+                        <div className={styles.priceDiv}><span className={styles.priceLeft}>Cena:</span>{`${hiringChoices[1].fullPrice}zł`}</div>
+                        <button className={styles.nextBtn} onClick={loginAndPay} disabled={btnDisabled}>
+                            {!btnDisabled && `Zaloguj się i zaplać`}
+                            {btnDisabled && <LoadingOutlined style={{color: "white"}}/>}
+                        </button>
+                    </div>
                 }
                 <Price db={db} auth={auth}/>
             </div> 

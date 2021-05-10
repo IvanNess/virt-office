@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import styles from '../../styles/AuthFormBoilerplate.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
@@ -21,12 +21,35 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
     const selectedDate = useSelector(state=>state.selectedDate)
     const startHour = useSelector(state=>state.reservedHoursUtilities.startHour)
     const finishHour = useSelector(state=>state.reservedHoursUtilities.finishHour)
+    const packages = useSelector(state=>state.packages)
+    const currentUser = useSelector(state=>state.currentUser)
 
     const [btnDisabled, setBtnDisabled] = useState(false)
 
     const dispatch = useDispatch()
 
     const router = useRouter()
+
+    useEffect(()=>{
+        asyncPayAfterRegister()
+        async function asyncPayAfterRegister(){
+            if(payAfterRegister && packages && packages.length === 0){
+                // dispatch(setPayAfterRegister(false))
+                //pay actions
+                console.log('pay action')
+                await packagePay({auth, hiringChoices})
+            } else if(payAfterRegister && packages && packages.length > 0){
+                // dispatch(setPayAfterRegister(false))
+                Modal.error({
+                    title: 'Błąd zakupu pakietu.',
+                    content: 'Masz niedokończony pakiet.',
+                    onOk: ()=>dispatch(setPayAfterRegister(false))
+                })
+                router.push('/konto/pakiet')
+            }
+        }
+        
+    }, [payAfterRegister, packages, currentUser])
 
     async function check(){
         if(isLogin){
@@ -63,13 +86,13 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     const body = document.querySelector("body")
                     body.style.overflow = "auto"
                     // router.push('/konto/profil')
-                    if(payAfterRegister){
-                        dispatch(setPayAfterRegister(false))
-                        //pay actions
-                        console.log('pay action')
-                        await packagePay({auth, hiringChoices})
-                        return
-                    }
+                    // if(payAfterRegister){
+                    //     dispatch(setPayAfterRegister(false))
+                    //     //pay actions
+                    //     console.log('pay action')
+                    //     await packagePay({auth, hiringChoices})
+                    //     return
+                    // }
                     if(selectedDate.registerAndReserve){
                         // dispatch(registerAndReserve(false))
                         await reservationPay({auth, selectedDate, startHour, finishHour})
@@ -77,7 +100,10 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     }
                     if(calendarRedirect)
                         return router.push('/konto/rezerwacja')
-                    router.push('/konto/profil')
+                    // router.push('/konto/profil')
+                    if(!payAfterRegister){
+                        router.push('/konto/profil')
+                    }
                 } catch (error) {
                     console.log(error)
                     if(error?.message==='The password is invalid or the user does not have a password.'){
@@ -266,13 +292,13 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         dispatch(setShowAuth({show: false}))
                         const body = document.querySelector("body")
                         body.style.overflow = "auto"  
-                        if(payAfterRegister){
-                            dispatch(setPayAfterRegister(false))
-                            //pay actions
-                            console.log('pay action')
-                            await packagePay({auth, hiringChoices})
-                            return
-                        }
+                        // if(payAfterRegister){
+                        //     dispatch(setPayAfterRegister(false))
+                        //     //pay actions
+                        //     console.log('pay action')
+                        //     await packagePay({auth, hiringChoices})
+                        //     return
+                        // }
                         if(selectedDate.registerAndReserve){
                             // dispatch(registerAndReserve(false))
                             await reservationPay({auth, selectedDate, startHour, finishHour})
@@ -280,7 +306,10 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         }
                         if(calendarRedirect)
                             return router.push('/konto/rezerwacja')
-                        router.push('/konto/profil')
+                        // router.push('/konto/profil')
+                        if(!payAfterRegister){
+                            router.push('/konto/profil')
+                        }
                     } catch (error) {
                         console.log(error)
                         if(error.response?.data==="The email address is improperly formatted."){

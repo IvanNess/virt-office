@@ -4,9 +4,13 @@ import headerStyles from '../styles/Header.module.scss'
 
 import Link from 'next/link'
 import Logo from './logo'
+import { useSelector } from 'react-redux'
 
 
 const ProfileHeader = () => {
+
+    const packages = useSelector(state=>state.packages)
+
     return (
         <div className={styles.profileHeader}>
             <div className={headerStyles.logo}>
@@ -18,9 +22,9 @@ const ProfileHeader = () => {
                     <Logo color="#121109" hovColor="#E2C700" scale={1.0}/>
                 </a></Link>
             </div>
-            <div className={styles.button}>
+            {packages && packages.length === 0 &&  <div className={styles.button}>
                 <Link href="/wynajecie"><a>KUP TERAZ</a></Link>
-            </div>
+            </div>}
         </div>
     )
 }

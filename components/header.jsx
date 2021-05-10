@@ -9,6 +9,7 @@ import Logo from './logo'
 const Header = () => {
 
     const currentUser = useSelector(state=>state.currentUser)
+    const packages = useSelector(state=>state.packages)
 
     const dispatch = useDispatch()
 
@@ -31,9 +32,9 @@ const Header = () => {
                 </a></Link>
             </div>
             <div className={styles.headerButtons}>
-                <div className={styles.button}>
+                {((packages && packages.length === 0) || currentUser===false) && <div className={styles.button}>
                     <Link href="/wynajecie"><a>Wynajmij biuro</a></Link>
-                </div>
+                </div>}
                 {(!currentUser && currentUser !== null) && <button className={styles.loginButton} onClick={login}>Zaloguj się</button>}
                 {currentUser && <div className={styles.profileButton} >
                         <Link href="/konto/profil"><a>profil</a></Link>

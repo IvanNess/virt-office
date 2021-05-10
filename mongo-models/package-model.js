@@ -16,6 +16,8 @@ const packageSchema = new mongoose.Schema({
     contactEmail: String,
     payDate: Number,
     startDate: Number,
+    endDate: Number,
+    days: Number,
     invoiceDate: Number,
     expireDate: Number,
     price: Number,

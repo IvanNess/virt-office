@@ -11,6 +11,7 @@ import { useClickOutside } from 'react-click-outside-hook'
 import axios from 'axios'
 import Logo from './logo'
 import Link from 'next/link'
+import { email } from '../accessories/constants'
 
 const MenuContent = ({auth}) => {
 
@@ -81,7 +82,7 @@ const MenuContent = ({auth}) => {
             <div className={styles.textOne}>Działaj z dowolnego miejsca na świecie dzięki opcji biura wirtualnego.</div>
 
             <div className={styles.textTwo}>Skontaktuj sie z nami: 
-                <span className={styles.bold}>{` zawodzie20@biuro.pl`}</span>
+                <a href={`mailto:${email}`}><span className={styles.bold}>{email}</span></a>
             </div>
 
             <div className={styles.options}>

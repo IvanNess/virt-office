@@ -110,6 +110,10 @@ export default async (req, res) => {
                 const code = Math.floor(Math.random()*10000)
                 reservation.pay(paymentIntent, code)
 
+                // const start_date = moment(reservation.startHour.msTime + 2*60*60*1000).format('YYYY-MM-DD HH:mm:ss')
+                // const stop_date = moment(reservation.finishHour.msTime + 2*60*60*1000).format('YYYY-MM-DD HH:mm:ss')
+                // console.log('webhook 1', start_date, stop_date)
+
                 try{
                     ;await (async () => {
                         const client = await pool.connect()

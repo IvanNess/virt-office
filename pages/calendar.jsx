@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {setSelectedDate, addReservedHour, setCurrentUser} from '../redux/actions'
 import firebase from 'firebase'
 // import locale from "date-fns/locale/en-GB";
-import locale from "date-fns/locale/pl";
+// import locale from "date-fns/locale/pl";
+import locale from '../accessories/pl'
 
 
 const Calendar = ({db, auth}) => {
