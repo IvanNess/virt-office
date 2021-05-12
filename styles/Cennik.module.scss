@@ -3,6 +3,7 @@
 .linkButton{
     @include linkButton(44px);
     margin-left: $main-margin-left;
+    background-color: $main-color;
 }
 
 .linkButtonWrapper{
