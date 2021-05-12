@@ -57,7 +57,18 @@ const Footer = () => {
                     </div> */}
                     <div onClick={()=>onAuth(true)}><Link href="/"><a><h2 className={styles.first}>zaloguj</h2></a></Link></div>
                     <div onClick={()=>onAuth(false)}><Link href="/"><a><h2>zarejestruj</h2></a></Link></div>
-
+                    <div className={styles.textTwo}>Skontaktuj sie z nami: 
+                        {/* <a href={`mailto:${email}`}><div className={styles.bold}>{email}</div></a> */}
+                        <div className={styles.contacts}>
+                            <div className={styles.email}><a href={`mailto://${email}`}>{email}</a></div>
+                            <div className={styles.phone}><a href="tel:+48602779599">+48 602 77 95 99</a></div>
+                        </div>
+                    </div>
+                    <div className={styles.bottom}>
+                        <Link href="/"><a><TwitterIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
+                        <Link href="/"><a><FacebookIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
+                        <Link href="/"><a><InstagramIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
+                    </div>
                 </div>
                 <div className={styles.thirdColumn}>
                     <div className={styles.columnWrapper}>
@@ -71,15 +82,15 @@ const Footer = () => {
                                 </a></Link>
                             </div>
                             <div className={styles.textOne}>Działaj z dowolnego miejsca na świecie dzięki opcji biura wirtualnego.</div>
-                            <div className={styles.textTwo}>Skontaktuj sie z nami: 
+                            {/* <div className={styles.textTwo}>Skontaktuj sie z nami: 
                                 <a href={`mailto:${email}`}><div className={styles.bold}>{email}</div></a>
-                            </div>
+                            </div> */}
                         </div>
-                        <div className={styles.bottom}>
+                        {/* <div className={styles.bottom}>
                             <Link href="/"><a><TwitterIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
                             <Link href="/"><a><FacebookIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
                             <Link href="/"><a><InstagramIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

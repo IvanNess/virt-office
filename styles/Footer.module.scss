@@ -19,18 +19,19 @@
         .column{
             padding-right: 100px;
             transition-duration: 0.4s;
-            &:nth-child(2){
-                @media all and (max-width: 1300px){
-                    display: none;
-                } 
-            }
+            // &:nth-child(2){
+            //     @media all and (max-width: 1300px){
+            //         display: none;
+            //     } 
+            // }
         }
         a{
             text-decoration: none;
         }
         h2{
             margin-top: 0;
-            margin-bottom: 46px;
+            // margin-bottom: 46px;
+            margin-bottom: 20px;
             @include h2;
             &.last{
                 margin-bottom: 80px;
@@ -99,7 +100,45 @@
     width: 340px;
 }
 
-// .footer svg:hover path{
-//     // transition-duration: 0.4s;
-//     // fill: $text-color;
-// }
+.textTwo{
+    color: #FFFFFF;
+    a:hover{
+        color: $text-color;
+    }
+}
+
+.bottom{
+    display: flex;
+    width: 120px;
+    justify-content: space-between;
+    // padding-top: 40px;
+    a{
+        svg{
+            &:hover{
+                color: $text-color;
+            } 
+        }
+    }
+}
+
+.contacts{
+    // align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+    .email{
+        @include blockText();
+        padding: 0;
+        color: #ffffff;
+    }
+    .phone{
+        @include blockTitle();
+        padding: 0;
+        color: #ffffff;
+    }
+}
+
+.footer svg:hover path{
+    transition-duration: 0.4s;
+    fill: $text-color;
+}

@@ -52,7 +52,7 @@ function Rightbar({db, auth}) {
     }
 
     return (
-        <div className={styles.rightBarWrapper}>
+        <div className={hiringChoiceNumber===1 ? styles.rightBarWrapper : styles.vh100RightBarWrapper }>
             <div className={styles.rightBarTop}>
                 {currentUser === false && <button className={styles.rightBarTopBtn} onClick={login}>zaloguj sie</button>}
                 {currentUser && <div className={styles.profilBtn}>

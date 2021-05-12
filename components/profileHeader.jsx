@@ -23,7 +23,7 @@ const ProfileHeader = () => {
                 </a></Link>
             </div>
             {packages && packages.length === 0 &&  <div className={styles.button}>
-                <Link href="/wynajecie"><a>KUP TERAZ</a></Link>
+                <Link href="/wynajecie"><a>Wynajmij adres</a></Link>
             </div>}
         </div>
     )

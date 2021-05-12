@@ -17,6 +17,7 @@
     }
     .updateBtn{
         @include buttonInput();
+        width: 250px;
     }
     .linkBtn{
         @include linkButton(55px);

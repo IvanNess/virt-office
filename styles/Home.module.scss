@@ -10,6 +10,7 @@
     margin-left: $main-margin-left;
     margin-top: 35px;
     width: 226px;
+    background-color: $main-color;
 }
 
 .titleTwo{
@@ -121,6 +122,12 @@
 //   }
 }
 
+.smallTextBold{
+    font-weight: bold;
+    font-family: "Work Sans Bold";
+    text-transform: uppercase;
+}
+
 .blockWrapper{
     &:hover{
         .blockText{
@@ -201,6 +208,10 @@
 .blocksTwo{
   @include blocks(0px);
   padding-bottom: 103.5px;
+  .blockText{
+      padding-bottom: 60px;
+      line-height: 25px;
+  }
 }
 
 .title{
@@ -238,12 +249,13 @@
     width: 100%;
     .blockLargeInner{
         display: flex;
+
         .left{
-            margin-right: 130px;
-            max-width: 395px;
+            // margin-right: 40px;
+            max-width: 50%;
         }
         .right{
-            max-width: 425px;
+            max-width: 50%;
         }
     }
 }
@@ -475,4 +487,9 @@
             cursor: pointer;
         }
     }
+}
+
+.underlined{
+    text-decoration: underline;
+    font-weight: bold;
 }

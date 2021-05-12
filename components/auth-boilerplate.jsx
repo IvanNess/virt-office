@@ -60,7 +60,7 @@ function AuthBoilerplate({db, auth, posts}) {
         if(isWynajeciePage && packages && packages.length > 0){
             router.push('/')
         }
-    }, [currentUser, packages])
+    }, [currentUser, packages, router])
 
     async function getUserPackages(){
         console.log('getUserPackagesRecords')

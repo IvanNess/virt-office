@@ -18,14 +18,20 @@ function Ksiegowosc() {
             <Billboard>
                 <Header/>
                 <div className={styles.headerTitle}>
-                    Księgowość online <span className={styles.headerBoldFont}> dla Ciebie</span>
+                    {/* Księgowość online <span className={styles.headerBoldFont}> dla Ciebie</span> */}
+                    Siła połączonych ofert <br/>
+                    Dla klientów wynajmujących adres od&nbsp;virtoffice.pl <span className={styles.headerBoldFont}>ROK DARMOWEGO DOSTĘPU DO SERWISU WFIRMA</span>
                 </div>
                 <div className={styles.headerText}>
-                    Wystawiaj faktury, wyliczaj podatki i rozliczaj się z ZUS
+                    {/* Wystawiaj faktury, wyliczaj podatki i rozliczaj się z ZUS */}
+                    Księgowość zarówno on-line jak i konwencjonalna. 
+                    <br/>
+                    Wybierz najlepsze rozwiązanie dla Ciebie, my chętnie doradzimy.
+                    Wystawiaj faktury wyliczaj podatki i rozliczaj się z ZUS dzięki księgowości on-line albo zleć to profesjonalnym księgowym
                 </div>
                 <div className={styles.linkButtonWrapper}>
                     <div className={styles.linkButton}>
-                        <Link href='/wynajecie'><a cl>Wynajmij biuro</a></Link>
+                        <Link href='/wynajecie'><a>Wynajmij adres</a></Link>
                     </div> 
                 </div>
             </Billboard>
@@ -67,7 +73,8 @@ function Ksiegowosc() {
 
             <div className={styles.secondTitle}>
                 <div className={styles.title}>
-                    <span className={styles.boldFont}>wFirma</span> w liczbach — Postaw na doświadczenie
+                    {/* <span className={styles.boldFont}>wFirma</span> w liczbach — Postaw na doświadczenie */}
+                    Nasz partner <span className={styles.boldFont}>wfirma.pl</span> w liczbach
                 </div>
             </div>
 

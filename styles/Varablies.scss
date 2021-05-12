@@ -180,7 +180,7 @@ $text-color: #121109;
 
 @mixin headerTitle {
   text-align: left;
-  font: normal normal 300 56px/66px "Work Sans Light";
+  font: normal normal normal 56px/66px "Work Sans";
   letter-spacing: 0px;
   color: #FFFFFF;
   text-transform: lowercase;
@@ -188,7 +188,7 @@ $text-color: #121109;
   margin-top: 85px;
   width: 812px;
   @media all and (max-width: 1300px){
-    font: normal normal 300 44px "Work Sans Light";
+    // font: normal normal 300 44px "Work Sans Light";
   }
   @media all and (max-width: 1024px){
     font: normal normal 300 38px "Work Sans Light";
@@ -226,12 +226,12 @@ $text-color: #121109;
     margin-top: 82px;
     padding-bottom: 17px;
     width: 1000px;
-    font: normal normal 300 16px/25px "Work Sans Light";
+    font: normal normal normal 16px/25px "Work Sans";
     letter-spacing: 0px;
     color: #FFFFFF;
     opacity: 1;
     @media all and (max-width: 1300px){
-      width: 800px;
+      // width: 800px;
       margin-right: 150px;
     }
     @media all and (max-width: 1024px){

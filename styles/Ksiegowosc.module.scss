@@ -17,6 +17,7 @@
 .linkButton{
     @include linkButton(44px);
     margin-left: $main-margin-left;
+    background-color: $main-color;
 }
 
 .linkButtonWrapper{
@@ -27,12 +28,20 @@
     position: relative;
     .headerTitle{
         @include headerTitle();
-        margin-top: 150px;
-        width: 595px;
+        // margin-top: 150px;
+        margin-top: 50px;
+        // width: 595px;
+        width: auto;
+        max-width: 1000px;
+        margin-right: 150px;
     }
     .headerText{
         @include headerText();
         padding-bottom: 44px;
+        margin-top: 52px;
+        width: auto;
+        max-width: 1000px;
+        margin-right: 150px;
     }
     .title{
         @include title();

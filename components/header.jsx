@@ -4,6 +4,7 @@ import { setShowAuth } from '../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import Link from 'next/link'
 import Logo from './logo'
+import { email } from '../accessories/constants'
 
 
 const Header = () => {
@@ -32,8 +33,12 @@ const Header = () => {
                 </a></Link>
             </div>
             <div className={styles.headerButtons}>
+                <div className={styles.contacts}>
+                    <div className={styles.email}><a href={`mailto://${email}`}>{email}</a></div>
+                    <div className={styles.phone}><a href="tel:+48602779599">+48 602 77 95 99</a></div>
+                </div>
                 {((packages && packages.length === 0) || currentUser===false) && <div className={styles.button}>
-                    <Link href="/wynajecie"><a>Wynajmij biuro</a></Link>
+                    <Link href="/wynajecie"><a>Wynajmij adres</a></Link>
                 </div>}
                 {(!currentUser && currentUser !== null) && <button className={styles.loginButton} onClick={login}>Zaloguj się</button>}
                 {currentUser && <div className={styles.profileButton} >

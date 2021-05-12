@@ -17,6 +17,8 @@ import { setShowAuth } from '../redux/actions'
 export default function Home({db, auth}) {
 
   const dispatch = useDispatch()
+  const packages = useSelector(state=>state.packages)
+  const currentUser = useSelector(state=>state.currentUser)
 
   function showAuth(){
     dispatch(setShowAuth({show: true, isLogin: true}))
@@ -101,7 +103,8 @@ export default function Home({db, auth}) {
 
           </div>
         </Carousel>
-        <div className={styles.findBtn}><Link href='/wynajecie'><a>Wynajmij biuro</a></Link></div>
+        {((packages && packages.length === 0) || currentUser===false) && 
+        <div className={styles.findBtn}><Link href='/wynajecie'><a>Wynajmij adres</a></Link></div>}
       </Billboard>
               
       <div className={styles.title}>
@@ -268,7 +271,9 @@ export default function Home({db, auth}) {
       </div>
 
       <div className={styles.smallText}>
-        U NAS ISTNIEJE MOŻLIWOŚĆ WYNAJĘCIA PRRZESTRZENI BIUTROWEJ NA SPOTKANIA Z KLINENTEM. SPRAWDZ DOSTEPNY TERMIN I ZAREZERWUJ !
+        {/* U NAS ISTNIEJE MOŻLIWOŚĆ WYNAJĘCIA PRRZESTRZENI BIUTROWEJ NA SPOTKANIA Z KLINENTEM. SPRAWDZ DOSTEPNY TERMIN I ZAREZERWUJ ! */}
+        wynajem sali konferencyjnej na godziny jest świetnym uzupełnieniem wynajmu wirtualnego adresu. Czasami powstaje potrzeba spotkania się z partnerami biznesowymi w warunkach komfortowych do przeprowadzenia rozmów lub prezentacji. 
+        <span className={styles.smallTextBold}>{` SPRAWDŹ DOSTĘPNE TERMINY I ZAREZERWUJ`}</span>
       </div>
 
       <div className={styles.homePageCalendar}>
@@ -281,7 +286,8 @@ export default function Home({db, auth}) {
       </div>
 
       <div className={styles.smallText}>
-        możesz załatwić wszystkie formalności online – MOŻESZ RÓWNIEŻ NAS ODWIEDZIĆ – umów się wcześniej na spotkanie
+        {/* możesz załatwić wszystkie formalności online – MOŻESZ RÓWNIEŻ NAS ODWIEDZIĆ – umów się wcześniej na spotkanie */}
+        dzięki skorzystaniu z naszej oferty wirtualnego adresu lub wynajmu sali konferencyjnej możesz załatwić wszystkie formalności on-line lub po wcześniejszym umówieniu się w naszej siedzibie.
       </div>
 
       <div className={styles.blocksTwo}>
@@ -307,7 +313,8 @@ export default function Home({db, auth}) {
                   </div>
                 </div>
                 <div className={styles.blockText}>
-                  obsługę poczty, biuro wirtualne z pełnym pakietem usług czy dowolną inną opcję  
+                  {/* obsługę poczty, biuro wirtualne z pełnym pakietem usług czy dowolną inną opcję   */}
+                  wirtualny adres Twojej firmy wynajęty w virtoffice.pl daje Ci możliwość obsługi korespondencji, korzystania z sali konferencyjnej, optymalnych kosztów księgowości i archiwizacji dokumentów. Wszystkie usługi związane z wynajmem adresu możesz mieć dostosowane do swoich indywidulanych potrzeb. To da możliwość stosunkowo niskich i optymalnych kosztów stałych związanych z prowadzoną przez Ciebie działalnością
                 </div>
               </div>
               <div className={styles.right}>
@@ -317,7 +324,8 @@ export default function Home({db, auth}) {
                   </div>
                 </div>
                 <div className={styles.blockText}>
-                  to świetne miejsce do spotkań i prowadzenia negocjacji. Umożliwiamy Ci wynajem sali konferencyjnej na godziny.
+                  {/* to świetne miejsce do spotkań i prowadzenia negocjacji. Umożliwiamy Ci wynajem sali konferencyjnej na godziny. */}
+                  wynajem sali konferencyjnej daje możliwość spotkań biznesowych w pełni zautomatyzowanym i świetnie wyposażonym wnętrzu. Ekran, rzutnik, stół konferencyjny, strefa chill czy choćby zaplecze sanitarno-kuchenne daje pełny komfort rozmów. Dodatkowo sala na czas spotkania jest oznakowana logiem Twojej firmy, a wszystkie formalności możesz załatwić online.
                 </div>   
               </div>
             </div>   

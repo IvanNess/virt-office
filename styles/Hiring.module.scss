@@ -3,6 +3,13 @@
 .rightBarWrapper{
     position: relative;
     background-color: $main-color;   
+    height: auto;
+}
+
+.vh100RightBarWrapper{
+    height: 100vh;
+    position: relative;
+    background-color: $main-color;   
 }
 
 .rightbar{
