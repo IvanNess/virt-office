@@ -37,14 +37,17 @@ const Header = () => {
                     <div className={styles.email}><a href={`mailto://${email}`}>{email}</a></div>
                     <div className={styles.phone}><a href="tel:+48602779599">+48 602 77 95 99</a></div>
                 </div>
-                {((packages && packages.length === 0) || currentUser===false) && <div className={styles.button}>
-                    <Link href="/wynajecie"><a>Wynajmij adres</a></Link>
-                </div>}
-                {(!currentUser && currentUser !== null) && <button className={styles.loginButton} onClick={login}>Zaloguj się</button>}
-                {currentUser && <div className={styles.profileButton} >
-                        <Link href="/konto/profil"><a>profil</a></Link>
+                <div className={styles.buttons}>
+                    {((packages && packages.length === 0) || currentUser===false) && <div className={styles.button}>
+                        <Link href="/wynajecie"><a>Wynajmij adres</a></Link>
                     </div>}
-                {currentUser === null && <button className={styles.plug}></button>}
+                    {(!currentUser && currentUser !== null) && <button className={styles.loginButton} onClick={login}>Zaloguj się</button>}
+                    {currentUser && <div className={styles.profileButton} >
+                            <Link href="/konto/profil"><a>profil</a></Link>
+                        </div>}
+                    {currentUser === null && <button className={styles.plug}></button>}
+                </div>
+                
             </div>
         </div>
     )
