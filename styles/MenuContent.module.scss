@@ -12,6 +12,11 @@ $cities-width: 450px;
     box-shadow: 0px 0px 15px #411141AF;
     transition-duration: 0.4s;
     z-index: 111;
+    @media (max-width: 700px) {
+        width: 100vw;
+        right: 0;
+        padding: 27px;
+    }
     .iconsWrapper{
         a{
             text-decoration: none;
@@ -37,6 +42,13 @@ $cities-width: 450px;
                 color: $text-color;
                 cursor: pointer;
             }
+            @media (max-width: 700px) {
+                font: normal normal 900 30px/35px "Work Sans Black";
+                margin-bottom: 20px;
+                &.last{
+                    margin-bottom: 20px;
+                }
+            }
         }
     }
 }
@@ -51,6 +63,7 @@ $cities-width: 450px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
 .cities{
@@ -78,10 +91,23 @@ $cities-width: 450px;
     width: 125px;
     display: flex;
     justify-content: space-between;
+    @media (max-width: 700px) {
+        display: none;
+    }
+}
+
+.closeIcon{
+    display: none;
+    @media (max-width: 700px) {
+        display: block;
+        &:hover{
+            cursor: pointer;
+        }
+    }
 }
 
 .textOne, .textTwo{
-    width: 323px;
+    max-width: 323px;
     font: normal normal 300 16px/19px "Work Sans Light";
     letter-spacing: 0px;
     color: $text-color;

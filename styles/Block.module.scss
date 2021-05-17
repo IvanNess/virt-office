@@ -12,6 +12,10 @@ $block-height: 323px;
     &:hover{
         // border-color: $text-color;
     }
+    @media (max-width: 700px){
+        width: auto;
+        height: auto;
+    }
 }
 
 .fullBlock{
@@ -19,7 +23,7 @@ $block-height: 323px;
     flex-direction: column;
     align-items: center;
     position: relative;
-    z-index: 2;
+    // z-index: 2;
     margin: 0;
     &:hover{
         .block{
@@ -59,7 +63,9 @@ $block-height: 323px;
 .blockLarge{
     @include block(100%, auto);
     // margin-right: 16px;
-    
+    @media (max-width:700px){
+        border: none;
+    }            
 }
 
 .blockLargeNone{

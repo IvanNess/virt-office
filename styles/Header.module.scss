@@ -47,7 +47,10 @@
 .header .button{
     @include linkButton(44px);
     margin-right: 20px;
-    background-color: $main-color;
+    background-color: $main-color;  
+    @media(max-width: 700px){
+        display: none;
+    }
 }
 
 .loginButton{
@@ -58,6 +61,9 @@
     letter-spacing: 0.8px;
     text-transform: uppercase;
     border: none;
+    @media(max-width: 700px){
+        display: none;
+    }
 }
 
 .profileHeader .button{
@@ -116,15 +122,40 @@
     display: flex;
     flex-direction: column;
     padding-right: 20px;
+    @media all and (max-width: 700px){
+        padding-right: 110px;
+    }
     .email{
         @include blockText();
         padding: 0;
         color: #ffffff;
+        @media(max-width: 700px){
+            font: normal normal 300 10px/15px "Work Sans Light";
+        }
     }
     .phone{
         @include blockTitle();
         padding: 0;
         color: #ffffff;
+        @media(max-width: 700px){
+            font: normal normal 900 12px/15px Work Sans;        
+        }
+    }
+}
+
+@media(max-width: 700px){
+.logo{
+        transform: scale(0.5);
+        transform-origin: left;
+        width: 3rem;
+        margin-left: 26px !important;
+    }
+}
+
+@media(max-width: 700px){
+    .header{
+        height: 90px;
+        border: none;
     }
 }
 

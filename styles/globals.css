@@ -86,6 +86,44 @@ input{
   margin: 0 !important;
 }
 
+@media (max-width: 700px){
+  .MuiPickersStaticWrapper-staticWrapperRoot {
+    min-width: auto !important;
+    max-width: auto !important;
+    margin-top: 0px !important;
+  }
+  
+  .MuiPickersBasePicker-pickerView{
+    max-width: auto !important;
+    min-width: auto !important;
+    min-height: auto !important;
+  }
+  
+  .MuiPickersCalendarHeader-transitionContainer {
+    height: 40px !important;
+  }
+  
+  .MuiPickersCalendarHeader-daysHeader{
+    margin-left: 0px !important;
+  }
+  
+  .MuiPickersCalendarHeader-dayLabel {
+    padding-left: 0px !important;
+    margin: 0 !important;
+    width: calc((100vw - 68px) / 7) !important;
+  } 
+  
+  .MuiPickersDay-day{
+    margin: 0 !important;
+    width: calc((100vw - 68px) / 7) !important;
+    height: calc((100vw - 68px) / 7) !important;
+  }
+
+  .MuiPickersCalendar-transitionContainer{
+    min-height: calc(100vw - 100px) !important;
+  }
+}
+
 /* antd select input */
 .ant-select-selector{
   height: 55px !important;
@@ -196,6 +234,16 @@ input{
   bottom: -73px;
 }
 
+@media (max-width: 700px) {
+  .ant-carousel .slick-dots-bottom{
+    bottom: -112px;
+    margin-left: 0;
+    margin-right: 0;
+    left: auto !important;
+    padding-left: 26px;
+  }
+}
+
 .ant-carousel .slick-dots{
   right: auto;
   left: 300px;
@@ -247,6 +295,12 @@ option[value="PL"], option[value="UA"], option[value="RU"], option[value="BY"]{
 /* ant-d icons */
 .MuiSvgIcon-root:hover{
   /* color: #121109 !important; */
+}
+
+@media(max-width: 700px){
+  .MuiSvgIcon-root{
+    font-size: 40px !important;
+  }
 }
 
 /* ant-d upload */

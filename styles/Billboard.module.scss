@@ -3,10 +3,18 @@
 .billboard{
     position: relative;
     height: 738px;
+    @media (max-width: 700px){
+      height: auto;
+      padding-bottom: 59px;
+    }
   }
   
 .billboardWrapper{
     @include with-background("/images/main.png", $main-color, 0);
+    @media(max-width: 700px){
+      background-size: cover;
+      background-position: center center;
+    }
 }
 
 .noBackground{

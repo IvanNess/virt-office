@@ -25,9 +25,14 @@ const Footer = () => {
         <div className={styles.footer}>
             <div className={styles.wrapper}>
                 <div className={styles.column}>
-                    {/* <div><Link href="/onas"><a><h2>o nas</h2></a></Link></div> */}
+                    {/* <div><Link href="/onas"><a><h2>o nas</h2></a></Link></div> */}                    
                     <div><Link href="/cennik"><a><h2 >cennik</h2></a></Link></div>     
-                    <div><Link href="/ksiegowosc"><a><h2 className={styles.last}>księgowość</h2></a></Link></div>
+                    {/* <div><Link href="/ksiegowosc"><a><h2 className={styles.last}>księgowość</h2></a></Link></div> */}
+                    <div><Link href="/ksiegowosc"><a><h2>księgowość</h2></a></Link></div>
+                    <div className={styles.firstColAuth}>
+                        <div onClick={()=>onAuth(true)}><a><h2 className={styles.first}>zaloguj</h2></a></div>
+                        <div onClick={()=>onAuth(false)}><a><h2>zarejestruj</h2></a></div>
+                    </div>
                 </div>
                 <div className={styles.column}>
                     {/* <div className={styles.columnWrapper}>
@@ -55,20 +60,15 @@ const Footer = () => {
                             </div>
                         </div>
                     </div> */}
-                    <div onClick={()=>onAuth(true)}><Link href="/"><a><h2 className={styles.first}>zaloguj</h2></a></Link></div>
-                    <div onClick={()=>onAuth(false)}><Link href="/"><a><h2>zarejestruj</h2></a></Link></div>
-                    <div className={styles.textTwo}>Skontaktuj sie z nami: 
-                        {/* <a href={`mailto:${email}`}><div className={styles.bold}>{email}</div></a> */}
-                        <div className={styles.contacts}>
-                            <div className={styles.email}><a href={`mailto://${email}`}>{email}</a></div>
-                            <div className={styles.phone}><a href="tel:+48602779599">+48 602 77 95 99</a></div>
-                        </div>
-                    </div>
                     <div className={styles.bottom}>
                         <Link href="/"><a><TwitterIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
                         <Link href="/"><a><FacebookIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
                         <Link href="/"><a><InstagramIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
                     </div>
+                    <div className={styles.secondColAuth}>
+                        <div onClick={()=>onAuth(true)}><a><h2 className={styles.first}>zaloguj</h2></a></div>
+                        <div onClick={()=>onAuth(false)}><a><h2>zarejestruj</h2></a></div>
+                    </div>                    
                 </div>
                 <div className={styles.thirdColumn}>
                     <div className={styles.columnWrapper}>
@@ -85,6 +85,13 @@ const Footer = () => {
                             {/* <div className={styles.textTwo}>Skontaktuj sie z nami: 
                                 <a href={`mailto:${email}`}><div className={styles.bold}>{email}</div></a>
                             </div> */}
+                            <div className={styles.textTwo}>Skontaktuj sie z nami: 
+                                {/* <a href={`mailto:${email}`}><div className={styles.bold}>{email}</div></a> */}
+                                <div className={styles.contacts}>
+                                    <div className={styles.email}><a href={`mailto://${email}`}>{email}</a></div>
+                                    <div className={styles.phone}><a href="tel:+48602779599">+48 602 77 95 99</a></div>
+                                </div>
+                            </div>
                         </div>
                         {/* <div className={styles.bottom}>
                             <Link href="/"><a><TwitterIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>

@@ -1,8 +1,9 @@
 @import '/styles/Varablies.scss';
 
-
+  
 .container{
   position: relative;
+  @include start-animation()
 }
 
 .findBtn{
@@ -11,6 +12,16 @@
     margin-top: 35px;
     width: 226px;
     background-color: $main-color;
+    @media (max-width: 700px) {
+        width: 156px;
+        height: 38px;
+        margin-left: 26px;
+        a{
+            line-height: 38px;
+            font: normal normal bold 12px/14px "Work Sans Bold";
+            height: auto;
+        }
+    }
 }
 
 .titleTwo{
@@ -27,6 +38,13 @@
   @media all and (max-width: 1300px){
     width: auto;
     margin-right: 150px;
+  }
+  @media all and (max-width: 700px){
+    width: auto;
+    margin-top: 61px;
+    max-width: 269px;
+    margin-right: 0;
+    margin-bottom: 12px;
   }
 //   @media all and (max-width: 1300px){
 //     width: 800px;
@@ -47,6 +65,11 @@
     width: 791px;
     margin-bottom: 31px;
     margin-top: 86px;
+    @media (max-width: 700px) {
+        width: auto;
+        margin-top: 61px;
+        margin-bottom: 16px;
+    }
 }
 
 .headerForm input[type=button]{
@@ -86,7 +109,10 @@
 }
 
 .headerText{
-  @include headerText()
+  @include headerText();
+  @media(max-width: 700px){
+      display: none;
+  }
 }
 
 .headerForm{
@@ -102,12 +128,8 @@
 
 .smallText{
   @include smallText();
-  padding-bottom: 71px;
+  padding-bottom: 61px;
   text-transform: lowercase;
-  @media all and (max-width: 1300px){
-    width: auto;
-    margin-right: 150px;
-  }
 //   @media all and (max-width: 1300px){
 //     width: 800px;
 //   }
@@ -141,6 +163,10 @@
     @media all and (max-width: 1100px){
         margin-right: 20px;
     }
+    @media all and (max-width: 700px){
+        margin-bottom: 20px;
+        margin-right: 26px;
+    }
 }
 
 .blocks{
@@ -161,6 +187,12 @@
     }
     @media all and (max-width: 1300px){
         // font: normal normal 300 15px "Work Sans Light";
+    }
+    @media all and (max-width: 700px){
+        font: normal normal 300 14px/24px "Work Sans Light";
+        &:last-child{
+            padding-bottom: 20px;
+        }
     }
   }
   .mainBlockWrapper{
@@ -196,6 +228,10 @@
         bottom: 0;
         left: 0;
         width: 70px;
+    }
+    @media(max-width: 700px){
+        font: normal normal 900 16px/24px "Work Sans Black";
+        margin-top: 20px;
     }
     // .blockHeaderFirst{
     //     max-width: 240px;
@@ -249,13 +285,31 @@
     width: 100%;
     .blockLargeInner{
         display: flex;
-
+        @media (max-width:700px){
+            flex-direction: column;
+        }
         .left{
             // margin-right: 40px;
             max-width: 50%;
+            @media (max-width:700px){
+                max-width: 100%;
+            }
         }
         .right{
             max-width: 50%;
+            @media (max-width:700px){
+                max-width: 100%;
+            }
+        }
+        .blockHeader{
+            @media (max-width:700px){
+                margin: 0;
+            }            
+        }
+        .blockText{
+            @media (max-width:700px){
+                padding: 12px 0 24px 0;
+            }            
         }
     }
 }
@@ -264,6 +318,10 @@
     @include headerTitle();
     margin-top: 40px;
     font: normal normal normal 56px/66px "Work Sans";
+    @media (max-width: 700px){
+        margin-top: 20px;
+        margin-left: 26px;
+    };
 }
 
 .headerText{
@@ -305,20 +363,13 @@
         width: 1001px;
         @media all and (max-width: 1300px){
             width: auto;
-            margin-right: 150px;
+            margin-right: 100px;
         }
-        // @media all and (max-width: 1300px){
-        //     width: 800px;
-        // }
-        // @media all and (max-width: 1024px){
-        //     width: 600px;
-        // }
-        // @media all and (max-width: 740px){
-        //     width: 550px;
-        // }
-        // @media all and (max-width: 620px){
-        //     width: auto;
-        // }
+        @media all and (max-width: 700px){
+            width: auto;
+            margin-right: 0;
+            max-width: 270px;
+        }
     }
 }
 
@@ -330,20 +381,13 @@
         // text-align: center;
         @media all and (max-width: 1300px){
             width: auto;
-            margin-right: 150px;
+            margin-right: 100px;
         }
-        // @media all and (max-width: 1300px){
-        //     width: 800px;
-        // }
-        // @media all and (max-width: 1024px){
-        //     width: 600px;
-        // }
-        // @media all and (max-width: 740px){
-        //     width: 550px;
-        // }
-        // @media all and (max-width: 620px){
-        //     width: auto;
-        // }
+        @media all and (max-width: 700px){
+            width: auto;
+            margin-right: 0;
+            max-width: 270px;
+        }
     }
     .bottom{
         width: 1100px;
@@ -351,18 +395,14 @@
             width: auto;
             margin-right: 150px;
         }
-        // @media all and (max-width: 1300px){
-        //     width: 800px;
-        // }
-        // @media all and (max-width: 1024px){
-        //     width: 600px;
-        // }
-        // @media all and (max-width: 740px){
-        //     width: 550px;
-        // }
-        // @media all and (max-width: 620px){
-        //     width: auto;
-        // }
+        @media all and (max-width: 1300px){
+            margin-right: 100px;
+        }
+        @media all and (max-width: 700px){
+            width: auto;
+            margin-right: 0;
+            max-width: 270px;
+        }
     }
     .headerText{
         width: 1020px;
@@ -370,18 +410,11 @@
             width: auto;
             margin-right: 150px;
         }
-        // @media all and (max-width: 1300px){
-        //     width: 800px;
-        // }
-        // @media all and (max-width: 1024px){
-        //     width: 600px;
-        // }
-        // @media all and (max-width: 740px){
-        //     width: 550px;
-        // }
-        // @media all and (max-width: 620px){
-        //     width: auto;
-        // }
+        @media all and (max-width: 700px){
+            width: auto;
+            margin-right: 0;
+            max-width: 270px;
+        }
     }
     .headerTitle{
         width: auto;
@@ -394,6 +427,10 @@
         @media all and (max-width: 1300px){
             width: auto;
             margin-right: 150px;
+        }
+        @media all and (max-width: 1300px){
+            width: auto;
+            margin-right: 100px;
         }
         // @media all and (max-width: 1300px){
         //     width: 800px;
@@ -416,6 +453,9 @@
         flex-direction: column;
         justify-content: space-between;
         height: 450px;
+        @media (max-width: 700px){
+            height: auto;
+        }
     }
 }
 
@@ -426,6 +466,11 @@
     min-width: 1240px;
     @media all and (max-width: 1300px){
         // display: none;
+    }
+    @media all and (max-width: 700px){
+        flex-direction: column;
+        align-items: flex-start;
+        min-width: auto;
     }
 }
 
@@ -450,11 +495,23 @@
         letter-spacing: 0.6px;
         color: #121109;  
         margin: 0;
+        @media (max-width: 700px){
+            font: normal normal bold 20px/33px "Work Sans Bold";
+        }
+    }
+    @media (max-width: 700px){
+        margin-left: 26px;
+        margin-top: 74px;
+        margin-right: 26px;
     }
 }
 
 .homePageCalendar{
     margin-left: $main-margin-left;
+    @media (max-width:700px) {
+        margin-left: 26px;
+        margin-right: 26px;
+    }
 }
 
 .wfirmaBlockWrapper{
@@ -469,17 +526,30 @@
     align-items: center;
     z-index: 1;
     margin-top: 135px;
+    @media (max-width: 700px) {
+        height: auto;
+        margin-top: 94px;
+        padding: 76px 26px;
+        background-size: cover;
+    }    
     .wfirmaText{
         text-align: center;
         font: normal normal 300 45px/77px "Work Sans Light";
         max-width: 1152px;
         z-index: 1;
+        @media (max-width: 700px) {
+            font: normal normal 300 20px/30px "Work Sans Light";
+            max-width: 420px;
+        }
         h4{
             margin: 0;
             color: white;
         }
         .bold{
             font: normal normal 900 45px/77px "Work Sans Black";
+            @media (max-width: 700px) {
+                font: normal normal 900 20px/30px "Work Sans Black";            
+            }
         }
         .underline{
             text-decoration: underline;

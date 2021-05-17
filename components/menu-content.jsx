@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import TwitterIcon from '@material-ui/icons/Twitter'
 import FacebookIcon from '@material-ui/icons/Facebook'
 import InstagramIcon from '@material-ui/icons/Instagram'
+import CloseIcon from '@material-ui/icons/Close'
 
 import styles from '../styles/MenuContent.module.scss'
 // import { Link } from 'next/link'
@@ -76,6 +77,9 @@ const MenuContent = ({auth}) => {
                     <Link href="/"><a><div><TwitterIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></div></a></Link>
                     <Link href="/"><a><div><FacebookIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></div></a></Link>
                     <Link href="/"><a><div><InstagramIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></div></a></Link>
+                </div>
+                <div className={styles.closeIcon} onClick={linkClicked}>
+                    <CloseIcon style={{fontSize: '70px', color: "white"}}/>
                 </div>
             </div>
 

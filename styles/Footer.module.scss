@@ -16,6 +16,11 @@
         padding-right: 150px;
         display: flex;
         justify-content: space-between;
+        @media (max-width: 700px) {
+            flex-direction: column-reverse;
+            padding-left: 26px;
+            padding-right: 0px;
+        }
         .column{
             padding-right: 100px;
             transition-duration: 0.4s;
@@ -24,6 +29,9 @@
             //         display: none;
             //     } 
             // }
+            @media (max-width: 700px) {
+                padding-right: 0px;
+            }
         }
         a{
             text-decoration: none;
@@ -31,8 +39,12 @@
         h2{
             margin-top: 0;
             // margin-bottom: 46px;
-            margin-bottom: 20px;
+            margin-bottom: 35px;
             @include h2;
+            @media (max-width: 700px) {
+                margin-bottom: 30px;
+                font: normal normal 900 30px/35px "Work Sans Black";
+            }
             &.last{
                 margin-bottom: 80px;
             }
@@ -63,12 +75,16 @@
             justify-content: space-between;
             padding-bottom: 80px;
             height: 100%;
+            @media (max-width: 700px) {
+                padding-bottom: 45px;
+            }
             .top{
                 display: flex;
                 flex-direction: column;
                 font: normal normal 300 16px/19px "Work Sans Light";
                 letter-spacing: 0px;
                 color: #FFFFFF;
+                width: 295px;
                 .logo{
                     margin-bottom: 0;
                     width: 10%;
@@ -80,6 +96,9 @@
                     width: 350px;
                     a:hover{
                         color: $text-color;
+                    }
+                    @media (max-width: 700px) {
+                        width: auto
                     }
                 }
                 .bold{
@@ -98,6 +117,10 @@
 
 .thirdColumn{
     width: 340px;
+    @media (max-width: 700px) {
+        width: auto;
+
+    }
 }
 
 .textTwo{
@@ -112,6 +135,13 @@
     width: 120px;
     justify-content: space-between;
     // padding-top: 40px;
+    margin-bottom: 35px;
+    height: 41.6px;
+    align-items: center;
+    @media (max-width: 700px) {
+        margin-bottom: 30px;
+        width: 180px;
+    }
     a{
         svg{
             &:hover{
@@ -130,15 +160,34 @@
         @include blockText();
         padding: 0;
         color: #ffffff;
+        font: normal normal 900 16px/22px "Work Sans Black";
     }
     .phone{
         @include blockTitle();
         padding: 0;
         color: #ffffff;
+        margin-top: 13px;
+        font: normal normal 900 20px/22px "Work Sans Black";
     }
 }
 
 .footer svg:hover path{
     transition-duration: 0.4s;
     fill: $text-color;
+}
+
+.firstColAuth{
+    display: none;
+}
+.secondColAuth{
+    display: block;
+}
+
+@media (max-width: 700px){
+    .firstColAuth{
+        display: block;
+    }
+    .secondColAuth{
+        display: none;
+    }   
 }

@@ -8,6 +8,9 @@
     font: normal normal normal 14px/16px Work Sans;
     letter-spacing: 0px;
     width: 96px;
+    @media (max-width: 700px) {
+        width: 19vw;
+    }
 }
 
 .hoursWrapper{
@@ -42,65 +45,81 @@
     flex-wrap: wrap;
     color: #121109;
     cursor: default;
+    @media (max-width: 700px) {
+        width: auto;
+        justify-content: space-between;
+    }
     .selected{
         background-color: $main-color;
+        flex: 1;
     }
     
     .free{
         // background-color: mediumspringgreen;
         cursor: pointer;
+        flex: 1;
     }
     
     .reserved{
         // background-color: mediumvioletred;
-        color: rgba(0, 0, 0, 0.38)
+        color: rgba(0, 0, 0, 0.38);
+        flex: 1;
     }
     
     .middle{
         // background-color: orange;
         background-color: $solid-color;
         cursor: pointer;
+        flex: 1;
     }
     
     .start{
         // background-color: royalblue;
         background-color: $solid-color;
         cursor: pointer;
+        flex: 1;
     }
     
     .finish{
         // background-color: purple;
         background-color: $solid-color;
+        flex: 1;
     }
     
     .past{
         // background-color: slategrey;
-        color: rgba(0, 0, 0, 0.38)
+        color: rgba(0, 0, 0, 0.38);
+        flex: 1;
     }
     
     .noaccess{
         // background-color: lightgrey;
-        color: rgba(0, 0, 0, 0.38)
+        color: rgba(0, 0, 0, 0.38);
+        flex: 1;
     }
 
     .init{
         // background-color: lightgrey;
-        color: $main-color
+        color: $main-color;
+        flex: 1;
     }
     
     .session{
         background-color: navy;
+        flex: 1;
     }
     
     .possible{
         // background-color: lightgreen;
         cursor: pointer;
+        flex: 1;
     }
     
     .border{
         // background-color: tomato;
         // color: rgba(0, 0, 0, 0.38);
         color: $text-color;
+        flex: 1;
     }  
 }
 
@@ -151,6 +170,9 @@
         border: 2px solid white;
         background-color: $main-color;
     }
+    @media (max-width: 700px){
+        width: auto;
+    }
 }
 
 .cancelBtn{
@@ -162,6 +184,9 @@
         background-color: white;
         border: 2px solid red;
         color: $text-color;
+    }
+    @media (max-width: 700px){
+        width: auto;
     }
 }
 
@@ -197,6 +222,9 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 80px;
+    @media (max-width: 700px) {
+        margin-bottom: 0;
+    }
 }  
 
 

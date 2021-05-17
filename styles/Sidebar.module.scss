@@ -10,12 +10,17 @@ $language-taxt-width: 98px;
     height: 100%;
     border: 1px solid #B9B9B9;
     z-index: 1;
-    @media all and (max-width: 1024px){
-        width: 70px;
-        display: flex;
-    }
-    @media all and (max-width: 1024px){
-        display: none;
+    // @media all and (max-width: 1024px){
+    //     width: 70px;
+    //     display: flex;
+    // }
+    // @media all and (max-width: 1024px){
+    //     display: none;
+    // }
+    @media all and (max-width: 700px){
+        width: auto;
+        height: auto;
+        border: none;
     }
 }
 
@@ -24,6 +29,10 @@ $language-taxt-width: 98px;
     display: flex;
     justify-content: center;
     align-items: center;
+    @media all and (max-width: 700px){
+        height: 92px;
+        margin-right: 20px;
+    }
 }
 
 .menuIcons{
@@ -42,6 +51,9 @@ $language-taxt-width: 98px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    @media all and (max-width: 700px){
+        display: none;
+    }
     .text{
         width: $language-taxt-width;
         font: normal normal 300 16px/19px "Work Sans Light";

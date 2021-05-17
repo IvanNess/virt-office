@@ -12,6 +12,7 @@
 
 .cennik{
     position: relative;
+    @include start-animation();
 }
 
 .headerTitle{
