@@ -1,9 +1,21 @@
 @import './Varablies.scss';
 
+
+@mixin fixedRightBarWrapper(){
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
 .rightBarWrapper{
     position: relative;
     background-color: $main-color;   
     height: auto;
+    @media (max-width: 1024px) {
+        @include fixedRightBarWrapper();
+    }
 }
 
 .vh100RightBarWrapper{
@@ -12,6 +24,7 @@
     background-color: $main-color;   
     @media (max-width: 1024px) {
         height: auto;
+        @include fixedRightBarWrapper();
     }
 }
 
