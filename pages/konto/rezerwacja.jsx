@@ -6,6 +6,7 @@ import Calendar from '../calendar'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { setCalendarRedirect } from '../../redux/actions'
+import Sidebar from '../../components/side-bar'
 
 function Rezervacja({db, auth}) {
 

@@ -7,6 +7,7 @@ import useSWR from 'swr'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import {setPackages} from '../../redux/actions'
+import Sidebar from '../../components/side-bar'
 
 function Pakiet({auth, db}) {
 

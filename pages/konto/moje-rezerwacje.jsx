@@ -9,6 +9,7 @@ import axios from 'axios'
 import {setPackages} from '../../redux/actions'
 import Display from '../../components/display'
 import YourReservation from '../../components/your-reservation'
+import Sidebar from '../../components/side-bar'
 
 function MojeRezerwacje({auth, db}) {
 
