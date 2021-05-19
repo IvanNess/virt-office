@@ -11,7 +11,7 @@ import Footer from '../components/footer'
 import { useState } from 'react'
 import WynajmijButton from '../components/wynajmij-button'
 
-const Cennik = () => {
+const Cennik = ({auth}) => {
 
     const [currentCennikId, setCurrentCennikId]  = useState(1)
 
