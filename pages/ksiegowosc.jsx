@@ -9,7 +9,7 @@ import Link from 'next/link'
 import Footer from '../components/footer'
 import WynajmijButton from '../components/wynajmij-button'
 
-function Ksiegowosc() {
+function Ksiegowosc({auth}) {
     const Hyphen = ()=> <span className={styles.hyphen}>&mdash;&mdash;&mdash;&mdash;&mdash;</span>
 
     return (

@@ -8,7 +8,7 @@ import FacebookIcon from '@material-ui/icons/Facebook'
 import InstagramIcon from '@material-ui/icons/Instagram'
 import Footer from '../components/footer'
 
-function Onas() {
+function Onas({auth}) {
     return (
         <div className={styles.onas}>
             <Sidebar auth={auth}/>
