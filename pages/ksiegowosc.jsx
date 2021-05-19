@@ -14,7 +14,7 @@ function Ksiegowosc() {
 
     return (
         <div className={styles.ksiegowosc}>
-            <Sidebar/>
+            <Sidebar auth={auth}/>
 
             <Billboard>
                 <Header/>

@@ -24,7 +24,7 @@ const Cennik = () => {
 
     return (
         <div className={styles.cennik}>
-            <Sidebar/>
+            <Sidebar auth={auth}/>
 
             <Billboard>
                 <Header/>

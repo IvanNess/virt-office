@@ -328,6 +328,11 @@ function Hours({db, auth , outterReset}) {
 
     const onClick = (e)=>{
 
+        const id = e.target.dataset.id
+        const clickedHour = updHours.find(hour=>hour.id===id)
+        if(clickedHour.className==='init')
+            return
+
         dispatch(editSelectedDate(false))
 
         let newUpdHours = [...updHours]
@@ -338,14 +343,12 @@ function Hours({db, auth , outterReset}) {
         // })
         console.log(e.target)
 
-        const id = e.target.dataset.id
         console.log('newUpdHours', newUpdHours, id)
 
         if(startHour && startHour.id===id){
             return resetUpdHours()
         }
 
-        const clickedHour = updHours.find(hour=>hour.id===id)
         const clickedHourIndex = updHours.findIndex(hour=>hour.id===id)
         console.log('clicked', clickedHour)
         if(!clickedHour)

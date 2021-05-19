@@ -279,7 +279,7 @@ function Dane({auth, db}) {
     return (
         <div className={styles.dane}>
             <ProfileBoilerplate  auth={auth} db={db}>
-                <Sidebar color='#4CAED5'/>
+                <Sidebar color='#4CAED5' auth={auth}/>
                 <div>
                     <div className={styles.title}>
                         1. <span className={styles.bold}>Mój Profil</span>

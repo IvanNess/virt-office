@@ -12,7 +12,7 @@ function Podpis() {
 
     return (
         <div className={styles.podpis}>
-            <Sidebar/>
+            <Sidebar auth={auth}/>
 
             <Billboard>
                 <Header/>

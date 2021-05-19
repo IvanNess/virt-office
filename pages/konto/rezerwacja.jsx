@@ -21,7 +21,7 @@ function Rezervacja({db, auth}) {
     return (
         <div className={styles.dane}>
             <ProfileBoilerplate  auth={auth} db={db}>
-                <Sidebar color='#4CAED5'/>
+                <Sidebar color='#4CAED5' auth={auth}/>
                 <div className={styles.title}>4. <span className={styles.bold}>Rezerwacja Biura</span></div>
                 <div className={styles.text}>
                     <div className={styles.small}>Wpisz nazwę lub kod pocztowy miasta, w którym chcesz wybrać adres firmy. Dostępne adresy i miesięczny koszt wyświetlą się poniżej.</div>

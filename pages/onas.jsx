@@ -11,7 +11,7 @@ import Footer from '../components/footer'
 function Onas() {
     return (
         <div className={styles.onas}>
-            <Sidebar/>
+            <Sidebar auth={auth}/>
 
             <Billboard parentModule='onas'>
                 <Header/>
