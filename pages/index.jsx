@@ -42,7 +42,7 @@ export default function Home({db, auth}) {
           <input className={styles.textInput} type="text" name="" id="" placeholder="Wpisz miasto"/>
           <input className={styles.buttonInput} type="button" value="WYSZUKAJ"/>
         </form> */}
-        <Carousel autoplay={false} autoplaySpeed={4000} pauseOnHover={false}>
+        <Carousel autoplay={true} autoplaySpeed={4000} pauseOnHover={false}>
           <div className={styles.headerOne}>
             <div className={styles.headerFlex}>
               <div className={styles.headerTitle}>
