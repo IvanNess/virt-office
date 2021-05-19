@@ -7,7 +7,7 @@ import Sidebar from '../components/side-bar'
 import Link from 'next/link'
 import Block from '../components/block'
 
-function Podpis({podpis}) {
+function Podpis({auth}) {
     const Hyphen = ()=> <span className={styles.hyphen}>&mdash;&mdash;&mdash;&mdash;&mdash;</span>
 
     return (
