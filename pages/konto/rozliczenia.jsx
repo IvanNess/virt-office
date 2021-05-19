@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
+import Sidebar from '../../components/side-bar';
 
 const { Option } = Select;
 
