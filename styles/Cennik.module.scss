@@ -19,6 +19,10 @@
     @include headerTitle();
     margin-top: 150px;
     margin-bottom: 85px;
+    @media (max-width: 700px){
+        margin-top: 50px;
+        margin-bottom: 28px;
+    }
 }
 
 .headerText{
@@ -26,11 +30,19 @@
     padding: 0;
     margin-top: 0;
     margin-bottom: 44px;
+    @media (max-width: 700px){
+        margin-bottom: 28px;
+        max-width: 290px;
+        margin-right: 0;
+    }
 }
 
 .headerBoldFont{
     font: normal normal normal 56px/66px "Work Sans Black";
     text-transform: uppercase;
+    @media (max-width: 700px) {
+        font: normal normal 900 20px/24px "Work Sans Black";
+    }
 }
 
 .title{
@@ -99,6 +111,9 @@
         @include barItem();
         background-color: $main-color;
         color: #ffffff;
+    }
+    @media (max-width: 700px) {
+        display: none;
     }
 }
 

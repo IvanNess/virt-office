@@ -9,6 +9,7 @@ import Link from 'next/link'
 import Block from '../components/block'
 import Footer from '../components/footer'
 import { useState } from 'react'
+import WynajmijButton from '../components/wynajmij-button'
 
 const Cennik = () => {
 
@@ -33,11 +34,12 @@ const Cennik = () => {
                 <div className={styles.headerText}>
                     Zarządzaj swoim biznesem z każdego miejsca o dowolnej porze
                 </div>
-                <div className={styles.linkButtonWrapper}>
+                {/* <div className={styles.linkButtonWrapper}>
                     <div className={styles.linkButton}>
                         <Link href='/wynajecie'><a>Wynajmij adres</a></Link>
                     </div> 
-                </div>
+                </div> */}
+                <WynajmijButton/>
             </Billboard>
 
             <div className={styles.title}>

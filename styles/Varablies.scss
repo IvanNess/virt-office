@@ -26,7 +26,7 @@ $text-color: #121109;
   margin-top: 117px;
   margin-bottom: 60px;
   margin-left: $main-margin-left;
-  width: 1192px;
+  max-width: 1192px;
   font: normal normal 300 56px/66px 'Work Sans Light';
   letter-spacing: 0px;
   color: $text-color;
@@ -42,7 +42,7 @@ $text-color: #121109;
     margin-left: 26px;
     margin-top: 34px;
     margin-bottom: 28px;
-    width: 269px;
+    max-width: 269px;
     .boldFont{
       font: normal normal 900 20px/24px "Work Sans Black";
     }
@@ -147,13 +147,15 @@ $text-color: #121109;
   } 
   &:hover{
     background-color: #ffffff;
-    color: $text-color;
+    a{
+      color: $text-color;
+    }
   }   
 }
 
 @mixin profileInput {
   input{
-    width: 791px;
+    max-width: 791px;
     height: 52px;
     margin-top: 10px;
     padding-left: 18px;
@@ -168,7 +170,7 @@ $text-color: #121109;
 
 @mixin profileText {
   color: $text-color;
-  width: 578px;
+  max-width: 578px;
   padding-top: 14.5px;
   margin: 0;
   padding-bottom: 0;
@@ -200,7 +202,7 @@ $text-color: #121109;
   text-transform: lowercase;
   margin-left: $main-margin-left;
   margin-top: 85px;
-  width: 812px;
+  max-width: 812px;
   @media all and (max-width: 1300px){
     // font: normal normal 300 44px "Work Sans Light";
   }
@@ -210,9 +212,10 @@ $text-color: #121109;
   @media all and (max-width: 740px){
     font: normal normal 300 36px "Work Sans Light";
   }
-  @media all and (max-width: 620px){
-    // font: normal normal 300 30px "Work Sans Light";
-    font: normal normal 300 20px/24px "Work Sans";
+  @media all and (max-width: 700px){
+    font: normal normal 300 20px/24px "Work Sans Light";
+    margin-left: 27px;
+    margin-right: 10px;
   }
 }
 
@@ -256,8 +259,12 @@ $text-color: #121109;
     @media all and (max-width: 740px){
       width: 550px;
     }
-    @media all and (max-width: 620px){
+    @media all and (max-width: 700px){
       width: auto;
+      font: normal normal 300 16px/25px "Work Sans Light";
+      margin-left: 27px;
+      margin-right: 10px;
+      padding-bottom: 0px;
   }
 }
 
@@ -341,8 +348,14 @@ $text-color: #121109;
       width: auto;
       margin: 0;
       text-transform: none;
+      @media (max-width: 700px) {
+        font: normal normal 300 36px/66px "Work Sans Light";
+      }
       .bold{
           font: normal normal 900 56px/66px "Work Sans Black";
+          @media (max-width: 700px) {
+            font: normal normal 900 36px/66px "Work Sans Black";
+          }
       }
   }
   .small, input{
@@ -350,22 +363,32 @@ $text-color: #121109;
       &[type=button]{
           font: normal normal bold 16px/19px "Work Sans Black";
       }
+      @media (max-width: 700px) {
+        font: normal normal 300 12px/19px "Work Sans Light";
+      }
   }
   form{
     display: flex;
     flex-direction: column;
-    width: 791px;
+    max-width: 791px;
     input:first-child{
       margin-top: 14px;
     }
   }
   .twoColumns{
-      display: flex;
-      flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    input:first-child{
+      margin-right: 10px;
+      margin-top: 10px;
+    }
+    @media (max-width: 700px) {
+      flex-direction: column;
+      // margin-right: 27px;
       input:first-child{
-        margin-right: 10px;
-        margin-top: 10px;
+        margin-right: 0px;
       }
+    }
   }
 }
 
@@ -394,7 +417,7 @@ $text-color: #121109;
   color: $text-color;
   font: normal normal 900 60px/71px "Work Sans Black";
   margin-left: $main-margin-left;
-  width: 1115px;
+  max-width: 1115px;
   margin-bottom: 270.5px;
   margin-top: 276px;
 }

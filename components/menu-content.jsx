@@ -13,10 +13,13 @@ import axios from 'axios'
 import Logo from './logo'
 import Link from 'next/link'
 import { email } from '../accessories/constants'
+import useWindowWidth from '../hooks/useWindowWidth'
 
 const MenuContent = ({auth}) => {
 
     const dispatch = useDispatch()
+
+    const windowWidth = useWindowWidth()
 
     useEffect(()=>{
         console.log('menu context auth', auth)
@@ -70,7 +73,7 @@ const MenuContent = ({auth}) => {
             <div className={styles.iconsWrapper}>
                 <Link href="/"><a>
                     <div onClick={linkClicked}>
-                        <Logo/>
+                        <Logo scale={useWindowWidth>=700 ? 1 : 0.6}/>
                     </div>
                 </a></Link>
                 <div className={styles.icons}>
@@ -104,9 +107,18 @@ const MenuContent = ({auth}) => {
                     <h2>zarejestruj</h2>
                 </div>}
 
-                {currentUser && <div onClick={logout}>
-                    <h2 className={styles.first}>wyloguj</h2 >
-                </div>}
+                {currentUser && 
+                    <div className={styles.profilLinks}>
+                        <div><Link href="/konto/profil"><a><h2 className={styles.profilLink} onClick={linkClicked}>profil</h2></a></Link></div>
+                        <div><Link href="/konto/pakiet"><a><h2 className={styles.profilLink} onClick={linkClicked}>mój pakiet</h2></a></Link></div>
+                        <div><Link href="/konto/rozliczenia"><a><h2 className={styles.profilLink} onClick={linkClicked}>rozliczenia</h2></a></Link></div>
+                        <div><Link href="/konto/rezerwacja"><a><h2 className={styles.profilLink} onClick={linkClicked}>zarezerwuj biuro</h2></a></Link></div>
+                        <div><Link href="/konto/moje-rezerwacje"><a><h2 className={styles.profilLink} onClick={linkClicked}>moje rezerwacje</h2></a></Link></div>
+                        <div onClick={logout}>
+                            <h2 className={styles.first}>wyloguj</h2 >
+                        </div>
+                    </div>
+                }
 
                 {/* <Link href="/pakiety"><a><h2>pakiety</h2></a></Link>
                 

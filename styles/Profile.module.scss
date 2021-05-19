@@ -17,6 +17,7 @@
     .changeLogin{
         display: flex;
         flex-direction: column;
+        // margin-right: 27px;
         .smallTitle{
             font: normal normal 900 16px/19px "Work Sans Black";
             color: $text-color;
@@ -27,5 +28,22 @@
         width: 226px !important;
         margin-top: 20px;
         margin-bottom: 50px;
+        margin-right: 0px;
+        @media (max-width: 1000px) {
+            // margin-right: 27px;
+            width: 100% !important;
+        }
+    }
+    .twoColumns{
+        input{
+            flex: 1;
+        }
+        @media (max-width: 900px) {
+            flex-direction: column;
+            height: 120px;
+            input:first-child{
+                margin-right: 0;
+            }
+        }
     }
 }

@@ -11,6 +11,9 @@ $main-margin-left: 50px;
     justify-content: space-between;
     width: 278px;
     min-height: calc(100vh - 150px);
+    @media (max-width: 700px) {
+        display: none
+    }
     .categories{
         display: flex;
         flex-direction: column;

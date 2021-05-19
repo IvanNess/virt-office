@@ -5,6 +5,9 @@
     justify-content: space-between;
     align-items: stretch;
     position: relative;
+    @media (max-width: 1024px) {
+        flex-direction: column-reverse;
+    }
 }
 
 .selectOptionWithBtn{
@@ -19,6 +22,9 @@
     display: flex;
     align-items: center;
     padding-left: $main-margin-left;
+    @media (max-width: 1024px) {
+        display: none;
+    }
 }
 
 .wynajecieLogo a{

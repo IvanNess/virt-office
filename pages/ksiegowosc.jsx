@@ -7,6 +7,7 @@ import Sidebar from '../components/side-bar'
 import Block from '../components/block'
 import Link from 'next/link'
 import Footer from '../components/footer'
+import WynajmijButton from '../components/wynajmij-button'
 
 function Ksiegowosc() {
     const Hyphen = ()=> <span className={styles.hyphen}>&mdash;&mdash;&mdash;&mdash;&mdash;</span>
@@ -24,20 +25,21 @@ function Ksiegowosc() {
                 </div>
                 <div className={styles.headerText}>
                     {/* Wystawiaj faktury, wyliczaj podatki i rozliczaj się z ZUS */}
-                    Księgowość zarówno on-line jak i konwencjonalna. 
+                    Księgowość zarówno on-line jak i&nbsp;konwencjonalna. 
                     <br/>
                     Wybierz najlepsze rozwiązanie dla Ciebie, my chętnie doradzimy.
-                    Wystawiaj faktury wyliczaj podatki i rozliczaj się z ZUS dzięki księgowości on-line albo zleć to profesjonalnym księgowym
+                    Wystawiaj faktury wyliczaj podatki i rozliczaj się z ZUS dzięki księgowości on&#8209;line albo zleć to profesjonalnym księgowym
                 </div>
-                <div className={styles.linkButtonWrapper}>
+                {/* <div className={styles.linkButtonWrapper}>
                     <div className={styles.linkButton}>
                         <Link href='/wynajecie'><a>Wynajmij adres</a></Link>
                     </div> 
-                </div>
+                </div> */}
+                <WynajmijButton/>
             </Billboard>
             
             <div className={styles.title}>
-                Ponad <span className={styles.boldFont}> 700 nowych </span>przedsiębiorców wybiera wFirmę każdego tygodnia v
+                Ponad <span className={styles.boldFont}> 700 nowych </span>przedsiębiorców wybiera wFirmę każdego tygodnia
             </div>
             {/* <div className={styles.smallText}>
                 Prowadź księgowość online i zyskaj niezależność w zarządzaniu firmą!
@@ -74,7 +76,7 @@ function Ksiegowosc() {
             <div className={styles.secondTitle}>
                 <div className={styles.title}>
                     {/* <span className={styles.boldFont}>wFirma</span> w liczbach — Postaw na doświadczenie */}
-                    Nasz partner <span className={styles.boldFont}>wfirma.pl</span> w liczbach
+                    Nasz partner <span className={styles.boldFont}>wfirma.pl</span> w&nbsp;liczbach
                 </div>
             </div>
 

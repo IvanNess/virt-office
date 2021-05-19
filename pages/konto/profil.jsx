@@ -14,6 +14,7 @@ import PhoneInput, {isPossiblePhoneNumber} from 'react-phone-number-input'
 import pl from 'react-phone-number-input/locale/pl'
 
 import flags from '../../accessories/flags'
+import Sidebar from '../../components/side-bar'
 
 function Dane({auth, db}) {
 
@@ -278,6 +279,7 @@ function Dane({auth, db}) {
     return (
         <div className={styles.dane}>
             <ProfileBoilerplate  auth={auth} db={db}>
+                <Sidebar color='#4CAED5'/>
                 <div>
                     <div className={styles.title}>
                         1. <span className={styles.bold}>Mój Profil</span>

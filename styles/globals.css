@@ -234,6 +234,25 @@ input{
   bottom: -73px;
 }
 
+@media(max-width: 700px){
+  .ant-collapse-arrow{
+    width: 50px !important;
+  }
+  .ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow{
+    padding: 20px 16px;
+  }
+  .ant-collapse-item {
+    font: normal normal 18px/28px "Work Sans Medium";
+  }
+  .ant-collapse-content {
+    font: normal normal 300 12px/19px "Work Sans Light";
+  }
+  .ant-collapse-item-active .ant-collapse-header {
+    font: normal normal 900 18px/28px "Work Sans Light";
+  }
+}
+
+
 @media (max-width: 700px) {
   .ant-carousel .slick-dots-bottom{
     bottom: -112px;

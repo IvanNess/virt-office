@@ -119,6 +119,7 @@ const Display = ({auth, db}) => {
 
     return (
         <div className={styles.display}>
+            <div className={styles.title}>Twój ekran</div>
             <div className={styles.description}>
                 Tak będzie wyglądał ekran przed biurem oraz w samym biurze. <br/>
                 Aby zmienić, kliknij na obrazek i wybierz swój. <br/>

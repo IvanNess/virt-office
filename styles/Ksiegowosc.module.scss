@@ -2,11 +2,15 @@
 
 .noBackgroundBillboardText{
     @include noBackgroundBillboardText();
-    width: 1115px;
+    max-width: 1115px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 180px;
     margin-bottom: 180px;
+    @media (max-width: 700px) {
+        font: normal normal 900 20px/24px "Work Sans Black";
+        margin: 62px 26px 101px 26px;
+    }
 }
 
 .buttonInput{
@@ -35,6 +39,9 @@
         width: auto;
         max-width: 1000px;
         margin-right: 150px;
+        @media (max-width: 700px) {
+            max-width: 340px;
+        }
     }
     .headerText{
         @include headerText();
@@ -43,11 +50,14 @@
         width: auto;
         max-width: 1000px;
         margin-right: 150px;
+        @media (max-width: 700px) {
+            max-width: 380px;
+        }
     }
     .title{
         @include title();
         // width: 488px;
-        width: 1125px;
+        max-width: 1125px;
         margin-bottom: 120px;
         .boldFont{
             text-transform: lowercase;
@@ -64,9 +74,13 @@
         @include blocks(107px);
         margin-right: 0px;
         max-width: 1500px;
+        flex-wrap: nowrap;
         .blockTitle{
             padding-top: 33px;   
-            width: 260px;
+            max-width: 260px;
+            @media (max-width: 700px) {
+                font: normal normal 900 20px/24px "Work Sans Black";
+            }
         }
         .blockText{
             display: flex;
@@ -75,12 +89,41 @@
             letter-spacing: 0px;
             line-height: 2;
             color: $text-color;
+            @media (max-width: 700px) {
+                font: normal normal 300 14px/30px "Work Sans Light";
+            }
+        }
+        @media (max-width: 850px) {
+            margin-left: 0;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            >:nth-child(n){
+                margin-bottom: 18px;
+            }
+            >:nth-child(odd){
+                margin-left: 26px;
+                margin-right: 0;
+                >:nth-child(1){
+                    margin-right: 0;
+                    border-right: none;
+                }
+            }
+            >:nth-child(even){
+                >:nth-child(1){
+                    border-left: none;
+                    padding-left: 26px;
+                }
+            }
         }
     }
     .secondTitle{
         .title{
-            width: 673px;
+            max-width: 673px;
             margin-bottom: 99px;
+            @media (max-width: 700px) {
+                margin-top: 0;
+                margin-bottom: 31px;
+            }
             .boldFont{
                 text-transform: none;
             } 
@@ -97,15 +140,22 @@
         } 
     }
     .records{
-        width: 1130px;
+        max-width: 1130px;
         display: flex;
         justify-content: space-between;
         margin-left: $main-margin-left;
         margin-bottom: 185px;
+        @media (max-width: 700px) {
+            flex-direction: column;
+            margin-bottom: 62px;
+        }
         .record{
             display: flex;
             flex-direction: column;
             position: relative;
+            @media (max-width: 700px) {
+                margin-bottom: 36px;
+            }
             .top{
                 font: normal normal 900 56px/66px "Work Sans Black";
                 letter-spacing: 0px;
@@ -119,7 +169,10 @@
                 color: #411141;
                 left: 0;
                 bottom: -30px;
-                width: 300px;
+                max-width: 300px;
+                @media (max-width: 700px) {
+                    position: static;
+                }
             }
         }
     }

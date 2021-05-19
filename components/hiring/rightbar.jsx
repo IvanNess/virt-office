@@ -10,6 +10,8 @@ import Price from './price'
 import { useEffect, useState } from 'react'
 import { packagePay } from '../../utilities'
 import { LoadingOutlined } from '@ant-design/icons'
+import useWindowWidth from '../../hooks/useWindowWidth'
+import { useRouter } from 'next/router'
 
 function Rightbar({db, auth}) {
 
@@ -20,7 +22,19 @@ function Rightbar({db, auth}) {
     const payAfterRegister = useSelector(state=>state.payAfterRegister)
     const [btnDisabled, setBtnDisabled] = useState(false)
 
+    const [sideBarColor, setSideBarColor] = useState('white')
+    const windowWidth = useWindowWidth()
+    const router = useRouter()
+
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+        if(router.pathname==='/wynajecie' && windowWidth <= 1024){
+            setSideBarColor('#4CAED5')
+        } else{
+            setSideBarColor('white')
+        }
+    }, [windowWidth])
 
     useEffect(()=>{
         if(!showAuth.show && (!currentUser || !(currentUser && payAfterRegister))){
@@ -60,7 +74,7 @@ function Rightbar({db, auth}) {
                 </div>}
             </div>
             <div className={styles.rightbar}>
-                <Sidebar/>
+                <Sidebar color={sideBarColor}/>
                 <ProgressBar/>
                 <div className={styles.rightBarTitle}>Podsumowanie:</div>
                 <div className={styles.hiringChoicesDiv}>

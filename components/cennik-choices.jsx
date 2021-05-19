@@ -7,6 +7,7 @@ import initCheckboxValues from '../accessories/user-package-choices'
 import { useDispatch } from 'react-redux'
 import { updateHiringChoice } from '../redux/actions'
 import { useRouter } from 'next/router'
+import WynajmijButton from './wynajmij-button'
 
 const CennikChoices = ({marginRight="149px", showSlash=true}) => {
 
@@ -71,13 +72,17 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                     onClick={()=>selectBlock(0)}
                     style={{cursor: router.pathname==='/cennik'? 'auto': 'pointer'}}
                 >
-                    <div className={styles.blockTitle}>Wirtualny adres</div>
-                    <div className={styles.digit}>55</div>
-                    <div className={styles.afterDigit}>PLN/miesiąc</div>
-                    {router.pathname === '/cennik' && <div className={styles.blockLinkButton}>
-                        <Link href="/wynajecie"><a>Wynajmij biuro</a></Link>
-                    </div>}
-                    
+
+                    <div className={styles.main}>
+                        <div className={styles.blockTitle}>Wirtualny adres</div>
+                        <div className={styles.digit}>55</div>
+                        <div className={styles.afterDigit}>PLN/miesiąc</div>
+                        {router.pathname === '/cennik' && <div className={styles.blockLinkButton}>
+                            {/* <Link href="/wynajecie"><a>Wynajmij biuro</a></Link> */}
+                            <WynajmijButton/>
+                        </div>}
+                    </div>
+                     
                     <div className={styles.description}>
                         <p>
                             - adres na potrzeby rejestracji firmy 
@@ -102,14 +107,17 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                     onClick={()=>selectBlock(1)}
                     style={{cursor: router.pathname==='/cennik'? 'auto': 'pointer'}}
                 >
-                    <div className={styles.blockTitle}>Optymalny pakiet</div>
-                    <div className={styles.digit}>{price}</div>
-                    <div className={styles.afterDigit}>PLN/miesiąc</div>
-                    {router.pathname === '/cennik' && <div className={styles.blockLinkButton}>
-                        <Link href="/wynajecie"><a>Wynajmij biuro</a></Link>
-                    </div>}
-                    {/* {showSlash && <div className={selectedBlock===1 || selectedBlock===null ? styles.slash : styles.noslash}>////</div>} */}
-                    
+                    <div className={styles.main}>
+                        <div className={styles.blockTitle}>Optymalny pakiet</div>
+                        <div className={styles.digit}>{price}</div>
+                        <div className={styles.afterDigit}>PLN/miesiąc</div>
+                        {router.pathname === '/cennik' && <div className={styles.blockLinkButton}>
+                            {/* <Link href="/wynajecie"><a>Wynajmij biuro</a></Link> */}
+                            <WynajmijButton/>
+                        </div>}
+                        {/* {showSlash && <div className={selectedBlock===1 || selectedBlock===null ? styles.slash : styles.noslash}>////</div>} */}
+                    </div>
+
                     <div className={styles.slashWrapper}> 
                         <div className={styles.slash}></div>
                     </div>
@@ -140,12 +148,15 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                     onClick={()=>selectBlock(2)}
                     style={{cursor: router.pathname==='/cennik'? 'auto': 'pointer'}}
                 >
-                    <div className={styles.blockTitle}>Profesjonalne biuro</div>
-                    <div className={styles.digit}>450</div>
-                    <div className={styles.afterDigit}>PLN/miesiąc</div>
-                    {router.pathname === '/cennik' && <div className={styles.blockLinkButton}>
-                        <Link href="/wynajecie"><a>Wynajmij biuro</a></Link>
-                    </div>}
+                    <div className={styles.main}>
+                        <div className={styles.blockTitle}>Profesjonalne biuro</div>
+                        <div className={styles.digit}>450</div>
+                        <div className={styles.afterDigit}>PLN/miesiąc</div>
+                        {router.pathname === '/cennik' && <div className={styles.blockLinkButton}>
+                            {/* <Link href="/wynajecie"><a>Wynajmij biuro</a></Link> */}
+                            <WynajmijButton/>
+                        </div>}
+                    </div>
                     
                     <div className={styles.description}>
                         <p>

@@ -8,6 +8,13 @@
         padding-left: 97px;
         padding-top: 41px;
         width: calc(100% - 276px);
-
+        margin-right: 27px;
+        @media (max-width: 700px) {
+            padding-left: 27px;
+            // padding-right: 27px;
+            width: auto;
+            min-width: 90vw;
+            padding-bottom: 30px;
+        }
     }
 }

@@ -1,0 +1,24 @@
+@import '../styles/Varablies.scss';
+
+.wynajecie{
+    @include linkButton(55px);
+    margin-left: $main-margin-left;
+    margin-top: 35px;
+    width: 226px;
+    background-color: $main-color;
+    @media (max-width: 700px) {
+        width: 156px;
+        height: 38px;
+        margin-left: 26px;
+        a{
+            line-height: 38px;
+            font: normal normal bold 12px/14px "Work Sans Bold";
+            height: auto;
+        }
+    }
+}
+
+.hideWynajecie{
+    height: 73px;
+    opacity: 0;
+}

@@ -89,6 +89,7 @@ function Rozliczenia({db, auth}) {
     return (
         <div className={styles.rozliczeniaFaktury}>
             <ProfileBoilerplate  auth={auth} db={db}>
+                <Sidebar color='#4CAED5'/>
                 <div className={styles.title}>3. <span className={styles.bold}>Rozliczenia</span></div>
                 <div className={styles.text}>
                     <div className={styles.small}>Wpisz nazwę lub kod pocztowy miasta, w którym chcesz wybrać adres firmy. Dostępne adresy i miesięczny koszt wyświetlą się poniżej.</div>
@@ -109,7 +110,7 @@ function Rozliczenia({db, auth}) {
                         <div className={styles.secondRow}>Nazwa</div>
                         <div className={styles.thirdRow}>Data</div>
                         <div className={styles.fourthRow}>Wartość</div>
-                        {/* <div className={styles.fifthRow}>Paragon</div> */}
+                        <div className={styles.fifthRow}>Paragon</div>
                     </div>
                     {/* <div className={styles.row}>
                         <div className={styles.firstRow}>3/234/234</div>
@@ -131,7 +132,7 @@ function Rozliczenia({db, auth}) {
                             <div className={styles.firstRow}>{idx+1}</div>
                             <div className={styles.secondRow}>{record.name}</div>
                             <div className={styles.thirdRow}>{moment(Number(record.data)).format('DD/MM/YYYY')}</div>
-                            <div className={styles.fourthRow}>{`${record.price} zł`}</div>
+                            <div className={styles.fourthRow}>{`${record.price}zł`}</div>
                             <div className={styles.fifthRow}><a href={record.receiptUrl} target="_blank">Paragon</a></div>
                         </div>
                     ))}

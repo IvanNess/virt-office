@@ -20,6 +20,9 @@ $column-heght: 45px;
     color: #411141; 
     border-bottom: $border;
     height: $column-heght;  
+    @media (max-width: 700px) {
+        font: normal normal 12px/19px "Work Sans Medium";
+    }
 }
 
 @mixin cennikTitle{
@@ -38,6 +41,9 @@ $column-heght: 45px;
 .cennikTable, .pakietTable{
     padding-right: $sidebar-width;
     width: 100%;
+    @media (max-width: 700px) {
+        padding-right: 0;
+    }
     .titles{
         display: flex; 
         justify-content: flex-end;

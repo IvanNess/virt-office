@@ -13,12 +13,11 @@ import Footer from '../components/footer'
 import Calendar from './calendar'
 import HomePageCalendar from '../components/home-page-calendar'
 import { setShowAuth } from '../redux/actions'
+import WynajmijButton from '../components/wynajmij-button'
 
 export default function Home({db, auth}) {
 
   const dispatch = useDispatch()
-  const packages = useSelector(state=>state.packages)
-  const currentUser = useSelector(state=>state.currentUser)
 
   function showAuth(){
     dispatch(setShowAuth({show: true, isLogin: true}))
@@ -103,8 +102,7 @@ export default function Home({db, auth}) {
 
           </div>
         </Carousel>
-        {((packages && packages.length === 0) || currentUser===false) && 
-        <div className={styles.findBtn}><Link href='/wynajecie'><a>Wynajmij adres</a></Link></div>}
+        <WynajmijButton/>
       </Billboard>
               
       <div className={styles.title}>

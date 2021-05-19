@@ -1,5 +1,11 @@
 @import './Varablies.scss';
 
+.title{
+    color: #E58963;
+    letter-spacing: -0.1px;
+    font-size: 20px;
+}
+
 .display{
     position: relative;
     .buttonInput{
@@ -28,12 +34,19 @@
 
 .description{
     @include blockText();
+    margin-top: 19px;
     margin-bottom: 20px;
     padding: 0;
+    @media (max-width: 700px) {
+        font: normal normal 300 12px/19px "Work Sans Light";
+    }
 }
 
 .altDescription{
     @include blockText();
     margin-top: 20px;
     padding: 0;
+    @media (max-width: 700px) {
+        font: normal normal 300 12px/19px "Work Sans Light";
+    }
 }
