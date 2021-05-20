@@ -10,11 +10,15 @@ const Billboard = ({children, noBackground=false, parentModule=false}) => {
                 <div className={noBackground? styles.noBackground: 
                     parentModule? styles[`${parentModule}BillboardWrapper`]: styles.billboardWrapper}>
                 </div>
-                {children}
+                <div style={{margin: 'auto', maxWidth: '1440px'}}>
+                    {children}
+                </div>
             </div>}
             {parentModule==='onas' && <div className={styles.onasBillboard}>
                 <div className={styles.onasBillboardWrapper}></div>
-                {children}
+                <div style={{margin: 'auto', maxWidth: '1440px'}}>
+                    {children}
+                </div>
             </div>
             
             }

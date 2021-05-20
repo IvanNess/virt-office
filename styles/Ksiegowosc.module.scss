@@ -37,7 +37,7 @@
         margin-top: 50px;
         // width: 595px;
         width: auto;
-        max-width: 1000px;
+        max-width: 890px;
         margin-right: 150px;
         @media (max-width: 700px) {
             max-width: 340px;
@@ -70,6 +70,12 @@
     .headerBoldFont{
         @include headerBoldFont();
     }
+    // >:nth-child(2){
+    //     height: auto;
+    //     >:nth-child(5){
+    //         padding-bottom: 30px;
+    //     }
+    // }
     .blocks{
         @include blocks(107px);
         margin-right: 0px;

@@ -86,15 +86,15 @@ input{
   margin: 0 !important;
 }
 
-@media (max-width: 700px){
+@media (max-width: 1024px){
   .MuiPickersStaticWrapper-staticWrapperRoot {
     min-width: auto !important;
-    max-width: auto !important;
+    max-width: none !important;
     margin-top: 0px !important;
   }
   
   .MuiPickersBasePicker-pickerView{
-    max-width: auto !important;
+    max-width: none !important;
     min-width: auto !important;
     min-height: auto !important;
   }
@@ -110,11 +110,26 @@ input{
   .MuiPickersCalendarHeader-dayLabel {
     padding-left: 0px !important;
     margin: 0 !important;
-    width: calc((100vw - 68px) / 7) !important;
+    width: calc((50vw - 68px) / 7) !important;
   } 
   
   .MuiPickersDay-day{
     margin: 0 !important;
+    width: calc((50vw - 68px) / 7) !important;
+    height: calc((50vw - 68px) / 7) !important;
+  }
+
+  .MuiPickersCalendar-transitionContainer{
+    min-height: calc(50vw - 100px) !important;
+  }
+}
+
+@media (max-width: 700px){
+  .MuiPickersCalendarHeader-dayLabel {
+    width: calc((100vw - 68px) / 7) !important;
+  } 
+  
+  .MuiPickersDay-day{
     width: calc((100vw - 68px) / 7) !important;
     height: calc((100vw - 68px) / 7) !important;
   }

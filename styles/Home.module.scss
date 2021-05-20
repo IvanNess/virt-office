@@ -8,13 +8,13 @@
 
 .titleTwo{
   @include title();
-  width: 670px;
+  max-width: 670px;
   // border-bottom: 1px solid #B9B9B9;
 }
 
 .titleThree{
   @include title();
-  width: 1114px;
+  max-width: 1114px;
   margin-bottom: 31px;
   margin-top: 115px;
   @media all and (max-width: 1300px){
@@ -44,7 +44,7 @@
 
 .calendarTitle{
     @include title();
-    width: 791px;
+    max-width: 791px;
     margin-bottom: 31px;
     margin-top: 86px;
     @media (max-width: 700px) {
@@ -61,7 +61,7 @@
 
 .noBackgroundBillboardText{
   @include noBackgroundBillboardText();
-  width: 892px;
+  max-width: 892px;
   font: normal normal 300 56px/66px "Work Sans Light";
   margin-bottom: 90px;
   .headerBoldFont{
@@ -84,10 +84,6 @@
 //   @media all and (max-width: 620px){
 //     width: auto;
 //   }
-}
-
-.headerTitle{
-  @include headerTitle();
 }
 
 .headerText{
@@ -133,6 +129,9 @@
 }
 
 .blockWrapper{
+    z-index: 1;
+    border: 1px solid $main-color;
+    padding-bottom: 20px;
     &:hover{
         .blockText{
             // color: #ffffff;
@@ -234,7 +233,7 @@
 
 .title{
   @include title();
-  width: 791px;
+  max-width: 791px;
 }
 
 .textBlock{
@@ -247,7 +246,7 @@
     letter-spacing: 0.64px;
     color: $text-color;
     .text{
-        width: 620px;
+        max-width: 620px;
     }
     .boldText{
         font: normal normal 900 16px/26px "Work Sans Black";
@@ -265,6 +264,7 @@
     //     color: $text-color;
     // }
     width: 100%;
+    border: 1px solid $main-color;
     .blockLargeInner{
         display: flex;
         @media (max-width:700px){
@@ -299,6 +299,7 @@
 .headerTitle{
     @include headerTitle();
     margin-top: 40px;
+    max-width: none;
     font: normal normal normal 56px/66px "Work Sans";
     @media (max-width: 700px){
         margin-top: 20px;
@@ -342,43 +343,12 @@
 .headerOne{
     .headerTitle{
         // width: 918px;
-        width: 1001px;
-        @media all and (max-width: 1300px){
+        max-width: 940px;
+        margin-right: 150px;
+        @media all and (max-width: 1024px){
             width: auto;
-            margin-right: 100px;
-        }
-        @media all and (max-width: 700px){
-            width: auto;
-            margin-right: 0;
-            max-width: 270px;
-        }
-    }
-}
-
-.headerTwo{
-    width: auto;
-    .top{
-        width: 1020px;
-        margin-bottom: 20px;
-        // text-align: center;
-        @media all and (max-width: 1300px){
-            width: auto;
-            margin-right: 100px;
-        }
-        @media all and (max-width: 700px){
-            width: auto;
-            margin-right: 0;
-            max-width: 270px;
-        }
-    }
-    .bottom{
-        width: 1100px;
-        @media all and (max-width: 1300px){
-            width: auto;
-            margin-right: 150px;
-        }
-        @media all and (max-width: 1300px){
-            margin-right: 100px;
+            max-width: 650px;
+            margin-right: 0px;
         }
         @media all and (max-width: 700px){
             width: auto;
@@ -387,10 +357,51 @@
         }
     }
     .headerText{
-        width: 1020px;
-        @media all and (max-width: 1300px){
+        @media all and (max-width: 1024px){
+            max-width: 700px;
+        }
+    }
+}
+
+.headerTwo{
+    width: auto;
+    .top{
+        max-width: 1020px;
+        margin-bottom: 20px;
+        // text-align: center;
+        margin-right: 150px;
+        @media all and (max-width: 1024px){
             width: auto;
-            margin-right: 150px;
+            margin-right: 0px;
+            max-width: 860px;
+        }
+        @media all and (max-width: 700px){
+            width: auto;
+            margin-right: 0;
+            max-width: 550px;
+        }
+    }
+    .bottom{
+        max-width: 1100px;
+        margin-right: 150px;
+        @media all and (max-width: 1024px){
+            width: auto;
+            margin-right: 0px;
+            max-width: 950px;
+        }
+        @media all and (max-width: 700px){
+            width: auto;
+            margin-right: 0;
+            max-width: 550px;
+        }
+    }
+    .headerText{
+        max-width: 1020px;
+        margin-right: 150px;
+        @media all and (max-width: 1024px){
+            width: auto;
+            margin-right: 0px;
+            max-width: 900px;
         }
         @media all and (max-width: 700px){
             width: auto;
@@ -405,27 +416,17 @@
 
 .headerThree{
     .headerTitle{
-        width: 980px;
-        @media all and (max-width: 1300px){
+        max-width: 980px;
+        margin-right: 150px;
+        @media all and (max-width: 1024px){
             width: auto;
-            margin-right: 150px;
+            margin-right: 0px;
         }
-        @media all and (max-width: 1300px){
-            width: auto;
-            margin-right: 100px;
+    }
+    .headerText{
+        @media all and (max-width: 1024px){
+            max-width: 820px;
         }
-        // @media all and (max-width: 1300px){
-        //     width: 800px;
-        // }
-        // @media all and (max-width: 1024px){
-        //     width: 600px;
-        // }
-        // @media all and (max-width: 740px){
-        //     width: 550px;
-        // }
-        // @media all and (max-width: 620px){
-        //     width: auto;
-        // }
     }
 }
 
@@ -435,6 +436,9 @@
         flex-direction: column;
         justify-content: space-between;
         height: 450px;
+        @media (max-width: 1024px){
+            height: 350px;
+        }        
         @media (max-width: 700px){
             height: auto;
         }
@@ -446,8 +450,11 @@
     justify-content: space-between;
     // width: 100%;
     min-width: 1240px;
+    background-color: #ffffff;
+    z-index: 1;
     @media all and (max-width: 1300px){
         // display: none;
+        min-width: auto;
     }
     @media all and (max-width: 700px){
         flex-direction: column;
@@ -467,9 +474,9 @@
 }
   
 .middleText{
-    // margin-left: 147px;
-    // margin-right: 262px;
-    margin-left: 15%;
+    margin-left: 147px;
+    margin-right: 150px;
+    // margin-left: 15%;
     margin-top: 165px;
     max-width: 1031px;
     p{

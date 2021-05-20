@@ -21,7 +21,8 @@ function Ksiegowosc({auth}) {
                 <div className={styles.headerTitle}>
                     {/* Księgowość online <span className={styles.headerBoldFont}> dla Ciebie</span> */}
                     Siła połączonych ofert <br/>
-                    Dla klientów wynajmujących adres od&nbsp;virtoffice.pl <span className={styles.headerBoldFont}>ROK DARMOWEGO DOSTĘPU DO SERWISU WFIRMA</span>
+                    Dla klientów wynajmujących adres od&nbsp;virtoffice.pl 
+                    <div className={styles.headerBoldFont}>ROK DARMOWEGO DOSTĘPU DO SERWISU WFIRMA</div>
                 </div>
                 <div className={styles.headerText}>
                     {/* Wystawiaj faktury, wyliczaj podatki i rozliczaj się z ZUS */}

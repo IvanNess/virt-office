@@ -18,7 +18,7 @@ const Calendar = ({db, auth}) => {
 
     const dispatch = useDispatch()
 
-    const selectedDate = useSelector(state=>{return (state.selectedDate?.raw || new Date())})
+    const selectedDate = useSelector(state=>state.selectedDate.raw)
 
     const selectedHours = useSelector(state=>state.selectedHours)
 
@@ -154,7 +154,7 @@ const Calendar = ({db, auth}) => {
                     orientation="landscape"
                     variant="static"
                     openTo="date"
-                    value={selectedDate}
+                    value={selectedDate || new Date()}
                     onChange={onChange}
                     onMonthChange={onChange}
                     disablePast={true}

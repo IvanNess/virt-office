@@ -42,7 +42,8 @@ export default function Home({db, auth}) {
           <input className={styles.textInput} type="text" name="" id="" placeholder="Wpisz miasto"/>
           <input className={styles.buttonInput} type="button" value="WYSZUKAJ"/>
         </form> */}
-        <Carousel autoplay={true} autoplaySpeed={4000} pauseOnHover={false}>
+
+        <Carousel autoplay={false} autoplaySpeed={4000} pauseOnHover={false}>
           <div className={styles.headerOne}>
             <div className={styles.headerFlex}>
               <div className={styles.headerTitle}>
@@ -63,7 +64,7 @@ export default function Home({db, auth}) {
             <div className={styles.headerFlex}>
               <div className={styles.headerTitle}>
                   <div className={styles.top}>
-                      wszystkie potrzeby <span className={styles.headerBoldFont}>PRZEDSIĘBIORCY</span> w jednym pakiecie 
+                      wszystkie potrzeby <span className={styles.headerBoldFont}>PRZEDSIĘBIORCY</span> w&nbsp;jednym pakiecie 
                   </div>
                   <div className={styles.bottom}>
                       <span className={styles.headerBoldFont}>ADRES</span> - obsługa biura – <span className={styles.headerBoldFont}>KSIĘGOWOŚĆ</span> – konsultacje prawne - <span className={styles.headerBoldFont}>MARKETING</span>
@@ -103,8 +104,11 @@ export default function Home({db, auth}) {
           </div>
         </Carousel>
         <WynajmijButton/>
+
       </Billboard>
-              
+
+      <div style={{margin: 'auto', maxWidth: '1440px'}}>
+
       <div className={styles.title}>
         dlaczego warto skorzystać z <span className={styles.boldFont}>VIRTOFFICE</span>
       </div>
@@ -255,6 +259,8 @@ export default function Home({db, auth}) {
         </p>
       </div>
 
+      </div>
+
       <div className={styles.wfirmaBlockWrapper}>
         <div className={styles.wfirmaText}>
           <h4>Korzystając z usług wirtualnego biura otrzymujesz 
@@ -263,6 +269,8 @@ export default function Home({db, auth}) {
           </h4>
         </div>
       </div>
+
+      <div style={{margin: 'auto', maxWidth: '1440px'}}>
 
       <div className={styles.calendarTitle}>
         <span className={styles.boldFont}>WYNAJMIJ BIURO NA GODZINY</span>
@@ -330,6 +338,8 @@ export default function Home({db, auth}) {
           </Block>
         </div>
                
+      </div>
+
       </div>
 
       <Footer/>
