@@ -132,6 +132,7 @@
     z-index: 1;
     border: 1px solid $main-color;
     padding-bottom: 20px;
+    flex: 1;
     &:hover{
         .blockText{
             // color: #ffffff;
@@ -458,6 +459,9 @@
     @media all and (max-width: 1300px){
         // display: none;
         min-width: auto;
+    }
+    @media all and (max-width: 1180px){
+        z-index: 0;
     }
     @media all and (max-width: 700px){
         flex-direction: column;
