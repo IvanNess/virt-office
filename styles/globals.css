@@ -331,7 +331,7 @@ option[value="PL"], option[value="UA"], option[value="RU"], option[value="BY"]{
   /* color: #121109 !important; */
 }
 
-@media(max-width: 700px){
+@media(max-width: 1024px){
   .MuiSvgIcon-root{
     font-size: 40px !important;
   }

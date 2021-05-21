@@ -9,16 +9,24 @@
     z-index: 1;
 }
 
-.rightBarWrapper{
-    position: relative;
-    background-color: $main-color;   
-    height: auto;
+@mixin rightBarWrapper {
+    width: 750px;
     @media (max-width: 1024px) {
         @include fixedRightBarWrapper();
+        width: auto;
     }
 }
 
+.rightBarWrapper{
+    @include rightBarWrapper();
+    position: relative;
+    background-color: $main-color;   
+    height: auto;
+
+}
+
 .vh100RightBarWrapper{
+    @include rightBarWrapper();
     height: 100vh;
     position: relative;
     background-color: $main-color;   
@@ -40,6 +48,14 @@
         padding-right: 0;
         // display: flex;
         // align-items: center;
+    }
+    >:nth-child(1){
+        >:nth-child(1){
+            @media all and (max-width: 1024px){
+                height: 79px;
+                margin-right: 20px;
+            }
+        }
     }
 }
 

@@ -31,6 +31,10 @@
     @include regular();
     color: white;
     background-color: $main-color;
+    width: 32%;
+    flex: 1;
+    height: auto;
+    padding-bottom: 24px;
 }
 
 .option{
@@ -40,6 +44,10 @@
     &:hover{
         border: 1px solid $text-color;
     }
+    width: 32%;
+    flex: 1;
+    height: auto;
+    padding-bottom: 24px;
 }
 
 // .option{

@@ -37,6 +37,9 @@
     @include title();
     width: 597px;
     margin-top: 60px;
+    @media all and (max-width: 1024px){
+        margin-top: 280px;
+    }
     .boldFont{
         text-transform: lowercase;
     }
