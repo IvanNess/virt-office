@@ -13,16 +13,23 @@
     .wrapper{
         border-bottom: 1px solid rgba($color: #FFFFFF, $alpha: 0.2);
         padding-left: $main-margin-left;
-        padding-right: 150px;
+        padding-right: 170px;
         display: flex;
         justify-content: space-between;
+        @media (max-width: 1180px) {
+            padding-right: 20px;
+        }
+        @media (max-width: 800px) {
+            flex-direction: column-reverse;
+            padding-right: 0px;
+        }
         @media (max-width: 700px) {
             flex-direction: column-reverse;
             padding-left: 26px;
             padding-right: 0px;
         }
         .column{
-            padding-right: 100px;
+            padding-right: 10px;
             transition-duration: 0.4s;
             // &:nth-child(2){
             //     @media all and (max-width: 1300px){
@@ -84,7 +91,7 @@
                 font: normal normal 300 16px/19px "Work Sans Light";
                 letter-spacing: 0px;
                 color: #FFFFFF;
-                width: 295px;
+                max-width: 295px;
                 .logo{
                     margin-bottom: 0;
                     width: 10%;
@@ -93,7 +100,7 @@
                     padding: 21px 0;
                 }
                 .textTwo{
-                    width: 350px;
+                    max-width: 350px;
                     a:hover{
                         color: $text-color;
                     }
@@ -107,7 +114,7 @@
             }
             .bottom{
                 display: flex;
-                width: 200px;
+                max-width: 200px;
                 justify-content: space-between;
                 padding-top: 40px;
             }
@@ -116,7 +123,7 @@
 }
 
 .thirdColumn{
-    width: 340px;
+    max-width: 340px;
     @media (max-width: 700px) {
         width: auto;
 
@@ -132,7 +139,7 @@
 
 .bottom{
     display: flex;
-    width: 120px;
+    max-width: 120px;
     justify-content: space-between;
     // padding-top: 40px;
     margin-bottom: 35px;
@@ -140,7 +147,7 @@
     align-items: center;
     @media (max-width: 700px) {
         margin-bottom: 30px;
-        width: 180px;
+        max-width: 180px;
     }
     a{
         svg{

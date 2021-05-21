@@ -160,6 +160,7 @@ const Calendar = ({db, auth}) => {
                     disablePast={true}
                     // shouldDisableDate={shouldDisableDate}
                     renderDay={renderDay}
+                    initialFocusedDate={new Date()}
                 />
             </MuiPickersUtilsProvider>
             <Hours db={db} auth={auth} outterReset={hoursReset}/>

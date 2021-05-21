@@ -168,11 +168,16 @@
 }
 
 .blockLinkButton{
-    @include linkButton(44px);
+    @include linkButton(55px);
     margin: 0;
     margin-top: 20px;
     background-color: $main-color;
     z-index: 1;
+    @media (max-width: 700px) {
+        a{
+            line-height: 38px;
+        }
+    }
     &:hover{
         background-color: $text-color;
         a{
