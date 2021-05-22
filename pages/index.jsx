@@ -136,7 +136,7 @@ export default function Home({db, auth}) {
                 </div>
               </div>
               <div className={styles.blockText}>
-                Wirtualne biuro, czyli wirtualny adres, w&nbsp;porównaniu z wynajmem konwencjonalnego biura, umożliwia optymalizację kosztów prowadzenia firmy. Dzięki temu, że możesz skomponować pakiet usług dostosowany do swoich potrzeb, płacisz za to, co jest Ci potrzebne.
+                Wirtualne biuro, czyli wirtualny adres, w&nbsp;porównaniu z wynajmem konwencjonalnego biura, umożliwia optymalizację kosztów prowadzenia firmy. Dzięki temu, że możesz skomponować pakiet usług dostosowany do swoich potrzeb, płacisz tylko za to, co jest Ci na prawdę potrzebne.
               </div>
             </Block>
           </div>
@@ -157,7 +157,7 @@ export default function Home({db, auth}) {
                 </div>
               </div>
               <div className={styles.blockText}>
-                Oprócz adresu uzyskujesz obsługę korespondencji, archiwizację dokumentów, dostęp do sali konferencyjne umożliwiający organizację spotkań z klientami. We współpracy z naszym partnerem wfirma.pl oferujemy również usługi księgowe.
+                Oprócz adresu uzyskujesz obsługę korespondencji, archiwizację dokumentów, dostęp do sali konferencyjnej umożliwiający organizację spotkań z klientami. We współpracy z naszym partnerem wfirma.pl oferujemy również usługi księgowe.
               </div>
             </Block>
           </div>
@@ -252,10 +252,11 @@ export default function Home({db, auth}) {
       
       <div className={styles.middleText}>
         <p>
-          Wirtualne biuro to nie tylko wirtualny adres, ale również obsługa korespondencji przychodzącej polegająca na jej skanowaniu, przekazywaniu i archiwizacji. 
+          {/* Wirtualne biuro to nie tylko wirtualny adres, ale również obsługa korespondencji przychodzącej polegająca na jej skanowaniu, przekazywaniu i archiwizacji. 
           W ramach usługi dajemy dostęp do sali konferencyjnej oznakowanej logiem Twojej firmy w czasie, w&nbsp;którym z niej korzystasz, wyposażonej w stół konferencyjny, rzutnik z ekranem do wyświetlania prezentacji, drukarkę ze skanerem, aneks kuchenny do przygotowania kawy/herbaty, strefę chillout dającą komfort prowadzenia rozmów. 
           <br/><br/>
-          Każda firma potrzebuje usług księgowych i prawnych. We&nbsp;współpracy z naszym partnerem wfirma.pl dostarczamy również te usługi w ramach naszych pakietów.
+          Każda firma potrzebuje usług księgowych i prawnych. We&nbsp;współpracy z naszym partnerem wfirma.pl dostarczamy również te usługi w ramach naszych pakietów. */}
+          W ramach usługi dajemy również dostęp do sali konferencyjnej, która na czas użytkowania będzie oznakowana logiem Twojej firmy. Sala wyposażona jest w stół konferencyjny, rzutnik z&nbsp;ekranem do wyświetlania prezentacji, drukarkę ze skanerem, aneks kuchenny do przygotowywania kawy lub herbaty oraz strefę chillout dającą komfort prowadzenia rozmów.
         </p>
       </div>
 

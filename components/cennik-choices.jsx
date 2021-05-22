@@ -85,15 +85,17 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                      
                     <div className={styles.description}>
                         <p>
-                            - adres na potrzeby rejestracji firmy 
+                            - adres na potrzeby rejestracji i prowadzenia firmy 
                             <br/>
-                            - powiadomienie o korespondencji 
+                            - powiadomienie o korespondencji
                             <br/>
-                            - skanowanie korespondencji i udostępnienie w chmurze * do 20 dokumentów miesięcznie do 100 MB 
+                            - skanowanie i przesyłanie e-mailem korespondencji przychodzącej do 20 dokumentów lub 100 MB miesięcznie 
                             <br/>
-                            - archiwizacja dokumentów w zabezpieczonym pomieszczeniu * jeden segregator na jeden rok 
+                            - archiwizacja dokumentów w zabezpieczonym pomieszczeniu - jeden segregator a4 na jeden rok
                             <br/>
                             - dostęp do sali konferencyjnej przez 2 godziny miesięcznie 
+                            <br/>
+                            - Pakiet Fakturowanie + Magazyn z serwisu wfirma.pl w pierwszym roku korzystania z virtoffice.pl
                             <br/>
                             <br/>
                             Cena nie zawiera podatku VAT
@@ -123,20 +125,31 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                     </div>
 
                     <div className={styles.description}>
-                        <p>
+                        {/* <p>
                             Tutaj klient wybiera dowolnie skład pakietu z dostępnych opcji
                             <br/>
                             <br/>
                             {checkBoxes.map(({idx, text})=>( 
                                 <span key={idx}>
-                                    {/* <Checkbox onChange={(value)=>{checkChanged(value, idx)}} key={idx} defaultChecked={true}>
+                                    <Checkbox onChange={(value)=>{checkChanged(value, idx)}} key={idx} defaultChecked={true}>
                                         {text}
-                                    </Checkbox> */}
+                                    </Checkbox>
                                     <span key={idx}>{`- ${text}`}</span>
                                     <br/>
                                 </span>    
                             ))}
                             <br/>
+                            <br/>
+                            Cena nie zawiera podatku VAT
+                        </p> */}
+                        <p>
+                            - adres na potrzeby rejestracji i prowadzenia firmy <br/>
+                            - powiadomienie o korespondencji <br/>
+                            - skanowanie i przesyłanie e-mailem korespondencji przychodzącej do 100 dokumentów lub 500 MB miesięcznie <br/>
+                            - archiwizacja dokumentów w zabezpieczonym pomieszczeniu do 2 segregatorów na jeden rok <br/>
+                            - wysyłanie korespondencji na wskazany adres 1 raz w tygodniu <br/>
+                            - dostęp do sali konferencyjnej przez 5 godzin miesięcznie <br/>
+                            - Pakiet Księgowość online + Asystent Księgowy z serwisu wfirma.pl <br/>
                             <br/>
                             Cena nie zawiera podatku VAT
                         </p>
@@ -160,13 +173,15 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                     
                     <div className={styles.description}>
                         <p>
-                            - adres na potrzeby rejestracji firmy <br/>
-                            - powiadomienie o korespondencji <br/>
-                            - nielimitowana liczba skanowanych dokumentów i udostępnienie w chmurze do 2 GB <br/>
-                            - archiwizacja dokumentów w zabezpieczonym pomieszczeniu * pięć segregatorów na jeden rok <br/>
+                            - adres na potrzeby rejestracji i prowadzenia firmy <br/>
+                            - wystawianie i wysyłanie drogą elektroniczną do 50 faktur miesięcznie w serwisie wfirma.pl <br/>
+                            - powiadomienie o korespondencji<br/>
+                            - nielimitowana liczba skanowanych i przesyłanych e-mailem dokumentów <br/>
+                            - udostępnienie zarchiwizowanych dokumentów w chmurze do 2GB <br/>
+                            - archiwizacja dokumentów w zabezpieczonym pomieszczeniu pięć segregatorów na jeden rok <br/>
                             - wysyłanie korespondencji na wskazany adres 1 raz w tygodniu <br/>
                             - dostęp do sali konferencyjnej przez 10 godzin miesięcznie <br/>
-                            - biuro rachunkowe <br/>
+                            - Pakiet Biuro rachunkowe z serwisu wfirma.pl <br/>
                             <br/>
                             Cena nie zawiera podatku VAT
                         </p>

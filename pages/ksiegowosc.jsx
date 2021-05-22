@@ -29,7 +29,9 @@ function Ksiegowosc({auth}) {
                     Księgowość zarówno on-line jak i&nbsp;konwencjonalna. 
                     <br/>
                     Wybierz najlepsze rozwiązanie dla Ciebie, my chętnie doradzimy.
-                    Wystawiaj faktury wyliczaj podatki i rozliczaj się z ZUS dzięki księgowości on&#8209;line albo zleć to profesjonalnym księgowym
+                    {/* Wystawiaj faktury wyliczaj podatki i rozliczaj się z ZUS dzięki księgowości on&#8209;line albo zleć to profesjonalnym księgowym */}
+                    <br/>
+                    Wystawiaj faktury, wyliczaj podatki i rozliczaj się z ZUS dzięki księgowości on&#8209;line albo zleć to <span className={styles.headerTextBoldFont}>profesjonalnym księgowym</span>. Chętnie doradzimy Ci w wyborze rozwiązania najlepiej dopasowanego do Twoich potrzeb.
                 </div>
                 {/* <div className={styles.linkButtonWrapper}>
                     <div className={styles.linkButton}>

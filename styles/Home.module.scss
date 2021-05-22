@@ -44,7 +44,7 @@
 
 .calendarTitle{
     @include title();
-    max-width: 791px;
+    max-width: 900px;
     margin-bottom: 31px;
     margin-top: 86px;
     @media (max-width: 700px) {
@@ -108,6 +108,7 @@
   @include smallText();
   padding-bottom: 61px;
   text-transform: lowercase;
+  max-width: 945px;
 //   @media all and (max-width: 1300px){
 //     width: 800px;
 //   }

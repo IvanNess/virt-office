@@ -27,7 +27,7 @@
 
 .vh100RightBarWrapper{
     @include rightBarWrapper();
-    height: 100vh;
+    // max-height: 100vh;
     position: relative;
     background-color: $main-color;   
     @media (max-width: 1024px) {
@@ -38,7 +38,7 @@
 
 .rightbar{
     max-width: 520px;
-    height: 750px;
+    // height: 750px;
     background-color: $main-color;
     padding-left: 34px;
     padding-right: 180px;

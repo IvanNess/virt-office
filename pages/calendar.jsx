@@ -18,13 +18,19 @@ const Calendar = ({db, auth}) => {
 
     const dispatch = useDispatch()
 
-    const selectedDate = useSelector(state=>state.selectedDate.raw)
+    const selectedDate = useSelector(state=>state.selectedDate)
+    const [calendarValue, setCalendarValue] = useState(undefined)
 
     const selectedHours = useSelector(state=>state.selectedHours)
 
     const currentUser = useSelector(state=>state.currentUser)
 
     const [hoursReset, setHoursReset] = useState(0)
+
+    useEffect(()=>{
+        console.log('SET CALENDAR VALUE', selectedDate.raw, selectedDate)
+        setCalendarValue(selectedDate.raw)
+    }, [selectedDate])
 
     // async function getReservedHoursPrivateData(){
     //     try {
@@ -154,7 +160,7 @@ const Calendar = ({db, auth}) => {
                     orientation="landscape"
                     variant="static"
                     openTo="date"
-                    value={selectedDate || new Date()}
+                    value={calendarValue}
                     onChange={onChange}
                     onMonthChange={onChange}
                     disablePast={true}

@@ -1,0 +1,25 @@
+.wynajecieLineWrapper{
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    top: 149px;
+}
+
+.wynajecieLine{
+    display: flex;
+    justify-content: center;
+}
+
+.left{
+    flex: 1;
+    border-bottom: 1px solid #4CAED5;
+}
+
+.right{
+    flex: 1;
+    border-bottom: 1px solid #ffffff;
+}
+
+.middle{
+    width: 1440px;
+}
