@@ -13,6 +13,8 @@ import YourReservation from './your-reservation'
 import axios from 'axios'
 import { reservationPay } from '../utilities'
 import { LoadingOutlined } from '@ant-design/icons'
+import useWindowWidth from '../hooks/useWindowWidth'
+import { useRouter } from 'next/router'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE);
 
@@ -44,6 +46,9 @@ function Hours({db, auth , outterReset}) {
     const [isStartHour, setIsStartHour] = useState(false)
 
     const disableConfirmBtn = useSelector(state=>state.selectedDate.registerAndReserve)
+
+    const windowWidth = useWindowWidth()
+    const router = useRouter()
 
     function initUpdHours(){
         console.log('init hours')
@@ -632,12 +637,26 @@ function Hours({db, auth , outterReset}) {
         <div className={styles.hoursWrapper}>
             <div className={styles.top}>
                 <div className={styles.board}>
-                    <div className={styles.boardString}>
+                    <div className={styles.boardString}
+                        style={{maxWidth: 
+                            (windowWidth<=700) ? 'none' :
+                            (windowWidth<=1024 && router.pathname==='/konto/rezerwacja') ? '470px' :
+                            (windowWidth<=1330 && router.pathname==='/konto/rezerwacja') ? '550px' : 
+                            '390px'
+                        }}
+                    >
                         <div>{getBoardString()}</div>
                         <div className={styles.boardResult}>{getBoardResult()}</div>
                     </div>
                 </div>
-                <div className={styles.hours}>
+                <div className={styles.hours}
+                    style={{maxWidth: 
+                        (windowWidth<=700) ? 'none' :
+                        (windowWidth<=1024 && router.pathname==='/konto/rezerwacja') ? '470px' :
+                        (windowWidth<=1330 && router.pathname==='/konto/rezerwacja') ? '550px' : 
+                        '390px'
+                    }}
+                >
                     {updHours && updHours.map(hour=>(
                         <div key={hour.id}  className={styles[hour.className]} onClick={onClick}>
                             <div  
@@ -654,9 +673,39 @@ function Hours({db, auth , outterReset}) {
                     <div className={styles.title}>Cena:</div>
                     <div className={styles.result}>{` ${getPriceResult()}zł netto`}</div>
                 </div>}
-                <div className={styles.btns}>
-                    <button className={styles.reserveBtn} onClick={reserve} disabled={disableConfirmBtn}>{ disableConfirmBtn ?<LoadingOutlined style={{color: "black"}}/> : 'zarezerwuj'}</button>
-                    <button className={styles.cancelBtn} onClick={resetUpdHours}>Anuluj</button>
+                <div className={styles.btns}
+                    style={{maxWidth: 
+                        (windowWidth<=700) ? 'none' :
+                        (windowWidth<=1024 && router.pathname==='/konto/rezerwacja') ? '470px' :
+                        (windowWidth<=1330 && router.pathname==='/konto/rezerwacja') ? '550px' : 
+                        '390px'
+                    }}
+                >
+                    <button 
+                        className={styles.reserveBtn} 
+                        onClick={reserve} 
+                        disabled={disableConfirmBtn}
+                        style={{maxWidth: 
+                            (windowWidth<=700) ? 'none' :
+                            (windowWidth<=1024 && router.pathname==='/konto/rezerwacja') ? '470px' :
+                            (windowWidth<=1330 && router.pathname==='/konto/rezerwacja') ? '550px' : 
+                            '390px'
+                        }}
+                    >
+                        { disableConfirmBtn ?<LoadingOutlined style={{color: "black"}}/> : 'zarezerwuj'}
+                    </button>
+                    <button 
+                        className={styles.cancelBtn} 
+                        onClick={resetUpdHours}
+                        style={{maxWidth: 
+                            (windowWidth<=700) ? 'none' :
+                            (windowWidth<=1024 && router.pathname==='/konto/rezerwacja') ? '470px' :
+                            (windowWidth<=1330 && router.pathname==='/konto/rezerwacja') ? '550px' : 
+                            '390px'
+                        }}
+                    >
+                        Anuluj
+                    </button>
                 </div> 
             </div>
             

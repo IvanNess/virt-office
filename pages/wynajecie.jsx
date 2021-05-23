@@ -14,7 +14,7 @@ import Payment from '../components/hiring/payment'
 import Logo from '../components/logo'
 import UserPackageChoices from '../components/user-package-choices'
 import CennikChoices from '../components/cennik-choices'
-import WynajecieLine from '../components/wynajecie-line'
+import Line from '../components/line'
 
 
 function Wynajecie({db, auth}) {
@@ -31,7 +31,7 @@ function Wynajecie({db, auth}) {
 
     return (
         <div style={{backgroundImage: 'linear-gradient(90deg, #ffffff 50%, #4caed5 50%)'}}>
-        <WynajecieLine/>
+        <Line leftColor='#4CAED5'/>
         <div style={{margin: 'auto', maxWidth: '1440px', backgroundColor: '#ffffff'}}>
         <div className={styles.wynajecie}>
             <div className={styles.selectOptionWithBtn}>

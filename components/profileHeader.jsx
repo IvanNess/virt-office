@@ -12,6 +12,7 @@ const ProfileHeader = () => {
     const packages = useSelector(state=>state.packages)
 
     return (
+        <div style={{maxWidth: '1440px', margin: 'auto'}}>
         <div className={styles.profileHeader}>
             <div className={headerStyles.logo}>
                 <Link href="/"><a>
@@ -25,6 +26,7 @@ const ProfileHeader = () => {
             {packages && packages.length === 0 &&  <div className={styles.button}>
                 <Link href="/wynajecie"><a>Wynajmij adres</a></Link>
             </div>}
+        </div>
         </div>
     )
 }

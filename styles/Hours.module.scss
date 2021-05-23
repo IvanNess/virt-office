@@ -43,12 +43,12 @@
 .hours{
     display: flex;
     margin-top: 10px;
-    width: 390px;
+    max-width: 390px;
     flex-wrap: wrap;
     color: #121109;
     cursor: default;
     @media (max-width: 700px) {
-        width: auto;
+        max-width: none;
         justify-content: space-between;
     }
     .selected{
@@ -147,7 +147,7 @@
 }
 
 @mixin btn{
-    width: 390px;
+    max-width: 390px;
     height: 53px;
     margin-top: 8px;
     font: normal normal 900 18px/21px "Work Sans Black";
@@ -173,7 +173,7 @@
         background-color: $main-color;
     }
     @media (max-width: 700px){
-        width: auto;
+        max-width: auto;
     }
 }
 
@@ -188,7 +188,7 @@
         color: $text-color;
     }
     @media (max-width: 700px){
-        width: auto;
+        max-width: auto;
     }
 }
 

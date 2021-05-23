@@ -11,6 +11,9 @@ import firebase from 'firebase'
 // import locale from "date-fns/locale/pl";
 import locale from '../accessories/pl'
 import { getCurrentDate } from "../utilities";
+import useWindowWidth from "../hooks/useWindowWidth";
+import { useRouter } from "next/router";
+import { useRef } from "react";
 
 
 const Calendar = ({db, auth}) => {
@@ -27,6 +30,10 @@ const Calendar = ({db, auth}) => {
     const currentUser = useSelector(state=>state.currentUser)
 
     const [hoursReset, setHoursReset] = useState(0)
+
+    const windowWidth = useWindowWidth()
+    const router = useRouter()
+    const calendarRef = useRef()
 
     useEffect(()=>{
         console.log('SET CALENDAR VALUE', selectedDate.raw, selectedDate)
@@ -153,7 +160,12 @@ const Calendar = ({db, auth}) => {
     }
 
     return (
-        <div className={styles.calendar}>
+        <div className={styles.calendar} 
+            style={{flexDirection: 
+                (windowWidth<=700 && router.pathname !=='/konto/rezerwacja') ? 'column' :
+                (windowWidth<=1330 && router.pathname==='/konto/rezerwacja') ? 'column' : 'row'
+            }}
+        >
             <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
                 <DatePicker
                     disableToolbar

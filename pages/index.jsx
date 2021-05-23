@@ -14,6 +14,7 @@ import Calendar from './calendar'
 import HomePageCalendar from '../components/home-page-calendar'
 import { setShowAuth } from '../redux/actions'
 import WynajmijButton from '../components/wynajmij-button'
+import Line from '../components/line'
 
 export default function Home({db, auth}) {
 
@@ -27,6 +28,8 @@ export default function Home({db, auth}) {
     <div className={styles.container}>
 
       <Sidebar auth={auth}/>
+
+      <Line/>
 
       <Billboard>
         <Header/>
