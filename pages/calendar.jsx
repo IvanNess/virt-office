@@ -10,6 +10,7 @@ import firebase from 'firebase'
 // import locale from "date-fns/locale/en-GB";
 // import locale from "date-fns/locale/pl";
 import locale from '../accessories/pl'
+import { getCurrentDate } from "../utilities";
 
 
 const Calendar = ({db, auth}) => {
@@ -166,7 +167,7 @@ const Calendar = ({db, auth}) => {
                     disablePast={true}
                     // shouldDisableDate={shouldDisableDate}
                     renderDay={renderDay}
-                    initialFocusedDate={new Date()}
+                    initialFocusedDate={getCurrentDate()}
                 />
             </MuiPickersUtilsProvider>
             <Hours db={db} auth={auth} outterReset={hoursReset}/>

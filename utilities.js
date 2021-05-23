@@ -177,3 +177,9 @@ export const getData64FromTextImg = text =>{
     ctx.fillText(text, canvas.width/2, canvas.height/2);
     return canvas.toDataURL()
 }
+
+export const getCurrentDate = ()=>{
+    const date = new Date()
+    console.log('CURRENT DATE', date)
+    return date
+}

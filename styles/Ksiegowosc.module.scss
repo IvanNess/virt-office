@@ -86,6 +86,10 @@
     // }
     .blocks{
         @include blocks(107px);
+        >:nth-child(n){
+            border: 1px solid $main-color;
+            margin-right: 20px;
+        }
         margin-right: 0px;
         max-width: 1500px;
         flex-wrap: nowrap;
@@ -117,16 +121,11 @@
             >:nth-child(odd){
                 margin-left: 26px;
                 margin-right: 0;
-                >:nth-child(1){
-                    margin-right: 0;
-                    border-right: none;
-                }
+                border-right: none;
             }
             >:nth-child(even){
-                >:nth-child(1){
-                    border-left: none;
-                    padding-left: 26px;
-                }
+                border-left: none;
+                padding-left: 26px;
             }
         }
     }

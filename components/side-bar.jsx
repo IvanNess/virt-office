@@ -35,8 +35,6 @@ const Sidebar = ({color = 'white', auth}) => {
                 </div>                    
             </div>
 
-            {showMenu && <MenuContent auth={auth}/>}
-
             <div className={styles.languageBlock}>
                 <div className={styles.text}>Choose your language</div>
 
@@ -48,6 +46,9 @@ const Sidebar = ({color = 'white', auth}) => {
                     <div className={styles[languageId==="3"? 'active': 'language']} data-id='3'>UA</div>
                 </div>
             </div>
+
+            {showMenu && <MenuContent auth={auth}/>}
+
         </div>
     )
 }
