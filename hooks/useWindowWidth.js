@@ -13,7 +13,7 @@ const useWindowWidth = () => {
 
   // Add and remove the window listener
   useEffect(() => {
-    console.log('RESIZE')
+    console.log('RESIZE', document.documentElement.clientWidth)
     setWidth(document.documentElement.clientWidth);
     window.addEventListener("resize", onChange);
     return () => {
@@ -21,7 +21,7 @@ const useWindowWidth = () => {
     };
   }, [])
 
-  if (typeof window === "undefined") return 500;
+  if (typeof window === "undefined") return undefined;
 
   return width;
 };
