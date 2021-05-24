@@ -15,10 +15,22 @@ import HomePageCalendar from '../components/home-page-calendar'
 import { setShowAuth } from '../redux/actions'
 import WynajmijButton from '../components/wynajmij-button'
 import Line from '../components/line'
+import { useRef } from 'react'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 export default function Home({db, auth}) {
 
   const dispatch = useDispatch()
+
+  const wynajmijBiuroRef = useRef()
+  const router = useRouter()
+
+  useEffect(()=>{
+    console.log('router', router)
+    if(router.asPath==='/#wynajmij-biuro')
+    wynajmijBiuroRef.current.scrollIntoView()
+  }, [router.query])
 
   function showAuth(){
     dispatch(setShowAuth({show: true, isLogin: true}))
@@ -276,7 +288,7 @@ export default function Home({db, auth}) {
 
       <div style={{margin: 'auto', maxWidth: '1440px'}}>
 
-      <div className={styles.calendarTitle}>
+      <div className={styles.calendarTitle} ref={wynajmijBiuroRef}>
         <span className={styles.boldFont}>WYNAJMIJ BIURO NA GODZINY</span>
       </div>
 

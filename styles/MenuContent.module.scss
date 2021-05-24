@@ -144,3 +144,19 @@ $cities-width: 450px;
 .profilLinks{
     padding-top: 20px;
 }
+
+.wynajmijBiuro{
+    @include linkButton(55px);
+    width: 328px;
+    font: normal normal bold 16px/19px "Work Sans Bold" !important;
+    text-transform: uppercase;
+    background-color: white;
+    color: $main-color !important;
+    &:hover{
+        background-color: $text-color;
+        color: #FFFFFF !important;
+    }
+    @media (max-width: 400px) {
+        width: 100%
+    }
+}
