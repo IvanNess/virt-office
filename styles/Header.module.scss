@@ -156,10 +156,46 @@
     }
 }
 
+.logoNPath{
+    display: flex;
+    align-items: center;
+    @media (max-width: 1350px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.path{
+    height: 44px;
+    display: flex;
+    align-items: flex-end;
+    padding-left: 130px;
+    @media (max-width: 1350px) {
+        padding-left: 50px;
+    }
+    @media (max-width: 700px) {
+        padding-left: 26px;
+        height: 31px;
+    }
+    .pathInner{
+        color: white;
+        font: normal normal bold 16px/27px "Work Sans Bold";
+        border-top: 2px solid white;
+        width: 150px;
+        @media (max-width: 700px) {
+            width: 138px;
+            font: normal normal bold 12px/15px "Work Sans Bold";
+        }
+        @media (max-width: 400px) {
+            width: 80px;
+        }
+    }
+}
+
 @media(max-width: 700px){
 .logo{
         transform: scale(0.5);
-        transform-origin: left;
+        transform-origin: left bottom;
         width: 3rem;
         margin-left: 26px !important;
     }

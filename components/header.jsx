@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Link from 'next/link'
 import Logo from './logo'
 import { email } from '../accessories/constants'
+import { useRouter } from 'next/router'
 
 
 const Header = () => {
@@ -13,6 +14,8 @@ const Header = () => {
     const packages = useSelector(state=>state.packages)
 
     const dispatch = useDispatch()
+
+    const router = useRouter()
 
     useEffect(()=>{
         console.log('header current user', currentUser)
@@ -27,15 +30,29 @@ const Header = () => {
 
     return (
         <div className={styles.header}>
-            <div className={styles.logo}>
-                <Link href="/"><a>
-                    <Logo scale={1.0}/>
-                </a></Link>
+            <div className={styles.logoNPath}>
+                <div className={styles.logo}>
+                    <Link href="/"><a>
+                        <Logo scale={1.0}/>
+                    </a></Link>
+                </div>
+                <div className={styles.path}>
+                    <div className={styles.pathInner}>
+                        {
+                            router.pathname === '/' ? 'strona główna' : 
+                            router.pathname === '/cennik' ? 'cennik i usługi' : 
+                            router.pathname === '/ksiegowosc' ? 'księgowość' : ''
+
+                        }
+                    </div>
+                    
+                </div> 
             </div>
+            
             <div className={styles.headerButtons}>
                 <div className={styles.contacts}>
                     <div className={styles.email}><a href={`mailto://${email}`}>{email}</a></div>
-                    <div className={styles.phone}><a href="tel:+48602779599">+48 602 77 95 99</a></div>
+                    <div className={styles.phone}><a href="tel:+48602779599">+48&nbsp;602&nbsp;77&nbsp;95&nbsp;99</a></div>
                 </div>
                 <div className={styles.buttons}>
                     {((packages && packages.length === 0) || currentUser===false) && <div className={styles.button}>
@@ -46,8 +63,7 @@ const Header = () => {
                             <Link href="/konto/profil"><a>profil</a></Link>
                         </div>}
                     {currentUser === null && <button className={styles.plug}></button>}
-                </div>
-                
+                </div>                
             </div>
         </div>
     )

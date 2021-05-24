@@ -26,6 +26,8 @@ const Cennik = ({auth}) => {
         <div className={styles.cennik}>
             <Sidebar auth={auth}/>
 
+            <Line/>
+
             <Billboard>
                 <Header/>
                 <div className={styles.headerTitle}>

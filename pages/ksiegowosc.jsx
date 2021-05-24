@@ -8,6 +8,7 @@ import Block from '../components/block'
 import Link from 'next/link'
 import Footer from '../components/footer'
 import WynajmijButton from '../components/wynajmij-button'
+import Line from '../components/line'
 
 function Ksiegowosc({auth}) {
     const Hyphen = ()=> <span className={styles.hyphen}>&mdash;&mdash;&mdash;&mdash;&mdash;</span>
@@ -15,6 +16,8 @@ function Ksiegowosc({auth}) {
     return (
         <div className={styles.ksiegowosc}>
             <Sidebar auth={auth}/>
+
+            <Line/>
 
             <Billboard>
                 <Header/>
