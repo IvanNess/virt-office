@@ -10,6 +10,7 @@ import Block from '../components/block'
 import Footer from '../components/footer'
 import { useState } from 'react'
 import WynajmijButton from '../components/wynajmij-button'
+import Line from '../components/line'
 
 const Cennik = ({auth}) => {
 
