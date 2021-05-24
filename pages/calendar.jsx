@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DateFnsUtils from '@date-io/date-fns';
-import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+// import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import moment from 'moment'
 import styles from '../styles/Calendar.module.scss'
 import Hours from "../components/hours";
@@ -14,6 +14,8 @@ import { getCurrentDate } from "../utilities";
 import useWindowWidth from "../hooks/useWindowWidth";
 import { useRouter } from "next/router";
 import { useRef } from "react";
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 
 
 const Calendar = ({db, auth}) => {
@@ -23,7 +25,7 @@ const Calendar = ({db, auth}) => {
     const dispatch = useDispatch()
 
     const selectedDate = useSelector(state=>state.selectedDate)
-    const [calendarValue, setCalendarValue] = useState(undefined)
+    const [calendarValue, setCalendarValue] = useState(new Date())
 
     const selectedHours = useSelector(state=>state.selectedHours)
 
@@ -166,7 +168,7 @@ const Calendar = ({db, auth}) => {
                 (windowWidth<=1330 && router.pathname==='/konto/rezerwacja') ? 'column' : 'row'
             }}
         >
-            <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
+            {/* <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
                 <DatePicker
                     disableToolbar
                     autoOk
@@ -181,7 +183,13 @@ const Calendar = ({db, auth}) => {
                     renderDay={renderDay}
                     initialFocusedDate={getCurrentDate()}
                 />
-            </MuiPickersUtilsProvider>
+            </MuiPickersUtilsProvider> */}
+             <DatePicker
+                selected={calendarValue}
+                onChange={date => onChange(date)}
+                inline
+            />
+
             <Hours db={db} auth={auth} outterReset={hoursReset}/>
         </div>
         
