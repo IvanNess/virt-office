@@ -1,5 +1,6 @@
 import { loadStripe } from "@stripe/stripe-js"
 import axios from 'axios'
+import { parseISO } from 'date-fns'; 
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE);
 
@@ -179,7 +180,7 @@ export const getData64FromTextImg = text =>{
 }
 
 export const getCurrentDate = ()=>{
-    const date = new Date(2021, 4, 21)
+    const date = new Date()
     console.log('CURRENT DATE', date)
     return date
 }

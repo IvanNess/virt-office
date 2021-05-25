@@ -174,7 +174,7 @@ const Calendar = ({db, auth}) => {
             <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
                 <DatePicker
                     disableToolbar
-                    autoOk
+                    // autoOk
                     orientation="landscape"
                     variant="static"
                     openTo="date"

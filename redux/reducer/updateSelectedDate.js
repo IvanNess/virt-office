@@ -1,9 +1,11 @@
 import moment from 'moment'
+import { getCurrentDate } from '../../utilities'
 
 export const updateSelectedDate = (state, action)=>{
     if(state===undefined){
-        const date = new Date(2021, 4 , 21)
+        const date = getCurrentDate()
         // const date = new Date()
+        // const date = new Date(2021, 4, 21)
         return {
             day: moment(date).format('DD'),
             month: moment(date).format('MM'),
