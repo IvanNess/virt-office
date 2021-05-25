@@ -2,12 +2,13 @@ import moment from 'moment'
 
 export const updateSelectedDate = (state, action)=>{
     if(state===undefined){
-        const date = new Date()
+        const date = new Date(2021, 4 , 21)
+        // const date = new Date()
         return {
             day: moment(date).format('DD'),
             month: moment(date).format('MM'),
             year: moment(date).format('YYYY'),
-            raw: new Date(),
+            raw: date,
             reinitHours: true,
             registerAndReserve: false
         }

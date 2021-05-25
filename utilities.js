@@ -179,7 +179,7 @@ export const getData64FromTextImg = text =>{
 }
 
 export const getCurrentDate = ()=>{
-    const date = new Date()
+    const date = new Date(2021, 4, 21)
     console.log('CURRENT DATE', date)
     return date
 }
