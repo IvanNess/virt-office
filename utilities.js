@@ -1,6 +1,8 @@
 import { loadStripe } from "@stripe/stripe-js"
 import axios from 'axios'
 import { parseISO } from 'date-fns'; 
+import moment from 'moment'
+import {utcOffset} from './accessories/constants'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE);
 
@@ -180,7 +182,7 @@ export const getData64FromTextImg = text =>{
 }
 
 export const getCurrentDate = ()=>{
-    const date = new Date()
-    console.log('CURRENT DATE', date)
+    const date = moment().utcOffset(utcOffset)
+    console.log('CURRENT DATE', date, date.hours(), date.date(), moment(date).format('YYYY-MM-DD'))
     return date
 }

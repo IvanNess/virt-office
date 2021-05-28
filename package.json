@@ -25,6 +25,7 @@
     "google-map-react": "^2.1.9",
     "micro": "^9.3.4",
     "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
     "mongoose": "^5.12.3",
     "next": "10.0.4",
     "nodemailer": "^6.6.0",

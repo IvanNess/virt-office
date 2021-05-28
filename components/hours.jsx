@@ -15,6 +15,7 @@ import { reservationPay } from '../utilities'
 import { LoadingOutlined } from '@ant-design/icons'
 import useWindowWidth from '../hooks/useWindowWidth'
 import { useRouter } from 'next/router'
+import { utcOffset } from '../accessories/constants'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE);
 
@@ -53,15 +54,23 @@ function Hours({db, auth , outterReset}) {
     function initUpdHours(){
         console.log('init hours')
         const updHours = hours.map(hour=>{
-            // console.log('selected date', selectedDate)
+            // console.log('selected date', selectedDate, moment(selectedDate.raw).year(), moment(selectedDate.raw).month(), moment(selectedDate.raw).date())
             const {year, month, day} = selectedDate
-            const msTime = +new Date(year, Number(month)-1, day, hour.hours, hour.minutes) 
+            // const msTime = +new Date(year, Number(month)-1, day, hour.hours, hour.minutes) 
             const dateNow = +new Date()
+            const msTime = moment(new Date(
+                moment(selectedDate.raw).year(), 
+                moment(selectedDate.raw).month(), 
+                moment(selectedDate.raw).date(), 
+                hour.hours, 
+                hour.minutes
+            )).utcOffset(utcOffset, true).valueOf()
 
             return {
                 ...hour,
                 msTime,
                 className: dateNow + 1*60*60*1000 - msTime <= 0? 'init': 'past'
+                // className: 'init'
             }
         })
         // setUpdHours(updHours)
@@ -79,8 +88,9 @@ function Hours({db, auth , outterReset}) {
             }
             reservedSessions.forEach(session=>{
                 // console.log('session ', session.msStart <= hour.msTime, session.msFinish >= hour.msTime, 'hour time', hour.msTime)
+                // console.log('hour start', hour.msTime, 'session start', new Date(session.msStart), new Date(session.msFinish), session.msStart<= hour.msTime, session.msFinish >=hour.msTime)
                 if(session.msStart<= hour.msTime && session.msFinish >=hour.msTime){
-                    // console.log('reserved', hour.msTime)
+                    console.log('reserved', hour.msTime)
                     newUpdHours = updateHoursClassname(newUpdHours, hour.id, "reserved")
                     isReserved = true
                 } else if(hour.className==='init' && !isReserved ){
@@ -216,6 +226,7 @@ function Hours({db, auth , outterReset}) {
             //     return doc.data()
             // })
             // // console.log('sessions', sessions)
+
             dispatch(addReservedSession(reservations))
             return
         } catch (error) {
@@ -598,7 +609,8 @@ function Hours({db, auth , outterReset}) {
 
     function isHourAvailable(hour){
         const {year, month, day} = selectedDate
-        const msHour = +new Date(year, month-1, day, hour.hours, hour.minutes)
+        // const msHour = +new Date(year, month-1, day, hour.hours, hour.minutes)
+        const msHour = moment([year, Number(month)-1, day, hour.hours, hour.minutes]).utcOffset(utcOffset, true).valueOf()
         const dateNow = +new Date()
         return ( dateNow + 1*60*60*1000 - msHour <= 0)
     }
@@ -639,7 +651,7 @@ function Hours({db, auth , outterReset}) {
                 <div className={styles.board}>
                     <div className={styles.boardString}
                         style={{maxWidth: 
-                            (windowWidth<=700) ? 'none' :
+                            (windowWidth<=800) ? 'none' :
                             (windowWidth<=1024 && router.pathname==='/konto/rezerwacja') ? '470px' :
                             (windowWidth<=1330 && router.pathname==='/konto/rezerwacja') ? '550px' : 
                             '390px'
@@ -650,8 +662,8 @@ function Hours({db, auth , outterReset}) {
                     </div>
                 </div>
                 <div className={styles.hours}
-                    style={{maxWidth: 
-                        (windowWidth<=700) ? 'none' :
+                    style={{maxWidth:                         
+                        (windowWidth<=800) ? '570px' :
                         (windowWidth<=1024 && router.pathname==='/konto/rezerwacja') ? '470px' :
                         (windowWidth<=1330 && router.pathname==='/konto/rezerwacja') ? '550px' : 
                         '390px'
@@ -675,8 +687,8 @@ function Hours({db, auth , outterReset}) {
                 </div>}
                 <div className={styles.btns}
                     style={{maxWidth: 
-                        (windowWidth<=700) ? 'none' :
-                        (windowWidth<=1024 && router.pathname==='/konto/rezerwacja') ? '470px' :
+                        (windowWidth<=800) ? 'none' :
+                        (windowWidth<=1200 && router.pathname==='/konto/rezerwacja') ? 'none' :
                         (windowWidth<=1330 && router.pathname==='/konto/rezerwacja') ? '550px' : 
                         '390px'
                     }}
@@ -686,8 +698,8 @@ function Hours({db, auth , outterReset}) {
                         onClick={reserve} 
                         disabled={disableConfirmBtn}
                         style={{maxWidth: 
-                            (windowWidth<=700) ? 'none' :
-                            (windowWidth<=1024 && router.pathname==='/konto/rezerwacja') ? '470px' :
+                            (windowWidth<=800) ? 'none' :
+                            (windowWidth<=1200 && router.pathname==='/konto/rezerwacja') ? 'none' :
                             (windowWidth<=1330 && router.pathname==='/konto/rezerwacja') ? '550px' : 
                             '390px'
                         }}
@@ -698,8 +710,8 @@ function Hours({db, auth , outterReset}) {
                         className={styles.cancelBtn} 
                         onClick={resetUpdHours}
                         style={{maxWidth: 
-                            (windowWidth<=700) ? 'none' :
-                            (windowWidth<=1024 && router.pathname==='/konto/rezerwacja') ? '470px' :
+                            (windowWidth<=800) ? 'none' :
+                            (windowWidth<=1200 && router.pathname==='/konto/rezerwacja') ? 'none' :
                             (windowWidth<=1330 && router.pathname==='/konto/rezerwacja') ? '550px' : 
                             '390px'
                         }}

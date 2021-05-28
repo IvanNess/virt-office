@@ -7,9 +7,9 @@ export const updateSelectedDate = (state, action)=>{
         // const date = new Date()
         // const date = new Date(2021, 4, 21)
         return {
-            day: moment(date).format('DD'),
-            month: moment(date).format('MM'),
-            year: moment(date).format('YYYY'),
+            day: moment(date).date(),
+            month: moment(date).month() + 1,
+            year: moment(date).year(),
             raw: date,
             reinitHours: true,
             registerAndReserve: false
@@ -17,11 +17,12 @@ export const updateSelectedDate = (state, action)=>{
     }
     switch(action.type){
         case "SET_SELECTED_DATE":
+            console.log('SET_SELECTED_DATE', action.date, action.date.hour())
             return {
                 ...state.selectedDate,
-                day: moment(action.date).format('DD'),
-                month: moment(action.date).format('MM'),
-                year: moment(action.date).format('YYYY'),
+                day: moment(action.date).date(),
+                month: moment(action.date).month() + 1,
+                year: moment(action.date).year(),
                 raw: action.date,
                 reinitHours: action.reinitHours || false
             }

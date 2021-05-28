@@ -18,6 +18,7 @@ import { useRef } from "react";
 // import "react-datepicker/dist/react-datepicker.css";
 import {format, parseISO} from 'date-fns'
 import { convertToLocalTime } from 'date-fns-timezone';
+import MyCalendar from "../components/my-calendar";
 
 export const DEFAULT_DATE_FORMAT = 'yyyy-MM-dd';
 
@@ -165,13 +166,8 @@ const Calendar = ({db, auth}) => {
     }
 
     return (
-        <div className={styles.calendar} 
-            style={{flexDirection: 
-                (windowWidth<=700 && router.pathname !=='/konto/rezerwacja') ? 'column' :
-                (windowWidth<=1330 && router.pathname==='/konto/rezerwacja') ? 'column' : 'row'
-            }}
-        >
-            <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
+        <div className={router.pathname ==='/konto/rezerwacja' ? styles.rezCalendar : styles.calendar} >
+            {/* <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
                 <DatePicker
                     disableToolbar
                     // autoOk
@@ -186,13 +182,13 @@ const Calendar = ({db, auth}) => {
                     renderDay={renderDay}
                     // initialFocusedDate={getCurrentDate()}
                 />
-            </MuiPickersUtilsProvider>
+            </MuiPickersUtilsProvider> */}
              {/* <DatePicker
                 selected={calendarValue}
                 onChange={date => onChange(date)}
                 inline
             /> */}
-
+            <MyCalendar/>
             <Hours db={db} auth={auth} outterReset={hoursReset}/>
         </div>
         

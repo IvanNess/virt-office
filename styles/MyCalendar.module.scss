@@ -1,0 +1,109 @@
+@import './Varablies.scss';
+
+@mixin myCalendar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 530px;
+}
+
+.myCalendar{
+    @include myCalendar();
+    @media (max-width: 1000px){
+        min-width: 440px;
+    }
+    @media (max-width: 900px){
+        min-width: 340px;
+    }
+    @media (max-width: 800px){
+        min-width: auto;
+    }
+}
+
+.myRezCalendar{
+    @include myCalendar();
+    @media (max-width: 1350px){
+        min-width: 440px;
+    }
+    @media (max-width: 1300px){
+        min-width: 360px;
+    }
+}
+
+.rows{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.row{
+    display: flex;
+}
+
+@mixin dayWrapper {
+    flex: 1;
+    text-align: center; 
+    display: flex;
+    justify-content: center;  
+}
+
+@mixin day {
+    padding: 10px;
+    cursor: pointer;
+    min-width: 42px;
+    border-radius: 60px;
+    &:hover{
+        background-color: rgba(0, 0, 0, 0.04);
+    }
+}
+
+.day{
+    @include day();
+}
+
+.current{
+    @include day();
+    background-color: $main-color;
+    color: #ffffff;
+    &:hover{
+        background-color: $main-color;
+    }
+}
+
+.other{
+    @include day();
+    color: rgba(0, 0, 0, 0.38);
+}
+
+.first{
+    @include day();
+    color: red;
+}
+
+.dayWrapper{
+    @include dayWrapper();
+}
+
+.week{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    color: rgba(0, 0, 0, 0.38);
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    font: normal normal 900 29px/35px "Work Sans Black";
+    color: $main-color;
+    padding: 20px;
+}
+
+.arrow{
+    cursor: pointer;
+    &:hover{
+        background-color: rgba(0, 0, 0, 0.04);
+    }
+}

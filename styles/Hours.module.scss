@@ -47,6 +47,7 @@
     flex-wrap: wrap;
     color: #121109;
     cursor: default;
+    margin: auto;
     @media (max-width: 700px) {
         max-width: none;
         justify-content: space-between;
@@ -138,6 +139,7 @@
     letter-spacing: 0px;
     color: #121109;
     height: 20px;
+    margin: auto;
     .boardResult{    
         padding-right: 35px;
     }
@@ -223,7 +225,8 @@
 .btns{
     display: flex;
     flex-direction: column;
-    margin-bottom: 80px;
+    // margin-bottom: 80px;
+    margin: auto;
     @media (max-width: 700px) {
         margin-bottom: 0;
     }
