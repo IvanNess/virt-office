@@ -96,7 +96,7 @@ const MenuContent = ({auth}) => {
                 {/* <div><Link href="/onas"><a><h2 onClick={linkClicked}>o nas</h2></a></Link></div> */}
                 <div><Link href="/cennik"><a><h2 className={styles.last} onClick={linkClicked}>cennik</h2></a></Link></div>
                 <div><Link href="/ksiegowosc"><a><h2 onClick={linkClicked}>księgowość</h2></a></Link></div>
-                <div><Link href="/#wynajmij-biuro"><a><h2 className={styles.wynajmijBiuro} onClick={linkClicked}>Wynajmij biuro na godzinę</h2></a></Link></div>
+                <div><Link href="/#wynajmij-biuro"><a><h2 className={styles.wynajmijBiuro} onClick={linkClicked}>Wynajmij biuro na godziny</h2></a></Link></div>
                 {/* <div><Link href="/podpis"><a><h2>wirtualny podpis</h2></a></Link></div> */}
 
                 <div className={styles.split}></div>

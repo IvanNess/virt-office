@@ -46,9 +46,12 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
         dispatch(updateHiringChoice({
             number: 1, 
             prop: "choice", 
-            value: idx===0 ? "Wirtualny adres (55 PLN/miesiąc)":
-                idx===2 ? "Profesjonalne biuro (450 PLN/miesiąc)":
-                `Optymalny pakiet (${price} PLN/miesiąc)`
+            // value: idx===0 ? "Wirtualny adres (55 PLN/miesiąc)":
+            //     idx===2 ? "Profesjonalne biuro (450&nbsp;PLN/miesiąc)":
+            //     `Optymalny pakiet (${price} PLN/miesiąc)`
+            value: idx===0 ? "Wirtualny adres":
+                idx===2 ? "Profesjonalne biuro":
+                `Optymalny pakiet`
         }))
         dispatch(updateHiringChoice({
             number: 1, 

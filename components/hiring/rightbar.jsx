@@ -108,7 +108,7 @@ function Rightbar({db, auth}) {
                         </button>
                     </div>
                 }
-                <Price db={db} auth={auth}/>
+                {/* <Price db={db} auth={auth}/> */}
             </div> 
         </div>
         

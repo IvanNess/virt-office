@@ -33,7 +33,10 @@ function ProgressBar() {
                     console.log(!hiringChoices[number-1] || (!hiringChoices[number-1].isComplete && hiringChoiceNumber !== number))
                     return(
                         <div 
-                            className={ (!hiringChoices[number-1] || !hiringChoices[number-1].isComplete) && hiringChoiceNumber !== number
+                            // className={ (!hiringChoices[number-1] || !hiringChoices[number-1].isComplete) && hiringChoiceNumber !== number
+                            //     ? styles.progressBarNumber
+                            //     : styles.progressBarCompleteNumber }
+                            className={ hiringChoiceNumber !== number
                                 ? styles.progressBarNumber
                                 : styles.progressBarCompleteNumber }
                             data-number={number}

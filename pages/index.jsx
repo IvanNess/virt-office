@@ -37,7 +37,7 @@ export default function Home({db, auth}) {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={router.asPath==='/#wynajmij-biuro' ? styles.containerNoAnimation : styles.container}>
 
       <Sidebar auth={auth}/>
 

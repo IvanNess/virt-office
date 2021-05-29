@@ -6,6 +6,10 @@
   @include start-animation()
 }
 
+.containerNoAnimation{
+    position: relative;
+}
+
 .titleTwo{
   @include title();
   max-width: 670px;

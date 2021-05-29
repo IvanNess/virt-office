@@ -39,7 +39,7 @@ const Header = () => {
                 <div className={styles.path}>
                     <div className={styles.pathInner}>
                         {
-                            router.pathname === '/' ? 'strona główna' : 
+                            router.pathname === '/' ? 'wynajem adresu dla firm' : 
                             router.pathname === '/cennik' ? 'cennik i usługi' : 
                             router.pathname === '/ksiegowosc' ? 'księgowość' : ''
 

@@ -2,7 +2,7 @@ export const updateHiringChoices = (state, action)=>{
     if(state===undefined){
         return [
             {
-                name: "1. wybór usługi biura wirtualnego",
+                name: "1. wybór usługi biura wirtualnego:",
                 choice: "",
                 isComplete: false
             },

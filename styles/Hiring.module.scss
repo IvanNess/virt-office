@@ -48,6 +48,7 @@
     @media (max-width: 1124px) {
         height: auto;
         padding-right: 0;
+        max-width: none;
         // display: flex;
         // align-items: center;
     }
@@ -104,12 +105,17 @@
     &:disabled{
         background-color: $main-color;
         cursor: auto;
-      }
+    }
 }
 
 .nextBtn{
     margin-left: 0;
     width: 150px;
+    @media (max-width: 1124px){
+        width: 138px;
+        height: 38px;
+        font: normal normal bold 12px/19px "Work Sans Black";
+    }
 }
 
 .nextBtnWrapper{
@@ -118,7 +124,8 @@
     display: flex;
     @media (max-width: 1124px) {
         position: static;
-        padding-top: 30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 }
 
@@ -196,14 +203,21 @@
     position: fixed;
     margin-top: 120px;
     @media (max-width: 1124px) {
-        display: none;
+        display: flex;
+        margin-top: 0;
+        position: static;
+        justify-content: space-between;
     }
 }
 
 .hiringChoice{
     width: 325px;
     min-height: 44px;
-    margin-top: 1rem;  
+    margin-top: 1rem; 
+    @media (max-width: 1124px) {
+        width: auto;
+        padding-right: 10px;
+    } 
 }
 
 .hiringChoiceTitle{
@@ -211,6 +225,9 @@
     letter-spacing: 0px;
     color: #FFFFFF;
     text-transform: lowercase;
+    @media (max-width: 700px) {
+        font: normal normal 300 14px/25px "Work Sans Light";
+    }
 }
 
 .hiringChoiceValues{
@@ -219,15 +236,22 @@
     color: #FFFFFF;
     text-transform: lowercase;
     width: 158px;
+    @media (max-width: 1124px) {
+        width: auto;
+    }
+    @media (max-width: 700px) {
+        // width: 158px;
+        font: normal normal 900 14px/25px "Work Sans Black";
+    }
 }
 
 .priceDiv{
     @include blockTitle();
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     color: #ffffff;
     padding: 0;
-    padding-bottom: 10px;
+    // padding-bottom: 10px;
     padding-right: 24px;
     .priceLeft{
         @include blockText();
