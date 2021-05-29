@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styles from "../styles/Wynajecie.module.scss"
 import headerStyles from "../styles/Header.module.scss"
 
@@ -28,6 +28,10 @@ function Wynajecie({db, auth}) {
         dispatch(updateHiringChoice({number: hiringChoiceNumber, value: true, prop: "isComplete"}))
         dispatch(setHiringChoiceNumber(hiringChoiceNumber+1))
     }
+
+    useEffect(()=>{
+        window.scrollTo(0, 0)
+    }, [hiringChoiceNumber])
 
     return (
         <div style={{backgroundImage: 'linear-gradient(90deg, #ffffff 50%, #4caed5 50%)'}}>

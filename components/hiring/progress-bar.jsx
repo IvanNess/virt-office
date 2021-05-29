@@ -19,6 +19,8 @@ function ProgressBar() {
         const number = Number(e.target.dataset.number)
         if(!number)
             return
+        if(!hiringChoices[0].isComplete && number===2)
+            return
         dispatch(setHiringChoiceNumber(number))
     }
 

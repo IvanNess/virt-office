@@ -49,6 +49,7 @@
         height: auto;
         padding-right: 0;
         max-width: none;
+        padding-bottom: 10px;
         // display: flex;
         // align-items: center;
     }
@@ -125,7 +126,6 @@
     @media (max-width: 1124px) {
         position: static;
         padding-top: 10px;
-        padding-bottom: 10px;
     }
 }
 
