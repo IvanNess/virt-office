@@ -27,45 +27,58 @@ const Header = () => {
         dispatch(setShowAuth({show: true}))
     }
 
+    const PathInner =()=>(
+        <div className={styles.pathInner}>
+            {
+                router.pathname === '/' ? 'wynajem adresu dla firm' : 
+                router.pathname === '/cennik' ? 'cennik i usługi' : 
+                router.pathname === '/ksiegowosc' ? 'księgowość' : ''
+
+            }
+        </div> 
+    )
+
 
     return (
-        <div className={styles.header}>
-            <div className={styles.logoNPath}>
-                <div className={styles.logo}>
-                    <Link href="/"><a>
-                        <Logo scale={1.0}/>
-                    </a></Link>
-                </div>
-                <div className={styles.path}>
-                    <div className={styles.pathInner}>
-                        {
-                            router.pathname === '/' ? 'wynajem adresu dla firm' : 
-                            router.pathname === '/cennik' ? 'cennik i usługi' : 
-                            router.pathname === '/ksiegowosc' ? 'księgowość' : ''
-
-                        }
+        <div className={styles.headerWrapper}>
+            <div className={styles.header}>
+                <div className={styles.top}>
+                    <div className={styles.logoNPath}>
+                        <div className={styles.logo}>
+                            <Link href="/"><a>
+                                <Logo scale={1.0}/>
+                            </a></Link>
+                        </div>
+                        <div className={styles.path}>
+                            <PathInner/> 
+                        </div> 
                     </div>
                     
-                </div> 
-            </div>
-            
-            <div className={styles.headerButtons}>
-                <div className={styles.contacts}>
-                    <div className={styles.email}><a href={`mailto://${email}`}>{email}</a></div>
-                    <div className={styles.phone}><a href="tel:+48602779599">+48&nbsp;602&nbsp;77&nbsp;95&nbsp;99</a></div>
+                    <div className={styles.headerButtons}>
+                        <div className={styles.contacts}>
+                            <div className={styles.email}><a href={`mailto://${email}`}>{email}</a></div>
+                            <div className={styles.phone}><a href="tel:+48602779599">+48&nbsp;602&nbsp;77&nbsp;95&nbsp;99</a></div>
+                        </div>
+                        <div className={styles.buttons}>
+                            {((packages && packages.length === 0) || currentUser===false) && <div className={styles.button}>
+                                <Link href="/wynajecie"><a>Wynajmij adres</a></Link>
+                            </div>}
+                            {(!currentUser && currentUser !== null) && <button className={styles.loginButton} onClick={login}>Zaloguj się</button>}
+                            {currentUser && <div className={styles.profileButton} >
+                                    <Link href="/konto/profil"><a>profil</a></Link>
+                                </div>}
+                            {currentUser === null && <button className={styles.plug}></button>}
+                        </div>                
+                    </div>
                 </div>
-                <div className={styles.buttons}>
-                    {((packages && packages.length === 0) || currentUser===false) && <div className={styles.button}>
-                        <Link href="/wynajecie"><a>Wynajmij adres</a></Link>
-                    </div>}
-                    {(!currentUser && currentUser !== null) && <button className={styles.loginButton} onClick={login}>Zaloguj się</button>}
-                    {currentUser && <div className={styles.profileButton} >
-                            <Link href="/konto/profil"><a>profil</a></Link>
-                        </div>}
-                    {currentUser === null && <button className={styles.plug}></button>}
-                </div>                
+
+                <div className={styles.bottom}>
+                    
+                </div>
             </div>
+            <PathInner/>
         </div>
+        
     )
 }
 

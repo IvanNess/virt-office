@@ -4,6 +4,24 @@
     display: flex;
 }
 
+.headerWrapper{
+    >.pathInner{
+        display: none;
+        @media (max-width: 1350px) {
+            display: block;
+            color: white;
+            margin-left: $main-margin-left;
+            border-top: 2px solid white;
+            margin-top: -30px;
+            max-width: 180px;
+        }
+        @media (max-width: 700px) {
+            margin-left: 26px;
+            margin-top: -20px;
+        }
+    }
+}
+
 @mixin header {
     height: 150px;
     width: 100%;
@@ -18,7 +36,24 @@
 }
 
 .header{
-    @include header()
+    @include header();
+    .top{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+        @media (max-width: 1350px) {
+            .path{
+                display: none;
+            }
+        }
+    }
+    .bottom{
+        display: none;
+        @media (max-width: 1350px) {
+            display: flex;
+        }
+    }
 }
 
 .profileHeader{
@@ -181,13 +216,14 @@
         color: white;
         font: normal normal bold 16px/27px "Work Sans Bold";
         border-top: 2px solid white;
-        width: 150px;
+        padding-right: 20px;
+        // width: 150px;
         @media (max-width: 700px) {
-            width: 138px;
+            // width: 138px;
             font: normal normal bold 12px/15px "Work Sans Bold";
         }
         @media (max-width: 400px) {
-            width: 90px;
+            // width: 90px;
         }
     }
 }
@@ -195,7 +231,7 @@
 @media(max-width: 700px){
 .logo{
         transform: scale(0.5);
-        transform-origin: left bottom;
+        transform-origin: left center;
         width: 3rem;
         margin-left: 26px !important;
     }
