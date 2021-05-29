@@ -44,72 +44,76 @@ function Ksiegowosc({auth}) {
                 <WynajmijButton/>
             </Billboard>
             
-            <div className={styles.title}>
-                Ponad <span className={styles.boldFont}> 700 nowych </span>przedsiębiorców wybiera wFirmę każdego tygodnia
-            </div>
-            {/* <div className={styles.smallText}>
-                Prowadź księgowość online i zyskaj niezależność w zarządzaniu firmą!
-            </div> */}
+            <div style={{margin: 'auto', maxWidth: '1440px'}}>
 
-            <div className={styles.blocks}>
-                <Block className='blockMedium'>
-                    <div className={styles.blockTitle}>
-                        Prostota i wygoda, którą polubisz.
-                    </div>
-                    {/* <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Fakturowanie</div></div>
-                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Magazyn</div></div>
-                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>CRM</div></div>
-                    <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>e-Commerce</div></div>   */}
-                    <div className={styles.blockText}><p>Szybko wystawisz fakturę, bez trudu wyliczysz 
-                        podatki i rozliczysz się z ZUS. Prosto, wygodnie, 
-                        bez zbędnych komplikacji.
-                    </p></div>
-                </Block>
-                <Block className='blockMedium'>
-                    <div className={styles.blockTitle}>
-                        Wsparcie, gdy tego potrzebujesz.
-                    </div>
-                    <div className={styles.blockText}><p>Podpowiadamy skuteczne rozwiązania i dzielimy się wiedzą. Zespół ekspertów jest zawsze do Twojej dyspozycji.</p></div>
-                </Block>  
-                <Block className='blockMedium'>
-                    <div className={styles.blockTitle}>
-                        Kompleksowość, którą docenisz.
-                    </div>
-                    <div className={styles.blockText}><p>Wszystko, co niezbędne w jednym miejscu, dostępne na każdym urządzeniu i o każdej porze. Twoja firma tam gdzie Ty!</p></div>
-                </Block>   
-            </div>
-
-            <div className={styles.secondTitle}>
                 <div className={styles.title}>
-                    {/* <span className={styles.boldFont}>wFirma</span> w liczbach — Postaw na doświadczenie */}
-                    Nasz partner <span className={styles.boldFont}>wfirma.pl</span> w&nbsp;liczbach
+                    Ponad <span className={styles.boldFont}> 700 nowych </span>przedsiębiorców wybiera wFirmę każdego tygodnia
                 </div>
-            </div>
+                {/* <div className={styles.smallText}>
+                    Prowadź księgowość online i zyskaj niezależność w zarządzaniu firmą!
+                </div> */}
 
-            <div className={styles.records}>
-                <div className={styles.record}>
-                    <div className={styles.top}>390 tyś</div>
-                    <div className={styles.bottom}>zarejestrowanych użytkowników</div>
+                <div className={styles.blocks}>
+                    <Block className='blockMedium'>
+                        <div className={styles.blockTitle}>
+                            Prostota i wygoda, którą polubisz.
+                        </div>
+                        {/* <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Fakturowanie</div></div>
+                        <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>Magazyn</div></div>
+                        <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>CRM</div></div>
+                        <div className={styles.blockText}><Hyphen/><div className={styles.afterHyphen}>e-Commerce</div></div>   */}
+                        <div className={styles.blockText}><p>Szybko wystawisz fakturę, bez trudu wyliczysz 
+                            podatki i rozliczysz się z ZUS. Prosto, wygodnie, 
+                            bez zbędnych komplikacji.
+                        </p></div>
+                    </Block>
+                    <Block className='blockMedium'>
+                        <div className={styles.blockTitle}>
+                            Wsparcie, gdy tego potrzebujesz.
+                        </div>
+                        <div className={styles.blockText}><p>Podpowiadamy skuteczne rozwiązania i dzielimy się wiedzą. Zespół ekspertów jest zawsze do Twojej dyspozycji.</p></div>
+                    </Block>  
+                    <Block className='blockMedium'>
+                        <div className={styles.blockTitle}>
+                            Kompleksowość, którą docenisz.
+                        </div>
+                        <div className={styles.blockText}><p>Wszystko, co niezbędne w jednym miejscu, dostępne na każdym urządzeniu i o każdej porze. Twoja firma tam gdzie Ty!</p></div>
+                    </Block>   
                 </div>
-                <div className={styles.record}>
-                    <div className={styles.top}>15 lat</div>
-                    <div className={styles.bottom}>na rynku księgowości</div>
-                </div>
-                <div className={styles.record}>
-                    <div className={styles.top}>3 mln.</div>
-                    <div className={styles.bottom}>wysłanych e-deklaracji</div>
-                </div>
-                <div className={styles.record}>
-                    <div className={styles.top}>62 mln.</div>
-                    <div className={styles.bottom}>wystawionych faktur</div>
-                </div>
-            </div>
 
-            <Billboard noBackground={true}>
-                <div className={styles.noBackgroundBillboardText}>
-                    Zawsze możesz liczyć na naszą pomoc. Zapewniamy stałe wsparcie merytoryczne oraz szybką pomoc techniczną.
+                <div className={styles.secondTitle}>
+                    <div className={styles.title}>
+                        {/* <span className={styles.boldFont}>wFirma</span> w liczbach — Postaw na doświadczenie */}
+                        Nasz partner <span className={styles.boldFont}>wfirma.pl</span> w&nbsp;liczbach
+                    </div>
                 </div>
-            </Billboard>
+
+                <div className={styles.records}>
+                    <div className={styles.record}>
+                        <div className={styles.top}>390 tyś</div>
+                        <div className={styles.bottom}>zarejestrowanych użytkowników</div>
+                    </div>
+                    <div className={styles.record}>
+                        <div className={styles.top}>15 lat</div>
+                        <div className={styles.bottom}>na rynku księgowości</div>
+                    </div>
+                    <div className={styles.record}>
+                        <div className={styles.top}>3 mln.</div>
+                        <div className={styles.bottom}>wysłanych e-deklaracji</div>
+                    </div>
+                    <div className={styles.record}>
+                        <div className={styles.top}>62 mln.</div>
+                        <div className={styles.bottom}>wystawionych faktur</div>
+                    </div>
+                </div>
+
+                <Billboard noBackground={true}>
+                    <div className={styles.noBackgroundBillboardText}>
+                        Zawsze możesz liczyć na naszą pomoc. Zapewniamy stałe wsparcie merytoryczne oraz szybką pomoc techniczną.
+                    </div>
+                </Billboard>
+
+            </div>
 
             <Footer/>
 

@@ -28,6 +28,9 @@
     @media (max-width: 1300px){
         min-width: 360px;
     }
+    @media (max-width: 600px){
+        min-width: auto;
+    }
 }
 
 .rows{
@@ -77,7 +80,7 @@
 
 .first{
     @include day();
-    color: red;
+    font-weight: bolder;
 }
 
 .dayWrapper{

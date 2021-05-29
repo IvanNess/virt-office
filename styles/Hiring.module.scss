@@ -10,10 +10,12 @@
 }
 
 @mixin rightBarWrapper {
-    width: 750px;
+    width: 680px;
     @media (max-width: 1124px) {
         @include fixedRightBarWrapper();
         width: auto;
+        -webkit-box-shadow: 0px 15px 10px 6px rgba(0,0,0,0.75); 
+        box-shadow: 0px 15px 10px 6px rgba(0,0,0,0.75);
     }
 }
 
@@ -216,6 +218,7 @@
     letter-spacing: 0px;
     color: #FFFFFF;
     text-transform: lowercase;
+    width: 158px;
 }
 
 .priceDiv{

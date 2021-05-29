@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Checkbox } from 'antd'
 import initCheckboxValues from '../accessories/user-package-choices'
 import { useDispatch } from 'react-redux'
-import { updateHiringChoice } from '../redux/actions'
+import { updateHiringChoice, setHiringChoiceNumber } from '../redux/actions'
 import { useRouter } from 'next/router'
 import WynajmijButton from './wynajmij-button'
 
@@ -32,15 +32,15 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
         dispatch(updateHiringChoice({
             number: 1, 
             prop: "choice", 
-            value: `Twój pakiet (${updPrice} PLN/miesiąc)`
+            value: `Optymalny pakiet (${updPrice} PLN/miesiąc)`
         }))
-        dispatch(updateHiringChoice({ number: 1, prop: "pakietTitle", value: `Twój pakiet` }))
+        dispatch(updateHiringChoice({ number: 1, prop: "pakietTitle", value: `Optymalny pakiet` }))
         dispatch(updateHiringChoice({ number: 1, prop: "price", value: updPrice }))
         dispatch(updateHiringChoice({ number: 1, prop: "isComplete", value: true }))
     }
     
-    const selectBlock = idx =>{
-        if(router.pathname==='/cennik')
+    const selectBlock = (idx, isBtn=false) =>{
+        if(router.pathname==='/cennik' && !isBtn)
             return
         setSelectedBlock(idx)
         dispatch(updateHiringChoice({
@@ -48,12 +48,12 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
             prop: "choice", 
             value: idx===0 ? "Wirtualny adres (55 PLN/miesiąc)":
                 idx===2 ? "Profesjonalne biuro (450 PLN/miesiąc)":
-                `Twój pakiet (${price} PLN/miesiąc)`
+                `Optymalny pakiet (${price} PLN/miesiąc)`
         }))
         dispatch(updateHiringChoice({
             number: 1, 
             prop: "pakietTitle", 
-            value: idx===0 ? "Wirtualny adres": idx===2 ? "Profesjonalne biuro":`Twój pakiet`
+            value: idx===0 ? "Wirtualny adres": idx===2 ? "Profesjonalne biuro":`Optymalny pakiet`
         }))
         dispatch(updateHiringChoice({
             number: 1, 
@@ -62,11 +62,19 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                 idx===2 ? 450: price
         }))
         dispatch(updateHiringChoice({ number: 1, prop: "isComplete", value: true }))
+        if(isBtn){
+            dispatch(setHiringChoiceNumber(2))
+            router.push('/wynajecie')
+        }
+    }
+
+    const getBlocksClassName = () =>{
+        return (router.pathname==='/cennik')? styles.blocks: styles.kontoBlocks
     }
 
     return (
         <div className={styles.cennikChoices}>
-            <div className={styles.blocks} style={{marginRight}}>
+            <div className={getBlocksClassName()} style={{marginRight}}>
                 
                 <div className={router.pathname==='/cennik'? styles.cennikBlock: selectedBlock===0 ? styles.selectedBlock : styles.block} 
                     onClick={()=>selectBlock(0)}
@@ -77,9 +85,8 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                         <div className={styles.blockTitle}>Wirtualny adres</div>
                         <div className={styles.digit}>55</div>
                         <div className={styles.afterDigit}>PLN/miesiąc</div>
-                        {router.pathname === '/cennik' && <div className={styles.blockLinkButton}>
-                            {/* <Link href="/wynajecie"><a>Wynajmij biuro</a></Link> */}
-                            <WynajmijButton/>
+                        {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(0, true)}>
+                            Wynajmij Adres
                         </div>}
                     </div>
                      
@@ -113,9 +120,8 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                         <div className={styles.blockTitle}>Optymalny pakiet</div>
                         <div className={styles.digit}>{price}</div>
                         <div className={styles.afterDigit}>PLN/miesiąc</div>
-                        {router.pathname === '/cennik' && <div className={styles.blockLinkButton}>
-                            {/* <Link href="/wynajecie"><a>Wynajmij biuro</a></Link> */}
-                            <WynajmijButton/>
+                        {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(1, true)}>
+                            Wynajmij Adres
                         </div>}
                         {/* {showSlash && <div className={selectedBlock===1 || selectedBlock===null ? styles.slash : styles.noslash}>////</div>} */}
                     </div>
@@ -165,9 +171,8 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                         <div className={styles.blockTitle}>Profesjonalne biuro</div>
                         <div className={styles.digit}>450</div>
                         <div className={styles.afterDigit}>PLN/miesiąc</div>
-                        {router.pathname === '/cennik' && <div className={styles.blockLinkButton}>
-                            {/* <Link href="/wynajecie"><a>Wynajmij biuro</a></Link> */}
-                            <WynajmijButton/>
+                        {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(2, true)}>
+                            Wynajmij Adres
                         </div>}
                     </div>
                     

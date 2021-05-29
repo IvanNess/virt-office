@@ -45,20 +45,25 @@ const Cennik = ({auth}) => {
                 <WynajmijButton/>
             </Billboard>
 
-            <div className={styles.title}>
-                Wirtualne Biuro /<span className={styles.boldFont}> cennik</span>
-            </div>
+            <div style={{margin: 'auto', maxWidth: '1440px'}}>
 
-            <div className={styles.cennikBar} onClick={barClicked}>
-                {/* <div className={currentCennikId===1 ? styles.selectedItem : styles.barItem} data-id={1}>WIRTUALNE BIURO</div>
-                <div className={currentCennikId===2 ? styles.selectedItem : styles.barItem} data-id={2}>Fakturowanie i sprzedaż</div>
-                <div className={currentCennikId===3 ? styles.selectedItem : styles.barItem} data-id={3}>Księgowość online</div>
-                <div className={currentCennikId===4 ? styles.selectedItem : styles.barItem} data-id={4}>Kadry, płace i ubezpieczenia</div> */}
-            </div>
+                <div className={styles.title}>
+                    Wirtualne Biuro /<span className={styles.boldFont}> cennik</span>
+                </div>
 
-            <CennikChoices/>
+                <div className={styles.cennikBar} onClick={barClicked}>
+                    {/* <div className={currentCennikId===1 ? styles.selectedItem : styles.barItem} data-id={1}>WIRTUALNE BIURO</div>
+                    <div className={currentCennikId===2 ? styles.selectedItem : styles.barItem} data-id={2}>Fakturowanie i sprzedaż</div>
+                    <div className={currentCennikId===3 ? styles.selectedItem : styles.barItem} data-id={3}>Księgowość online</div>
+                    <div className={currentCennikId===4 ? styles.selectedItem : styles.barItem} data-id={4}>Kadry, płace i ubezpieczenia</div> */}
+                </div>
+
+                <CennikChoices/>
+
+            </div>
 
             <Footer/>
+
 
             {/* <CennikTable/>
 

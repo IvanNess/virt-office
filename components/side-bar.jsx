@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close'
 
@@ -12,6 +12,7 @@ const Sidebar = ({color = 'white', auth}) => {
     // const [isOpen, setIsOpen] = useState(false)
 
     const dispatch = useDispatch()
+    const [height, setHeight] = useState('100%')
 
     function clickMenu(){
         dispatch(setShowMenu(showMenu===false? true: false))
@@ -26,8 +27,13 @@ const Sidebar = ({color = 'white', auth}) => {
         setLanguageId(e.target.dataset.id)
     }
 
+    useEffect(()=>{
+        const pageHeight = document.documentElement.scrollHeight
+        setHeight(`${pageHeight}px`)
+    }, [])
+
     return (
-        <div className={styles.sidebar}>
+        <div className={styles.sidebar} style={{height}}>
             <div className={styles.menuIconsWrapper}>
                 <div className={styles.menuIcons} onClick={clickMenu}>
                     {showMenu && <CloseIcon style={{fontSize: '70px', color}}/>}
