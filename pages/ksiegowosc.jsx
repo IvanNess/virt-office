@@ -90,26 +90,26 @@ function Ksiegowosc({auth}) {
 
                 <div className={styles.records}>
                     <div className={styles.record}>
-                        <div className={styles.top}>390 tyś</div>
+                        <div className={styles.top}>390&nbsp;tyś</div>
                         <div className={styles.bottom}>zarejestrowanych użytkowników</div>
                     </div>
                     <div className={styles.record}>
-                        <div className={styles.top}>15 lat</div>
-                        <div className={styles.bottom}>na rynku księgowości</div>
+                        <div className={styles.top}>15&nbsp;lat</div>
+                        <div className={styles.bottom}>na&nbsp;rynku księgowości</div>
                     </div>
                     <div className={styles.record}>
-                        <div className={styles.top}>3 mln.</div>
-                        <div className={styles.bottom}>wysłanych e-deklaracji</div>
+                        <div className={styles.top}>3&nbsp;mln.</div>
+                        <div className={styles.bottom}>wysłanych e&#8209;deklaracji</div>
                     </div>
                     <div className={styles.record}>
-                        <div className={styles.top}>62 mln.</div>
+                        <div className={styles.top}>62&nbsp;mln.</div>
                         <div className={styles.bottom}>wystawionych faktur</div>
                     </div>
                 </div>
 
                 <Billboard noBackground={true}>
                     <div className={styles.noBackgroundBillboardText}>
-                        Zawsze możesz liczyć na naszą pomoc. Zapewniamy stałe wsparcie merytoryczne oraz szybką pomoc techniczną.
+                        Zawsze możesz liczyć na&nbsp;naszą pomoc. Zapewniamy stałe wsparcie merytoryczne oraz szybką pomoc techniczną.
                     </div>
                 </Billboard>
 
