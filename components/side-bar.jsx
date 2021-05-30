@@ -27,13 +27,14 @@ const Sidebar = ({color = 'white', auth}) => {
         setLanguageId(e.target.dataset.id)
     }
 
-    useEffect(()=>{
-        const pageHeight = document.documentElement.scrollHeight
-        setHeight(`${pageHeight}px`)
-    }, [])
+    // useEffect(()=>{
+    //     const pageHeight = document.documentElement.scrollHeight
+    //     setHeight(`${pageHeight}px`)
+    // }, [])
 
     return (
-        <div className={styles.sidebar} style={{height}}>
+        // <div className={styles.sidebar} style={{height}}>
+        <div className={styles.sidebar}>
             <div className={styles.menuIconsWrapper}>
                 <div className={styles.menuIcons} onClick={clickMenu}>
                     {showMenu && <CloseIcon style={{fontSize: '70px', color}}/>}

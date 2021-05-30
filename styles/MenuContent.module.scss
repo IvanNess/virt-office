@@ -115,13 +115,20 @@ $cities-width: 450px;
 
 .textOne{
     padding: 21px 0;
+    color: #FFFFFF;
 }
 
 .textTwo{
     padding-bottom: 39.5px;
     width: 340px;
+    color: #FFFFFF;
     .bold{
         padding-left: 10px;
+        text-decoration: underline;
+        color: #FFFFFF;
+        &:hover{
+            color: $text-color;
+        }
     }
 }
 
@@ -139,6 +146,7 @@ $cities-width: 450px;
 .profilLink{
     padding-left: 30px;
     // font: normal normal 900 20px/35px "Work Sans Black" !important;
+    font: normal normal 300 16px/30px "Work Sans Light" !important;
 }
 
 .profilLinks{

@@ -26,7 +26,7 @@ function ProfileBoilerplate({children, db, auth}) {
                         {/* <SideBar color="#E2C700"/> */}
                     </div>  
                 </div>  
-            </div>>        
+            </div>
         </div>
     )
 }

@@ -25,7 +25,7 @@ const WynajmijButton = () => {
             <div className={styles[wynajecieClassName]}>
                 {
                     wynajecieClassName==='wynajecie' && 
-                    <Link href='/wynajecie'><a><p>Wynajmij adres</p></a></Link>
+                    <Link href='/wynajecie'><a>Wynajmij adres</a></Link>
                 }
             </div>
         </div>

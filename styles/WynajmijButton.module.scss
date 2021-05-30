@@ -6,10 +6,10 @@
     margin-top: 35px;
     width: 226px;
     background-color: $main-color;
-    p{
-        line-height: 55px;
-        margin-bottom: 0;
-        font: normal normal bold 16px/19px "Work Sans";
+    line-height: 55px;
+    margin-bottom: 0;
+    a{
+        font-size: 16px !important;
     }
     a{
         height: auto;
@@ -18,10 +18,11 @@
         margin-left: 26px;
         height: 38px;
         width: 156px;
-        p{
+        a{
             line-height: 38px;
-            font: normal normal bold 12px/14px "Work Sans Bold";
+            font-size: 12px !important; 
         }
+
     }
 }
 

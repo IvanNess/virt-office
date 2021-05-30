@@ -6,10 +6,16 @@
     color: #FFFFFF;
 }
 
+.footerWrapper{
+    background-color: $main-color;
+}
+
 .footer{
     background: $main-color 0% 0% no-repeat padding-box;
     padding-top: 57px;
     padding-bottom: 84.5px;
+    margin: auto;
+    max-width: 1440px;
     .wrapper{
         border-bottom: 1px solid rgba($color: #FFFFFF, $alpha: 0.2);
         padding-left: $main-margin-left;
@@ -80,7 +86,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding-bottom: 80px;
+            // padding-bottom: 80px;
             height: 100%;
             @media (max-width: 700px) {
                 padding-bottom: 45px;
@@ -117,6 +123,25 @@
                 max-width: 200px;
                 justify-content: space-between;
                 padding-top: 40px;
+            }
+        }
+        >:nth-child(2){
+            >:nth-child(1){
+                >:nth-child(1){
+                    margin: 0;
+                    background-color: white;
+                    margin-bottom: 22px;
+                    transition-duration: 0.4s;
+                    a{
+                        color: $main-color;
+                    }
+                    &:hover{
+                        background-color: $text-color;
+                        a{
+                            color: #FFFFFF;
+                        }
+                    }
+                }
             }
         }
     }
@@ -168,6 +193,9 @@
         padding: 0;
         color: #ffffff;
         font: normal normal 900 16px/22px "Work Sans Black";
+        a{
+            text-decoration: underline;
+        }
     }
     .phone{
         @include blockTitle();

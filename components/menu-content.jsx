@@ -96,6 +96,8 @@ const MenuContent = ({auth}) => {
                 {/* <div><Link href="/onas"><a><h2 onClick={linkClicked}>o nas</h2></a></Link></div> */}
                 <div><Link href="/cennik"><a><h2 className={styles.last} onClick={linkClicked}>cennik</h2></a></Link></div>
                 <div><Link href="/ksiegowosc"><a><h2 onClick={linkClicked}>księgowość</h2></a></Link></div>
+                <div><Link href="/regulamin"><a><h2 onClick={linkClicked}>regulamin</h2></a></Link></div>
+                <div><Link href="/polityka-prywatnosci"><a><h2 onClick={linkClicked}>polityka prywatności</h2></a></Link></div>
                 <div><Link href="/#wynajmij-biuro"><a><h2 className={styles.wynajmijBiuro} onClick={linkClicked}>Wynajmij biuro na godziny</h2></a></Link></div>
                 {/* <div><Link href="/podpis"><a><h2>wirtualny podpis</h2></a></Link></div> */}
 
@@ -110,11 +112,11 @@ const MenuContent = ({auth}) => {
 
                 {currentUser && 
                     <div className={styles.profilLinks}>
-                        <div><Link href="/konto/profil"><a><h2 className={styles.profilLink} onClick={linkClicked}>profil</h2></a></Link></div>
-                        <div><Link href="/konto/pakiet"><a><h2 className={styles.profilLink} onClick={linkClicked}>mój pakiet</h2></a></Link></div>
-                        <div><Link href="/konto/rozliczenia"><a><h2 className={styles.profilLink} onClick={linkClicked}>rozliczenia</h2></a></Link></div>
-                        <div><Link href="/konto/rezerwacja"><a><h2 className={styles.profilLink} onClick={linkClicked}>zarezerwuj biuro</h2></a></Link></div>
-                        <div><Link href="/konto/moje-rezerwacje"><a><h2 className={styles.profilLink} onClick={linkClicked}>moje rezerwacje</h2></a></Link></div>
+                        <div><Link href="/konto/profil"><a><h2 className={styles.profilLink} onClick={linkClicked}>1. profil</h2></a></Link></div>
+                        <div><Link href="/konto/pakiet"><a><h2 className={styles.profilLink} onClick={linkClicked}>2. mój pakiet</h2></a></Link></div>
+                        <div><Link href="/konto/rozliczenia"><a><h2 className={styles.profilLink} onClick={linkClicked}>3. rozliczenia</h2></a></Link></div>
+                        <div><Link href="/konto/rezerwacja"><a><h2 className={styles.profilLink} onClick={linkClicked}>4. Rezerwacja biura</h2></a></Link></div>
+                        <div><Link href="/konto/moje-rezerwacje"><a><h2 className={styles.profilLink} onClick={linkClicked}>&nbsp;&nbsp;&nbsp; - moje rezerwacje</h2></a></Link></div>
                         <div onClick={logout}>
                             <h2 className={styles.first}>wyloguj</h2 >
                         </div>
