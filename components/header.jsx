@@ -32,8 +32,9 @@ const Header = () => {
             {
                 router.pathname === '/' ? 'wynajem adresu dla firm' : 
                 router.pathname === '/cennik' ? 'cennik i usługi' : 
-                router.pathname === '/ksiegowosc' ? 'księgowość' : ''
-
+                router.pathname === '/ksiegowosc' ? 'księgowość' : 
+                router.pathname === '/polityka-prywatnosci' ? 'polityka prywatności' : 
+                router.pathname === '/regulamin' ? 'regulamin' : ''
             }
         </div> 
     )

@@ -1,0 +1,125 @@
+@import './Varablies.scss';
+
+.headerTextBoldFont{
+    @include headerBoldFont();
+    font: normal normal 900 16px/24px "Work Sans Black";
+    @media all and (max-width: 1300px){
+        font: normal normal 900 16px/24px "Work Sans Black";
+    }
+}
+
+.noBackgroundBillboardText{
+    @include noBackgroundBillboardText();
+    max-width: 1115px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 180px;
+    margin-bottom: 180px;
+    @media (max-width: 1400px) {
+        margin-left: 50px;
+        margin-right: 150px;
+    }
+    @media (max-width: 1180px) {
+        margin-right: 50px;
+        text-align: center;
+    }
+    @media (max-width: 700px) {
+        font: normal normal 900 20px/24px "Work Sans Black";
+        margin: 62px 26px 101px 26px;
+        text-align: left;
+    }
+}
+
+.buttonInput{
+    @include buttonInput();
+    background-color: $text-color;
+}
+
+.linkButton{
+    @include linkButton(44px);
+    margin-left: $main-margin-left;
+    background-color: $main-color;
+}
+
+.linkButtonWrapper{
+    padding-bottom: 101px;
+}
+
+.polityka, .regulamin{
+    position: relative;
+    >:nth-child(3){
+        min-height: 600px;
+        // >:nth-child(2){
+        //     >:nth-child(4){
+        //         display: none;
+        //     }
+        // }
+    }
+    @include start-animation();
+    .headerTitle{
+        @include headerTitle();
+        // margin-top: 150px;
+        margin-top: 50px;
+        // width: 595px;
+        width: auto;
+        max-width: 890px;
+        margin-right: 150px;
+        @media (max-width: 700px) {
+            max-width: 340px;
+        }
+    }
+    .headerText{
+        @include headerText();
+        padding-bottom: 44px;
+        margin-top: 52px;
+        width: auto;
+        max-width: 1030px;
+        margin-right: 150px;
+        @media (max-width: 700px) {
+            max-width: 380px;
+        }
+    }
+    .title{
+        @include title();
+        // width: 488px;
+        max-width: 1125px;
+        margin-top: 40px;
+        margin-right: 150px;
+        @media (max-width: 1180px) {
+            margin-right: 26px;
+        }
+        @media (max-width: 700px) {
+            max-width: none;
+        }
+        .boldFont{
+            text-transform: lowercase;
+        }
+    }
+    .smallText{
+        .bold{
+            font-family: "Work Sans Bold";
+            font-weight: bold;
+        }
+        width: auto !important;
+        margin-right: 150px;
+        @include smallText();
+        padding-bottom: 31px;
+        @media (max-width: 1180px) {
+            margin-right: 26px;
+        }
+    }
+    .headerBoldFont{
+        @include headerBoldFont();
+    }
+    ul>li{
+        list-style-type: disc;
+    }
+    a{
+        text-decoration: underline;
+    }
+}
+
+.mainWrapper{
+    padding-top: 80px;
+    padding-bottom: 120px;
+}
