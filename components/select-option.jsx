@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from '../styles/SelectOption.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateSelectedServiceId, updateSelectedPeriodId, updateHiringChoice } from '../redux/actions'
+import { useRef } from 'react'
 
 function SelectOption({options, reducerProp, number, children}) {
 
@@ -34,22 +35,34 @@ function SelectOption({options, reducerProp, number, children}) {
         // window.scrollTo(0, 150)
     }
 
+    const $textDiv1 = useRef()
+    const $textDiv2 = useRef()
+    const $textDiv3 = useRef()
+
+    useEffect(()=>{
+        $textDiv1.current.innerHTML = options[0].text
+        $textDiv2.current.innerHTML = options[1].text
+        $textDiv3.current.innerHTML = options[2].text
+    }, [])
+
     return (
         <div className={styles.selectOption}>
             <div className={styles.top}>
                 {children}
             </div>
             <div className={styles.options}>
-                {options.map(option=>(
+                {options.map((option, i)=>{
+                    const ref= i===0? $textDiv1 : i===1? $textDiv2 : $textDiv3
+                    return (
                     <div 
                         key={option.id} 
                         className={styles[selectedOptionId===option.id? "selectedOption": "option"]}
                         onClick={()=>clickOption(option.id)}
                     >
                         <div className={styles.optionTitle}>{option.title}</div>
-                        <div className={styles.optionText}>{option.text}</div>
+                        <div className={styles.optionText} ref={ref}></div>
                     </div>
-                ))}
+                )})}
             </div>
             
         </div>

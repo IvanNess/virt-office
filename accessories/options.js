@@ -20,17 +20,17 @@ export const periods = [
     {
         id: "0",
         title: "Miesiąc",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id"
+        text: "Jeśli masz ochotę na test, <span class='boldSelectOption'>sprawdź jak działa wynajem adresu</span>. Zalecamy dłuższy wynajem, ale cieszymy się, że chcesz wypróbować naszą usługę wirtualnego biura chociaż na jeden miesiąc."
     },
     {
         id: "1",
         title: "Kwartał",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id"
+        text: "Nie jesteś pewny jak długo będzie funkcjonować Twoja firma? Nie ryzykuj długiego wynajmu adresu, <span class='boldSelectOption'>Możemy rozliczać się kwartalnie</span>, to zminimalizuje ryzyko inwestycji w Twoją firmę."
     },
     {
         id: "2",
         title: "Rok",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex bibendum, lacinia leo a, faucibus mauris. Quisque quis libero risus. Etiam at vestibulum lorem. Quisque purus ante, semper et semper id"
+        text: "Podoba Ci się nasza oferta i nie lubisz częstych płatności? Dziękujemy za zaufanie. W ramach rewanżu drugi rok wynajmu wirtualnego adresu dla Twojej firmy będzie o <span class='boldSelectOption'>10%&nbsp;tańszy</span>. Wierzymy, że dzięki ofercie wirtualnego biura odniesiesz sukces."
     }
 ]
 
