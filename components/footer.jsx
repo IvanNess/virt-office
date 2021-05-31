@@ -4,22 +4,33 @@ import TwitterIcon from '@material-ui/icons/Twitter'
 import FacebookIcon from '@material-ui/icons/Facebook'
 import InstagramIcon from '@material-ui/icons/Instagram'
 import { useDispatch, useSelector } from 'react-redux'
-import { setShowAuth } from '../redux/actions'
+import { setShowAuth, logoutAction } from '../redux/actions'
 import Logo from './logo'
 import Link from 'next/link'
 import { email } from '../accessories/constants'
 import WynajmijButton from './wynajmij-button'
 
-const Footer = () => {
+const Footer = ({auth}) => {
 
     const dispatch = useDispatch()
 
     const showAuth = useSelector(state=>state.showAuth)
+    const currentUser = useSelector(state=>state.currentUser)
 
     function onAuth(isLogin){
         dispatch(setShowAuth({show: true, isLogin}))
         const body = document.querySelector("body")
         body.style.overflow = "hidden"
+    }
+
+    async function logout(){
+        try {
+            await auth.signOut()
+            // router.push('/')
+            dispatch(logoutAction())
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
@@ -33,10 +44,13 @@ const Footer = () => {
                         <div><Link href="/ksiegowosc"><a><h2>księgowość</h2></a></Link></div>
                         <div><Link href="/regulamin"><a><h2>regulamin</h2></a></Link></div>
                         <div><Link href="/polityka-prywatnosci"><a><h2>polityka prywatności</h2></a></Link></div>
-                        <div className={styles.firstColAuth}>
+                        {!currentUser && <div className={styles.firstColAuth}>
                             <div onClick={()=>onAuth(true)}><a><h2 className={styles.first}>zaloguj</h2></a></div>
                             <div onClick={()=>onAuth(false)}><a><h2>zarejestruj</h2></a></div>
-                        </div>
+                        </div>}
+                        {currentUser && <div className={styles.firstColAuth}>
+                            <div onClick={logout}><a><h2 className={styles.first}>wyloguj</h2></a></div>
+                        </div>}
                     </div>
                     <div className={styles.column}>
                         {/* <div className={styles.columnWrapper}>
@@ -70,10 +84,13 @@ const Footer = () => {
                             <Link href="/"><a><InstagramIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></a></Link>
                         </div> */}
                         <WynajmijButton/>
-                        <div className={styles.secondColAuth}>
+                        {!currentUser && <div className={styles.secondColAuth}>
                             <div onClick={()=>onAuth(true)}><a><h2 className={styles.first}>zaloguj</h2></a></div>
                             <div onClick={()=>onAuth(false)}><a><h2>zarejestruj</h2></a></div>
-                        </div>                    
+                        </div>} 
+                        {currentUser && <div className={styles.secondColAuth}>
+                            <div onClick={logout}><a><h2 className={styles.first}>wyloguj</h2></a></div>
+                        </div>}                   
                     </div>
                     <div className={styles.thirdColumn}>
                         <div className={styles.columnWrapper}>

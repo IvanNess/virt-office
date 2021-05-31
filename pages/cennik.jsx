@@ -62,7 +62,7 @@ const Cennik = ({auth}) => {
 
             </div>
 
-            <Footer/>
+            <Footer auth={auth}/>
 
 
             {/* <CennikTable/>

@@ -25,7 +25,7 @@ function Ksiegowosc({auth}) {
                     {/* Księgowość online <span className={styles.headerBoldFont}> dla Ciebie</span> */}
                     Siła połączonych ofert <br/>
                     Dla klientów wynajmujących adres od&nbsp;virtoffice.pl 
-                    <div className={styles.headerBoldFont}>ROK DARMOWEGO DOSTĘPU DO SERWISU WFIRMA</div>
+                    <div className={styles.headerBoldFont}>ROK DARMOWEGO DOSTĘPU DO&nbsp;SERWISU KSIĘGOWEGO <a href="https://wfirma.pl" target="_blank">WFIRMA.PL</a></div>
                 </div>
                 <div className={styles.headerText}>
                     {/* Wystawiaj faktury, wyliczaj podatki i rozliczaj się z ZUS */}
@@ -84,7 +84,7 @@ function Ksiegowosc({auth}) {
                 <div className={styles.secondTitle}>
                     <div className={styles.title}>
                         {/* <span className={styles.boldFont}>wFirma</span> w liczbach — Postaw na doświadczenie */}
-                        Nasz partner <span className={styles.boldFont}>wfirma.pl</span> w&nbsp;liczbach
+                        Nasz partner serwis księgowy <span className={styles.boldFont}><a href ='https://wfirma.pl'>wFirma.pl</a></span> w&nbsp;liczbach
                     </div>
                 </div>
 
@@ -115,7 +115,7 @@ function Ksiegowosc({auth}) {
 
             </div>
 
-            <Footer/>
+            <Footer auth={auth}/>
 
             {/* <div className={styles.thirdTitle}>
                 <div className={styles.title}>

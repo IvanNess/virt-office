@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import TwitterIcon from '@material-ui/icons/Twitter'
 import FacebookIcon from '@material-ui/icons/Facebook'
 import InstagramIcon from '@material-ui/icons/Instagram'
@@ -15,11 +15,46 @@ import Link from 'next/link'
 import { email } from '../accessories/constants'
 import useWindowWidth from '../hooks/useWindowWidth'
 
+// Hook
+function useOnClickOutside(ref, handler) {
+    useEffect(
+      () => {
+        const listener = (event) => {
+            console.log('clicked', event.target, event.target.classList.value)
+          // Do nothing if clicking ref's element or descendent elements
+          if( event.target.parentNode.classList.value === 'MuiSvgIcon-root' 
+            || event.target.classList.value === 'MuiSvgIcon-root'
+            || event.target.classList.value.includes('Sidebar_menuIcons_')
+          )
+            return
+          if (!ref.current || ref.current.contains(event.target)) {
+            return;
+          }
+          handler(event);
+        };
+        document.addEventListener("mousedown", listener);
+        document.addEventListener("touchstart", listener);
+        return () => {
+          document.removeEventListener("mousedown", listener);
+          document.removeEventListener("touchstart", listener);
+        };
+      },
+      // Add ref and handler to effect dependencies
+      // It's worth noting that because passed in handler is a new ...
+      // ... function on every render that will cause this effect ...
+      // ... callback/cleanup to run every render. It's not a big deal ...
+      // ... but to optimize you can wrap handler in useCallback before ...
+      // ... passing it into this hook.
+      [ref, handler]
+    );
+}
+
 const MenuContent = ({auth}) => {
 
     const dispatch = useDispatch()
 
     const windowWidth = useWindowWidth()
+    const ref = useRef();
 
     useEffect(()=>{
         console.log('menu context auth', auth)
@@ -39,7 +74,7 @@ const MenuContent = ({auth}) => {
     }, [])
 
     const showAuth = useSelector(state=>state.showAuth)
-    const [ref, hasClickedOutside] = useClickOutside()
+    // const [ref, hasClickedOutside] = useClickOutside()
     const currentUser = useSelector(state=>state.currentUser)
 
     function onAuth(isLogin){
@@ -49,11 +84,13 @@ const MenuContent = ({auth}) => {
         body.style.overflow = "hidden"
     }
 
-    useEffect(() => {
-        if(hasClickedOutside){
-            dispatch(setShowMenu(false))
-        }
-    }, [hasClickedOutside])
+    // useEffect(() => {
+    //     if(hasClickedOutside){
+    //         dispatch(setShowMenu(false))
+    //     }
+    // }, [hasClickedOutside])
+
+    useOnClickOutside(ref, () => dispatch(setShowMenu(false)));
 
     async function logout(){
         try {
@@ -83,7 +120,7 @@ const MenuContent = ({auth}) => {
                     <Link href="/"><a><div><FacebookIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></div></a></Link>
                     <Link href="/"><a><div><InstagramIcon style={{fontSize: '27px', color: '#FFFFFF'}}/></div></a></Link>
                 </div>
-                <div className={styles.closeIcon} onClick={linkClicked}>
+                <div className={styles.closeIcon} onClick={linkClicked} >
                     <CloseIcon style={{fontSize: '70px', color: "white"}}/>
                 </div>
             </div>
@@ -96,12 +133,22 @@ const MenuContent = ({auth}) => {
 
             <div className={styles.options}>
                 {/* <div><Link href="/onas"><a><h2 onClick={linkClicked}>o nas</h2></a></Link></div> */}
-                <div><Link href="/cennik"><a><h2 className={styles.last} onClick={linkClicked}>cennik</h2></a></Link></div>
-                <div><Link href="/ksiegowosc"><a><h2 onClick={linkClicked}>księgowość</h2></a></Link></div>
-                <div><Link href="/regulamin"><a><h2 onClick={linkClicked}>regulamin</h2></a></Link></div>
-                <div><Link href="/polityka-prywatnosci"><a><h2 onClick={linkClicked}>polityka prywatności</h2></a></Link></div>
-                <div><Link href="/#wynajmij-biuro"><a><h2 className={styles.wynajmijBiuro} onClick={linkClicked}>Wynajmij biuro na godziny</h2></a></Link></div>
+                <div><Link href="/cennik"><a><h2 onClick={linkClicked}>cennik</h2></a></Link></div>
+                <div><Link href="/ksiegowosc"><a><h2 className={styles.last} onClick={linkClicked}>księgowość</h2></a></Link></div>
+                {/* <div><Link href="/regulamin"><a><h2 onClick={linkClicked}>regulamin</h2></a></Link></div>
+                <div><Link href="/polityka-prywatnosci"><a><h2 onClick={linkClicked}>polityka prywatności</h2></a></Link></div> */}
+                {!currentUser && <div><Link href="/#wynajmij-biuro"><a><h2 className={styles.wynajmijBiuro} onClick={linkClicked}>Wynajmij biuro na godziny</h2></a></Link></div>}
                 {/* <div><Link href="/podpis"><a><h2>wirtualny podpis</h2></a></Link></div> */}
+
+                {currentUser && 
+                    <div className={styles.profilLinks}>
+                        <div><Link href="/konto/profil"><a><h2 className={styles.profilLink} onClick={linkClicked}>1. profil</h2></a></Link></div>
+                        <div><Link href="/konto/pakiet"><a><h2 className={styles.profilLink} onClick={linkClicked}>2. mój pakiet</h2></a></Link></div>
+                        <div><Link href="/konto/rozliczenia"><a><h2 className={styles.profilLink} onClick={linkClicked}>3. rozliczenia</h2></a></Link></div>
+                        <div><Link href="/konto/rezerwacja"><a><h2 className={styles.profilLink} onClick={linkClicked}>4. Rezerwacja biura</h2></a></Link></div>
+                        <div><Link href="/konto/moje-rezerwacje"><a><h2 className={styles.profilLink} onClick={linkClicked}>&nbsp;&nbsp;&nbsp; - moje rezerwacje</h2></a></Link></div>
+                    </div>
+                }
 
                 <div className={styles.split}></div>
 
@@ -113,15 +160,8 @@ const MenuContent = ({auth}) => {
                 </div>}
 
                 {currentUser && 
-                    <div className={styles.profilLinks}>
-                        <div><Link href="/konto/profil"><a><h2 className={styles.profilLink} onClick={linkClicked}>1. profil</h2></a></Link></div>
-                        <div><Link href="/konto/pakiet"><a><h2 className={styles.profilLink} onClick={linkClicked}>2. mój pakiet</h2></a></Link></div>
-                        <div><Link href="/konto/rozliczenia"><a><h2 className={styles.profilLink} onClick={linkClicked}>3. rozliczenia</h2></a></Link></div>
-                        <div><Link href="/konto/rezerwacja"><a><h2 className={styles.profilLink} onClick={linkClicked}>4. Rezerwacja biura</h2></a></Link></div>
-                        <div><Link href="/konto/moje-rezerwacje"><a><h2 className={styles.profilLink} onClick={linkClicked}>&nbsp;&nbsp;&nbsp; - moje rezerwacje</h2></a></Link></div>
-                        <div onClick={logout}>
-                            <h2 className={styles.first}>wyloguj</h2 >
-                        </div>
+                    <div onClick={logout}>
+                        <h2 className={styles.first}>wyloguj</h2 >
                     </div>
                 }
 

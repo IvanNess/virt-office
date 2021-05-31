@@ -132,8 +132,6 @@ function Regulamin({auth}) {
                     <br/><br/>
                     Newsletter - przesyłane cyklicznie Użytkownikom zestawie istotnych informacji o podatkach, składkach ZUS, zmianach w prawie oraz organizacji Systemu;
                     <br/><br/>
-                    mojo.pl - aplikacja mobilna dla użytkowników Systemu virtoffice.pl;
-                    <br/><br/>
                     Informacje wewnątrzsystemowe dotyczące funkcji Serwisu - nieprofilowane informacje dotyczące możliwości Systemu przeznaczone dla Użytkowników. Ich  celem jest poznanie możliwości funkcjonalnych Systemu mojo.pl i innych serwisów zintegrowanych z Systemem virtoffice.pl.
                     <br/><br/>
                     Narzędzia wskazane w ust. 7 powyżej są immanentnie związane z Systemem i Użytkownik nie ma możliwości ich wyłączenia. Jedynie od Użytkownika zależy, w jakim zakresie wykorzystuje on rzeczone narzędzia.
@@ -453,7 +451,7 @@ function Regulamin({auth}) {
                 </div>
             </div>
                 
-            <Footer/>
+            <Footer auth={auth}/>
         </div>
     )
 }

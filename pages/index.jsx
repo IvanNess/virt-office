@@ -358,7 +358,7 @@ export default function Home({db, auth}) {
 
       </div>
 
-      <Footer/>
+      <Footer auth={auth}/>
     </div>
   )
 }

@@ -199,7 +199,7 @@ function Polityka({auth}) {
                    
             </div>
                 
-            <Footer/>
+            <Footer auth={auth}/>
         </div>
     )
 }
