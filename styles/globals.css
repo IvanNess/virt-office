@@ -348,5 +348,6 @@ option[value="PL"], option[value="UA"], option[value="RU"], option[value="BY"]{
 .boldSelectOption{
   font-weight: bold;
   font-family: "Work Sans Black";
+  color: #121109;
 }
 

@@ -7,7 +7,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import styles from '../styles/MenuContent.module.scss'
 // import { Link } from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
-import { setShowAuth, setShowMenu } from '../redux/actions'
+import { setShowAuth, setShowMenu, logoutAction } from '../redux/actions'
 import { useClickOutside } from 'react-click-outside-hook'
 import axios from 'axios'
 import Logo from './logo'
@@ -59,6 +59,8 @@ const MenuContent = ({auth}) => {
         try {
             await auth.signOut()
             // router.push('/')
+            dispatch(logoutAction())
+            dispatch(setShowMenu(false))
         } catch (error) {
             console.log(error)
         }

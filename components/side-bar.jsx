@@ -14,8 +14,10 @@ const Sidebar = ({color = 'white', auth}) => {
     const dispatch = useDispatch()
     const [height, setHeight] = useState('100%')
 
-    function clickMenu(){
+    function clickMenu(e){
+        console.log(e.target)
         dispatch(setShowMenu(showMenu===false? true: false))
+        // dispatch(setShowMenu(true))
     }
 
     const showMenu = useSelector(state=>state.showMenu.show)

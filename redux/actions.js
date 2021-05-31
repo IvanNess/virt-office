@@ -60,7 +60,7 @@ export const setPackages = (value) => async (dispatch) => dispatch({type: "SET_P
 
 export const setLogo = (value) => async (dispatch) => dispatch({type: "SET_LOGO", value})
 
-export const logout = () => async (dispatch) => dispatch({type: "LOGOUT"})
+export const logoutAction = () => async (dispatch) => dispatch({type: "LOGOUT"})
 
 export const setReservedHoursUtilitiesProp = (prop, value)=> async (dispatch) => dispatch({type: "SET_RESERVED_HOURS_UTILITIES_PROP", prop, value})
 

@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { logout as logoutAction } from '../redux/actions'
+import { logoutAction } from '../redux/actions'
 import { LoadingOutlined } from '@ant-design/icons'
 
 
