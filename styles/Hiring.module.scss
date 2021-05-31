@@ -70,11 +70,18 @@
     padding-top: 53px;
     background-color: $main-color;   
     @media (max-width: 1124px) {
+        padding-left: 34px;
+        padding-right: 165px;
+        display: flex;
+        justify-content: space-between;
         background-color: #FFFFFF;
         height: 71px;
         padding-top: 0;
         display: flex;
         align-items: center;
+    }
+    @media (max-width: 1024px) {
+        padding-right: 80px;
     }
 }
 
@@ -85,6 +92,17 @@
     height: 44px;
     margin-left: 34px;
     // margin-top: 53px;
+    transition-duration: 0.4s;
+    &:hover{
+        background-color: #FFFFFF;
+        color: $text-color;
+        border: 2px solid $text-color;
+    }
+    @media (max-width: 1124px) {
+        height: 38px;
+        font-size: 12px;
+        margin-left: 0;
+    }
 }
 
 .profilBtn, .nextBtn{
@@ -148,12 +166,16 @@
     cursor: pointer;
     margin-right: 46px;
     // z-index: 1;
+    transition-duration: 0.4s;
     p{
         margin-top: 4px;
         margin-left: 8px;
     }
     &:last-child{
         margin-right: 0px;
+    }
+    &:hover{
+        transform: scale(1.2);
     }
 }
 
@@ -259,5 +281,12 @@
         padding: 0;
         padding-right: 5px;
         font: normal normal 200 24px/35px "Work Sans Thin";
+    }
+}
+
+.logo{
+    display: none;
+    @media (max-width: 1124px) {
+        display: flex;
     }
 }

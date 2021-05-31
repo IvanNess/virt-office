@@ -12,6 +12,7 @@ import { packagePay } from '../../utilities'
 import { LoadingOutlined } from '@ant-design/icons'
 import useWindowWidth from '../../hooks/useWindowWidth'
 import { useRouter } from 'next/router'
+import Logo from '../logo'
 
 function Rightbar({db, auth}) {
 
@@ -29,7 +30,7 @@ function Rightbar({db, auth}) {
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        if(router.pathname==='/wynajecie' && windowWidth <= 1024){
+        if(router.pathname==='/wynajecie' && windowWidth <= 1124){
             setSideBarColor('#4CAED5')
         } else{
             setSideBarColor('white')
@@ -68,6 +69,7 @@ function Rightbar({db, auth}) {
     return (
         <div className={hiringChoiceNumber===1 ? styles.rightBarWrapper : styles.vh100RightBarWrapper }>
             <div className={styles.rightBarTop}>
+                <div className={styles.logo}><Logo color='#121109' hovColor='#03b2cb' scale={0.6}/></div>
                 {currentUser === false && <button className={styles.rightBarTopBtn} onClick={login}>zaloguj sie</button>}
                 {currentUser && <div className={styles.profilBtn}>
                     <Link  href="/konto/profil"><a>Profil</a></Link>

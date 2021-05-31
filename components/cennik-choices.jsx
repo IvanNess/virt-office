@@ -91,7 +91,7 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                         {/* {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(0, true)}>
                             Wynajmij Adres
                         </div>} */}
-                        <WynajmijButton/>
+                        {router.pathname === '/cennik' && <WynajmijButton/>}
                     </div>
                      
                     <div className={styles.description}>
@@ -127,7 +127,7 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                         {/* {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(1, true)}>
                             Wynajmij Adres
                         </div>} */}
-                        <WynajmijButton/>
+                        {router.pathname === '/cennik' && <WynajmijButton/>}
                         {/* {showSlash && <div className={selectedBlock===1 || selectedBlock===null ? styles.slash : styles.noslash}>////</div>} */}
                     </div>
 
@@ -179,7 +179,7 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                         {/* {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(2, true)}>
                             Wynajmij Adres
                         </div>} */}
-                        <WynajmijButton/>
+                        {router.pathname === '/cennik' && <WynajmijButton/>}
                     </div>
                     
                     <div className={styles.description}>
