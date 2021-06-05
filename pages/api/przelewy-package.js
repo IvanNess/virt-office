@@ -4,8 +4,10 @@ import Cors from 'cors'
 import initMiddleware from '../../init-middleware'
 import nodemailer from 'nodemailer'
 import moment from 'moment'
+import { getPrzelewyToken } from '../../server-utilities'
+import '../../server-setup/mongoose-setup'
+import {serviceAccount, firebaseInit} from '../../server-setup/firebase'
 
-const mongoose = require('mongoose')
 const PackageSchema = require('../../mongo-models/package-model')
 const UserSchema = require('../../mongo-models/user-model')
 const admin = require('firebase-admin')
@@ -20,48 +22,18 @@ const cors = initMiddleware(
   })
 )
 
-const serviceAccount = {
-    "type": process.env.TYPE,
-    "project_id": process.env.PROJECT_ID,
-    "private_key_id": process.env.PRIVATE_KEY_ID,
-    "private_key": process.env.PRIVATE_KEY.replace(/\\n/g, '\n') ,
-    "client_email": process.env.CLIENT_EMAIL,
-    "client_id": process.env.CLIENT_ID,
-    "auth_uri": process.env.AUTH_URI,
-    "token_uri": process.env.TOKEN_URI,
-    "auth_provider_x509_cert_url": process.env.AUTH_PROVIDER_CERT_URL,
-    "client_x509_cert_url": process.env.CLIENT_CERT_URL
-}  
-
-const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_URI}/${process.env.MONGO_DB}?retryWrites=true&w=majority`
-
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-
-const dbConnection = mongoose.connection
-dbConnection.on('error', console.error.bind(console, 'connection error:'))
-dbConnection.once('open', async function () {
-    console.log('db connected!!!')
-})
-
 export default async(req, res) => {
-    // Run cors
-    await cors(req, res)
 
     try {
-        admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount)
-        });
-    } catch(err){
-        if (!/already exists/.test(err.message)) {
-            console.error('Firebase initialization error', err.stack)
-        }
-    }
+        // Run cors
+        await cors(req, res)
 
-    const {token, pakietName, cityId, hiredOfficeAdress, hiredPeriod, fullName,
-        companyName, NIP, contactEmail, price, fullPrice, lengthCoeff, sessionId, startDate
-    } = req.body
+        firebaseInit()
 
-    try {
+        const {token, pakietName, cityId, hiredOfficeAdress, hiredPeriod, fullName,
+            companyName, NIP, contactEmail, price, fullPrice, lengthCoeff, startDate,
+            email, description='Package pay', country='PL', language='pl'
+        } = req.body
 
         const decodedToken = await admin.auth().verifyIdToken(token)
         const uid = decodedToken.uid
@@ -92,7 +64,6 @@ export default async(req, res) => {
             price,
             fullPrice,
             lengthCoeff,
-            sessionId//stripeSession
         })
 
         await pack.save()
@@ -140,9 +111,13 @@ export default async(req, res) => {
         
         console.log('pack', pack)
 
+        const sessionId = pack._id
+
+        const przelewyToken = await getPrzelewyToken({sessionId, amount: fullPrice*100, email, description, country, language})
+
         res.status(200).json({
-            message: "package was created",
-            pack
+            message: "token was created",
+            token: przelewyToken
         })
 
     } catch (error) {

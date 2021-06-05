@@ -8,7 +8,7 @@ import { setShowAuth, setHiringChoiceNumber, setPayAfterRegister, updateHiringCh
 import Link from 'next/link'
 import Price from './price'
 import { useEffect, useState } from 'react'
-import { packagePay } from '../../utilities'
+import { packagePay, przelewyPackagePay } from '../../utilities'
 import { LoadingOutlined } from '@ant-design/icons'
 import useWindowWidth from '../../hooks/useWindowWidth'
 import { useRouter } from 'next/router'
@@ -56,7 +56,9 @@ function Rightbar({db, auth}) {
     async function pay(){
         setBtnDisabled(true)
         console.log('pay')
-        await packagePay({auth, hiringChoices})
+        // await packagePay({auth, hiringChoices, email: currentUser.email})
+        await przelewyPackagePay({auth, hiringChoices, email: currentUser.email, router})
+
     }
 
     function loginAndPay(){

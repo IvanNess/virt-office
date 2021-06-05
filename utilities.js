@@ -6,7 +6,7 @@ import {utcOffset} from './accessories/constants'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE);
 
-export const packagePay = async ({ auth, hiringChoices }) =>{
+export const packagePay = async ({ auth, hiringChoices, email }) =>{
 
     try {
         const invoiceDate = +new Date()
@@ -185,4 +185,44 @@ export const getCurrentDate = ()=>{
     const date = moment().utcOffset(utcOffset)
     console.log('CURRENT DATE', date, date.hours(), date.date(), moment(date).format('YYYY-MM-DD'))
     return date
+}
+
+export const przelewyPackagePay = async ({ auth, hiringChoices, email, country="PL", language="pl", router }) =>{
+
+    try {
+        const invoiceDate = +new Date()
+        const packageDuration = hiringChoices[1].choice==='Miesiąc' ? 30*24*60*60*1000:
+            hiringChoices[1].choice==='Kwartał'? 3*30*24*60*60*1000: 365*24*60*60*1000
+
+        const token = await auth.currentUser.getIdToken()
+        console.log('auth token', auth, token)
+        
+        const createPackRes = await axios({
+            url: "/api/przelewy-package",
+            method: "POST",
+            data: {
+                token,
+                pakietName: hiringChoices[0].choice,
+                pakietTitle: hiringChoices[0].pakietTitle,
+                hiredPeriod: hiringChoices[1].choice,
+                invoiceDate,
+                expireDate: invoiceDate + packageDuration,
+                price: hiringChoices[1].price,
+                fullPrice: hiringChoices[1].fullPrice,
+                lengthCoeff: hiringChoices[1].lengthCoeff,
+                email,
+                country,
+                language
+            }
+        })
+
+        const przelewyToken = createPackRes.data.token
+
+        console.log('przelewyToken', przelewyToken)
+
+        return router.push(`https://sandbox.przelewy24.pl/trnRequest/${przelewyToken}`)
+
+    } catch(err){
+        console.log('package pay error', err)
+    }
 }
