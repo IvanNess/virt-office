@@ -20,7 +20,7 @@ export default async(req, res) => {
     try {
         await cors(req, res)
 
-        console.log('notification body', req.body)
+        console.log('notification req', req)
 
         const {
             merchantId, posId, sessionId, amount, originAmount, currency, orderId, methodId, statement, sign
