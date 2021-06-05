@@ -9,7 +9,8 @@ const PackageSchema = require('../../mongo-models/package-model')
 const cors = initMiddleware(
   // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
   Cors({
-    origin: process.env.ORIGIN,
+    // origin: process.env.ORIGIN,
+    origin: 'https://www.whoscored.com/',
     credentials: true,
     // origin: false
   })
