@@ -1,20 +1,7 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
-import Cors from 'cors'
-import initMiddleware from '../../init-middleware'
+import cors from '../../init-middleware'
 
 const mongoose = require('mongoose')
 const UserSchema = require('../../mongo-models/user-model')
-
-// Initialize the cors middleware
-const cors = initMiddleware(
-  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
-  Cors({
-    // origin: process.env.ORIGIN,
-    // credentials: true
-    origin: false
-  })
-) 
 
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_URI}/${process.env.MONGO_DB}?retryWrites=true&w=majority`
 

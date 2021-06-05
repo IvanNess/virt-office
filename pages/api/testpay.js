@@ -1,7 +1,5 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import cors from '../../init-middleware'
 
-import Cors from 'cors'
-import initMiddleware from '../../init-middleware'
 const stripe = require('stripe')(process.env.STRIPE_SECRET)
 
 const moment = require('moment')
@@ -10,16 +8,6 @@ const ReservationSchema = require('../../mongo-models/reservation-model')
 const UserSchema = require('../../mongo-models/user-model')
 
 const admin = require('firebase-admin')
-
-// Initialize the cors middleware
-const cors = initMiddleware(
-  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
-  Cors({
-    // origin: process.env.ORIGIN,
-    // credentials: true
-    origin: false
-  })
-)
 
 export default async(req, res) => {
     // Run cors

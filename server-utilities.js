@@ -40,7 +40,7 @@ export const getPrzelewyToken = async ({sessionId, amount, email, description="t
         }
     })
 
-    console.log('res', res)
+    // console.log('res', res)
 
     const token = res.data.data.token
 

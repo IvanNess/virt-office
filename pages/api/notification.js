@@ -1,28 +1,17 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
-import Cors from 'cors'
-import initMiddleware from '../../init-middleware'
+import NextCors from 'nextjs-cors';
 const mongoose = require('mongoose')
 const PackageSchema = require('../../mongo-models/package-model')
-
-// Initialize the cors middleware
-const cors = initMiddleware(
-  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
-  Cors({
-    // origin: process.env.ORIGIN,
-    origin: 'https://www.whoscored.com/',
-    credentials: true,
-    // origin: false
-  })
-)
 
 export default async(req, res) => {
     console.log('notification req', req)
 
     try {
-        await cors(req, res)
+        await NextCors(req, res, {
+            methods: ["PUT"],
+            origin: 'http://clubelo.com',
+         });
 
-        console.log('notification req', req)
+        console.log('after cors', )
 
         const {
             merchantId, posId, sessionId, amount, originAmount, currency, orderId, methodId, statement, sign

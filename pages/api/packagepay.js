@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import Cors from 'cors'
-import initMiddleware from '../../init-middleware'
+import cors from '../../init-middleware'
 import nodemailer from 'nodemailer'
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
@@ -9,16 +8,6 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET);
 const mongoose = require('mongoose')
 const UserSchema = require('../../mongo-models/user-model')
 const admin = require('firebase-admin')
-
-// Initialize the cors middleware
-const cors = initMiddleware(
-  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
-  Cors({
-    // origin: process.env.ORIGIN,
-    // credentials: true
-    origin: false
-  })
-)
 
 const serviceAccount = {
     "type": process.env.TYPE,

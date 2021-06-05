@@ -1,5 +1,4 @@
-import Cors from 'cors'
-import initMiddleware from '../../init-middleware'
+import cors from '../../init-middleware'
 
 const mongoose = require('mongoose')
 const PackageSchema = require('../../mongo-models/package-model')
@@ -14,16 +13,6 @@ pool.on('error', (err, client) => {
   console.error('Unexpected error on idle client', err)
   process.exit(-1)
 })
-
-// Initialize the cors middleware
-const cors = initMiddleware(
-  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
-  Cors({
-    // origin: process.env.ORIGIN,
-    // credentials: true
-    origin: false
-  })
-)
 
 const serviceAccount = {
     "type": process.env.TYPE,

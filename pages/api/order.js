@@ -3,17 +3,7 @@ const admin = require('firebase-admin')
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
-import Cors from 'cors'
-import initMiddleware from '../../init-middleware'
-
-const cors = initMiddleware(
-  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
-  Cors({
-    // origin: process.env.ORIGIN,
-    // credentials: true
-    origin: false
-  })
-)
+import cors from '../../init-middleware'
 
 const serviceAccount = {
   "type": process.env.TYPE,
