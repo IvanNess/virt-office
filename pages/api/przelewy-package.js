@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 import cors from '../../init-middleware'
-import initMiddleware from '../../init-middleware'
+import {initMiddleware} from '../../init-middleware'
 import nodemailer from 'nodemailer'
 import moment from 'moment'
 import { getPrzelewyToken } from '../../server-utilities'
@@ -13,8 +13,19 @@ const PackageSchema = require('../../mongo-models/package-model')
 const UserSchema = require('../../mongo-models/user-model')
 const admin = require('firebase-admin')
 
-export default async(req, res) => {
+const cors = initMiddleware(
+    // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
+    Cors({
+        // origin: process.env.ORIGIN,
+        // credentials: true
+        //   origin: false
+        origin: "http://clubelo.com",
+        credentials: true,
+        methods: ["GET"]
+    })
+)
 
+export default async(req, res) => {
 
     try {
 

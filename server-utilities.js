@@ -34,7 +34,7 @@ export const getPrzelewyToken = async ({sessionId, amount, email, description="t
             "country": country,
             "language": language,
             "urlReturn": "http://localhost:3000/konto/rozliczenia",
-            "urlStatus": "http://localhost:3000/api/notification",
+            "urlStatus": "https://gh-comments-api.vercel.app/api/notification",
             "sign": gen_hash,
             // waitForResult: true
         }

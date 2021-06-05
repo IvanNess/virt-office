@@ -1,15 +1,25 @@
 import NextCors from 'nextjs-cors';
+import { initMiddleware } from '../../init-middleware';
 const mongoose = require('mongoose')
 const PackageSchema = require('../../mongo-models/package-model')
+
+const cors = initMiddleware(
+    // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
+    Cors({
+        // origin: process.env.ORIGIN,
+        // credentials: true
+        //   origin: false
+        origin: "http://clubelo.com",
+        credentials: true,
+        methods: ["GET"]
+    })
+)
 
 export default async(req, res) => {
     console.log('notification req', req)
 
     try {
-        await NextCors(req, res, {
-            methods: ["PUT"],
-            origin: 'http://clubelo.com',
-         });
+        await cors(req, res)
 
         console.log('after cors', )
 
