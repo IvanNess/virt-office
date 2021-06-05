@@ -17,6 +17,8 @@ const cors = initMiddleware(
 )
 
 export default async(req, res) => {
+    console.log('notification req', req)
+
     try {
         await cors(req, res)
 
