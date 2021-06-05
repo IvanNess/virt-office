@@ -1,4 +1,3 @@
-import NextCors from 'nextjs-cors';
 import { initMiddleware } from '../../init-middleware';
 const mongoose = require('mongoose')
 const PackageSchema = require('../../mongo-models/package-model')
