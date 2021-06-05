@@ -7,6 +7,7 @@ import { getPrzelewyToken } from '../../server-utilities'
 import '../../server-setup/mongoose-setup'
 import {serviceAccount, firebaseInit} from '../../server-setup/firebase' 
 import {runMiddleware} from '../../utilities'
+import Cors from 'cors'
 
 const PackageSchema = require('../../mongo-models/package-model')
 const UserSchema = require('../../mongo-models/user-model')
