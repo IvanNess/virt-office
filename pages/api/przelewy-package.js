@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import cors from '../../init-middleware'
 import {initMiddleware} from '../../init-middleware'
 import nodemailer from 'nodemailer'
 import moment from 'moment'
