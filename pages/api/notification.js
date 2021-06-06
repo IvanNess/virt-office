@@ -30,7 +30,7 @@ export default async(req, res) => {
                 password: process.env.RAPORT_KEY
             },
             url: `https://sandbox.przelewy24.pl/api/v1/transaction/by/sessionId/${sessionId}`,
-            method: 'POST',
+            method: 'GET',
         })
 
         const status = checkRes.data.status
@@ -42,7 +42,7 @@ export default async(req, res) => {
                     password: process.env.RAPORT_KEY
                 },
                 url: `https://sandbox.przelewy24.pl/api/v1/transaction/verify`,
-                method: "GET",
+                method: "PUT",
                 data: { merchantId, posId, sessionId, amount, currency, orderId, sign }
             })    
 

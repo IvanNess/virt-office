@@ -33,7 +33,7 @@ export const getPrzelewyToken = async ({sessionId, amount, email, description="t
             "email": email,
             "country": country,
             "language": language,
-            "urlReturn": "https://virt-office.vercel.apps/konto/rozliczenia",
+            "urlReturn": "https://virt-office.vercel.app/konto/rozliczenia",
             "urlStatus": "https://virt-office.vercel.app/api/notification",
             "sign": gen_hash,
             waitForResult: true
