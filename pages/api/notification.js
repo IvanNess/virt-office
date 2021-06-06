@@ -38,6 +38,7 @@ export default async(req, res) => {
         console.log('checkres', checkRes.data)
 
         if(status===1){
+            console.log('ADVANCED STATUS')
             const verificationRes = await axios({
                 auth:{
                     username: merchantId,
@@ -48,8 +49,11 @@ export default async(req, res) => {
                 data: { merchantId, posId, sessionId, amount, currency, orderId, sign }
             })    
 
+            console.log('verificationRes', verificationRes.data)
+
             if(verificationRes.data.description==='Package pay'){
                 const pack = await PackageSchema.findOne({ sessionId }).exec()
+                console.log('pack', pack)
                 pack.przelewyPay()    
             }
         }
