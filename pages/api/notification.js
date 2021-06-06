@@ -42,7 +42,7 @@ export default async(req, res) => {
                     password: process.env.RAPORT_KEY
                 },
                 url: `https://sandbox.przelewy24.pl/api/v1/transaction/verify`,
-                method: "PUT",
+                method: "GET",
                 data: { merchantId, posId, sessionId, amount, currency, orderId, sign }
             })    
 
