@@ -286,7 +286,8 @@ export const przelewyReservationPay = async ({auth, selectedDate, startHour, fin
                 startHour: startHour, 
                 finishHour: finishHour, 
                 quantity: hours,
-                email, country="PL", language="pl", router
+                email,
+                router
             }
         }) 
 
