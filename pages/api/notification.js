@@ -65,7 +65,7 @@ export default async(req, res) => {
             console.log('verificationRes', verificationRes.data)
 
             if(checkRes.data.data.description==='Package pay'){
-                const pack = await PackageSchema.findOne({ sessionId }).exec()
+                const pack = await PackageSchema.findById(sessionId).exec()
                 console.log('pack', pack)
                 pack.przelewyPay()    
             }
