@@ -9,21 +9,22 @@ import axios from 'axios'
 import { setPackages } from '../redux/actions'
 import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment'
-import { updatePackagePay } from '../utilities'
+import { updatePackagePay, przelewyUpdatePackagePay } from '../utilities'
 const { Panel } = Collapse;
 
 const Header = ({isMain, packageName, endDate, updPrice=null, auth, price, pakiet})=>{
     const update = (e)=>{
         e.stopPropagation(); 
         console.log('update pakiet')
-        updatePackagePay({
+        // updatePackagePay({
+        przelewyUpdatePackagePay({
             auth, 
             pakietTitle: packageName, 
             pakietName: `zaktualizowany - ${packageName} (${price} PLN/miesiąc)`, 
             hiredPeriod: pakiet.hiredPeriod, 
             price, 
             fullPrice: updPrice, 
-            lengthCoeff: pakiet.lengthCoeff, 
+            lengthCoeff: pakiet.lengthCoeff,  
             startDate: pakiet.startDate
         })
     }
