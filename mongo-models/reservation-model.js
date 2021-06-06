@@ -50,6 +50,13 @@ reservationSchema.methods.pay = function(paymentIntent, code){
     return this
 }
 
+reservationSchema.methods.przelewyPay = function(code){
+    this.isPaid = true
+    this.code = code
+    this.save()
+    return this
+}
+
 reservationSchema.methods.addReceiptUrl = function(receiptUrl){
     this.receiptUrl = receiptUrl
     this.save()

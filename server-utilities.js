@@ -1,7 +1,7 @@
 import axios from 'axios'
 import crypto from 'crypto'
 
-export const getPrzelewyToken = async ({sessionId, amount, email, description="test", country="PL", language="pl"})=>{
+export const getPrzelewyToken = async ({sessionId, amount, email, description="test", country="PL", language="pl", timeLimit=5})=>{
     // const sessionId = `mySession${Math.floor(Math.random()*1000)}`
     const merchantId = process.env.MERCHANT_ID
     const currency = process.env.CURRENCY
@@ -36,7 +36,8 @@ export const getPrzelewyToken = async ({sessionId, amount, email, description="t
             "urlReturn": "https://virt-office.vercel.app/konto/rozliczenia",
             "urlStatus": "https://virt-office.vercel.app/api/notification",
             "sign": gen_hash,
-            waitForResult: true
+            waitForResult: true,
+            timeLimit
         }
     })
 

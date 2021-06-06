@@ -2,9 +2,11 @@ import { initMiddleware } from '../../init-middleware';
 import axios from 'axios';
 import Cors from 'cors'
 import crypto from 'crypto'
-const mongoose = require('mongoose')
+import pool from '../../server-setup/pg'
+import moment from 'moment'
 const PackageSchema = require('../../mongo-models/package-model')
-
+const ReservationSchema = require('../../mongo-models/reservation-model')
+const UserSchema = require('../../mongo-models/user-model')
 
 const cors = initMiddleware(
     // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
@@ -68,6 +70,41 @@ export default async(req, res) => {
                 const pack = await PackageSchema.findById(sessionId).exec()
                 console.log('pack', pack)
                 pack.przelewyPay()    
+            }
+            if(checkRes.data.data.description==='Reservation pay'){
+                const reservation = await ReservationSchema.findById(sessionId).exec()
+                console.log('reservation', reservation)
+                const code = Math.floor(Math.random()*10000)
+                reservation.przelewyPay(code)  
+                ;await (async () => {
+                    const client = await pool.connect()
+                    try {
+                        // add 2 hours as server time is two hours less.
+                        const start_date = moment(reservation.startHour.msTime + 2*60*60*1000).format('YYYY-MM-DD HH:mm:ss')
+                        const stop_date = moment(reservation.finishHour.msTime + 2*60*60*1000).format('YYYY-MM-DD HH:mm:ss')
+                        console.log('webhook 1', start_date, stop_date, code)
+                        const resp = await client.query('INSERT INTO access (start_date, stop_date, code) VALUES ($1, $2, $3)', 
+                            [start_date, stop_date, code]
+                        )
+                        console.log('webhook first resp', resp)
+                        const user = await UserSchema.findById(reservation.userId)
+                        console.log('webhook user', user)
+                        // const companyName = user.companyName
+                        // const companyResp = await client.query("SELECT id FROM companies WHERE company_name = $1", [companyName])
+                        // console.log('companyResp', companyResp)
+                        // const company_id = companyResp.rows[0].id
+                        const company_id = user.postgresId
+                        console.log('company_id', company_id)
+                        await client.query('INSERT INTO displays (start_date, stop_date, company_id) VALUES ($1, $2, $3)', 
+                            [start_date, stop_date, company_id]
+                        )                                                               
+                    } finally {
+                        // Make sure to release the client before any error handling,
+                        // just in case the error handling itself throws an error.
+                        console.log('finally')
+                        client.release()
+                    }
+                })()
             }
         }
 
