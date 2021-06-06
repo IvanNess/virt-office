@@ -11,12 +11,11 @@ import { addSelectedHour, removeSelectedHour, addReservedSession, addSelectedDat
 import firebase from 'firebase'
 import YourReservation from './your-reservation'
 import axios from 'axios'
-import { reservationPay } from '../utilities'
+import { reservationPay, przelewyReservationPay } from '../utilities'
 import { LoadingOutlined } from '@ant-design/icons'
 import useWindowWidth from '../hooks/useWindowWidth'
 import { useRouter } from 'next/router'
 import { utcOffset } from '../accessories/constants'
-import przelewyReservation from '../pages/api/przelewy-reservation'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE);
 
@@ -182,8 +181,8 @@ function Hours({db, auth , outterReset}) {
         if(startHour && finishHour && startHour.id !== finishHour.id){
             dispatch(registerAndReserve(true))
             if(currentUser){
-                await reservationPay({auth, selectedDate, startHour, finishHour})
-                // await przelewyReservation({auth, selectedDate, startHour, finishHour})
+                // await reservationPay({auth, selectedDate, startHour, finishHour})
+                await przelewyReservationPay({auth, selectedDate, startHour, finishHour, email: currentUser.email, router})
             } else{
                 // dispatch(registerAndReserve(true))
                 dispatch(setShowAuth({show: true, isLogin: true}))

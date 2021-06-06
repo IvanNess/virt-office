@@ -266,6 +266,41 @@ export const przelewyUpdatePackagePay = async ({
     }
 }
 
+export const przelewyReservationPay = async ({auth, selectedDate, startHour, finishHour,
+    email, country="PL", language="pl", router
+})=>{
+    try {
+
+        const token = await auth.currentUser.getIdToken()
+
+        const msDuration = finishHour.msTime - startHour.msTime
+        const hours = msDuration / 1000 / 60 / 60
+        const response = await axios({
+            url: "/api/przelewy-reserwation", 
+            method: "POST",
+            data: {
+                token, 
+                year: selectedDate.year, 
+                month: selectedDate.month, 
+                day: selectedDate.day, 
+                startHour: startHour, 
+                finishHour: finishHour, 
+                quantity: hours,
+                email, country="PL", language="pl", router
+            }
+        }) 
+
+        const przelewyToken = response.data.token
+
+        console.log('przelewyToken', przelewyToken)
+
+        return router.push(`https://sandbox.przelewy24.pl/trnRequest/${przelewyToken}`)
+
+    } catch (error) {
+        console.log('error', error)
+    }
+}
+
 export function runMiddleware(req, res, fn) {
     return new Promise((resolve, reject) => {
       fn(req, res, (result) => {
