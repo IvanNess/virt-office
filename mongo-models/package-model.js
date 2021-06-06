@@ -41,6 +41,12 @@ packageSchema.methods.pay = function(paymentIntent){
     return this
 }
 
+packageSchema.methods.przelewyPay = function(){
+    this.isPaid = true
+    this.save()
+    return this
+}
+
 packageSchema.methods.addReceiptUrl = function(receiptUrl){
     this.receiptUrl = receiptUrl
     this.save()

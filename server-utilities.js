@@ -21,7 +21,7 @@ export const getPrzelewyToken = async ({sessionId, amount, email, description="t
         method: 'POST',
         auth:{
             username: merchantId,
-            password: "bf3465c3084632def847735459aaaf85"
+            password: process.env.RAPORT_KEY
         },
         data: {
             "merchantId": merchantId,
@@ -33,10 +33,10 @@ export const getPrzelewyToken = async ({sessionId, amount, email, description="t
             "email": email,
             "country": country,
             "language": language,
-            "urlReturn": "http://localhost:3000/konto/rozliczenia",
-            "urlStatus": "https://gh-comments-api.vercel.app/api/notification",
+            "urlReturn": "https://virt-office.vercel.apps/konto/rozliczenia",
+            "urlStatus": "https://virt-office.vercel.app/api/notification",
             "sign": gen_hash,
-            // waitForResult: true
+            waitForResult: true
         }
     })
 
