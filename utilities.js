@@ -227,7 +227,10 @@ export const przelewyPackagePay = async ({ auth, hiringChoices, email, country="
     }
 }
 
-export const przelewyUpdatePackagePay = async ({ auth, pakietTitle, pakietName, hiredPeriod, price, fullPrice, lengthCoeff, startDate}) =>{
+export const przelewyUpdatePackagePay = async ({ 
+    auth, pakietTitle, pakietName, hiredPeriod, price, fullPrice, lengthCoeff, startDate,
+    email, country="PL", language="pl", router
+}) =>{
 
     try {
 
@@ -245,7 +248,10 @@ export const przelewyUpdatePackagePay = async ({ auth, pakietTitle, pakietName, 
                 price,
                 fullPrice,
                 lengthCoeff,
-                startDate
+                startDate,
+                email,
+                country,
+                language
             }
         })
         

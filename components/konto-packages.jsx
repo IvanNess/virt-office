@@ -10,9 +10,15 @@ import { setPackages } from '../redux/actions'
 import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment'
 import { updatePackagePay, przelewyUpdatePackagePay } from '../utilities'
+import { useRouter } from 'next/router'
 const { Panel } = Collapse;
 
 const Header = ({isMain, packageName, endDate, updPrice=null, auth, price, pakiet})=>{
+
+    const email = useSelector(state=>state.currentUser.email)
+
+    const router = useRouter()
+
     const update = (e)=>{
         e.stopPropagation(); 
         console.log('update pakiet')
@@ -25,7 +31,11 @@ const Header = ({isMain, packageName, endDate, updPrice=null, auth, price, pakie
             price, 
             fullPrice: updPrice, 
             lengthCoeff: pakiet.lengthCoeff,  
-            startDate: pakiet.startDate
+            startDate: pakiet.startDate,
+            email,
+            router,
+            // language,
+            // country
         })
     }
 
@@ -175,7 +185,7 @@ const KontoPackages = ({auth}) => {
                             updPrice={updPriceToMiddlePakiet}
                             auth={auth}
                             price={150}
-                            pakiet = {pakiet}                            
+                            pakiet = {pakiet}                                                        
                         />}
                         key="2"
                     >
