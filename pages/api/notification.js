@@ -33,7 +33,7 @@ export default async(req, res) => {
             method: 'GET',
         })
 
-        const status = checkRes.data.status
+        const status = checkRes.data.data.status
 
         console.log('checkres', checkRes.data)
 
