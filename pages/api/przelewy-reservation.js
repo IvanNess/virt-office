@@ -37,7 +37,7 @@ export default async(req, res) => {
 
         if(filtered.length === 0){
 
-            const total = quantity / 0.5 * 50, 
+            const total = quantity / 0.5 * 50
 
             const reservation = new ReservationSchema({
                 startHour, finishHour, day, month, year, 
