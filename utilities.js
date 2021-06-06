@@ -276,7 +276,7 @@ export const przelewyReservationPay = async ({auth, selectedDate, startHour, fin
         const msDuration = finishHour.msTime - startHour.msTime
         const hours = msDuration / 1000 / 60 / 60
         const response = await axios({
-            url: "/api/przelewy-reserwation", 
+            url: "/api/przelewy-reservation", 
             method: "POST",
             data: {
                 token, 
