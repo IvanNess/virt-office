@@ -15,7 +15,7 @@ const cors = initMiddleware(
 )
 
 export default async(req, res) => {
-    console.log('notification req', req)
+    // console.log('notification req', req)
 
     try {
         await cors(req, res)
@@ -34,6 +34,8 @@ export default async(req, res) => {
         })
 
         const status = checkRes.data.status
+
+        console.log('checkres', checkRes.data)
 
         if(status===1){
             const verificationRes = await axios({
