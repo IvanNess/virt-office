@@ -1,6 +1,7 @@
 import { initMiddleware } from '../../init-middleware';
 import axios from 'axios';
 import Cors from 'cors'
+import crypto from 'crypto'
 const mongoose = require('mongoose')
 const PackageSchema = require('../../mongo-models/package-model')
 
@@ -39,6 +40,18 @@ export default async(req, res) => {
 
         if(status===1){
             console.log('ADVANCED STATUS')
+
+            const crc = process.env.CRC
+            var hash = crypto.createHash('sha384');
+            //passing the data to be hashed
+            const string = `{"sessionId":"${sessionId}","orderId":${orderId},"amount":${amount},"currency":"${currency}","crc":"${crc}"}`
+            const data = hash.update(string, 'utf-8');
+            //Creating the hash in the required format
+            const gen_hash = data.digest('hex');
+            //Printing the output on the console
+            // console.log("hash : " + gen_hash);
+        
+
             const verificationRes = await axios({
                 auth:{
                     username: merchantId,
@@ -46,7 +59,7 @@ export default async(req, res) => {
                 },
                 url: `https://sandbox.przelewy24.pl/api/v1/transaction/verify`,
                 method: "PUT",
-                data: { merchantId, posId, sessionId, amount, currency, orderId, sign }
+                data: { merchantId, posId, sessionId, amount, currency, orderId, sign: gen_hash }
             })    
 
             console.log('verificationRes', verificationRes.data)
