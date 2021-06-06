@@ -182,8 +182,8 @@ function Hours({db, auth , outterReset}) {
         if(startHour && finishHour && startHour.id !== finishHour.id){
             dispatch(registerAndReserve(true))
             if(currentUser){
-                // await reservationPay({auth, selectedDate, startHour, finishHour})
-                await przelewyReservation({auth, selectedDate, startHour, finishHour})
+                await reservationPay({auth, selectedDate, startHour, finishHour})
+                // await przelewyReservation({auth, selectedDate, startHour, finishHour})
             } else{
                 // dispatch(registerAndReserve(true))
                 dispatch(setShowAuth({show: true, isLogin: true}))
