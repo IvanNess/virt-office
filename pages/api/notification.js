@@ -1,7 +1,9 @@
 import { initMiddleware } from '../../init-middleware';
 import axios from 'axios';
+import Cors from 'cors'
 const mongoose = require('mongoose')
 const PackageSchema = require('../../mongo-models/package-model')
+
 
 const cors = initMiddleware(
     // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
