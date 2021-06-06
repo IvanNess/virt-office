@@ -1,6 +1,7 @@
 import cors from '../../init-middleware'
 import '../../server-setup/mongoose-setup'
 import { getPrzelewyToken } from '../../server-utilities';
+import { firebaseInit } from '../../server-setup/firebase';
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
 const moment = require('moment')
