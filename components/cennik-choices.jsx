@@ -88,10 +88,10 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                         <div className={styles.blockTitle}>Wirtualny adres</div>
                         <div className={styles.digit}>55</div>
                         <div className={styles.afterDigit}>PLN/miesiąc</div>
-                        {/* {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(0, true)}>
+                        {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(0, true)}>
                             Wynajmij Adres
-                        </div>} */}
-                        {router.pathname === '/cennik' && <WynajmijButton/>}
+                        </div>}
+                        {/* {router.pathname === '/cennik' && <WynajmijButton/>} */}
                     </div>
                      
                     <div className={styles.description}>
@@ -124,10 +124,10 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                         <div className={styles.blockTitle}>Optymalny pakiet</div>
                         <div className={styles.digit}>{price}</div>
                         <div className={styles.afterDigit}>PLN/miesiąc</div>
-                        {/* {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(1, true)}>
+                        {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(1, true)}>
                             Wynajmij Adres
-                        </div>} */}
-                        {router.pathname === '/cennik' && <WynajmijButton/>}
+                        </div>}
+                        {/* {router.pathname === '/cennik' && <WynajmijButton/>} */}
                         {/* {showSlash && <div className={selectedBlock===1 || selectedBlock===null ? styles.slash : styles.noslash}>////</div>} */}
                     </div>
 
@@ -176,10 +176,10 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                         <div className={styles.blockTitle}>Profesjonalne biuro</div>
                         <div className={styles.digit}>450</div>
                         <div className={styles.afterDigit}>PLN/miesiąc</div>
-                        {/* {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(2, true)}>
+                        {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(2, true)}>
                             Wynajmij Adres
-                        </div>} */}
-                        {router.pathname === '/cennik' && <WynajmijButton/>}
+                        </div>}
+                        {/* {router.pathname === '/cennik' && <WynajmijButton/>} */}
                     </div>
                     
                     <div className={styles.description}>

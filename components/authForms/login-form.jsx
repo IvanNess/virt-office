@@ -50,7 +50,7 @@ function LoginForm({db, auth}) {
                 <AuthLoginInput
                     type="text"  
                     propName="login"
-                    placeholder="Login"
+                    placeholder="E-mail"
                     ref={loginRef}
                 />
 
