@@ -2,22 +2,41 @@ export const email = 'biuro@virtoffice.pl'
 
 export const utcOffset = 2
 
-export const week = ['pon', 'wto', 'śro', 'czw', 'pią', 'sob', 'nie']
+export const week = {
+    pl: ['pon', 'wto', 'śro', 'czw', 'pią', 'sob', 'nie'],
+    ua: ['пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт', 'ндл']
+}
 
-export const monthNames = [
-    "Styczeń",
-    "Luty",
-    "Marzec",
-    "Kwiecień",
-    "Maj",
-    "Czerwiec",
-    "Lipiec",
-    "Sierpień",
-    "Wrzesień",
-    "Październik",
-    "Listopad",
-    "Grudzień"
-]
+export const monthNames = {
+    pl: [
+        "Styczeń",
+        "Luty",
+        "Marzec",
+        "Kwiecień",
+        "Maj",
+        "Czerwiec",
+        "Lipiec",
+        "Sierpień",
+        "Wrzesień",
+        "Październik",
+        "Listopad",
+        "Grudzień"
+    ],
+    ua: [
+        "Січень",
+        "Лютий",
+        "Березень",
+        "Квітень",
+        "Травень",
+        "Червень",
+        "Липень",
+        "Серпень",
+        "Вересень",
+        "Жовтень",
+        "Листопад",
+        "Грудень"
+    ],
+}
 
 export const pathnames = {
     pl: {
@@ -41,10 +60,14 @@ export const buttonNames = {
         wynajecie: 'Wynajmij adres',
         login: 'Zaloguj się',
         profil: "profil",
+        cancel: 'anuluj',
+        reserve: "zarezerwuj"
     },
     ua :{
         wynajecie: 'Орендувати адресу',
         login: 'Увійти',
         profil: "профіль",
+        cancel: 'скасувати',
+        reserve: "зарезервувати"
     }
 }

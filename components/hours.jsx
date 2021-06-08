@@ -15,7 +15,7 @@ import { reservationPay, przelewyReservationPay } from '../utilities'
 import { LoadingOutlined } from '@ant-design/icons'
 import useWindowWidth from '../hooks/useWindowWidth'
 import { useRouter } from 'next/router'
-import { utcOffset } from '../accessories/constants'
+import { utcOffset, buttonNames } from '../accessories/constants'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE);
 
@@ -28,6 +28,7 @@ function Hours({db, auth , outterReset}) {
     const reservedSessions = useSelector(state => state.reservedSessions)
     // const userReservations = useSelector(state => state.userReservations)
     const showAuth = useSelector(state=>state.showAuth)
+    const language = useSelector(state=>state.language)
 
     const currentUser = useSelector(state=>state.currentUser)
 
@@ -705,7 +706,7 @@ function Hours({db, auth , outterReset}) {
                             '390px'
                         }}
                     >
-                        { disableConfirmBtn ?<LoadingOutlined style={{color: "black"}}/> : 'zarezerwuj'}
+                        { disableConfirmBtn ?<LoadingOutlined style={{color: "black"}}/> : buttonNames[language].reserve}
                     </button>
                     <button 
                         className={styles.cancelBtn} 
@@ -717,7 +718,7 @@ function Hours({db, auth , outterReset}) {
                             '390px'
                         }}
                     >
-                        Anuluj
+                        {buttonNames[language].cancel}
                     </button>
                 </div> 
             </div>

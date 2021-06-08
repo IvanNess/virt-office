@@ -15,6 +15,8 @@ const MyCalendar = () => {
     const [rows, setRows] = useState([])
     // const [currentDate, setCurrentDate] = useState(moment().utcOffset(utcOffset))
     const selectedDate = useSelector(state=>state.selectedDate)
+    const language = useSelector(state=>state.language)
+
     const dispatch = useDispatch()
     const router = useRouter()
 
@@ -102,9 +104,9 @@ const MyCalendar = () => {
         dispatch(setSelectedDate(moment(selectedDate.raw).subtract(1, 'month'), true))
     }
 
-    const getWeek = ()=>week.map(name=><div className={styles.weekDay}>{name}</div>)
+    const getWeek = ()=>week[language].map(name=><div className={styles.weekDay}>{name}</div>)
 
-    const getCurrentMonthName = ()=>(`${monthNames[selectedDate.month -1]} ${selectedDate.year}`)
+    const getCurrentMonthName = ()=>(`${monthNames[language][selectedDate.month -1]} ${selectedDate.year}`)
 
     return (
         <div className={router.pathname ==='/konto/rezerwacja' ? styles.myRezCalendar : styles.myCalendar} >
