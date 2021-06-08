@@ -22,14 +22,14 @@ $main-margin-left: 50px;
     }
     a{
         color: white;
-        font: normal normal 300 16px/30px "Work Sans Light";
+        font: normal normal 300 16px/30px var(--sans-light);
         &:hover{
             text-decoration: none;
         }
     }
     .active{
         a{
-            font: normal normal 900 16px/30px "Work Sans Black";
+            font: normal normal 900 16px/30px var(--sans-black);
             letter-spacing: 0px;
             color: #121109;
         }

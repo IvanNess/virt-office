@@ -13,7 +13,7 @@
             margin-left: $main-margin-left;
             border-top: 2px solid white;
             margin-top: -30px;
-            max-width: 180px;
+            max-width: 190px;
         }
         @media (max-width: 700px) {
             margin-left: 26px;
@@ -95,7 +95,7 @@
     @include linkButton(44px);
     background-color: #ffffff;
     color: $main-color;
-    font: normal normal bold 16px/19px "Work Sans Bold";
+    font: normal normal bold 16px/19px var(--sans-bold);
     letter-spacing: 0.8px;
     text-transform: uppercase;
     border: none;
@@ -139,7 +139,7 @@
 // }
 
 .logoText{
-    font: normal normal 300 16px/24px "Work Sans Light";
+    font: normal normal 300 16px/24px var(--sans-light);
     letter-spacing: 0.64px;
     opacity: 0;
     transition-duration: 0.3s;
@@ -171,24 +171,31 @@
         padding: 0;
         color: #ffffff;
         @media(max-width: 700px){
-            font: normal normal 300 10px/15px "Work Sans Light";
+            font: normal normal 300 10px/15px var(--sans-light);
         }
+        a{
+            text-decoration: underline;
+        }    
     }
     .phone{
         @include blockTitle();
         padding: 0;
         color: #ffffff;
         @media(max-width: 700px){
-            font: normal normal 900 12px/15px Work Sans;        
+            font: normal normal 900 12px/15px var(--sans);        
         }
     }
 }
 
-.buttons{
+.buttons, .uabuttons{
     display: flex;
     @media(max-width: 1000px){
         display: none;
     }
+}
+
+.uabuttons .button a{
+    font-size: 14px;
 }
 
 .logoNPath{
@@ -214,13 +221,13 @@
     }
     .pathInner{
         color: white;
-        font: normal normal bold 16px/27px "Work Sans Bold";
+        font: normal normal bold 16px/27px var(--sans-bold);
         border-top: 2px solid white;
         padding-right: 20px;
         // width: 150px;
         @media (max-width: 700px) {
             // width: 138px;
-            font: normal normal bold 12px/15px "Work Sans Bold";
+            font: normal normal bold 12px/15px var(--sans-bold);
         }
         @media (max-width: 400px) {
             // width: 90px;

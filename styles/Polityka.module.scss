@@ -2,9 +2,9 @@
 
 .headerTextBoldFont{
     @include headerBoldFont();
-    font: normal normal 900 16px/24px "Work Sans Black";
+    font: normal normal 900 16px/24px var(--sans-black);
     @media all and (max-width: 1300px){
-        font: normal normal 900 16px/24px "Work Sans Black";
+        font: normal normal 900 16px/24px var(--sans-black);
     }
 }
 
@@ -24,7 +24,7 @@
         text-align: center;
     }
     @media (max-width: 700px) {
-        font: normal normal 900 20px/24px "Work Sans Black";
+        font: normal normal 900 20px/24px var(--sans-black);
         margin: 62px 26px 101px 26px;
         text-align: left;
     }
@@ -95,7 +95,7 @@
     }
     .smallText{
         .bold{
-            font-family: "Work Sans Bold";
+            font-family: var(--sans-bold);
             font-weight: bold;
         }
         width: auto !important;

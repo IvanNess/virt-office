@@ -65,9 +65,9 @@
     }
     @media (max-width: 700px) {
         .title{
-            font: normal normal 300 36px/66px "Work Sans Light";
+            font: normal normal 300 36px/66px var(--sans-light);
             .bold{
-                font: normal normal 900 36px/66px "Work Sans Black";
+                font: normal normal 900 36px/66px var(--sans-black);
             }
         }
     }
@@ -92,10 +92,10 @@
         display: flex;
     }
     .title{
-        font: normal normal 900 16px/19px "Work Sans Black";
+        font: normal normal 900 16px/19px var(--sans-black);
     }
     .value{
-        font: normal normal 300 16px/19px "Work Sans Light";
+        font: normal normal 300 16px/19px var(--sans-light);
     }
     .left{
         min-width: 287px;

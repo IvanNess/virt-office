@@ -2,7 +2,7 @@
 
 @mixin p {
     p{
-        font: normal normal bold 16px/19px Work Sans;
+        font: normal normal bold 16px/19px var(--sans);
         letter-spacing: 0.8px;
         color: #FFFFFF;
         text-transform: uppercase;

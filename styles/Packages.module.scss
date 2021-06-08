@@ -30,7 +30,7 @@ $text-padding: 22px;
 
 @mixin  packageTitle {
     padding: $text-padding 0; 
-    font: 24px/28px "Work Sans Medium";
+    font: 24px/28px var(--sans-medium);
     letter-spacing: 0px;
     color: #411141;
     margin: 0;
@@ -62,7 +62,7 @@ $text-padding: 22px;
     padding-bottom: $text-padding;
     width: 576px;
 
-    font: normal normal 300 16px/25px "Work Sans Light";
+    font: normal normal 300 16px/25px var(--sans-light);
     letter-spacing: 0px;
     color: #411141;
     padding-top: 0;
@@ -82,7 +82,7 @@ $text-padding: 22px;
 .open{
     .textWrapper{
         .title, .kontoPakietTitle{
-            font: normal normal 900 24px/28px "Work Sans Black";
+            font: normal normal 900 24px/28px var(--sans-black);
             letter-spacing: 0px;
             color: #411141;
         }
@@ -100,7 +100,7 @@ $text-padding: 22px;
     background: $main-color 0% 0% no-repeat padding-box;
     border: none;
     cursor: pointer;
-    font: normal normal bold 16px/19px "Work Sans Bold";
+    font: normal normal bold 16px/19px var(--sans-bold);
     letter-spacing: 0.8px;
     color: #FFFFFF;
     text-transform: uppercase;

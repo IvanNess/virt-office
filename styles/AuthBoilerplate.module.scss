@@ -48,7 +48,7 @@ $login-width: 124px;
 
 @mixin regularAuth {
     border-bottom: 2px solid white;
-    font: normal normal 300 16px/19px "Work Sans Light";
+    font: normal normal 300 16px/19px var(--sans-light);
     letter-spacing: 0.56px;
     color: #ffffff;
     padding-bottom: 13px;
@@ -71,7 +71,7 @@ $login-width: 124px;
     }
     .loginSelected, .signinSelected, .recovery{
         @include regularAuth();
-        font: normal normal 900 16px/19px "Work Sans Black";
+        font: normal normal 900 16px/19px var(--sans-black);
         // width: $login-width;
         letter-spacing: 0.56px;
         color: #FFFFFF;
@@ -100,12 +100,12 @@ $login-width: 124px;
     margin-bottom: 14px;
     .content{
         margin-top: 25px;
-        font: normal normal 300 16px/19px "Work Sans Light";
+        font: normal normal 300 16px/19px var(--sans-light);
         letter-spacing: 0px;
         color: #FFFFFF;
     }
     .stepCount{
-        font: normal normal 900 16px/19px "Work Sans Black";
+        font: normal normal 900 16px/19px var(--sans-black);
         letter-spacing: 0px;
         color: #121109;
     }

@@ -63,7 +63,7 @@ $language-taxt-width: 98px;
     }
     .text{
         width: $language-taxt-width;
-        font: normal normal 300 16px/19px "Work Sans Light";
+        font: normal normal 300 16px/19px var(--sans-light);
         letter-spacing: 0px;
         color: #FFFFFF;
         margin-bottom: 17px;
@@ -75,11 +75,11 @@ $language-taxt-width: 98px;
         display: flex;
         width: $language-taxt-width;
         justify-content: space-between;
-        font: normal normal 300 16px/19px "Work Sans Light";
+        font: normal normal 300 16px/19px var(--sans-light);
         letter-spacing: 0px;
         color: #FFFFFF;
         .active{
-            font: normal normal 300 16px/19px "Work Sans Black";
+            font: normal normal 300 16px/19px var(--sans-black);
             letter-spacing: 0px;
             color: #FFFFFF;
             cursor: pointer;

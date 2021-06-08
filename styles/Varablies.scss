@@ -16,7 +16,7 @@ $solid-color: #4CAED5;
 $text-color: #121109;
 
 @mixin header-logo {
-  font: normal normal 900 28px/33px "Work Sans Bold";
+  font: normal normal 900 28px/33px var(--sans-bold);
   text-decoration: none;
   letter-spacing: 0px;
   color: #FFFFFF;
@@ -28,24 +28,24 @@ $text-color: #121109;
   margin-bottom: 60px;
   margin-left: $main-margin-left;
   max-width: 1192px;
-  font: normal normal 300 56px/66px 'Work Sans Light';
+  font: normal normal 300 56px/66px var(--sans-light);
   letter-spacing: 0px;
   color: $text-color;
   text-transform: lowercase;
   .boldFont{
-    font: normal normal 900 56px/66px 'Work Sans Black';
+    font: normal normal 900 56px/66px var(--sans-black);
     letter-spacing: 0px;
     color: $text-color;
     text-transform: uppercase;
   }
   @media (max-width: 700px) {
-    font: normal normal 300 20px/24px "Work Sans Light";
+    font: normal normal 300 20px/24px var(--sans-light);
     margin-left: 26px;
     margin-top: 34px;
     margin-bottom: 28px;
     max-width: 269px;
     .boldFont{
-      font: normal normal 900 20px/24px "Work Sans Black";
+      font: normal normal 900 20px/24px var(--sans-black);
     }
   }
 }
@@ -107,7 +107,7 @@ $text-color: #121109;
   border: none;
   background: $main-color 0% 0% no-repeat padding-box;
   cursor: pointer;
-  font: normal normal bold 16px/19px "Work Sans Black";
+  font: normal normal bold 16px/19px var(--sans-black);
   letter-spacing: 0.8px;
   color: #FFFFFF;
   text-transform: uppercase;
@@ -134,7 +134,7 @@ $text-color: #121109;
   transition-duration: 0.4s;
   a{
       text-decoration: none;
-      font: normal normal bold 16px/19px "Work Sans";
+      font: normal normal bold 16px/19px var(--sans);
       letter-spacing: 0.8px;
       color: #ffffff;
       text-transform: uppercase;    
@@ -179,7 +179,7 @@ $text-color: #121109;
 
 @mixin blockTitle {
   padding: 42px 0 0 29px;
-  font: normal normal 900 24px/28px "Work Sans Black";
+  font: normal normal 900 24px/28px var(--sans-black);
   letter-spacing: 0px;
   color: $text-color;
   .boldFont{
@@ -189,7 +189,7 @@ $text-color: #121109;
 
 @mixin blockText{
   padding: 20.5px 44px 0 29px;
-  font: normal normal 300 16px/19px "Work Sans Light";
+  font: normal normal 300 16px/19px var(--sans-light);
   letter-spacing: 0px;
   color: $text-color;
   display: flex;
@@ -197,7 +197,7 @@ $text-color: #121109;
 
 @mixin headerTitle {
   text-align: left;
-  font: normal normal normal 56px/66px "Work Sans";
+  font: normal normal normal 56px/66px var(--sans);
   letter-spacing: 0px;
   color: #FFFFFF;
   text-transform: lowercase;
@@ -208,13 +208,13 @@ $text-color: #121109;
     // font: normal normal 300 44px "Work Sans Light";
   }
   @media all and (max-width: 1024px){
-    font: normal normal 300 38px "Work Sans Light";
+    font: normal normal 300 38px var(--sans-light);
   }
   @media all and (max-width: 740px){
-    font: normal normal 300 36px "Work Sans Light";
+    font: normal normal 300 36px var(--sans-light);
   }
   @media all and (max-width: 700px){
-    font: normal normal 300 20px/24px "Work Sans Light";
+    font: normal normal 300 20px/24px var(--sans-light);
     margin-left: 27px;
     margin-right: 10px;
   }
@@ -222,22 +222,22 @@ $text-color: #121109;
 
 @mixin headerBoldFont{
   text-align: left;
-  font: normal normal 900 56px/66px "Work Sans Bold";
+  font: normal normal 900 56px/66px var(--sans-bold);
   letter-spacing: 0px;
   color: #FFFFFF;
   text-transform: uppercase;  
   @media all and (max-width: 1300px){
-    font: normal normal 900 44px "Work Sans Bold";
+    font: normal normal 900 44px var(--sans-bold);
   }
   @media all and (max-width: 1024px){
-    font: normal normal 900 38px "Work Sans Black";;
+    font: normal normal 900 38px var(--sans-black);;
   }
   @media all and (max-width: 740px){
-    font: normal normal 900 36px "Work Sans Black";;
+    font: normal normal 900 36px var(--sans-black);;
   }
   @media all and (max-width: 620px){
     // font: normal normal 900 30px "Work Sans Black";
-    font: normal normal 900 20px/24px "Work Sans"
+    font: normal normal 900 20px/24px var(--sans)
   }
 }
 
@@ -247,7 +247,7 @@ $text-color: #121109;
     margin-right: 150px;
     padding-bottom: 17px;
     max-width: 1000px;
-    font: normal normal normal 16px/25px "Work Sans";
+    font: normal normal normal 16px/25px var(--sans);
     letter-spacing: 0px;
     color: #FFFFFF;
     opacity: 1;
@@ -259,7 +259,7 @@ $text-color: #121109;
     }
     @media all and (max-width: 700px){
       max-width: auto;
-      font: normal normal 300 16px/25px "Work Sans Light";
+      font: normal normal 300 16px/25px var(--sans-light);
       margin-left: 27px;
       margin-right: 10px;
       padding-bottom: 0px;
@@ -278,7 +278,7 @@ $text-color: #121109;
       outline: none;
     }
     &::placeholder{
-      font: normal normal medium 16px/19px Work Sans;
+      font: normal normal medium 16px/19px var(--sans);
       letter-spacing: 0px;
       color: #B9B9B9;
       text-transform: uppercase;
@@ -305,7 +305,7 @@ $text-color: #121109;
   padding-bottom: 153px;
   padding-top: 152px;
   width: 1115px;
-  font: normal normal 900 60px/71px "Work Sans Black";
+  font: normal normal 900 60px/71px var(--sans-black);
   letter-spacing: 0px;
   color: #FFFFFF;
 }
@@ -313,7 +313,7 @@ $text-color: #121109;
 @mixin smallText{
   margin-left: $main-margin-left;
   width: 1001px;
-  font: normal normal 300 16px/25px "Work Sans Light";
+  font: normal normal 300 16px/25px var(--sans-light);
   letter-spacing: 0px;
   color: $text-color;
   padding-bottom: 47px;
@@ -342,27 +342,27 @@ $text-color: #121109;
 @mixin konto{
   color: $text-color;
   .title{
-      font: normal normal 300 56px/66px "Work Sans Light";
+      font: normal normal 300 56px/66px var(--sans-light);
       width: auto;
       margin: 0;
       text-transform: none;
       @media (max-width: 700px) {
-        font: normal normal 300 36px/66px "Work Sans Light";
+        font: normal normal 300 36px/66px var(--sans-light);
       }
       .bold{
-          font: normal normal 900 56px/66px "Work Sans Black";
+          font: normal normal 900 56px/66px var(--sans-black);
           @media (max-width: 700px) {
-            font: normal normal 900 36px/66px "Work Sans Black";
+            font: normal normal 900 36px/66px var(--sans-black);
           }
       }
   }
   .small, input{
-      font: normal normal 300 16px/19px "Work Sans Light";
+      font: normal normal 300 16px/19px var(--sans-light);
       &[type=button]{
-          font: normal normal bold 16px/19px "Work Sans Black";
+          font: normal normal bold 16px/19px var(--sans-black);
       }
       @media (max-width: 700px) {
-        font: normal normal 300 12px/19px "Work Sans Light";
+        font: normal normal 300 12px/19px var(--sans-light);
       }
   }
   form{
@@ -401,19 +401,19 @@ $text-color: #121109;
   margin-right: 24px;
   overflow: hidden;
   .optionTitle{
-      font: normal normal 900 24px/28px "Work Sans Black";
+      font: normal normal 900 24px/28px var(--sans-black);
       letter-spacing: 0px;
       padding-bottom: 20px;
   }
   .optionText{
-      font: normal normal 300 16px/19px "Work Sans Light";
+      font: normal normal 300 16px/19px var(--sans-light);
       letter-spacing: 0px;
   }
 }
 
 @mixin noBackgroundBillboardText {
   color: $text-color;
-  font: normal normal 900 60px/71px "Work Sans Black";
+  font: normal normal 900 60px/71px var(--sans-black);
   margin-left: $main-margin-left;
   max-width: 1115px;
   margin-bottom: 270.5px;

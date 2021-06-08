@@ -38,7 +38,7 @@
     margin-bottom: 20px;
     padding: 0;
     @media (max-width: 700px) {
-        font: normal normal 300 12px/19px "Work Sans Light";
+        font: normal normal 300 12px/19px var(--sans-light);
     }
 }
 
@@ -47,6 +47,6 @@
     margin-top: 20px;
     padding: 0;
     @media (max-width: 700px) {
-        font: normal normal 300 12px/19px "Work Sans Light";
+        font: normal normal 300 12px/19px var(--sans-light);
     }
 }

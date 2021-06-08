@@ -66,11 +66,11 @@
 .noBackgroundBillboardText{
   @include noBackgroundBillboardText();
   max-width: 892px;
-  font: normal normal 300 56px/66px "Work Sans Light";
+  font: normal normal 300 56px/66px var(--sans-light);
   margin-bottom: 90px;
   .headerBoldFont{
       color: $text-color;
-      font: normal normal 900 56px/66px "Work Sans Black";
+      font: normal normal 900 56px/66px var(--sans-black);
   }
   @media all and (max-width: 1300px){
     width: auto;
@@ -129,7 +129,7 @@
 
 .smallTextBold{
     font-weight: bold;
-    font-family: "Work Sans Bold";
+    font-family: var(--sans-bold);
     text-transform: uppercase;
 }
 
@@ -161,7 +161,7 @@
   margin-right: 149px;
   margin-bottom: 0;
   .blockText{
-    font: normal normal 300 16px/24px "Work Sans Light";
+    font: normal normal 300 16px/24px var(--sans-light);
     display: block;
     letter-spacing: 0.64px;
     // padding: 30.5px 45px 0 36.05px;
@@ -176,7 +176,7 @@
         // font: normal normal 300 15px "Work Sans Light";
     }
     @media all and (max-width: 700px){
-        font: normal normal 300 14px/24px "Work Sans Light";
+        font: normal normal 300 14px/24px var(--sans-light);
         &:last-child{
             padding-bottom: 20px;
         }
@@ -188,7 +188,7 @@
       }
   }
   .boldText{
-    font: normal normal 900 16px/24px "Work Sans Black";
+    font: normal normal 900 16px/24px var(--sans-black);
     letter-spacing: 0.64px;
     text-transform: uppercase;
   }
@@ -203,7 +203,7 @@
     margin-left: 28px;
     // height: 88px;
     padding-bottom: 15px;
-    font: normal normal 900 20px/24px "Work Sans Black";
+    font: normal normal 900 20px/24px var(--sans-black);
     letter-spacing: 0px;
     color: $text-color;
     text-transform: capitalize;
@@ -217,7 +217,7 @@
         width: 70px;
     }
     @media(max-width: 700px){
-        font: normal normal 900 16px/24px "Work Sans Black";
+        font: normal normal 900 16px/24px var(--sans-black);
         margin-top: 20px;
     }
     // .blockHeaderFirst{
@@ -247,7 +247,7 @@
     justify-content: space-between;
     margin-left: $main-margin-left;
     margin-right: 150px;
-    font: normal normal 300 16px/26px "Work Sans Light";
+    font: normal normal 300 16px/26px var(--sans-light);
     // font: normal normal 300 60px/71px "Work Sans Light";
     letter-spacing: 0.64px;
     color: $text-color;
@@ -255,7 +255,7 @@
         max-width: 620px;
     }
     .boldText{
-        font: normal normal 900 16px/26px "Work Sans Black";
+        font: normal normal 900 16px/26px var(--sans-black);
         // font: normal normal 900 60px/71px "Work Sans Black";
         letter-spacing: 0.64px;
         color: $text-color;
@@ -298,6 +298,9 @@
             }            
         }
         .blockText{
+            a{
+                text-decoration: underline;
+            }
             @media (max-width:700px){
                 padding: 12px 0 24px 0;
             }            
@@ -309,7 +312,7 @@
     @include headerTitle();
     margin-top: 40px;
     max-width: none;
-    font: normal normal normal 56px/66px "Work Sans";
+    font: normal normal normal 56px/66px var(--sans);
     @media (max-width: 700px){
         margin-top: 20px;
         margin-left: 26px;
@@ -318,7 +321,7 @@
 
 .headerText{
     @include headerText();
-    font: normal normal normal 16px/24px "Work Sans";
+    font: normal normal normal 16px/24px var(--sans);
     margin-top: 0;
 }
 
@@ -328,9 +331,9 @@
 
 .headerTextBoldFont{
     @include headerBoldFont();
-    font: normal normal 900 16px/24px "Work Sans Black";
+    font: normal normal 900 16px/24px var(--sans-black);
     @media all and (max-width: 1300px){
-        font: normal normal 900 16px/24px "Work Sans Black";
+        font: normal normal 900 16px/24px var(--sans-black);
     }
 }
 
@@ -492,12 +495,12 @@
     margin-top: 165px;
     max-width: 1031px;
     p{
-        font: normal normal bold 30px/40px "Work Sans Bold";
+        font: normal normal bold 30px/40px var(--sans-bold);
         letter-spacing: 0.6px;
         color: #121109;  
         margin: 0;
         @media (max-width: 700px){
-            font: normal normal bold 20px/33px "Work Sans Bold";
+            font: normal normal bold 20px/33px var(--sans-bold);
         }
     }
     @media (max-width: 700px){
@@ -535,11 +538,11 @@
     }    
     .wfirmaText{
         text-align: center;
-        font: normal normal 300 45px/77px "Work Sans Light";
+        font: normal normal 300 45px/77px var(--sans-light);
         max-width: 1152px;
         z-index: 1;
         @media (max-width: 700px) {
-            font: normal normal 300 20px/30px "Work Sans Light";
+            font: normal normal 300 20px/30px var(--sans-light);
             max-width: 420px;
         }
         h4{
@@ -547,15 +550,18 @@
             color: white;
         }
         .bold{
-            font: normal normal 900 45px/77px "Work Sans Black";
+            font: normal normal 900 45px/77px var(--sans-black);
             @media (max-width: 700px) {
-                font: normal normal 900 20px/30px "Work Sans Black";            
+                font: normal normal 900 20px/30px var(--sans-black);            
             }
         }
         .underline{
             text-decoration: underline;
-            font: normal normal 900 45px/77px "Work Sans Black";
+            font: normal normal 900 45px/77px var(--sans-black);
             cursor: pointer;
+        }
+        a{
+            text-decoration: underline;
         }
     }
 }

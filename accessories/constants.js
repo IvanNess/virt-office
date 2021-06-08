@@ -18,3 +18,33 @@ export const monthNames = [
     "Listopad",
     "Grudzień"
 ]
+
+export const pathnames = {
+    pl: {
+        home: 'wynajem adresu dla firm',
+        cennik: 'cennik i usługi',
+        ksiegowosc: 'księgowość',
+        polityka : 'polityka prywatności',
+        regulamin : 'regulamin'
+    },
+    ua :{
+        home: 'оренда адресу для компаній',
+        cennik: 'cennik i usługi',
+        ksiegowosc: 'księgowość',
+        polityka : 'polityka prywatności',
+        regulamin : 'regulamin'
+    }
+}
+
+export const buttonNames = {
+    pl: {
+        wynajecie: 'Wynajmij adres',
+        login: 'Zaloguj się',
+        profil: "profil",
+    },
+    ua :{
+        wynajecie: 'Орендувати адресу',
+        login: 'Увійти',
+        profil: "профіль",
+    }
+}

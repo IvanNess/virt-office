@@ -99,7 +99,7 @@
 .top{
     display: flex;
     justify-content: space-between;
-    font: normal normal 900 29px/35px "Work Sans Black";
+    font: normal normal 900 29px/35px var(--sans-black);
     color: $main-color;
     padding: 20px;
 }

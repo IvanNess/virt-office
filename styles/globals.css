@@ -29,6 +29,35 @@
   font-family: "Work Sans Medium";
   src: url("/fonts/WorkSans-Medium.ttf");
 }
+@font-face {
+  font-family: "Open Sans Black";
+  src: url("/fonts/OpenSans-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: "Open Sans Light";
+  src: url("/fonts/OpenSans-Light.ttf");
+}
+
+@font-face {
+  font-family: "Open Sans Bold";
+  src: url("/fonts/OpenSans-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("/fonts/OpenSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Open Sans Thin";
+  src: url("/fonts/OpenSans-Thin.ttf");
+}
+
+@font-face {
+  font-family: "Open Sans Medium";
+  src: url("/fonts/OpenSans-Medium.ttf");
+}
 
 html,
 body {
@@ -37,6 +66,12 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   width: auto;
+  --sans: "Work Sans", "Open Sans";
+  --sans-black: "Work Sans Black", "Open Sans Black";
+  --sans-bold: "Work Sans Bold", "Open Sans Bold";
+  --sans-light: "Work Sans Light", "Open Sans Light";
+  --sans-thin: "Work Sans Thin", "Open Sans Thin";
+  --sans-medium: "Work Sans Medium", "Open Sans Medium";
 }
 
 a {
@@ -69,7 +104,7 @@ input{
 }
 
 .MuiTypography-body1{
-  font: normal normal 900 29px/35px "Work Sans Black" !important;
+  font: normal normal 900 29px/35px var(--sans-black) !important;
   color: #4CAED5;
 }
 
@@ -142,7 +177,7 @@ input{
 /* antd select input */
 .ant-select-selector{
   height: 55px !important;
-  font: normal normal 16px/19px "Work Sans Black" !important;
+  font: normal normal 16px/19px var(--sans-black) !important;
   padding-left: 28px !important;
 }
 
@@ -152,11 +187,11 @@ input{
 }
 
 .ant-select-item-option-content{
-  font: normal normal 16px/19px "Work Sans Light" !important;
+  font: normal normal 16px/19px var(--sans-light) !important;
 }
 
 .ant-select-single .ant-select-selector .ant-select-selection-item{
-  font: normal normal 16px/19px "Work Sans Black";
+  font: normal normal 16px/19px var(--sans-black);
   letter-spacing: 0px;
   color: #000000;
   text-transform: uppercase;
@@ -164,7 +199,7 @@ input{
 }
 
 .ant-select-single .ant-select-selector .ant-select-selection-placeholder{
-  font: normal normal 16px/19px "Work Sans Black";
+  font: normal normal 16px/19px var(--sans-black);
   letter-spacing: 0px;
   color: #B9B9B9;
   text-transform: uppercase;
@@ -206,7 +241,7 @@ input{
 }
 
 .ant-collapse-item-active .ant-collapse-header{
-  font: normal normal 900 24px/28px "Work Sans Black";
+  font: normal normal 900 24px/28px var(--sans-black);
   letter-spacing: 0px;
   color: #121109;
 }
@@ -217,14 +252,14 @@ input{
 
 .ant-collapse-item{
   border: none;
-  font: normal normal 24px/28px "Work Sans Medium";
+  font: normal normal 24px/28px var(--sans-medium);
   letter-spacing: 0px;
   color: #121109;
 } 
 
 .ant-collapse-content{
   border: none;
-  font: normal normal 300 16px/19px "Work Sans Light";
+  font: normal normal 300 16px/19px var(--sans-light);
   padding-left: 0;
   width: 100%;
   position: relative;
@@ -257,13 +292,13 @@ input{
     padding: 20px 16px;
   }
   .ant-collapse-item {
-    font: normal normal 18px/28px "Work Sans Medium";
+    font: normal normal 18px/28px var(--sans-medium);
   }
   .ant-collapse-content {
-    font: normal normal 300 12px/19px "Work Sans Light";
+    font: normal normal 300 12px/19px var(--sans-light);
   }
   .ant-collapse-item-active .ant-collapse-header {
-    font: normal normal 900 18px/28px "Work Sans Light";
+    font: normal normal 900 18px/28px var(--sans-light);
   }
 }
 
@@ -347,7 +382,7 @@ option[value="PL"], option[value="UA"], option[value="RU"], option[value="BY"]{
 /* boldSelectOption */
 .boldSelectOption{
   font-weight: bold;
-  font-family: "Work Sans Black";
+  font-family: var(--sans-black);
   color: #121109;
 }
 

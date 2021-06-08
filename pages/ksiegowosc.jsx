@@ -31,10 +31,7 @@ function Ksiegowosc({auth}) {
                     {/* Wystawiaj faktury, wyliczaj podatki i rozliczaj się z ZUS */}
                     Księgowość zarówno on-line jak i&nbsp;konwencjonalna. 
                     <br/>
-                    Wybierz najlepsze rozwiązanie dla Ciebie, my chętnie doradzimy.
-                    {/* Wystawiaj faktury wyliczaj podatki i rozliczaj się z ZUS dzięki księgowości on&#8209;line albo zleć to profesjonalnym księgowym */}
-                    <br/>
-                    Wystawiaj faktury, wyliczaj podatki i rozliczaj się z ZUS dzięki księgowości on&#8209;line albo zleć to <span className={styles.headerTextBoldFont}>profesjonalnym księgowym</span>. Chętnie doradzimy Ci w wyborze rozwiązania najlepiej dopasowanego do Twoich potrzeb.
+                    Wystawiaj faktury, wyliczaj podatki i rozliczaj się z ZUS dzięki księgowości on&#8209;line albo zleć to <span className={styles.headerTextBoldFont}>profesjonalnym księgowym</span>. Chętnie pomożemy Ci wybrać rozwiązanie najlepiej dopasowane do Twoich potrzeb.  
                 </div>
                 {/* <div className={styles.linkButtonWrapper}>
                     <div className={styles.linkButton}>
@@ -47,7 +44,7 @@ function Ksiegowosc({auth}) {
             <div style={{margin: 'auto', maxWidth: '1440px'}}>
 
                 <div className={styles.title}>
-                    Ponad <span className={styles.boldFont}> 700 nowych </span>przedsiębiorców wybiera wFirmę każdego tygodnia
+                    Ponad <span className={styles.boldFont}> 700 nowych </span>przedsiębiorców wybiera serwis księgowy <span className={styles.boldFont}><a href ='https://wfirma.pl'>wFirma.pl</a></span> każdego tygodnia
                 </div>
                 {/* <div className={styles.smallText}>
                     Prowadź księgowość online i zyskaj niezależność w zarządzaniu firmą!

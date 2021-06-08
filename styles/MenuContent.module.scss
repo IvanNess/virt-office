@@ -29,7 +29,7 @@ $cities-width: 450px;
         h2{
             margin: 0;
             margin-bottom: 27px;
-            font: normal normal 900 35px/42px "Work Sans Bold";
+            font: normal normal 900 35px/42px var(--sans-bold);
             letter-spacing: 0px;
             color: #FFFFFF;
             &.last{
@@ -43,7 +43,7 @@ $cities-width: 450px;
                 cursor: pointer;
             }
             @media (max-width: 1024px) {
-                font: normal normal 900 30px/35px "Work Sans Black";
+                font: normal normal 900 30px/35px var(--sans-black);
                 margin-bottom: 20px;
                 &.last{
                     margin-bottom: 20px;
@@ -74,7 +74,7 @@ $cities-width: 450px;
         display: inline-block;
     }
     p{
-        font: normal normal 16px/27px "Work Sans Light";
+        font: normal normal 16px/27px var(--sans-light);
         letter-spacing: 0px;
         color: #FFFFFF;
         margin: 0;
@@ -82,7 +82,7 @@ $cities-width: 450px;
 }
 
 .logo{
-    font: normal normal 900 29px/34px "Work Sans Black";
+    font: normal normal 900 29px/34px var(--sans-black);
     letter-spacing: 0px;
     color: $text-color;
 }
@@ -108,7 +108,7 @@ $cities-width: 450px;
 
 .textOne, .textTwo{
     max-width: 323px;
-    font: normal normal 300 16px/19px "Work Sans Light";
+    font: normal normal 300 16px/19px var(--sans-light);
     letter-spacing: 0px;
     color: $text-color;
 }
@@ -133,7 +133,7 @@ $cities-width: 450px;
 }
 
 .bold{
-    font: normal normal 900 16px/19px "Work Sans Black";
+    font: normal normal 900 16px/19px var(--sans-black);
     letter-spacing: 0px;
     color: $text-color;
 }
@@ -146,7 +146,7 @@ $cities-width: 450px;
 .profilLink{
     padding-left: 30px;
     // font: normal normal 900 20px/35px "Work Sans Black" !important;
-    font: normal normal 300 16px/30px "Work Sans Light" !important;
+    font: normal normal 300 16px/30px var(--sans-light) !important;
 }
 
 .profilLinks{
@@ -156,7 +156,7 @@ $cities-width: 450px;
 .wynajmijBiuro{
     @include linkButton(55px);
     width: 328px;
-    font: normal normal bold 16px/19px "Work Sans Bold" !important;
+    font: normal normal bold 16px/19px var(--sans-bold) !important;
     text-transform: uppercase;
     background-color: white;
     color: $main-color !important;

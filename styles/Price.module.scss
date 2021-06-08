@@ -9,10 +9,10 @@
         display: flex;
         margin-right: 24px;
         .title{
-            font: normal normal 200 24px/35px "Work Sans Light";
+            font: normal normal 200 24px/35px var(--sans-light);
         }
         .value{
-            font: normal normal 900 30px/35px "Work Sans Black";
+            font: normal normal 900 30px/35px var(--sans-black);
         }
     }
 }

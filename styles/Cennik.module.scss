@@ -38,10 +38,10 @@
 }
 
 .headerBoldFont{
-    font: normal normal normal 56px/66px "Work Sans Black";
+    font: normal normal normal 56px/66px var(--sans-black);
     text-transform: uppercase;
     @media (max-width: 700px) {
-        font: normal normal 900 20px/24px "Work Sans Black";
+        font: normal normal 900 20px/24px var(--sans-black);
     }
 }
 
@@ -58,7 +58,7 @@
     padding-bottom: 107px;
     padding-right: $sidebar-width;
     margin-left: $main-margin-left;
-    font: normal normal 300 24px/42px "Work Sans Light";
+    font: normal normal 300 24px/42px var(--sans-light);
     letter-spacing: 0px;
     color: #411141;
     li{
@@ -81,7 +81,7 @@
     border-top: 2px solid $main-color;
     border-bottom: 2px solid $main-color;
     border-right: 2px solid $main-color;
-    font: normal normal normal 16px/19px "Work Sans";
+    font: normal normal normal 16px/19px var(--sans);
     letter-spacing: 0.8px;
     color: $text-color;
     text-transform: uppercase;

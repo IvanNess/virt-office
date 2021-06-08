@@ -11,7 +11,7 @@
 .table{
     .headerRow{
         display: flex;
-        font: normal normal 900 16px/19px "Work Sans Black";
+        font: normal normal 900 16px/19px var(--sans-black);
         letter-spacing: 0px;
         color: $text-color;
         :nth-child(n){
@@ -21,19 +21,19 @@
             color: $text-color
         }
         @media (max-width: 700px) {
-            font: normal normal 900 14px/19px "Work Sans Black";
+            font: normal normal 900 14px/19px var(--sans-black);
         }
     }
     .row{
         display: flex;
-        font: normal normal 300 16px/19px "Work Sans Light";
+        font: normal normal 300 16px/19px var(--sans-light);
         letter-spacing: 0px;
         color: $text-color;
         :nth-child(n){
             padding: 0 5px;
         }
         @media (max-width: 700px) {
-            font: normal normal 300 12px/19px "Work Sans Light";
+            font: normal normal 300 12px/19px var(--sans-light);
         }
     }
     .firstRow{

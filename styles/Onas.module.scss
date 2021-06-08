@@ -13,15 +13,15 @@
             color: $text-color;
             width: 171px;
             .title{
-                font: normal normal 900 27px/32px "Work Sans Black";
+                font: normal normal 900 27px/32px var(--sans-black);
                 width: 565px;
                 margin-bottom: 50px;
             }
             .textOne{
-                font: normal normal 300 16px/19px "Work Sans Light";
+                font: normal normal 300 16px/19px var(--sans-light);
             }
             .textTwo{
-                font: normal normal 900 16px/19px "Work Sans Black";
+                font: normal normal 900 16px/19px var(--sans-black);
             }
         }
         .right{

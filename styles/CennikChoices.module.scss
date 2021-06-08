@@ -168,31 +168,31 @@
 }
 
 .blockTitle{
-    font: normal normal 24px/28px "Work Sans Medium";
+    font: normal normal 24px/28px var(--sans-medium);
     color: $text-color;
     padding-top: 38px;
     z-index: 1;
     text-align: center;
     @media (max-width: 1023px) {
         padding-top: 21px;
-        font: normal normal 20px/24px "Work Sans Medium";
+        font: normal normal 20px/24px var(--sans-medium);
     }
 }
 
 .digit{
-    font: normal normal 900 100px/33px "Work Sans Black";
+    font: normal normal 900 100px/33px var(--sans-black);
     letter-spacing: 4px;
     color: $text-color;
     padding-top: 60px;
     z-index: 1;
     @media (max-width: 1023px) {
         padding-top: 25px;
-        font: normal normal 900 60px/33px "Work Sans Black";
+        font: normal normal 900 60px/33px var(--sans-black);
     }
 }
 
 .afterDigit{
-    font: normal normal 300 16px/33px "Work Sans Light";
+    font: normal normal 300 16px/33px var(--sans-light);
     letter-spacing: 0.64px;
     color: $text-color;
     padding-top: 25px;
@@ -200,7 +200,7 @@
     @media (max-width: 1023px) {
         padding-top: 18px;
         padding-bottom: 25px;
-        font: normal normal 300 14px/33px "Work Sans Light";
+        font: normal normal 300 14px/33px var(--sans-light);
     }
 }
 
@@ -237,7 +237,7 @@
 }
 
 .description{
-    font: normal normal 300 16px/28px "Work Sans Light";
+    font: normal normal 300 16px/28px var(--sans-light);
     letter-spacing: 0.64px;
     color: $text-color;
     padding: 0 20px;
@@ -245,7 +245,7 @@
     z-index: 1;
     @media (max-width: 1023px) {
         padding: 30px 20px 0 20px;
-        font: normal normal 300 14px/28px "Work Sans Light";
+        font: normal normal 300 14px/28px var(--sans-light);
     }
 }
 

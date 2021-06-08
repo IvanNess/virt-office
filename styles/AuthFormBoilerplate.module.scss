@@ -36,7 +36,7 @@
         // height: 3rem;
         margin-top: 10px;
         padding-left: 18px;
-        font: normal normal 300 16px/19px "Work Sans Light";
+        font: normal normal 300 16px/19px var(--sans-light);
         letter-spacing: 0px;
         color: #FFFFFF;
         &[type=submit]{
@@ -88,7 +88,7 @@
 }
 
 .left{
-    font: normal normal 300 13px/15px "Work Sans Light";
+    font: normal normal 300 13px/15px var(--sans-light);
     letter-spacing: 0px;
     color: #121109;
     cursor: pointer;

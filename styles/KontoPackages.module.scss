@@ -10,7 +10,7 @@
     }
     .mainPackageName{
         // font-weight: bolder;
-        font-family: "Work Sans Black";
+        font-family: var(--sans-black);
     }
     .packageName{
         // color: #999999;
@@ -27,7 +27,7 @@
         @media (max-width: 700px) {
             height: 35px;
             width: 100%;
-            font: normal normal bold 14px/19px "Work Sans Black";
+            font: normal normal bold 14px/19px var(--sans-black);
         }
     }
     .linkBtn{

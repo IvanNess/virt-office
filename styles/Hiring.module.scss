@@ -133,7 +133,7 @@
     @media (max-width: 1124px){
         width: 138px;
         height: 38px;
-        font: normal normal bold 12px/19px "Work Sans Black";
+        font: normal normal bold 12px/19px var(--sans-black);
     }
 }
 
@@ -160,7 +160,7 @@
     height: 26px;
     background-color: #ffffff;
     border-radius: 13px;
-    font: normal normal bold 16px/19px "Work Sans Black";
+    font: normal normal bold 16px/19px var(--sans-black);
     letter-spacing: 0.8px;
     color: $main-color;
     cursor: pointer;
@@ -208,7 +208,7 @@
 .rightBarTitle{
     position: fixed;
     margin-top: 64px;
-    font: normal normal 900 35px/42px "Work Sans Black";
+    font: normal normal 900 35px/42px var(--sans-black);
     letter-spacing: 0px;
     color: #FFFFFF;
     text-transform: capitalize;
@@ -243,17 +243,17 @@
 }
 
 .hiringChoiceTitle{
-    font: normal normal 300 16px/25px "Work Sans Light";
+    font: normal normal 300 16px/25px var(--sans-light);
     letter-spacing: 0px;
     color: #FFFFFF;
     text-transform: lowercase;
     @media (max-width: 700px) {
-        font: normal normal 300 14px/25px "Work Sans Light";
+        font: normal normal 300 14px/25px var(--sans-light);
     }
 }
 
 .hiringChoiceValues{
-    font: normal normal 900 16px/25px "Work Sans Black";
+    font: normal normal 900 16px/25px var(--sans-black);
     letter-spacing: 0px;
     color: #FFFFFF;
     text-transform: lowercase;
@@ -263,7 +263,7 @@
     }
     @media (max-width: 700px) {
         // width: 158px;
-        font: normal normal 900 14px/25px "Work Sans Black";
+        font: normal normal 900 14px/25px var(--sans-black);
     }
 }
 
@@ -280,7 +280,7 @@
         color: #ffffff;
         padding: 0;
         padding-right: 5px;
-        font: normal normal 200 24px/35px "Work Sans Thin";
+        font: normal normal 200 24px/35px var(--sans-thin);
     }
 }
 
