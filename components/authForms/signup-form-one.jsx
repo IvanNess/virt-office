@@ -67,8 +67,8 @@ function SignupFormOne({db, auth}) {
 
                 <AuthInput
                     type="text"  
-                    propName="name"
-                    placeholder="Nazwa użytkownika"
+                    propName="email"
+                    placeholder="E-mail"
                     ref={nameRef}
                 />
 

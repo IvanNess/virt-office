@@ -5,7 +5,7 @@ import ProfileBoilerplate from '../../components/profile-boilerplate'
 import { useDispatch, useSelector } from 'react-redux'
 import { editCurrentUser } from '../../redux/actions'
 import axios from 'axios'
-import { Popover, Tooltip, Skeleton, Upload } from 'antd'
+import { Popover, Tooltip, Skeleton, Upload, Modal } from 'antd'
 import { useRef } from 'react'
 import ChangePassword from '../../components/change-password'
 
@@ -117,8 +117,10 @@ function Dane({auth, db}) {
         })
         console.log('form', form)
         setIsZapiszDiasabled(true)
-        if(form.username.trim()===''){
-            setForm(form=>({...form, usernameError : 'Pole wymagane'}))
+        // if(form.username.trim()===''){
+        //     setForm(form=>({...form, usernameError : 'Pole wymagane'}))
+        if((form.username+'').trim().length ===0 || !form.username.includes('@')){
+            setForm(form=>({...form, usernameError : 'Nie wygląda jak prawdziwy e-mail.'}))
             setIsZapiszDiasabled(false)
             loginRef.current.focus()
             return
@@ -129,12 +131,12 @@ function Dane({auth, db}) {
             fullNameRef.current.focus()
             return
         }
-        if((form.email+'').trim().length ===0 || !form.email.includes('@')){
-            setForm(form=>({...form, emailError : 'Nie wygląda jak prawdziwy e-mail.'}))
-            setIsZapiszDiasabled(false)
-            emailRef.current.focus()
-            return
-        }
+        // if((form.email+'').trim().length ===0 || !form.email.includes('@')){
+        //     setForm(form=>({...form, emailError : 'Nie wygląda jak prawdziwy e-mail.'}))
+        //     setIsZapiszDiasabled(false)
+        //     emailRef.current.focus()
+        //     return
+        // }
         if(form.contactPhone && !isPossiblePhoneNumber(form.contactPhone)){
             setForm(form=>({...form, contactPhoneError : 'Nie wygląda jak prawdziwy numer telefonu.'}))
             setIsZapiszDiasabled(false)
@@ -181,24 +183,22 @@ function Dane({auth, db}) {
             //     await db.collection('users').doc(userId).update(form)
             // }
 
+            const newData = {
+                NIP,
+                companyName: form.companyName.trim(),
+                companyNameChanged: form.companyName.trim() !== currentUser.companyName,
+                contactPhone: form.contactPhone || '',
+                fullName: form.fullName.trim(),
+                username: form.username.trim(),
+                adress: form.adress?.trim() || '',
+            }
+
             const response = await axios({
                 url: "/api/updateuser",
                 method: "POST",
-                data: {token, data: {
-                    NIP,
-                    companyName: form.companyName.trim(),
-                    companyNameChanged: form.companyName.trim() !== currentUser.companyName,
-                    contactEmail: form.contactEmail.trim(),
-                    email: form.email.trim(),
-                    contactPhone: form.contactPhone || '',
-                    fullName: form.fullName.trim(),
-                    username: form.username.trim(),
-                    adress: form.adress?.trim() || '',
-                    // innerLogo: (form.innerLogo && form.imgDataChanged) ? form.innerLogo : null,
-                    // innerLogoChanged: form.imgDataChanged
-                }}
+                data: {token, data: newData}
             })
-            dispatch(editCurrentUser(form))
+            dispatch(editCurrentUser({...newData, email: newData.username}))
             setIsEditMode(false)
             setIsZapiszDiasabled(false)
             setForm(form=>({...form, usernameError: null}))
@@ -209,6 +209,12 @@ function Dane({auth, db}) {
                 loginRef.current.focus()
             }
             setIsZapiszDiasabled(false)
+            console.log('auth user', auth.currentUser)
+            Modal.error({
+                title: 'Błąd podczas zapisywania danych na serwerze.',
+                content: error.response?.data || 'Błąd podczas zapisywania danych na serwerze.',
+                onOk: cancel
+            })
         }
     }
 
@@ -223,7 +229,8 @@ function Dane({auth, db}) {
 
     function cancel(){
         setIsEditMode(false)
-        // setForm({...currentUser, imgDataChanged: false})         
+        // setForm({...currentUser, imgDataChanged: false})      
+        setForm({...currentUser})            
     }
 
     function changePhoneNumber(value){
@@ -293,10 +300,10 @@ function Dane({auth, db}) {
                         <div className={styles.noEdit}>
                             <div className={styles.noEditFields}>
                                 <div className={styles.left}>
-                                    <ReadyField title='Login:' value={currentUser?.username} skeleton={skeletonBtn}/>
+                                    <ReadyField title='Login:' value={currentUser?.email} skeleton={skeletonBtn}/>
                                     <ReadyField title='Imię i Nazwisko:' value={currentUser?.fullName} skeleton={skeletonBtn}/>
                                     <ReadyField title='Adres:' value={currentUser?.adress} skeleton={skeletonInput}/>
-                                    <ReadyField title='Adres email:' value={currentUser?.email} skeleton={skeletonBtn}/>
+                                    {/* <ReadyField title='Adres email:' value={currentUser?.email} skeleton={skeletonBtn}/> */}
                                 </div>
                                 <div className={styles.right}>
                                     <ReadyField title='Telefon:' value={currentUser?.contactPhone} skeleton={skeletonBtn}/>
@@ -361,13 +368,13 @@ function Dane({auth, db}) {
                                 />
                             </Tooltip></Tooltip>
 
-                            <Tooltip title="E-mail" placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
+                            {/* <Tooltip title="E-mail" placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
                             <Tooltip title={form.emailError} color={"red"} placement="bottomLeft" visible={form.emailError}>
                                 <input className={styles.name} type="text" placeholder="E-mail" 
                                     value={form?.email} onChange={(e)=>changeField(e, 'email')}
                                     onFocus={(e)=>onFocus('email')} ref={emailRef}
                                 />
-                            </Tooltip></Tooltip>
+                            </Tooltip></Tooltip> */}
 
                             <Tooltip title="Telefon" placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
                             <Tooltip title={form.contactPhoneError} color={"red"} placement="bottomLeft" visible={form.contactPhoneError}>

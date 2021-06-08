@@ -64,61 +64,34 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                 // dispatch(setLoginFormProp('password', ''))
                 return
             }
+
             try {
-                // const usernameDocs = await db.collection("usernames").where("username", "==", loginForm.login).get()
-                const emailresponse = await axios({
-                    url: "/api/getuseremail",
-                    method: "POST",
-                    data: { username: loginForm.login }
-                })
-                const email = emailresponse.data.email
-                // console.log('usernameDocs', usernameDocs)
-                // if(usernameDocs.docs.length===0){
-                //     dispatch(setLoginFormProp('password', ''))
-                //     dispatch(setLoginFormProp('passwordPlaceholder', `There is no user or password wrong.`))
+                await auth.signInWithEmailAndPassword(loginForm.login, loginForm.password)
+                dispatch(setShowAuth({show: false}))
+                const body = document.querySelector("body")
+                body.style.overflow = "auto"
+                // router.push('/konto/profil')
+                // if(payAfterRegister){
+                //     dispatch(setPayAfterRegister(false))
+                //     //pay actions
+                //     console.log('pay action')
+                //     await packagePay({auth, hiringChoices})
                 //     return
                 // }
-                // const username = usernameDocs.docs[0].data()
-                // console.log('username', username)
-                try {
-                    await auth.signInWithEmailAndPassword(email, loginForm.password)
-                    dispatch(setShowAuth({show: false}))
-                    const body = document.querySelector("body")
-                    body.style.overflow = "auto"
-                    // router.push('/konto/profil')
-                    // if(payAfterRegister){
-                    //     dispatch(setPayAfterRegister(false))
-                    //     //pay actions
-                    //     console.log('pay action')
-                    //     await packagePay({auth, hiringChoices})
-                    //     return
-                    // }
-                    if(selectedDate.registerAndReserve){
-                        // dispatch(registerAndReserve(false))
-                        await reservationPay({auth, selectedDate, startHour, finishHour})
-                        return
-                    }
-                    if(calendarRedirect)
-                        return router.push('/konto/rezerwacja')
-                    // router.push('/konto/profil')
-                    if(!payAfterRegister){
-                        router.push('/konto/profil')
-                    }
-                } catch (error) {
-                    console.log(error)
-                    if(error?.message==='The password is invalid or the user does not have a password.'){
-                        dispatch(setLoginFormProp('passwordPlaceholder', 'there is no user or password wrong'))
-                        return
-                    }
-                    Modal.error({
-                        title: 'This is an error message',
-                        content: `${error.response?.data || error.message}`,
-                    });
+                if(selectedDate.registerAndReserve){
+                    // dispatch(registerAndReserve(false))
+                    await reservationPay({auth, selectedDate, startHour, finishHour})
                     return
+                }
+                if(calendarRedirect)
+                    return router.push('/konto/rezerwacja')
+                // router.push('/konto/profil')
+                if(!payAfterRegister){
+                    router.push('/konto/profil')
                 }
             } catch (error) {
                 console.log(error)
-                if(error.response?.data==='there is no user or password wrong'){
+                if(error?.message==='The password is invalid or the user does not have a password.'){
                     dispatch(setLoginFormProp('passwordPlaceholder', 'there is no user or password wrong'))
                     return
                 }
@@ -128,6 +101,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                 });
                 return
             }
+
         } else{
             switch (page){
                 case 0:   
@@ -150,8 +124,10 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     });
 
                 case 1: 
-                    if(!signupForm.name || signupForm.name.length ===0){
-                        dispatch(setSignupFormProp('namePlaceholder', 'There is no empty string allowed'))
+                    // if(!signupForm.name || signupForm.name.length ===0){
+                    //     dispatch(setSignupFormProp('namePlaceholder', 'There is no empty string allowed'))
+                    if(!signupForm.email || signupForm.email.length ===0 || !signupForm.email.includes('@')){
+                        dispatch(setSignupFormProp('emailPlaceholder', 'Nie wygląda jak prawdziwy email adress...'))
                         break
                     }
                     try {
@@ -163,7 +139,8 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         const checkUserResponse = await axios({
                             url: "/api/checkuser",
                             method: "POST",
-                            data: {username: signupForm.name},
+                            // data: {username: signupForm.name},
+                            data: {username: signupForm.email},
                             withCredentials: true
                         })
                         // if(usernameData.docs.length === 0){
@@ -212,11 +189,11 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     //     dispatch(setSignupFormProp('NIPPlaceholder', 'NIP should be ten digit number'))
                     //     break
                     // }
-                    if(!signupForm.contactEmail || signupForm.contactEmail.length ===0 || !signupForm.contactEmail.includes('@')){
-                        dispatch(setSignupFormProp('contactEmailPlaceholder', 'Nie wygląda jak prawdziwy email adress...'))
-                        // dispatch(setSignupFormProp('contactEmail', ''))
-                        break
-                    }
+                    // if(!signupForm.contactEmail || signupForm.contactEmail.length ===0 || !signupForm.contactEmail.includes('@')){
+                    //     dispatch(setSignupFormProp('contactEmailPlaceholder', 'Nie wygląda jak prawdziwy email adress...'))
+                    //     // dispatch(setSignupFormProp('contactEmail', ''))
+                    //     break
+                    // }
                     if(!signupForm.phoneNumber || signupForm.phoneNumber.length ===0){
                         // dispatch(setSignupFormProp('phoneNumber', ''))
                         dispatch(setSignupFormProp('phoneNumberPlaceholder', 'There is no empty string allowed'))
@@ -274,13 +251,14 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                             url: "/api/createuser",
                             method: "POST",
                             data: {
-                                username: signupForm.name, 
+                                // username: signupForm.name, 
+                                username: signupForm.email, 
                                 password: signupForm.password, 
                                 fullName: signupForm.fullName, 
                                 companyName: signupForm.companyName, 
                                 NIP: signupForm.NIP, 
                                 contactFullName: signupForm.contactFullName, 
-                                contactEmail: signupForm.contactEmail, 
+                                // contactEmail: signupForm.contactEmail, 
                                 contactPhone: signupForm.phoneNumber,
                                 innerLogo
                             },
@@ -318,13 +296,9 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                             return
                         }
                         if(error.response?.data==="The email address is already in use by another account."){
-                            dispatch(setSignupFormProp('contactEmailPlaceholder', 'The email address is already in use by another account.'))
+                            dispatch(setSignupFormProp('emailPlaceholder', 'The email address is already in use by another account.'))
                             // dispatch(setSignupFormProp('contactEmail', ''))
-                            return
-                        }
-                        if(error.response?.data==="The email address is already in use by another account."){
-                            dispatch(setSignupFormProp('contactEmailPlaceholder', 'The email address is already in use by another account.'))
-                            // dispatch(setSignupFormProp('contactEmail', ''))
+                            dispatch(setSignupFormProp('page', 1))
                             return
                         }
                         if(error.response?.data==='This username is already in use by another account.'){

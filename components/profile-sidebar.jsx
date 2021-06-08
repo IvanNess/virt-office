@@ -23,7 +23,7 @@ function ProfileSidebar({auth, db}) {
         // setIsButtonDisabled(true)
         try {
             await auth.signOut()
-            dispatch(logoutAction())
+            dispatch(logoutAction()) 
             router.push('/')
         } catch (error) {
             console.log(error)

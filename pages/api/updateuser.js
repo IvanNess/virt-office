@@ -1,46 +1,20 @@
 import cors from '../../init-middleware'
+import { firebaseInit } from '../../server-setup/firebase'
+import pool from '../../server-setup/pg'
+import '../../server-setup/mongoose-setup'
+// import transporter from '../../server-setup/nodemailer'
+import nodemailer from 'nodemailer'
 
-const mongoose = require('mongoose')
-const PackageSchema = require('../../mongo-models/package-model')
+
 const UserSchema = require('../../mongo-models/user-model')
 const admin = require('firebase-admin')
 
-const serviceAccount = {
-    "type": process.env.TYPE,
-    "project_id": process.env.PROJECT_ID,
-    "private_key_id": process.env.PRIVATE_KEY_ID,
-    "private_key": process.env.PRIVATE_KEY.replace(/\\n/g, '\n') ,
-    "client_email": process.env.CLIENT_EMAIL,
-    "client_id": process.env.CLIENT_ID,
-    "auth_uri": process.env.AUTH_URI,
-    "token_uri": process.env.TOKEN_URI,
-    "auth_provider_x509_cert_url": process.env.AUTH_PROVIDER_CERT_URL,
-    "client_x509_cert_url": process.env.CLIENT_CERT_URL
-}  
-
-const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_URI}/${process.env.MONGO_DB}?retryWrites=true&w=majority`
-
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-
-const dbConnection = mongoose.connection
-dbConnection.on('error', console.error.bind(console, 'connection error:'))
-dbConnection.once('open', async function () {
-    console.log('db connected!!!')
-})
 
 export default async(req, res) => {
     // Run cors
     await cors(req, res)
-
-    try {
-        admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount)
-        });
-    } catch(err){
-        if (!/already exists/.test(err.message)) {
-            console.error('Firebase initialization error', err.stack)
-        }
-    }
+    
+    firebaseInit()
 
     const {token, data} = req.body
 
@@ -50,6 +24,9 @@ export default async(req, res) => {
         const uid = decodedToken.uid
 
         const user = await UserSchema.findOne({ firebaseId: uid }).exec()
+        const oldData = {...user._doc}
+        const username = user.username
+        let upd
 
         //check if new username is available
         if(user.username !== data.username){
@@ -60,34 +37,89 @@ export default async(req, res) => {
             }
         }
 
-        //check if it is necessary to update email
-        if(data.email && user.email !== data.email){
-            //create an record that we're going to update an email.
-            const record = {
-                oldEmail: user.email,
-                newEmail: data.email,
-                isChangedInFirebase: false,
-                isCompleted: false
-            }
-            //save this record in UpdateEmailRecords db.
-            // implement here...
+        //check if it is necessary to update username
+        if(data.username && user.username !== data.username){
 
             try {
-                // update email in firebase
-                await admin.auth().updateUser(uid, {
-                    email: data.email
+                const userrecord = await admin.auth().updateUser(uid, {
+                    email: data.username
                 })
+                console.log('updated userrecord', userrecord.uid)
 
-                // update an updateEmailRecord with "isChangedInFirebase: true" prop.
-                // implement here...
-                
-                const upd = await user.updateOne(data)
+                try {
+                    upd = await user.updateOne(data)
+                    console.log('mongodb updated')
+                } catch(error){ 
+                    try {
+                        await admin.auth().updateUser(uid, {email: username})                   
+                        console.log('Error in email updating:', error)    
+                        return res.status(500).json(error.message)
+                    } catch (error) {
+                        //send email with error
+                        return res.status(500).json(error.message)                        
+                    } 
+                }
 
-                // update an updateEmailRecord with "isCompleted: true" prop.
-                // implement here...
+                try{
+                    ;await (async () => {
+                        const client = await pool.connect()
+                        try {
+                            const company_name = data.username
+                            const prev_name = user.username    
 
-                // update companyname in postgresdb
-                // implement here...
+                            const resp = await client.query("UPDATE companies SET company_name = $1 WHERE company_name = $2 RETURNING id", 
+                                [company_name, prev_name]
+                            )            
+                            console.log('resp', resp)
+                            const postgresId = resp.rows[0].id
+                            console.log('pgid', postgresId)
+            
+                        } finally {
+                            // Make sure to release the client before any error handling,
+                            // just in case the error handling itself throws an error.
+                            console.log('FINALLY')
+                            client.release()
+                        }
+                    })()
+            
+                } catch (error) {
+                    try{
+                        await admin.auth().updateUser(uid, {
+                            email: username
+                        })   
+                        console.log('old data', oldData)
+                        upd = await user.updateOne(oldData)                
+                        console.log('Error in email updating:', error)    
+                        return res.status(500).json(error.message)       
+                    } catch(error){
+                        //send email
+
+                        // const transporter = nodemailer.createTransport({
+                        //     service: 'gmail',
+                        //     host: "smtp.gmail.com",
+                        //     port: 465,
+                        //     secure: true,
+                        //     auth: {
+                        //         type: 'OAuth2',
+                        //         user: process.env.EMAIL,
+                        //         pass: process.env.EMAIL_PASS,
+                        //         clientId: process.env.OAUTH_CLIENTID,
+                        //         clientSecret: process.env.OAUTH_CLIENT_SECRET,
+                        //         refreshToken: process.env.OAUTH_REFRESH_TOKEN
+                        //     }
+                        // })
+
+                        // const message = {
+                        //     from: process.env.EMAIL,
+                        //     to: ["ivan@hrex.eu"],
+                        //     subject: "User data updating error",
+                        //     html: `error: ${error.message}; oldData: ${{...oldData}}; newData: ${{...data}}`
+                        // };
+                    
+                        // const info = await transporter.sendMail(message)
+                        return res.status(500).json(error.message)       
+                    }
+                }
 
                 return res.status(200).json({
                     message: "user data was updated",
@@ -99,20 +131,20 @@ export default async(req, res) => {
                 // update an updateEmailRecord with error message
                 // implement here...
 
-                return res.status(500).json('email updating error.')       
+                return res.status(500).json(error.message)       
             }
         }
 
-        const upd = await user.updateOne(data)
+        upd = await user.updateOne(data)
 
-        res.status(200).json({
+        return res.status(200).json({
             message: "user data was updated",
             user: upd
         })
 
     } catch (error) {
         console.log('Error in user updating:', error)
-        res.status(500).json('user update error.')        
+        return res.status(500).json(error.message)        
     }
 
 }

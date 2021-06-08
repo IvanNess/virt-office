@@ -55,11 +55,11 @@ function SignupFormTwo({db, auth}) {
     //     }
     // }, [signupForm.NIPPlaceholder])
 
-    useEffect(()=>{
-        if(signupForm.contactEmailPlaceholder){
-            contactEmailRef.current.focus()
-        }
-    }, [signupForm.contactEmailPlaceholder])
+    // useEffect(()=>{
+    //     if(signupForm.contactEmailPlaceholder){
+    //         contactEmailRef.current.focus()
+    //     }
+    // }, [signupForm.contactEmailPlaceholder])
 
     useEffect(()=>{
         if(signupForm.phoneNumberPlaceholder){
@@ -77,8 +77,8 @@ function SignupFormTwo({db, auth}) {
             // }else if(signupForm.NIPPlaceholder){
             //     NIPRef.current.focus()
             // }
-            }else if(signupForm.contactEmailPlaceholder){
-                contactEmailRef.current.focus()
+            // }else if(signupForm.contactEmailPlaceholder){
+            //     contactEmailRef.current.focus()
             }else if(signupForm.phoneNumberPlaceholder){
                 phoneRef.current.focus()
             }
@@ -115,12 +115,12 @@ function SignupFormTwo({db, auth}) {
                     ref={NIPRef}
                 /> */}
 
-                <AuthInput
+                {/* <AuthInput
                     type="text"  
                     propName="contactEmail"
                     placeholder="E-mail do osoby kontaktowej"
                     ref={contactEmailRef}
-                />
+                /> */}
 
                 <PhoneInput 
                     placeholder={signupForm.phoneNumberPlaceholder ?? "Telefon"} 
