@@ -4,7 +4,7 @@ import styles from '../styles/CennikChoices.module.scss'
 import Link from 'next/link'
 import { Checkbox } from 'antd'
 import initCheckboxValues from '../accessories/user-package-choices'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { updateHiringChoice, setHiringChoiceNumber } from '../redux/actions'
 import { useRouter } from 'next/router'
 import WynajmijButton from './wynajmij-button'
@@ -16,6 +16,7 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
     const [price, setPrice] = useState(initCheckboxValues.reduce((res, item)=> res + item.price, 0))
     const [selectedBlock, setSelectedBlock] = useState(null)
     const router = useRouter()
+    const hiringChoices = useSelector(state=>state.hiringChoices)
 
     const dispatch = useDispatch()
 
@@ -58,13 +59,18 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
             prop: "pakietTitle", 
             value: idx===0 ? "Wirtualny adres": idx===2 ? "Profesjonalne biuro":`Optymalny pakiet`
         }))
+        const lengthCoeff = hiringChoices[1].lengthCoeff || 1
+        console.log('lengthCoeff', lengthCoeff)
+        const priceResult = idx===0 ? 55: idx===2 ? 450: price
         dispatch(updateHiringChoice({
             number: 1, 
             prop: "price", 
-            value: idx===0 ? 55:
-                idx===2 ? 450: price
+            value: priceResult
         }))
         dispatch(updateHiringChoice({ number: 1, prop: "isComplete", value: true }))
+        if(hiringChoices[1].lengthCoeff){
+            dispatch(updateHiringChoice({ number: 2, prop: "fullPrice", value: priceResult * hiringChoices[1].lengthCoeff }))
+        }
         if(isBtn){
             dispatch(setHiringChoiceNumber(2))
             router.push('/wynajecie')

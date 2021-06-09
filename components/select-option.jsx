@@ -3,6 +3,7 @@ import styles from '../styles/SelectOption.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateSelectedServiceId, updateSelectedPeriodId, updateHiringChoice } from '../redux/actions'
 import { useRef } from 'react'
+import { packageMonthCoeff, packageYearCoeff, packageKwartalCoeff } from '../accessories/constants'
 
 function SelectOption({options, reducerProp, number, children}) {
 
@@ -21,8 +22,8 @@ function SelectOption({options, reducerProp, number, children}) {
         //     default: return
         // }
         console.log('option clicked')
-        const coeff = id === "0" ? 1 :
-            id === "1" ? 2.5 : 9
+        const coeff = id === "0" ? packageMonthCoeff :
+            id === "1" ? packageKwartalCoeff : packageYearCoeff
         const updPrice = hiringChoices[0].price * coeff
         setSelectedOptionId(id)
         const option = options.find(option=>option.id===id)
