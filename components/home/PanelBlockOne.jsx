@@ -52,6 +52,27 @@ const PanelBlockOne = () => {
                     </div>
                 </Block>
             }
+            {language === 'en' && 
+                <Block className='block' showMore={false}>
+                    <div className={styles.blockHeader}>
+                        <div className={styles.blockHeaderFirst}>
+                            Attractive Price
+                        </div>
+                    </div>
+                    <div className={styles.blockText}>
+                        We offer address lease with a package of services at an attractive price from   
+                        <span className={styles.boldText}> 55&nbsp;PLN&nbsp;PER&nbsp;MONTH.</span>
+                    </div>
+                    <div className={styles.blockHeader}>
+                        <div className={styles.blockHeaderFirst}>
+                            Cost Optimisation
+                        </div>
+                    </div>
+                    <div className={styles.blockText}>
+                        In comparison to the lease of a traditional office, the virtual office (virtual address) allows you to optimise your business costs. With the possibility of composing a package of services customised to your needs, you pay only for what you really need.
+                    </div>
+                </Block>
+            }
         </div>
     )
 }

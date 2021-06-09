@@ -19,6 +19,12 @@ const MiddleText = () => {
                     В рамках послуги ми також надаємо доступ до конференц-залу, у яком протягом всього часу оренди на моніторах буде відображено логотип вашої компанії. Кімната обладнана конференц-столом, проектором з екраном для презентацій, принтером та сканером, кондиціонером, міні-кухнею для приготування кави та чаю для комфортних розмов.
                 </p>
             }
+            {language === 'en' && 
+                <p>          
+                    The scope of our service includes also access to a conference room, which will be marked with the logo of your company for the period of its use. The room is provided with a conference table, a projector with a screen for the display of presentations, a printer with a scanner, a kitchenette for the preparation of coffee or tea and a chillout zone ensuring the comfort of negotiations.                
+                </p>
+            }
+
         </div>
     )
 }

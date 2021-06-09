@@ -25,21 +25,38 @@ const HeaderThree = () => {
                 </div>
             }
             {language === 'ua' && 
-            <div className={styles.headerFlex}>
-                <div className={styles.headerTitle}>
-                    Віртуальна пропозиція - не тільки як частина послуги, ви можете використовувати <span className={styles.headerBoldFont}>КОНФЕРЕНЦ ЗАЛОМ  </span>
-                     {/* oznakowanej <span className={styles.headerBoldFont}>LOGIEM</span> własnej firmy */}
+                <div className={styles.headerFlex}>
+                    <div className={styles.headerTitle}>
+                        Віртуальна пропозиція - не тільки як частина послуги, ви можете використовувати <span className={styles.headerBoldFont}>КОНФЕРЕНЦ ЗАЛОМ  </span>
+                        {/* oznakowanej <span className={styles.headerBoldFont}>LOGIEM</span> własnej firmy */}
+                    </div>
+                    <div className={styles.headerText}>
+                        Часом  треба проводити  
+                        <span className={styles.headerTextBoldFont}> ДІЛОВІ ЗУСТРІЧИ </span>
+                        , тому ми пропонуємо 
+                        <span className={styles.headerTextBoldFont}> КОНФЕРЕНЦІЙНИЙ ПРОСТІР </span>
+                        за адресою реєстрації компанії, де ви можете підписувати  
+                        <span className={styles.headerTextBoldFont} > НОВІ КОНТРАКТИ </span>   
+                        за одним столом з партнером за чашкою кави.             
+                    </div>
+                </div>            
+            }
+            {language === 'en' && 
+                <div className={styles.headerFlex}>
+                    <div className={styles.headerTitle}>
+                        not only <span className={styles.headerBoldFont}>VIRTUALLY</span> – our offer allows you to use a <span className={styles.headerBoldFont}>CONFERENCE SPACE</span> marked with the <span className={styles.headerBoldFont}>LOGO </span> of your own company
+                    </div>
+                    <div className={styles.headerText}>
+                        It is necessary to 
+                        <span className={styles.headerTextBoldFont}> MEET </span>
+                        from time to time, so we put a 
+                        <span className={styles.headerTextBoldFont}> CONFERENCE SPACE </span>
+                        at your disposal at the business registration address, where you can hold negotiations and sign 
+                        <span className={styles.headerTextBoldFont} > LUCRATIVE CONTRACTS </span> at one table with a cup of good “coffee”.
+                    </div>
                 </div>
-                <div className={styles.headerText}>
-                    Часом  треба проводити  
-                    <span className={styles.headerTextBoldFont}> ДІЛОВІ ЗУСТРІЧИ </span>
-                    , тому ми пропонуємо 
-                    <span className={styles.headerTextBoldFont}> КОНФЕРЕНЦІЙНИЙ ПРОСТІР </span>
-                    за адресою реєстрації компанії, де ви можете підписувати  
-                    <span className={styles.headerTextBoldFont} > НОВІ КОНТРАКТИ </span>   
-                    за одним столом з партнером за чашкою кави.             
-                </div>
-            </div>            }
+            }
+
         </div>
     )
 }

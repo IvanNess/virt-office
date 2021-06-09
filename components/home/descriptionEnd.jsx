@@ -19,6 +19,10 @@ const DescriptionEnd = () => {
                     використовуючи нашу пропозицію оренди віртуальної адреси або орендуючи конференц-зал, ви можете виконати всі формальності в інтернеті або за попереднім записом у нашому офісі.
                 </>
             }
+            {language === 'en' && 
+                <>
+                    by using our virtual address or conference room lease offer, you can arrange all formalities online or upon prior appointment in our office.                </>
+            }
         </div>
     )
 }

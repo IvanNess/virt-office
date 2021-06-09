@@ -38,6 +38,21 @@ const HeaderOne = () => {
                     </div>
                 </div>  
             }
+            {language === 'en' && 
+                <div className={styles.headerFlex}>
+                    <div className={styles.headerTitle}>
+                        optimum business costs thanks to <span className={styles.headerBoldFont}>VIRTUAL</span> offices from <span className={styles.headerBoldFont}>55 PLN </span> per month
+                    </div>
+                    <div className={styles.headerText}>
+                        <span className={styles.headerTextBoldFont}>LOW FIXED BUSINESS COSTS </span>
+                        enable you to earn more efficiently. The specificity of some kinds of business makes it possible to 
+                        <span className={styles.headerTextBoldFont}> SAVE ON </span>
+                        the lease of office space -
+                        <span className={styles.headerTextBoldFont}> USE THIS OPPORTUNITY </span>
+                        and <span className={styles.headerTextBoldFont}>EARN MORE.</span>
+                    </div>
+                </div>  
+            }
         </div>
     )
 }

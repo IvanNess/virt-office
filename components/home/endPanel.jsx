@@ -66,6 +66,34 @@ const EndPanel = () => {
                     </div>
                 </div>   
             }
+            {language === 'en' && 
+                <div className={styles.blockLargeInner}>
+                    <div className={styles.left}>
+                        <div className={styles.blockHeader}>
+                            <div className={styles.blockHeaderFirst}>
+                                Pay Only For Used Services
+                            </div>
+                        </div>
+                        <div className={styles.blockText}>
+                            <span>
+                                The virtual address of your company leased in <Link href='/'><a>virtoffice.pl</a></Link> allows you to handle correspondence, use the conference room, optimise accounting costs and archive documents. All address lease services can be adapted to your particular needs. This will enable you to run your business at relatively low and optimum fixed costs.
+                            </span>
+                        </div>
+                    </div>
+                    <div className={styles.right}>
+                        <div className={styles.blockHeader}>
+                            <div className={styles.blockHeaderFirst}>
+                                Conference Room
+                            </div>
+                        </div>
+                        <div className={styles.blockText}>
+                            <span>
+                                The lease of a conference room gives you an opportunity to hold business meetings in a fully automated and well-equipped interior. The screen, the projector, the conference table, the chillout zone and sanitary and kitchen facilities ensure the full comfort of your negotiations. In addition, the room will be marked with the logo of your company for the period of the meeting, and you can arrange all formalities online.
+                            </span>
+                        </div>   
+                    </div>
+                </div>   
+            }
         </>
     )
 }

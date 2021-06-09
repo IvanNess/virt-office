@@ -271,6 +271,9 @@
     // }
     width: 100%;
     border: 1px solid $main-color;
+    >:nth-child(1){
+        z-index: 1;
+    }
     @media (max-width: 700px) {
         padding: 24px 24px 0 24px;
     }
@@ -447,12 +450,12 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 450px;
+        min-height: 450px;
         @media (max-width: 1024px){
-            height: 350px;
+            min-height: 350px;
         }        
         @media (max-width: 700px){
-            height: auto;
+            min-height: auto;
         }
     }
 }

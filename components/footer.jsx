@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setShowAuth, logoutAction } from '../redux/actions'
 import Logo from './logo'
 import Link from 'next/link'
-import { email } from '../accessories/constants'
+import { email, buttonNames, phrases } from '../accessories/constants'
 import WynajmijButton from './wynajmij-button'
 
 const Footer = ({auth}) => {
@@ -16,6 +16,7 @@ const Footer = ({auth}) => {
 
     const showAuth = useSelector(state=>state.showAuth)
     const currentUser = useSelector(state=>state.currentUser)
+    const language = useSelector(state=>state.language)
 
     function onAuth(isLogin){
         dispatch(setShowAuth({show: true, isLogin}))
@@ -39,17 +40,17 @@ const Footer = ({auth}) => {
                 <div className={styles.wrapper}>
                     <div className={styles.column}>
                         {/* <div><Link href="/onas"><a><h2>o nas</h2></a></Link></div> */}                    
-                        <div><Link href="/cennik"><a><h2 >cennik</h2></a></Link></div>     
+                        <div><Link href="/cennik"><a><h2 >{buttonNames[language].prices}</h2></a></Link></div>     
                         {/* <div><Link href="/ksiegowosc"><a><h2 className={styles.last}>księgowość</h2></a></Link></div> */}
-                        <div><Link href="/ksiegowosc"><a><h2>księgowość</h2></a></Link></div>
-                        <div><Link href="/regulamin"><a><h2>regulamin</h2></a></Link></div>
-                        <div><Link href="/polityka-prywatnosci"><a><h2>polityka prywatności</h2></a></Link></div>
+                        <div><Link href="/ksiegowosc"><a><h2>{buttonNames[language].accounting}</h2></a></Link></div>
+                        <div><Link href="/regulamin"><a><h2>{buttonNames[language].conditions}</h2></a></Link></div>
+                        <div><Link href="/polityka-prywatnosci"><a><h2>{buttonNames[language].policy}</h2></a></Link></div>
                         {!currentUser && <div className={styles.firstColAuth}>
-                            <div onClick={()=>onAuth(true)}><a><h2 className={styles.first}>zaloguj</h2></a></div>
-                            <div onClick={()=>onAuth(false)}><a><h2>zarejestruj</h2></a></div>
+                            <div onClick={()=>onAuth(true)}><a><h2 className={styles.first}>{buttonNames[language].login}</h2></a></div>
+                            <div onClick={()=>onAuth(false)}><a><h2>{buttonNames[language].register}</h2></a></div>
                         </div>}
                         {currentUser && <div className={styles.firstColAuth}>
-                            <div onClick={logout}><a><h2 className={styles.first}>wyloguj</h2></a></div>
+                            <div onClick={logout}><a><h2 className={styles.first}>{buttonNames[language].logout}</h2></a></div>
                         </div>}
                     </div>
                     <div className={styles.column}>
@@ -85,11 +86,11 @@ const Footer = ({auth}) => {
                         </div> */}
                         <WynajmijButton/>
                         {!currentUser && <div className={styles.secondColAuth}>
-                            <div onClick={()=>onAuth(true)}><a><h2 className={styles.first}>zaloguj</h2></a></div>
-                            <div onClick={()=>onAuth(false)}><a><h2>zarejestruj</h2></a></div>
+                            <div onClick={()=>onAuth(true)}><a><h2 className={styles.first}>{buttonNames[language].login}</h2></a></div>
+                            <div onClick={()=>onAuth(false)}><a><h2>{buttonNames[language].register}</h2></a></div>
                         </div>} 
                         {currentUser && <div className={styles.secondColAuth}>
-                            <div onClick={logout}><a><h2 className={styles.first}>wyloguj</h2></a></div>
+                            <div onClick={logout}><a><h2 className={styles.first}>{buttonNames[language].logout}</h2></a></div>
                         </div>}                   
                     </div>
                     <div className={styles.thirdColumn}>
@@ -103,11 +104,11 @@ const Footer = ({auth}) => {
                                         <Logo/>
                                     </a></Link>
                                 </div>
-                                <div className={styles.textOne}>Działaj z dowolnego miejsca na świecie dzięki opcji biura wirtualnego.</div>
+                                <div className={styles.textOne}>{phrases[language]?.footerOne}</div>
                                 {/* <div className={styles.textTwo}>Skontaktuj sie z nami: 
                                     <a href={`mailto:${email}`}><div className={styles.bold}>{email}</div></a>
                                 </div> */}
-                                <div className={styles.textTwo}>Skontaktuj sie z nami: 
+                                <div className={styles.textTwo}> {phrases[language]?.footerTwo}
                                     {/* <a href={`mailto:${email}`}><div className={styles.bold}>{email}</div></a> */}
                                     <div className={styles.contacts}>
                                         <div className={styles.email}><a href={`mailto://${email}`}>{email}</a></div>

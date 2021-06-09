@@ -50,6 +50,26 @@ const PanelBlockThree = () => {
                     </div>
               </Block>     
             }
+            {language === 'en' && 
+                <Block className='block' showMore={false}>
+                    <div className={styles.blockHeader}>
+                        <div className={styles.blockHeaderFirst}>
+                            Remote Performance of All Operations
+                        </div>
+                    </div>
+                    <div className={styles.blockText}>
+                        All formalities related to the lease of an office or conference room and to the use of our other services can be carried out remotely.
+                    </div>
+                    <div className={styles.blockHeader}>
+                        <div className={styles.blockHeaderFirst}>
+                            Minimum Formalities
+                        </div>
+                    </div>
+                    <div className={styles.blockText}>
+                        It takes only a few minutes to conclude an agreement with us, because we value your time and money. You can use your virtual office via website or application from any place and at any time.
+                    </div>
+              </Block>     
+            }
         </div>
     )
 }

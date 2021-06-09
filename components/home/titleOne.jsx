@@ -15,6 +15,9 @@ const TitleOne = () => {
             {language === 'ua' && 
                 <>Чому варто використовувати <span className={styles.boldFont}>Віртуальний Офіс</span></>
             }
+            {language === 'en' && 
+                <>Why <span className={styles.boldFont}>VIRTOFFICE</span>’s offer is worth choosing</>
+            }
         </div>
     )
 }

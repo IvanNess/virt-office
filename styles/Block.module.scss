@@ -24,7 +24,6 @@ $block-height: 323px;
     flex-direction: column;
     align-items: center;
     position: relative;
-    z-index: 1;
     margin: 0;
     &:hover{
         .block{
@@ -80,6 +79,9 @@ $block-height: 323px;
     margin-right: 16px;
     height: 100%;
     z-index: 1;
+    @media (max-width: 800px) {
+        z-index: 0;
+    }
 }
 
 .blockMediumNone{

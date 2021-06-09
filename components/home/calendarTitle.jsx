@@ -15,6 +15,9 @@ const CalendarTitle = () => {
             {language === 'ua' && 
                 <><span className={styles.boldFont}>ПОГОДИННА ОРЕНДА КОНФЕРЕНЦ ЗАЛИ</span></>
             }
+            {language === 'en' && 
+                <><span className={styles.boldFont}>LEASE AN OFFICE BY THE HOUR</span></>
+            }
         </>
     )
 }

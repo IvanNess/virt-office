@@ -101,6 +101,7 @@
 }
 
 .cennikBlock, .cennikMainBlock{
+    z-index: 0;
     @media (max-width: 1290px) {
         flex-direction: row;
         .main{

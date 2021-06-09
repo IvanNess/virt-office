@@ -15,6 +15,9 @@ const TitleThree = () => {
             {language === 'ua' && 
                 <>ціна без прихованих витрат — <span className={styles.boldFont}>виконай ВСІ ФОРМАЛЬНОСТІ В&nbsp;ІНТЕРНЕТІ</span></>
             }
+            {language === 'en' && 
+                <>Price without hidden fees  — <span className={styles.boldFont}> ARRANGE ALL FORMALITIES ONLINE</span></>
+            }
         </div>
     )
 }

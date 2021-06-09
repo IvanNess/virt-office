@@ -21,6 +21,12 @@ const MiddleBlock = () => {
                     <span className={styles.bold}> пакет компанії <a href="/wfirma.pl" target="_blank">wFirma.pl</a> безкоштовно на цілий рік!</span>
                 </h4>            
             }
+            {language === 'en' && 
+                <h4>
+                    When using virtual office services, you receive a 
+                    <span className={styles.bold}><a href="/wfirma.pl" target="_blank"> wFirma.pl </a> annual package for one year free&nbsp;of&nbsp;charge!</span>
+                </h4>            
+            }
         </div>
     )
 }

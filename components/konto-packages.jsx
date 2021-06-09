@@ -11,6 +11,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment'
 import { updatePackagePay, przelewyUpdatePackagePay } from '../utilities'
 import { useRouter } from 'next/router'
+import PakietTableSecond from './pakiet-table-second'
+import PakietTableThird from './pakiet-table-third'
 const { Panel } = Collapse;
 
 const Header = ({isMain, packageName, endDate, updPrice=null, auth, price, pakiet})=>{
@@ -190,7 +192,7 @@ const KontoPackages = ({auth}) => {
                         key="2"
                     >
                     <p>Profesjonalny adres z obsługą poczty i odbieraniem połączeń telefonicznych oraz dostęp bez rezerwacji do naszej globalnej sieci salonów biznesowych</p>
-                    <PakietTableFirst/>
+                    <PakietTableSecond/>
                     {/* <PackietButtons/> */}
                 </Panel>}
                 {(pakiet===false || packageName) && 
@@ -206,7 +208,7 @@ const KontoPackages = ({auth}) => {
                         />}
                         key="3">
                     <p>Profesjonalny adres z obsługą poczty i odbieraniem połączeń telefonicznych oraz dostęp bez rezerwacji do naszej globalnej sieci salonów biznesowych</p>
-                    <PakietTableFirst/>
+                    <PakietTableThird/>
                     {/* <PackietButtons/> */}
                 </Panel>}
             </Collapse>

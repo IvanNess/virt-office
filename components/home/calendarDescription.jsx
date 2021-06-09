@@ -21,6 +21,12 @@ const CalendarDescription = () => {
                     <span className={styles.smallTextBold}>{` ПЕРЕВІРИТИ ВІЛЬНІ ДАТИ  ТА ЗАБРОНЮВАТИ`}</span>
                 </>
             }
+            {language === 'en' && 
+                <>
+                    The lease of a conference room by the hour perfectly supplements the lease of a virtual address. Sometimes you may have to meet business partners in comfortable conditions for holding negotiations or a presentation. 
+                    <span className={styles.smallTextBold}>{` CHECK AVAILABLE DATES AND BOOK`}</span>
+                </>
+            }
         </div>
     )
 }

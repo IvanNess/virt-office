@@ -300,6 +300,9 @@ input{
   .ant-collapse-item-active .ant-collapse-header {
     font: normal normal 900 18px/28px var(--sans-light);
   }
+  .ant-collapse-content > .ant-collapse-content-box{
+    padding: 0;
+  }
 }
 
 

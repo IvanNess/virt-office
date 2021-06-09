@@ -47,6 +47,26 @@ const HeaderTwo = () => {
                     </div>
                 </div>  
             }
+            {language === 'en' &&             
+                <div className={styles.headerFlex}>
+                    <div className={styles.headerTitle}>
+                        <div className={styles.top}>
+                        all needs of the <span className={styles.headerBoldFont}>ENTREPRENEUR</span> in&nbsp;one package 
+                        </div>
+                        <div className={styles.bottom}>
+                            <span className={styles.headerBoldFont}>ADRESS</span> - office services – <span className={styles.headerBoldFont}>ACCOUNTING</span> – legal consultations - <span className={styles.headerBoldFont}>MARKETING</span>
+                        </div>
+                    </div>
+                    <div className={styles.headerText}>
+                        <span className={styles.headerTextBoldFont}>EARN </span>
+                        by focusing on processes that bring
+                        <span className={styles.headerTextBoldFont}> PROFIT. </span>We will take care of 
+                        <span className={styles.headerTextBoldFont}> COST OPTIMISATION, </span>
+                        including correspondence handling, entering documents into accounting systems, accounting, marketing and other processes.                    
+                    </div>
+                </div>
+            }
+
         </div>
     )
 }

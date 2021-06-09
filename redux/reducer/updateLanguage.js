@@ -4,7 +4,7 @@ export const updateLanguage = (state, action)=>{
     }
     switch(action.type){
         case "SET_LANGUAGE":
-            if(['pl', 'ua'].includes(action.value))
+            if(['pl', 'ua', 'en'].includes(action.value))
                 return action.value
         default:
             return state.language

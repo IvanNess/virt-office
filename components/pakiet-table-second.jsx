@@ -4,7 +4,7 @@ import CloseIcon from '@material-ui/icons/Close'
 
 import styles from '../styles/PakietTable.module.scss'
 
-function PakietTableFirst() {
+function PakietTableSecond() {
 
     return (
         <div className={styles.cennikTable}>
@@ -22,17 +22,21 @@ function PakietTableFirst() {
             <div className={styles.main}>
                 <div className={styles.names}>
                     <div className={styles.name}><div>Adres na potrzeby rejestracji i prowadzenia firmy</div></div>
-                    <div className={styles.name}><div>Powiadomienie o korespondencji <a href='wfirma.pl'>wfirma.pl</a></div></div>
-                    <div className={styles.name}><div>Skanowanie i przesyłanie e-mailem korespondencji przychodzącej do 20 dokumentów lub 100 MB miesięcznie</div></div>
-                    <div className={styles.name}><div>Archiwizacja dokumentów w zabezpieczonym pomieszczeniu - jeden segregator a4 na jeden rok</div></div>
-                    <div className={styles.name}><div>Dostęp do sali konferencyjnej przez 2 godziny miesięcznie</div></div>
-                    <div className={styles.name}><div>Pakiet Fakturowanie + Magazyn z serwisu <a href='wfirma.pl'>wfirma.pl</a> w pierwszym roku korzystania z virtoffice.pl</div></div>
+                    <div className={styles.name}><div>Powiadomienie o korespondencji</div></div>
+                    <div className={styles.name}><div>Skanowanie i przesyłanie e-mailem korespondencji przychodzącej do 100 dokumentów lub 500 MB miesięcznie</div></div>
+                    <div className={styles.name}><div>Archiwizacja dokumentów w zabezpieczonym pomieszczeniu do 2 segregatorów na jeden rok</div></div>
+                    <div className={styles.name}><div>Wysyłanie korespondencji na wskazany adres 1 raz w tygodniu</div></div>
+                    <div className={styles.name}><div>Dostęp do sali konferencyjnej przez 5 godzin miesięcznie</div></div>
+                    <div className={styles.name}><div>Pakiet Księgowość online + Asystent Księgowy z serwisu <a href='/wfirma.pl'>wfirma.pl</a></div></div>
 
                     {/* <div className={styles.nameWMargin}>płatność za 6 miesięcy z góry</div>
                     <div className={styles.nameWMargin}>płatność za 12 miesięcy z góry</div> */}
                 </div>
 
                 <div className={styles.signs}>
+                    <div className={styles.row}>
+                        <div className={styles.signWrapper}><KeyboardArrowDownIcon style={{fontSize: '30px', color: '#3FBC22'}}/></div>
+                    </div>
                     <div className={styles.row}>
                         <div className={styles.signWrapper}><KeyboardArrowDownIcon style={{fontSize: '30px', color: '#3FBC22'}}/></div>
                     </div>
@@ -68,8 +72,10 @@ function PakietTableFirst() {
                     </div> */}
                 </div>
             </div>
+
+            
         </div>
     )
 }
 
-export default PakietTableFirst
+export default PakietTableSecond

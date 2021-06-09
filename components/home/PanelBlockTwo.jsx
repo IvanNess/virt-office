@@ -50,6 +50,26 @@ const PanelBlockTwo = () => {
                     </div>
                 </Block>
             }
+            {language === 'en' && 
+                <Block className='block' showMore={false}>
+                    <div className={styles.blockHeader}>
+                        <div className={styles.blockHeaderFirst}>
+                            Comprehensive Offer
+                        </div>
+                    </div>
+                    <div className={styles.blockText}>
+                        Our offer is comprehensive and adapted to the entrepreneur’s actual needs.
+                    </div>
+                    <div className={styles.blockHeader}>
+                        <div className={styles.blockHeaderFirst}>
+                            Correspondence Handling
+                        </div>
+                    </div>
+                    <div className={styles.blockText}>
+                        Apart from the address, you obtain correspondence handling and document archiving services and access to a conference room that will allow you to organise meetings with customers. We offer also accounting services in co-operation with our partner wfirma.pl.
+                    </div>
+                </Block>
+            }
         </div>
     )
 }
