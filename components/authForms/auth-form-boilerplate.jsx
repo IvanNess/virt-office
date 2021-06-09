@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setSignupFormProp, setLoginFormProp, setShowAuth, formSubmitted, setPayAfterRegister, registerAndReserve, setForgetFormProp } from '../../redux/actions'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import { packagePay, reservationPay, getData64FromTextImg } from '../../utilities'
+import { packagePay, reservationPay, getData64FromTextImg, przelewyPackagePay, przelewyReservationPay } from '../../utilities'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 import { Modal } from 'antd'
 import {LoadingOutlined} from '@ant-design/icons'
@@ -37,7 +37,9 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                 // dispatch(setPayAfterRegister(false))
                 //pay actions
                 console.log('pay action')
-                await packagePay({auth, hiringChoices})
+                // await packagePay({auth, hiringChoices})
+                await przelewyPackagePay({auth, hiringChoices, email: currentUser.email, router})
+                
             } else if(payAfterRegister && packages && packages.length > 0){
                 // dispatch(setPayAfterRegister(false))
                 Modal.error({
@@ -80,7 +82,8 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                 // }
                 if(selectedDate.registerAndReserve){
                     // dispatch(registerAndReserve(false))
-                    await reservationPay({auth, selectedDate, startHour, finishHour})
+                    // await reservationPay({auth, selectedDate, startHour, finishHour})
+                    await przelewyReservationPay({auth, selectedDate, startHour, finishHour, email: currentUser.email, router})
                     return
                 }
                 if(calendarRedirect)
@@ -279,7 +282,8 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         // }
                         if(selectedDate.registerAndReserve){
                             // dispatch(registerAndReserve(false))
-                            await reservationPay({auth, selectedDate, startHour, finishHour})
+                            // await reservationPay({auth, selectedDate, startHour, finishHour})
+                            await przelewyReservationPay({auth, selectedDate, startHour, finishHour, email: currentUser.email, router})
                             return
                         }
                         if(calendarRedirect)
