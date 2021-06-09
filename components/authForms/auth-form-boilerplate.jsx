@@ -83,7 +83,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                 if(selectedDate.registerAndReserve){
                     // dispatch(registerAndReserve(false))
                     // await reservationPay({auth, selectedDate, startHour, finishHour})
-                    await przelewyReservationPay({auth, selectedDate, startHour, finishHour, email: currentUser.email, router})
+                    await przelewyReservationPay({auth, selectedDate, startHour, finishHour, router})
                     return
                 }
                 if(calendarRedirect)
@@ -283,7 +283,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         if(selectedDate.registerAndReserve){
                             // dispatch(registerAndReserve(false))
                             // await reservationPay({auth, selectedDate, startHour, finishHour})
-                            await przelewyReservationPay({auth, selectedDate, startHour, finishHour, email: currentUser.email, router})
+                            await przelewyReservationPay({auth, selectedDate, startHour, finishHour, router})
                             return
                         }
                         if(calendarRedirect)

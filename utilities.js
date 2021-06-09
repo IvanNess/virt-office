@@ -267,11 +267,13 @@ export const przelewyUpdatePackagePay = async ({
 }
 
 export const przelewyReservationPay = async ({auth, selectedDate, startHour, finishHour,
-    email, country="PL", language="pl", router
+    country="PL", language="pl", router
 })=>{
     try {
 
         const token = await auth.currentUser.getIdToken()
+        const email = await auth.currentUser.email
+        console.log('email', email)
 
         const msDuration = finishHour.msTime - startHour.msTime
         const hours = msDuration / 1000 / 60 / 60

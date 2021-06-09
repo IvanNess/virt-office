@@ -18,6 +18,8 @@ export default async(req, res) => {
         await cors(req, res)
 
         firebaseInit()
+
+        console.log('req.body', req.body)
     
         const { token, year, month, day, startHour, finishHour, quantity,
             email, description='Reservation pay', country='PL', language='pl'
