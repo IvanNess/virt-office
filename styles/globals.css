@@ -70,8 +70,8 @@ body {
   --sans-black: "Work Sans Black", "Open Sans Black";
   --sans-bold: "Work Sans Bold", "Open Sans Bold";
   --sans-light: "Work Sans Light", "Open Sans Light";
-  --sans-thin: "Work Sans Thin", "Open Sans Thin";
-  --sans-medium: "Work Sans Medium", "Open Sans Medium";
+  --sans-thin: "Work Sans Thin", "Open Sans Light";
+  --sans-medium: "Work Sans Medium", "Open Sans";
 }
 
 a {

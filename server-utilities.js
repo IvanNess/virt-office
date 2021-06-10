@@ -37,7 +37,8 @@ export const getPrzelewyToken = async ({sessionId, amount, email, description="t
             "urlStatus": "https://virt-office.vercel.app/api/notification",
             "sign": gen_hash,
             waitForResult: true,
-            timeLimit
+            timeLimit,
+            method: 16
         }
     })
 

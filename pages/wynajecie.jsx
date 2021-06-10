@@ -15,12 +15,15 @@ import Logo from '../components/logo'
 import UserPackageChoices from '../components/user-package-choices'
 import CennikChoices from '../components/cennik-choices'
 import Line from '../components/line'
+import WynajecieTitleOne from '../components/wynajecie/wynajecie-title-one'
+import WynajecieTitleTwo from '../components/wynajecie/wynajecie-title-two'
 
 
 function Wynajecie({db, auth}) {
 
     const hiringChoiceNumber = useSelector(state=>state.hiringChoiceNumber)
     const hiringChoices = useSelector(state=>state.hiringChoices)
+    const language = useSelector(state=>state.language)
 
     const dispatch = useDispatch()
 
@@ -58,19 +61,15 @@ function Wynajecie({db, auth}) {
                                 <span className={styles.boldFont}> BIURA WIRTUALNEGO</span>
                             </div>
                         </SelectOption> */}
-                        <div className={styles.servicesTitle}>1. WYBÓR USŁUGI
-                            <span className={styles.boldFont}> BIURA WIRTUALNEGO</span>
-                        </div>
+                        <WynajecieTitleOne/>
                         <CennikChoices marginRight="20px" showSlash={false}/>
                         {/* <UserPackageChoices/> */}
                     </>
                 }
                 {hiringChoiceNumber===2 && 
                     // <OfficeSearch hiringChoiceNumber={hiringChoiceNumber}/>
-                    <SelectOption options={periods} reducerProp="selectedServiceId" number={hiringChoiceNumber}>
-                        <div className={styles.servicesTitle}>2. WYBIERZ 
-                            <span className={styles.boldFont}> CZAS TRWANIA UMOWY</span>
-                        </div>
+                    <SelectOption options={periods[language]} reducerProp="selectedServiceId" number={hiringChoiceNumber} language={language}>
+                        <WynajecieTitleTwo/>
                     </SelectOption>
                 }
                 {/* {hiringChoiceNumber===3 && 

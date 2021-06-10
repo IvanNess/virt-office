@@ -8,6 +8,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateHiringChoice, setHiringChoiceNumber } from '../redux/actions'
 import { useRouter } from 'next/router'
 import WynajmijButton from './wynajmij-button'
+import { phrases, buttonNames } from '../accessories/constants'
+import CennikChoiceOneDescription from './cennik/cennik-choice-one-description'
+import CennikChoiceTwoDescription from './cennik/cennik-choice-two-description'
+import CennikChoiceThreeDescription from './cennik/cennik-choice-three-description'
 
 const CennikChoices = ({marginRight="149px", showSlash=true}) => {
 
@@ -17,6 +21,7 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
     const [selectedBlock, setSelectedBlock] = useState(null)
     const router = useRouter()
     const hiringChoices = useSelector(state=>state.hiringChoices)
+    const language = useSelector(state=>state.language)
 
     const dispatch = useDispatch()
 
@@ -91,34 +96,15 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                 >
 
                     <div className={styles.main}>
-                        <div className={styles.blockTitle}>Wirtualny adres</div>
+                        <div className={styles.blockTitle}>{phrases[language]?.cennikTitleOne}</div>
                         <div className={styles.digit}>55</div>
-                        <div className={styles.afterDigit}>PLN/miesiąc</div>
+                        <div className={styles.afterDigit}>{phrases[language]?.plnPerMonth}</div>
                         {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(0, true)}>
-                            Wynajmij Adres
+                            {buttonNames[language]?.wynajecie}
                         </div>}
                         {/* {router.pathname === '/cennik' && <WynajmijButton/>} */}
                     </div>
-                     
-                    <div className={styles.description}>
-                        <p>
-                            - adres na potrzeby rejestracji i prowadzenia firmy 
-                            <br/>
-                            - powiadomienie o korespondencji
-                            <br/>
-                            - skanowanie i przesyłanie e-mailem korespondencji przychodzącej do 20 dokumentów lub 100 MB miesięcznie 
-                            <br/>
-                            - archiwizacja dokumentów w zabezpieczonym pomieszczeniu - jeden segregator a4 na jeden rok
-                            <br/>
-                            - dostęp do sali konferencyjnej przez 2 godziny miesięcznie 
-                            <br/>
-                            - Pakiet Fakturowanie + Magazyn z serwisu wfirma.pl w pierwszym roku korzystania z virtoffice.pl
-                            <br/>
-                            <br/>
-                            Cena nie zawiera podatku VAT
-
-                        </p>
-                    </div>                    
+                    <CennikChoiceOneDescription/>             
                 </div>
 
                 <div className={router.pathname==='/cennik'? styles.cennikMainBlock: selectedBlock===1 ? styles.selectedBlock : 
@@ -127,11 +113,11 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                     style={{cursor: router.pathname==='/cennik'? 'auto': 'pointer'}}
                 >
                     <div className={styles.main}>
-                        <div className={styles.blockTitle}>Optymalny pakiet</div>
+                        <div className={styles.blockTitle}>{phrases[language]?.cennikTitleThree}</div>
                         <div className={styles.digit}>{price}</div>
-                        <div className={styles.afterDigit}>PLN/miesiąc</div>
+                        <div className={styles.afterDigit}>{phrases[language]?.plnPerMonth}</div>
                         {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(1, true)}>
-                            Wynajmij Adres
+                            {buttonNames[language]?.wynajecie}
                         </div>}
                         {/* {router.pathname === '/cennik' && <WynajmijButton/>} */}
                         {/* {showSlash && <div className={selectedBlock===1 || selectedBlock===null ? styles.slash : styles.noslash}>////</div>} */}
@@ -141,7 +127,7 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                         <div className={styles.slash}></div>
                     </div>
 
-                    <div className={styles.description}>
+                    {/* <div className={styles.description}> */}
                         {/* <p>
                             Tutaj klient wybiera dowolnie skład pakietu z dostępnych opcji
                             <br/>
@@ -159,18 +145,8 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                             <br/>
                             Cena nie zawiera podatku VAT
                         </p> */}
-                        <p>
-                            - adres na potrzeby rejestracji i prowadzenia firmy <br/>
-                            - powiadomienie o korespondencji <br/>
-                            - skanowanie i przesyłanie e-mailem korespondencji przychodzącej do 100 dokumentów lub 500 MB miesięcznie <br/>
-                            - archiwizacja dokumentów w zabezpieczonym pomieszczeniu do 2 segregatorów na jeden rok <br/>
-                            - wysyłanie korespondencji na wskazany adres 1 raz w tygodniu <br/>
-                            - dostęp do sali konferencyjnej przez 5 godzin miesięcznie <br/>
-                            - Pakiet Księgowość online + Asystent Księgowy z serwisu wfirma.pl <br/>
-                            <br/>
-                            Cena nie zawiera podatku VAT
-                        </p>
-                    </div>                    
+                    {/* </div>    */}
+                    <CennikChoiceTwoDescription/>                 
                 </div>
 
                 <div 
@@ -179,30 +155,16 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                     style={{cursor: router.pathname==='/cennik'? 'auto': 'pointer'}}
                 >
                     <div className={styles.main}>
-                        <div className={styles.blockTitle}>Profesjonalne biuro</div>
+                        <div className={styles.blockTitle}>{phrases[language]?.cennikTitleThree}</div>
                         <div className={styles.digit}>450</div>
-                        <div className={styles.afterDigit}>PLN/miesiąc</div>
+                        <div className={styles.afterDigit}>{phrases[language]?.plnPerMonth}</div>
                         {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(2, true)}>
-                            Wynajmij Adres
+                            {buttonNames[language]?.wynajecie}
                         </div>}
                         {/* {router.pathname === '/cennik' && <WynajmijButton/>} */}
                     </div>
                     
-                    <div className={styles.description}>
-                        <p>
-                            - adres na potrzeby rejestracji i prowadzenia firmy <br/>
-                            - wystawianie i wysyłanie drogą elektroniczną do 50 faktur miesięcznie w serwisie wfirma.pl <br/>
-                            - powiadomienie o korespondencji<br/>
-                            - nielimitowana liczba skanowanych i przesyłanych e-mailem dokumentów <br/>
-                            - udostępnienie zarchiwizowanych dokumentów w chmurze do 2GB <br/>
-                            - archiwizacja dokumentów w zabezpieczonym pomieszczeniu pięć segregatorów na jeden rok <br/>
-                            - wysyłanie korespondencji na wskazany adres 1 raz w tygodniu <br/>
-                            - dostęp do sali konferencyjnej przez 10 godzin miesięcznie <br/>
-                            - Pakiet Biuro rachunkowe z serwisu wfirma.pl <br/>
-                            <br/>
-                            Cena nie zawiera podatku VAT
-                        </p>
-                    </div>                    
+                    <CennikChoiceThreeDescription/>           
                 </div>
             </div>
         </div>

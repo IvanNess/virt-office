@@ -67,8 +67,8 @@ export const pathnames = {
     },
     ua: {
         home: 'оренда адресу для компаній',
-        cennik: 'cennik i usługi',
-        ksiegowosc: 'księgowość',
+        cennik: 'ціни та послуги',
+        ksiegowosc: 'бухгалтерия',
         polityka : 'polityka prywatności',
         regulamin : 'regulamin'
     },
@@ -92,12 +92,15 @@ export const buttonNames = {
 	    accounting: "księgowość",
 	    conditions: "regulamin",
 	    policy: "polityka prywatności",
-	    login: "zaloguj",
+	    login2: "zaloguj",
         register: "zarejestruj",
-        logout: "wyloguj"
+        logout: "wyloguj",
+        next: "Dalej",
+        pay: "Zaplać",
+        loginAndPay: 'Zaloguj się i zaplać'
     },
     ua :{
-        wynajecie: 'Орендувати адресу',
+        wynajecie: 'ЗНЯТИ АДРЕСУ',
         login: 'Увійти',
         profil: "профіль",
         cancel: 'скасувати',
@@ -105,10 +108,13 @@ export const buttonNames = {
         prices: "prices",
 	    accounting: "accounting",
 	    conditions: "terms and conditions",
-	    policy: "privacy policy",
-	    login: "log in",
+        policy: "privacy policy",
+        login2: 'Увійти',
         register: "register",
-        logout: "logout"
+        logout: "logout",
+        next: "Далі",
+        pay: "ОПЛАТИТИ",
+        loginAndPay: 'Увійти та ОПЛАТИТИ'
     },
     en: {
         wynajecie: 'LEASE ADDRESS',
@@ -119,24 +125,60 @@ export const buttonNames = {
         prices: "prices",
 	    accounting: "accounting",
 	    conditions: "terms and conditions",
-	    policy: "privacy policy",
-	    login: "log in",
+        policy: "privacy policy",
+        login2: 'LOG IN',
         register: "register",
-        logout: "log out"		
+        logout: "log out",
+        next: "next",
+        pay: "Pay",
+        loginAndPay: 'log in and pay'	
     }
 }
 
 export const phrases = {
     pl: {
         footerOne: "Działaj z dowolnego miejsca na świecie dzięki opcji biura wirtualnego.",
-        footerTwo: "Skontaktuj sie z nami:"
+        footerTwo: "Skontaktuj sie z nami:",
+        cennikTitleOne: 'Wirtualny adres',
+        cennikTitleTwo: 'Optymalny pakiet',
+        cennikTitleThree: 'Profesjonalne biuro',
+        plnPerMonth: 'PLN/miesiąc',
+        selectPackage: '1. wybór usługi biura wirtualnego:',
+        selectPeriod: '2. wybierz profesjonalny adres swojej firmy:',
+        month: 'Miesiąc',
+        kwartal: 'Kwartał',
+        year: 'Rok',
+        sum: 'Podsumowanie:',
+        price: 'Cena:'
     },
     ua: {
         footerOne: "Działaj z dowolnego miejsca na świecie dzięki opcji biura wirtualnego.",
-        footerTwo: "Skontaktuj sie z nami:"
+        footerTwo: "Skontaktuj sie z nami:",
+        cennikTitleOne: 'Віртуальна адреса',
+        cennikTitleTwo: 'Пакет Оптимальний',
+        cennikTitleThree: 'Професійний кабінет',
+        plnPerMonth: 'Злотих / місяць',
+        selectPackage: '1. вибір послуги віртуального офісу:',
+        selectPeriod: '2. виберіть професійну адресу вашої компанії:',
+        month: 'Місяць',
+        kwartal: 'Квартал',
+        year: 'Рік',
+        sum: 'Короткий Зміст послуги:',
+        price: 'Ціна:'
     },
     en: {
         footerOne: "Operate from any place around the world thanks to the virtual office option.",
-        footerTwo: "Contact us:"
+        footerTwo: "Contact us:",
+        cennikTitleOne: 'Wirtualny adres',
+        cennikTitleTwo: 'Optymalny pakiet',
+        cennikTitleThree: 'Profesjonalne biuro',
+        plnPerMonth: 'Злотих / місяць',
+        selectPackage: '1. wybór usługi biura wirtualnego:',
+        selectPeriod: '2. wybierz profesjonalny adres swojej firmy:',
+        month: 'Month',
+        kwartal: 'Kwartał',
+        year: 'Year',
+        sum: 'summary',
+        price: 'Price:'
     }
 }

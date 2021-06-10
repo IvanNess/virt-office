@@ -13,6 +13,7 @@ import { LoadingOutlined } from '@ant-design/icons'
 import useWindowWidth from '../../hooks/useWindowWidth'
 import { useRouter } from 'next/router'
 import Logo from '../logo'
+import { phrases, buttonNames } from '../../accessories/constants'
 
 function Rightbar({db, auth}) {
 
@@ -20,6 +21,7 @@ function Rightbar({db, auth}) {
     const hiringChoiceNumber = useSelector(state=>state.hiringChoiceNumber)
     const currentUser = useSelector(state=>state.currentUser)
     const showAuth = useSelector(state=>state.showAuth)
+    const language = useSelector(state=>state.language)
     const payAfterRegister = useSelector(state=>state.payAfterRegister)
     const [btnDisabled, setBtnDisabled] = useState(false)
 
@@ -72,32 +74,38 @@ function Rightbar({db, auth}) {
         <div className={hiringChoiceNumber===1 ? styles.rightBarWrapper : styles.vh100RightBarWrapper }>
             <div className={styles.rightBarTop}>
                 <div className={styles.logo}><Logo color='#121109' hovColor='#03b2cb' scale={0.6}/></div>
-                {currentUser === false && <button className={styles.rightBarTopBtn} onClick={login}>zaloguj sie</button>}
+                {currentUser === false && <button className={styles.rightBarTopBtn} onClick={login}>
+                    {buttonNames[language]?.login}
+                </button>}
                 {currentUser && <div className={styles.profilBtn}>
-                    <Link  href="/konto/profil"><a>Profil</a></Link>
+                    <Link  href="/konto/profil"><a>{buttonNames[language]?.profil}</a></Link>
                 </div>}
             </div>
             <div className={styles.rightbar}>
                 <Sidebar color={sideBarColor}/>
                 <ProgressBar/>
-                <div className={styles.rightBarTitle}>Podsumowanie:</div>
+                <div className={language==='ua'? styles.uaRightBarTitle :styles.rightBarTitle}>
+                    {phrases[language]?.sum}
+                </div>
                 <div className={styles.hiringChoicesDiv}>
                     {hiringChoices.map((choice, idx)=>(
-                        <HiringChoice idx={idx} {...choice} key={idx}/>
+                        <HiringChoice idx={idx} {...choice} key={idx} language={language}/>
                     ))}
                 </div>
                 {hiringChoices[0].isComplete && hiringChoiceNumber===1 &&
                     <div className={styles.nextBtnWrapper}>
                         <button className={styles.nextBtn} onClick={nextClicked} disabled={btnDisabled}>
-                            Dalej
+                            {buttonNames[language]?.next}
                         </button>
                     </div>
                 }
                 {hiringChoices[1].isComplete && hiringChoiceNumber===2 && currentUser &&
                     <div className={styles.nextBtnWrapper}>
-                        <div className={styles.priceDiv}><span className={styles.priceLeft}>Cena:</span>{`${hiringChoices[1].fullPrice}zł`}</div>
+                        <div className={styles.priceDiv}><span className={styles.priceLeft}>
+                            {phrases[language]?.price}
+                        </span>{`${hiringChoices[1].fullPrice}zł`}</div>
                         <button className={styles.nextBtn} onClick={pay} disabled={btnDisabled}>
-                            {!btnDisabled && `Zaplać`}
+                            {!btnDisabled && buttonNames[language]?.pay}
                             {btnDisabled && <LoadingOutlined style={{color: "white"}}/>}
                         </button>
                     </div>
@@ -105,9 +113,11 @@ function Rightbar({db, auth}) {
                 }
                 {hiringChoices[1].isComplete && hiringChoiceNumber===2 && !currentUser &&
                     <div className={styles.nextBtnWrapper}>
-                        <div className={styles.priceDiv}><span className={styles.priceLeft}>Cena:</span>{`${hiringChoices[1].fullPrice}zł`}</div>
+                        <div className={styles.priceDiv}><span className={styles.priceLeft}>
+                            {phrases[language]?.price}
+                        </span>{`${hiringChoices[1].fullPrice}zł`}</div>
                         <button className={styles.nextBtn} onClick={loginAndPay} disabled={btnDisabled}>
-                            {!btnDisabled && `Zaloguj się i zaplać`}
+                            {!btnDisabled && buttonNames[language]?.loginAndPay}
                             {btnDisabled && <LoadingOutlined style={{color: "white"}}/>}
                         </button>
                     </div>

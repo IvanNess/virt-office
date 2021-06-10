@@ -110,7 +110,7 @@
         flex-wrap: nowrap;
         .blockTitle{
             padding-top: 33px;   
-            max-width: 260px;
+            max-width: 320px;
             @media (max-width: 700px) {
                 font: normal normal 900 20px/24px var(--sans-black);
             }
@@ -167,7 +167,7 @@
             } 
         } 
     }
-    .records{
+    .records, .uarecords{
         max-width: 1130px;
         display: flex;
         justify-content: space-between;
@@ -207,6 +207,13 @@
                 @media (max-width: 700px) {
                     position: static;
                 }
+            }
+        }
+    }
+    .uarecords{
+        .record{
+            .top{
+                font: normal normal 900 35px/66px var(--sans-black);
             }
         }
     }

@@ -205,16 +205,21 @@
     z-index: 0;
 }
 
-.rightBarTitle{
+.rightBarTitle, .uaRightBarTitle{
     position: fixed;
     margin-top: 64px;
-    font: normal normal 900 35px/42px var(--sans-black);
+    font: normal normal 900 35px/35px var(--sans-black);
     letter-spacing: 0px;
     color: #FFFFFF;
     text-transform: capitalize;
+    margin-right: 150px;
     @media (max-width: 1124px) {
         display: none;
     }
+}
+
+.uaRightBarTitle{
+    font: normal normal 900 27px/27px var(--sans-black);
 }
 
 .hiringChoiceProps{

@@ -11,6 +11,8 @@ import Footer from '../components/footer'
 import { useState } from 'react'
 import WynajmijButton from '../components/wynajmij-button'
 import Line from '../components/line'
+import CennikHeader from '../components/cennik/cennik-header'
+import CennikTitle from '../components/cennik/cennik-title'
 
 const Cennik = ({auth}) => {
 
@@ -31,25 +33,13 @@ const Cennik = ({auth}) => {
 
             <Billboard>
                 <Header/>
-                <div className={styles.headerTitle}>
-                    zobacz nasze<div className={styles.headerBoldFont}> ceny i usługi</div>
-                </div>
-                <div className={styles.headerText}>
-                    Zarządzaj swoim biznesem z każdego miejsca o dowolnej porze
-                </div>
-                {/* <div className={styles.linkButtonWrapper}>
-                    <div className={styles.linkButton}>
-                        <Link href='/wynajecie'><a>Wynajmij adres</a></Link>
-                    </div> 
-                </div> */}
+                <CennikHeader/>
                 <WynajmijButton/>
             </Billboard>
 
             <div style={{margin: 'auto', maxWidth: '1440px'}}>
-
-                <div className={styles.title}>
-                    Wirtualne Biuro /<span className={styles.boldFont}> cennik</span>
-                </div>
+                
+                <CennikTitle/>
 
                 <div className={styles.cennikBar} onClick={barClicked}>
                     {/* <div className={currentCennikId===1 ? styles.selectedItem : styles.barItem} data-id={1}>WIRTUALNE BIURO</div>

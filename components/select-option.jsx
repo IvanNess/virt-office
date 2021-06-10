@@ -5,7 +5,7 @@ import { updateSelectedServiceId, updateSelectedPeriodId, updateHiringChoice } f
 import { useRef } from 'react'
 import { packageMonthCoeff, packageYearCoeff, packageKwartalCoeff } from '../accessories/constants'
 
-function SelectOption({options, reducerProp, number, children}) {
+function SelectOption({options, reducerProp, number, children, language}) {
 
     // const selectedOptionId = useSelector(state=>state[reducerProp])
 
@@ -41,10 +41,10 @@ function SelectOption({options, reducerProp, number, children}) {
     const $textDiv3 = useRef()
 
     useEffect(()=>{
-        $textDiv1.current.innerHTML = options[0].text
-        $textDiv2.current.innerHTML = options[1].text
-        $textDiv3.current.innerHTML = options[2].text
-    }, [])
+        $textDiv1.current.innerHTML = options[0]?.text
+        $textDiv2.current.innerHTML = options[1]?.text
+        $textDiv3.current.innerHTML = options[2]?.text
+    }, [language])
 
     return (
         <div className={styles.selectOption}>
@@ -52,7 +52,7 @@ function SelectOption({options, reducerProp, number, children}) {
                 {children}
             </div>
             <div className={styles.options}>
-                {options.map((option, i)=>{
+                {options?.map((option, i)=>{
                     const ref= i===0? $textDiv1 : i===1? $textDiv2 : $textDiv3
                     return (
                     <div 
