@@ -15,6 +15,7 @@ import pl from 'react-phone-number-input/locale/pl'
 
 import flags from '../../accessories/flags'
 import Sidebar from '../../components/side-bar'
+import { phrases, buttonNames } from '../../accessories/constants'
 
 function Dane({auth, db}) {
 
@@ -42,6 +43,7 @@ function Dane({auth, db}) {
     const dispatch = useDispatch()
 
     const currentUser = useSelector(state=>state.currentUser)
+    const language = useSelector(state=>state.language)
 
     const loginRef = useRef(null)
     const companyNameRef = useRef(null)
@@ -120,13 +122,13 @@ function Dane({auth, db}) {
         // if(form.username.trim()===''){
         //     setForm(form=>({...form, usernameError : 'Pole wymagane'}))
         if((form.username+'').trim().length ===0 || !form.username.includes('@')){
-            setForm(form=>({...form, usernameError : 'Nie wygląda jak prawdziwy e-mail.'}))
+            setForm(form=>({...form, usernameError : phrases[language]?.profileMessage1}))
             setIsZapiszDiasabled(false)
             loginRef.current.focus()
             return
         }
         if(form.fullName.trim()===''){
-            setForm(form=>({...form, fullNameError : 'Pole wymagane'}))
+            setForm(form=>({...form, fullNameError : phrases[language]?.requiredField}))
             setIsZapiszDiasabled(false)
             fullNameRef.current.focus()
             return
@@ -138,26 +140,26 @@ function Dane({auth, db}) {
         //     return
         // }
         if(form.contactPhone && !isPossiblePhoneNumber(form.contactPhone)){
-            setForm(form=>({...form, contactPhoneError : 'Nie wygląda jak prawdziwy numer telefonu.'}))
+            setForm(form=>({...form, contactPhoneError : phrases[language]?.profileMessage2}))
             setIsZapiszDiasabled(false)
             phoneRef.current.focus()
             return
         }
         if(!form.contactPhone){
-            setForm(form=>({...form, contactPhoneError : 'Pole wymagane'}))
+            setForm(form=>({...form, contactPhoneError : phrases[language]?.requiredField}))
             setIsZapiszDiasabled(false)
             phoneRef.current.focus()
             return
         }
         if(form.companyName.trim()===''){
-            setForm(form=>({...form, companyNameError : 'Pole wymagane'}))
+            setForm(form=>({...form, companyNameError : phrases[language]?.requiredField}))
             setIsZapiszDiasabled(false)
             companyNameRef.current.focus()
             return
         }
         const NIP = form.NIP ? form.NIP+''.trim() : ''
         if(NIP.length !==0 && (NIP.length !==10 || !Number(NIP))){
-            setForm(form=>({...form, NIPError : 'Nie wygląda jak numer NIP.'}))
+            setForm(form=>({...form, NIPError : phrases[language]?.profileMessage3}))
             setIsZapiszDiasabled(false)
             NIPRef.current.focus()
             return
@@ -289,7 +291,7 @@ function Dane({auth, db}) {
                 <Sidebar color='#4CAED5' auth={auth}/>
                 <div>
                     <div className={styles.title}>
-                        1. <span className={styles.bold}>Mój Profil</span>
+                            1. <span className={styles.bold}>{phrases[language]?.myProfile}</span>
                         {/* {form.innerLogo && !isEditMode && <img className={styles.logoImg} src={`data:image/png;base64,${form.innerLogo}`}/>} */}
                     </div>
                     {/* <div className={styles.text}>
@@ -300,15 +302,15 @@ function Dane({auth, db}) {
                         <div className={styles.noEdit}>
                             <div className={styles.noEditFields}>
                                 <div className={styles.left}>
-                                    <ReadyField title='Login:' value={currentUser?.email} skeleton={skeletonBtn}/>
-                                    <ReadyField title='Imię i Nazwisko:' value={currentUser?.fullName} skeleton={skeletonBtn}/>
-                                    <ReadyField title='Adres:' value={currentUser?.adress} skeleton={skeletonInput}/>
+                                    <ReadyField title={`${phrases[language]?.login}:`} value={currentUser?.email} skeleton={skeletonBtn}/>
+                                    <ReadyField title={`${phrases[language]?.nameSurname}:`} value={currentUser?.fullName} skeleton={skeletonBtn}/>
+                                    <ReadyField title={`${phrases[language]?.adress}:`} value={currentUser?.adress} skeleton={skeletonInput}/>
                                     {/* <ReadyField title='Adres email:' value={currentUser?.email} skeleton={skeletonBtn}/> */}
                                 </div>
                                 <div className={styles.right}>
-                                    <ReadyField title='Telefon:' value={currentUser?.contactPhone} skeleton={skeletonBtn}/>
-                                    <ReadyField title='Nazwa Firmy:' value={currentUser?.companyName} skeleton={skeletonInput}/>
-                                    <ReadyField title='NIP:' value={currentUser?.NIP} skeleton={skeletonBtn}/>
+                                    <ReadyField title={`${phrases[language]?.phone}:`} value={currentUser?.contactPhone} skeleton={skeletonBtn}/>
+                                    <ReadyField title={`${phrases[language]?.firmName}:`} value={currentUser?.companyName} skeleton={skeletonInput}/>
+                                    <ReadyField title={`${phrases[language]?.nip}:`} value={currentUser?.NIP} skeleton={skeletonBtn}/>
                                     {/* <ReadyField title='Adres email osoby kontaktowej:' value={currentUser?.contactEmail} skeleton={skeletonBtn}/> */}
                                 </div>
                             </div>
@@ -337,12 +339,12 @@ function Dane({auth, db}) {
 
                             {/* <input type="file" name="logo" onChange={logoChanged} ref={logoRef}/> */}
 
-                            <Tooltip title="Login" placement="left" trigger={['focus', 'hover']} color="#121109" mouseEnterDelay={0} mouseLeaveDelay={0}>
+                            <Tooltip title={phrases[language]?.login} placement="left" trigger={['focus', 'hover']} color="#121109" mouseEnterDelay={0} mouseLeaveDelay={0}>
                             <Tooltip title={form.usernameError} 
                                 color={"red"} placement="bottomLeft" visible={form.usernameError}
                             >
                                 <input 
-                                    className={styles.login} type="text" placeholder="Login" ref={loginRef}
+                                    className={styles.login} type="text" placeholder={phrases[language]?.login} ref={loginRef}
                                     value={form?.username} onChange={(e)=>changeField(e, 'username')}
                                     onFocus={(e)=>onFocus('username')}
                                 />
@@ -352,17 +354,17 @@ function Dane({auth, db}) {
                                 <input className={styles.adress} type="text" placeholder="Adres email" value={form?.email} disabled={true}/>
                             </Popover> */}
 
-                            <Tooltip title="Imię i Nazwisko" placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
+                            <Tooltip title={phrases[language]?.nameSurname} placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
                             <Tooltip title={form.fullNameError} color={"red"} placement="bottomLeft" visible={form.fullNameError}>
-                                <input className={styles.name} type="text" placeholder="Imię i Nazwisko" 
+                                <input className={styles.name} type="text" placeholder={phrases[language]?.nameSurname} 
                                     value={form?.fullName} onChange={(e)=>changeField(e, 'fullName')}
                                     onFocus={(e)=>onFocus('fullName')} ref={fullNameRef}
                                 />
                             </Tooltip></Tooltip>
 
-                            <Tooltip title="Adres" placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
+                            <Tooltip title={phrases[language]?.adress} placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
                             <Tooltip title={form.adressError} color={"red"} placement="bottomLeft" visible={form.adressError}>
-                                <input className={styles.name} type="text" placeholder="Adres" 
+                                <input className={styles.name} type="text" placeholder={phrases[language]?.adress} 
                                     value={form?.adress} onChange={(e)=>changeField(e, 'adress')}
                                     onFocus={(e)=>onFocus('adress')}
                                 />
@@ -376,10 +378,10 @@ function Dane({auth, db}) {
                                 />
                             </Tooltip></Tooltip> */}
 
-                            <Tooltip title="Telefon" placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
+                            <Tooltip title={phrases[language]?.phone} placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
                             <Tooltip title={form.contactPhoneError} color={"red"} placement="bottomLeft" visible={form.contactPhoneError}>
                                 <PhoneInput 
-                                    placeholder="Telefon" 
+                                    placeholder={phrases[language]?.phone} 
                                     defaultCountry="PL"
                                     labels={pl}
                                     international={true}
@@ -393,9 +395,9 @@ function Dane({auth, db}) {
                                 />
                             </Tooltip></Tooltip>
 
-                            <Tooltip title="Nazwa Firmy" placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
+                            <Tooltip title={phrases[language]?.firmName} placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
                             <Tooltip title={form.companyNameError} color={"red"} placement="bottomLeft" visible={form.companyNameError}>
-                                <input className={styles.firm} type="text" placeholder="Nazwa Firmy" ref={companyNameRef}
+                                <input className={styles.firm} type="text" placeholder={phrases[language]?.firmName} ref={companyNameRef}
                                     value={form?.companyName} onChange={(e)=>changeField(e, 'companyName')}
                                     onFocus={(e)=>onFocus('companyName')}
                                 />
@@ -415,16 +417,16 @@ function Dane({auth, db}) {
                             </Tooltip></Tooltip> */}
 
                             <div className={styles.threeColumns}>
-                                <Tooltip title="NIP" placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
+                                <Tooltip title={phrases[language]?.nipPlaceholder} placement="left" trigger={['focus', 'hover']} color="#121109"  mouseEnterDelay={0} mouseLeaveDelay={0}>
                                 <Tooltip title={form.NIPError} color={"red"} placement="bottomLeft" visible={form.NIPError}>
-                                    <input className={styles.NIP} type="text" placeholder="NIP" 
+                                    <input className={styles.NIP} type="text" placeholder={phrases[language]?.nip} 
                                         value={form?.NIP} onChange={(e)=>changeField(e, 'NIP')}
                                         onFocus={(e)=>onFocus('NIP')} ref={NIPRef}
                                     />
                                 </Tooltip></Tooltip>
                                 {/* <input className={styles.adress} type="text" placeholder="Adres email do korespondencji" value={form?.contactEmail} onChange={(e)=>changeField(e, 'contactEmail')}/> */}
-                                <input className={styles.buttonInput} type="submit" value="ZAPISZ" disabled={isZapiszDiasabled}/>
-                                <div className={styles.cancelBtn} onClick={cancel}>odwołania</div>
+                                <input className={styles.buttonInput} type="submit" value={buttonNames[language]?.save} disabled={isZapiszDiasabled}/>
+                                <div className={styles.cancelBtn} onClick={cancel}>{buttonNames[language]?.cancel}</div>
                             </div>
                             
                             {/* <input className={styles.buttonInput} type="submit" value="ZAPISZ" disabled={isZapiszDiasabled}/> */}

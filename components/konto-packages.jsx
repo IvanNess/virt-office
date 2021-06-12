@@ -13,13 +13,15 @@ import { updatePackagePay, przelewyUpdatePackagePay } from '../utilities'
 import { useRouter } from 'next/router'
 import PakietTableSecond from './pakiet-table-second'
 import PakietTableThird from './pakiet-table-third'
+import { phrases, buttonNames } from '../accessories/constants'
 const { Panel } = Collapse;
 
 const Header = ({isMain, packageName, endDate, updPrice=null, auth, price, pakiet})=>{
 
     const email = useSelector(state=>state.currentUser.email)
-
     const router = useRouter()
+
+    const language = useSelector(state=>state.language)
 
     const update = (e)=>{
         e.stopPropagation(); 
@@ -28,7 +30,7 @@ const Header = ({isMain, packageName, endDate, updPrice=null, auth, price, pakie
         przelewyUpdatePackagePay({
             auth, 
             pakietTitle: packageName, 
-            pakietName: `zaktualizowany - ${packageName} (${price} PLN/miesiąc)`, 
+            pakietName: `${phrases[language]?.updated} - ${packageName} (${price} ${phrases[language]?.plnPerMonth})`, 
             hiredPeriod: pakiet.hiredPeriod, 
             price, 
             fullPrice: updPrice, 
@@ -48,9 +50,11 @@ const Header = ({isMain, packageName, endDate, updPrice=null, auth, price, pakie
     return(
     <div className={styles.header}>
         <div className={isMain? styles.mainPackageName : styles.packageName}>{packageName}</div>
-        {isMain && <div className={styles.endDate}>{`kończy się ${endDate}`}</div>}
-        {updPrice && <button className={styles.updateBtn} onClick={update}>{`zmień pakiet (${updPrice} zł)`}</button>}
-        {!isMain && !updPrice && <div className={styles.linkBtn} onClick={linkBtnClicked}><Link href='/wynajecie'><a>Wynajmij adres</a></Link></div>}
+        {isMain && <div className={styles.endDate}>{`${phrases[language]?.ended} ${endDate}`}</div>}
+        {updPrice && <button className={styles.updateBtn} onClick={update}>{`${phrases[language]?.changePackage} (${updPrice} zł)`}</button>}
+        {!isMain && !updPrice && <div className={styles.linkBtn} onClick={linkBtnClicked}><Link href='/wynajecie'><a>
+            {buttonNames[language]?.wynajecie}
+        </a></Link></div>}
     </div>
 )}
 
@@ -68,6 +72,7 @@ const KontoPackages = ({auth}) => {
 
     const currentUser = useSelector(state=>state.currentUser)
     const packages = useSelector(state=>state.packages)
+    const language = useSelector(state=>state.language)
 
     const dispatch = useDispatch()
 
@@ -168,13 +173,13 @@ const KontoPackages = ({auth}) => {
                     <Panel 
                         header={<Header 
                             isMain={packageName === "Wirtualny adres"} 
-                            packageName="Wirtualny adres" 
+                            packageName={phrases[language]?.cennikTitleOne} 
                             endDate={endDate}
                         />}
                         // header={`Wirtualny adres ${packageName==="Wirtualny adres" ? ` - kończy się ${endDate}` : ''}`} 
                         key="1"
                     >
-                    <p>Profesjonalny adres z obsługą poczty i odbieraniem połączeń telefonicznych oraz dostęp bez rezerwacji do naszej globalnej sieci salonów biznesowych</p>
+                    <p>{phrases[language]?.packDescription1}</p>
                     <PakietTableFirst/>
                     {/* <PackietButtons/> */}
                 </Panel>}
@@ -182,7 +187,7 @@ const KontoPackages = ({auth}) => {
                     <Panel 
                         header={<Header 
                             isMain={packageName === "Optymalny pakiet"} 
-                            packageName="Optymalny pakiet" 
+                            packageName={phrases[language]?.cennikTitleTwo} 
                             endDate={endDate} 
                             updPrice={updPriceToMiddlePakiet}
                             auth={auth}
@@ -191,7 +196,7 @@ const KontoPackages = ({auth}) => {
                         />}
                         key="2"
                     >
-                    <p>Profesjonalny adres z obsługą poczty i odbieraniem połączeń telefonicznych oraz dostęp bez rezerwacji do naszej globalnej sieci salonów biznesowych</p>
+                    <p>{phrases[language]?.packDescription1}</p>
                     <PakietTableSecond/>
                     {/* <PackietButtons/> */}
                 </Panel>}
@@ -199,7 +204,7 @@ const KontoPackages = ({auth}) => {
                     <Panel 
                         header={<Header  
                             isMain={packageName === "Profesjonalne biuro"} 
-                            packageName="Profesjonalne biuro" 
+                            packageName={phrases[language]?.cennikTitleThree} 
                             endDate={endDate} 
                             updPrice={updPriceToHighPakiet}
                             auth={auth}
@@ -207,7 +212,7 @@ const KontoPackages = ({auth}) => {
                             pakiet={pakiet}
                         />}
                         key="3">
-                    <p>Profesjonalny adres z obsługą poczty i odbieraniem połączeń telefonicznych oraz dostęp bez rezerwacji do naszej globalnej sieci salonów biznesowych</p>
+                    <p>{phrases[language]?.packDescription1}</p>
                     <PakietTableThird/>
                     {/* <PackietButtons/> */}
                 </Panel>}

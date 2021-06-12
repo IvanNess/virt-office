@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { setCalendarRedirect } from '../../redux/actions'
 import Sidebar from '../../components/side-bar'
+import { phrases } from '../../accessories/constants'
 
 function Rezervacja({db, auth}) {
 
     const dispatch = useDispatch()
     const calendarRedirect = useSelector(state=>state.calendarRedirect)
+    const language = useSelector(state=>state.language)
 
     useEffect(()=>{
         if(calendarRedirect)
@@ -22,9 +24,9 @@ function Rezervacja({db, auth}) {
         <div className={styles.dane}>
             <ProfileBoilerplate  auth={auth} db={db}>
                 <Sidebar color='#4CAED5' auth={auth}/>
-                <div className={styles.title}>4. <span className={styles.bold}>Rezerwacja Biura</span></div>
+                <div className={styles.title}>4. <span className={styles.bold}>{phrases[language]?.rezerwacja}</span></div>
                 <div className={styles.text}>
-                    <div className={styles.small}>Wpisz nazwę lub kod pocztowy miasta, w którym chcesz wybrać adres firmy. Dostępne adresy i miesięczny koszt wyświetlą się poniżej.</div>
+                    <div className={styles.small}>{phrases[language]?.packDescription3}</div>
                 </div>
                 <Calendar db={db} auth={auth}/>
             </ProfileBoilerplate>       

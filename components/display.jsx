@@ -7,12 +7,15 @@ import styles from '../styles/Display.module.scss'
 import { useRef } from 'react'
 import SkeletonImage from 'antd/lib/skeleton/Image'
 import { getData64FromTextImg } from '../utilities'
+import { phrases, buttonNames } from '../accessories/constants'
+import DisplayDescription from './display-description'
 // import textToImage from 'text-to-image'
 
 const Display = ({auth, db}) => {
 
     const currentUser = useSelector(state=>state.currentUser)
     const logo = useSelector(state=>state.logo)
+    const language = useSelector(state=>state.language)
     const [token, setToken] = useState(null)
     const [btnDisabled, setBtnDisabled] = useState(true)
 
@@ -119,12 +122,8 @@ const Display = ({auth, db}) => {
 
     return (
         <div className={styles.display}>
-            <div className={styles.title}>Twój ekran</div>
-            <div className={styles.description}>
-                Tak będzie wyglądał ekran przed biurem oraz w samym biurze. <br/>
-                Aby zmienić, kliknij na obrazek i wybierz swój. <br/>
-                Zalecany rozmiar to 1200 na 800 pikseli.
-            </div>
+            <div className={styles.title}>{phrases[language]?.yourDisplay}</div>
+            <DisplayDescription/>
             {logo !== null ? <Upload
                 name="avatar"
                 listType="picture-card"
@@ -136,10 +135,10 @@ const Display = ({auth, db}) => {
             >   
                 <img src={`data:image/png;base64,${logo}`} alt="avatar" className={styles.editLogo} ref={imgRef} className={styles.editLogo}/> 
             </Upload> : <SkeletonImage style={{width: '200px', height: '200px'}}/>}
-            <div className={styles.altDescription}>Lub wprowadź żądany tekst.</div>
+            <div className={styles.altDescription}>{phrases[language]?.displayText}</div>
             <form className={styles.displayForm} onSubmit={submit}>
-                <input value={value} placeholder="Twoja fraza" onChange={change}/>
-                <input className={styles.buttonInput} type="submit" value="ZAPISZ" disabled={btnDisabled}/>
+                <input value={value} placeholder={phrases[language]?.yourPhrase} onChange={change}/>
+                <input className={styles.buttonInput} type="submit" value={buttonNames[language]?.save} disabled={btnDisabled}/>
             </form>
         </div>
     )

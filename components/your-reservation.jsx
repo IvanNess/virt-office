@@ -5,11 +5,13 @@ import { useSelector } from 'react-redux'
 import { setUserReservations } from '../redux/actions'
 import axios from 'axios'
 import { Skeleton } from 'antd'
+import { phrases } from '../accessories/constants'
 
 function YourReservation({auth}) {
 
     const reservations = useSelector(state=>state.userReservations)
     const currentUser = useSelector(state=>state.currentUser)
+    const language = useSelector(state=>state.language)
     const [viewed, setViewed] = useState(null)
     const dispatch = useDispatch()
 
@@ -58,7 +60,7 @@ function YourReservation({auth}) {
 
     return (
         <div className={styles.yourReservation}>
-            <div className={styles.title}>Twoje rezerwacje</div>
+            <div className={styles.title}>{phrases[language].yourReservations}</div>
             {viewed && viewed.map(({year, month, day, startHour, finishHour, code}, idx)=>{
                 return(
                     <div className={styles.reservation} key={idx}>
@@ -66,7 +68,7 @@ function YourReservation({auth}) {
                             {`${day}/${month}/${year}`}
                         </div>
                         <div className={styles.right}>
-                            {`${startHour?.title} - ${finishHour?.title}, kod dostępu: ${code}`}
+                            {`${startHour?.title} - ${finishHour?.title}, ${phrases[language].yourReservations} ${code}`}
                         </div>
                     </div>
                 )                

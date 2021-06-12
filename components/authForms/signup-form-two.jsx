@@ -7,8 +7,11 @@ import { setSignupFormProp } from '../../redux/actions'
 import AuthInput from './auth-input'
 import PhoneInput from 'react-phone-number-input'
 import pl from 'react-phone-number-input/locale/pl'
+import ua from 'react-phone-number-input/locale/ua'
+import en from 'react-phone-number-input/locale/en'
 import flags from '../../accessories/flags'
 import AuthPhoneInput from './auth-phone-input'
+import { phrases } from '../../accessories/constants'
 
 
 function SignupFormTwo({db, auth}) {
@@ -18,6 +21,7 @@ function SignupFormTwo({db, auth}) {
 
     const showAuth = useSelector(state=>state.showAuth)
     const formSubmitted = useSelector(state=>state.formSubmitted)
+    const language = useSelector(state=>state.language)
     const fullNameRef = useRef()
     const companyNameRef = useRef()
     const NIPRef = useRef()
@@ -97,14 +101,14 @@ function SignupFormTwo({db, auth}) {
                 <AuthInput
                     type="text"  
                     propName="fullName"
-                    placeholder="Imię i Nazwisko"
+                    placeholder={phrases[language]?.nameSurname}
                     ref={fullNameRef}
                 />
 
                 <AuthInput
                     type="text"  
                     propName="companyName"
-                    placeholder="Nazwa firmy"
+                    placeholder={phrases[language]?.firmName}
                     ref={companyNameRef}
                 />
 
@@ -123,9 +127,9 @@ function SignupFormTwo({db, auth}) {
                 /> */}
 
                 <PhoneInput 
-                    placeholder={signupForm.phoneNumberPlaceholder ?? "Telefon"} 
+                    placeholder={signupForm.phoneNumberPlaceholder ?? phrases[language]?.phone} 
                     // defaultCountry="PL"
-                    labels={pl}
+                    labels={language==='pl'? pl : language==='ua'? ua: en}
                     international={true}
                     countryCallingCodeEditable={true}
                     value={signupForm?.phoneNumber || null} 

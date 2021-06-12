@@ -5,12 +5,14 @@ import AuthFormBoilerplate from './auth-form-boilerplate'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSignupFormProp } from '../../redux/actions' 
 import AuthInput from './auth-input'
+import { phrases } from '../../accessories/constants'
 
 function SignupFormOne({db, auth}) {
 
     const signupForm = useSelector(state=>state.signupForm)
     const showAuth = useSelector(state=>state.showAuth)
     const formSubmitted = useSelector(state=>state.formSubmitted)
+    const language = useSelector(state=>state.language)
     const dispatch = useDispatch()
 
     const nameRef = useRef()
@@ -68,21 +70,21 @@ function SignupFormOne({db, auth}) {
                 <AuthInput
                     type="text"  
                     propName="email"
-                    placeholder="E-mail"
+                    placeholder={phrases[language]?.email}
                     ref={nameRef}
                 />
 
                 <AuthInput
                     type="password"  
                     propName="password"
-                    placeholder="Hasło"
+                    placeholder={phrases[language]?.password}
                     ref={passwordRef}
                 />
 
                 <AuthInput
                     type="password"  
                     propName="repeat"
-                    placeholder="Powtórz hasło"
+                    placeholder={phrases[language]?.repeatPassword}
                     ref={repeatRef}
                 />
 

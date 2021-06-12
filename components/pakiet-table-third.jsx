@@ -3,8 +3,11 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 import CloseIcon from '@material-ui/icons/Close'
 
 import styles from '../styles/PakietTable.module.scss'
+import { useSelector } from 'react-redux'
 
 function PakietTableThird() {
+
+    const language = useSelector(state=>state.language)
 
     return (
         <div className={styles.cennikTable}>
@@ -20,7 +23,7 @@ function PakietTableThird() {
             </div>
 
             <div className={styles.main}>
-                <div className={styles.names}>
+                {language==='pl' && <div className={styles.names}>
                     <div className={styles.name}><div>Adres na potrzeby rejestracji i prowadzenia firmy</div></div>
                     <div className={styles.name}><div>Wystawianie i wysyłanie drogą elektroniczną do 50 faktur miesięcznie w serwisie <a href='wfirma.pl'>wfirma.pl</a></div></div>
                     <div className={styles.name}><div>Powiadomienie o korespondencji</div></div>
@@ -33,7 +36,18 @@ function PakietTableThird() {
 
                     {/* <div className={styles.nameWMargin}>płatność za 6 miesięcy z góry</div>
                     <div className={styles.nameWMargin}>płatność za 12 miesięcy z góry</div> */}
-                </div>
+                </div>}
+                {language==='ua' && <div className={styles.names}>
+                    <div className={styles.name}><div>Адреса для реєстрації та ведення бізнесу</div></div>
+                    <div className={styles.name}><div>Випуск та надсилання в електронному вигляді до 50 рахунків-фактур на місяць на <a href='wfirma.pl'>wfirma.pl</a></div></div>
+                    <div className={styles.name}><div>Повідомлення про вхідну поштову кореспонденцію</div></div>
+                    <div className={styles.name}><div>Необмежена кількість сканованих та електронних листів документів</div></div>
+                    <div className={styles.name}><div>Надання архівованих документів у хмарі до 2 Гб</div></div>
+                    <div className={styles.name}><div>Архівування документів у забезпеченому приміщенні п'ятьма папками на один рік</div></div>
+                    <div className={styles.name}><div>Відправлення кореспонденції на вказану адресу раз на тиждень</div></div>
+                    <div className={styles.name}><div>Доступ до конференц-залу протягом 10 годин на місяць</div></div>
+                    <div className={styles.name}><div>Пакет для бухгалтерії від <a href='wfirma.pl'>wfirma.pl</a></div></div>
+                </div>}
 
                 <div className={styles.signs}>
                     <div className={styles.row}>

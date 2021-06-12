@@ -12,6 +12,7 @@ import { useClickOutside } from 'react-click-outside-hook'
 import ForgetForm from './authForms/forget-form'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import { AuthTopLogin, AuthTopRecovery, AuthTopSignup, phrases } from '../accessories/constants'
 
 function AuthBoilerplate({db, auth, posts}) {
 
@@ -21,6 +22,7 @@ function AuthBoilerplate({db, auth, posts}) {
     const payAfterRegister = useSelector(state=>state.payAfterRegister)
     const reserveBtnDisabled = useSelector(state=>state.selectedDate.registerAndReserve)
     const currentUser = useSelector(state=>state.currentUser)
+    const language = useSelector(state=>state.language)
     const packages = useSelector(state=>state.packages)
 
     const dispatch = useDispatch()
@@ -137,14 +139,14 @@ function AuthBoilerplate({db, auth, posts}) {
                     />
                 </div>
                 <div className={styles.authOptions} onClick={onClick}>
-                    {page !== 0 && <div className={showAuth.isLogin? styles.loginSelected: styles.login} data-id='login'>Zaloguj&nbsp;się</div>}
-                    {page === 0 && <div className={styles.recovery} data-id='recovery'>Odzyskiwanie&nbsp;hasła</div>}
+                    {page !== 0 && <div className={showAuth.isLogin? styles.loginSelected: styles.login} data-id='login'><AuthTopLogin language={language}/></div>}
+                    {page === 0 && <div className={styles.recovery} data-id='recovery'><AuthTopRecovery language={language}/></div>}
                     <div className={styles.space}>&nbsp;</div>                    
-                    {page !== 0 && <div className={!showAuth.isLogin? styles.signinSelected: styles.signin} data-id='signup'>Zarejestruj&nbsp;się</div>}
+                    {page !== 0 && <div className={!showAuth.isLogin? styles.signinSelected: styles.signin} data-id='signup'><AuthTopSignup language={language}/></div>}
                     <div className={styles.rest}>&nbsp;</div>
                 </div>
                 <div className={styles.authStep}>
-                    {!showAuth.isLogin && page !== 0 && <div className={styles.content}>step <span className={styles.stepCount}>{page}</span>/2</div>}
+                    {!showAuth.isLogin && page !== 0 && <div className={styles.content}>{phrases[language]?.step} <span className={styles.stepCount}>{page}</span>/2</div>}
                 </div>
                 <div className={styles.inner}>
                     {showAuth.show && page===0  && <ForgetForm db={db} auth={auth}/>}

@@ -8,16 +8,19 @@ import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import {setPackages} from '../../redux/actions'
 import Sidebar from '../../components/side-bar'
+import { phrases } from '../../accessories/constants'
 
 function Pakiet({auth, db}) {
+
+    const language = useSelector(state=>state.language)
 
     return (
         <div className={styles.pakiet}>
             <ProfileBoilerplate  auth={auth} db={db}>
                 <Sidebar color='#4CAED5' auth={auth}/>
-                <div className={styles.title}>2. <span className={styles.bold}>Pakiet</span></div>
+                <div className={styles.title}>2. <span className={styles.bold}>{phrases[language]?.pakiet}</span></div>
                 <div className={styles.text}>
-                    <div className={styles.small}>Wpisz nazwę lub kod pocztowy miasta, w którym chcesz wybrać adres firmy. Dostępne adresy i miesięczny koszt wyświetlą się poniżej.</div>
+                    <div className={styles.small}>{phrases[language]?.pakietDescription}</div>
                 </div>
                 <KontoPackages auth={auth}/>
             </ProfileBoilerplate>       

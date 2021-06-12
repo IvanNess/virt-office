@@ -3,10 +3,13 @@ import styles from '../styles/Profile.module.scss'
 import { useRef } from 'react'
 import axios from 'axios'
 import { Modal } from 'antd'
+import { buttonNames, phrases } from '../accessories/constants'
+import { useSelector } from 'react-redux'
 
 function ChangePassword({auth}) {
 
     const [chngBtnPswrdDsbld, setChngBtnPswrdDsbld] = useState(false)
+    const language = useSelector(state=>state.language)
 
     const passwordRef = useRef(null)
     const repeatRef = useRef(null)
@@ -18,7 +21,7 @@ function ChangePassword({auth}) {
         const password = passwordRef.current.value
         if(password.length < 6){
             Modal.error({
-                content: "Hasło musi mieć co najmniej sześć znaków.",
+                content: phrases[language]?.passwordMessage1,
                 maskClosable: true,
                 onOk: ()=>{passwordRef.current.focus()},
                 onCancel: ()=>{passwordRef.current.focus()}
@@ -39,7 +42,7 @@ function ChangePassword({auth}) {
                 passwordRef.current.value = '',
                 repeatRef.current.value = ''
                 Modal.success({
-                    content: 'Hasło zostało pomyślnie zmienione!',
+                    content: phrases[language]?.passwordMessage2,
                     maskClosable: true
                 }); 
             } catch (error) {
@@ -53,7 +56,7 @@ function ChangePassword({auth}) {
             
         } else{
             Modal.error({
-                content: "Powtórzone hasło nie jest zgodne z hasłem.",
+                content: phrases[language]?.passwordMessage3,
                 maskClosable: true,
                 onOk: ()=>{repeatRef.current.focus()},
                 onCancel: ()=>{repeatRef.current.focus()}
@@ -65,13 +68,13 @@ function ChangePassword({auth}) {
     return (
         <div className={styles.profile}>
             <div className={styles.changeLogin}>
-                <div className={styles.smallTitle}>Zmień hasło:</div>
+                <div className={styles.smallTitle}>{phrases[language]?.changePassword}</div>
                 <form onSubmit={changePassword}>
                     <div className={styles.twoColumns}>
-                        <input className={styles.password} type="password" placeholder="Nowe Hasło" ref={passwordRef}/>
-                        <input className={styles.repeat} type="password" placeholder="Powtórz nowe hasło" ref={repeatRef}/> 
+                        <input className={styles.password} type="password" placeholder={phrases[language]?.newPassword} ref={passwordRef}/>
+                        <input className={styles.repeat} type="password" placeholder={phrases[language]?.repeatPassword} ref={repeatRef}/> 
                     </div>
-                    <input className={styles.buttonInput} type="submit" value="ZAPISZ" disabled={chngBtnPswrdDsbld}/>
+                    <input className={styles.buttonInput} type="submit" value={buttonNames[language]?.save} disabled={chngBtnPswrdDsbld}/>
                 </form>
             </div>
         </div>

@@ -6,12 +6,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setSignupFormProp } from '../../redux/actions' 
 import AuthInput from './auth-input'
 import ForgetInput from './forget-input'
+import { phrases } from '../../accessories/constants'
 
 function ForgetForm({db, auth}) {
 
     const forgetForm = useSelector(state=>state.forgetForm)
     const showAuth = useSelector(state=>state.showAuth)
     const formSubmitted = useSelector(state=>state.formSubmitted)
+    const language = useSelector(state=>state.language)
     const dispatch = useDispatch()
 
     const emailRef = useRef()
@@ -33,7 +35,7 @@ function ForgetForm({db, auth}) {
                 <ForgetInput
                     type="text"  
                     propName="email"
-                    placeholder="E-mail podany podczas rejestracji"
+                    placeholder={phrases[language]?.authMessage12}
                     ref={emailRef}
                 />
 

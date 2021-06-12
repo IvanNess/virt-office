@@ -9,6 +9,7 @@ import { packagePay, reservationPay, getData64FromTextImg, przelewyPackagePay, p
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 import { Modal } from 'antd'
 import {LoadingOutlined} from '@ant-design/icons'
+import { phrases, buttonNames } from '../../accessories/constants'
 
 function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
 
@@ -22,6 +23,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
     const startHour = useSelector(state=>state.reservedHoursUtilities.startHour)
     const finishHour = useSelector(state=>state.reservedHoursUtilities.finishHour)
     const packages = useSelector(state=>state.packages)
+    const language = useSelector(state=>state.language)
     const currentUser = useSelector(state=>state.currentUser)
 
     const [btnDisabled, setBtnDisabled] = useState(false)
@@ -43,8 +45,8 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
             } else if(payAfterRegister && packages && packages.length > 0){
                 // dispatch(setPayAfterRegister(false))
                 Modal.error({
-                    title: 'Błąd zakupu pakietu.',
-                    content: 'Masz niedokończony pakiet.',
+                    title: phrases[language]?.authMessage1,
+                    content: phrases[language]?.authMessage2,
                     onOk: ()=>dispatch(setPayAfterRegister(false))
                 })
                 router.push('/konto/pakiet')
@@ -54,15 +56,16 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
     }, [payAfterRegister, packages, currentUser])
 
     async function check(){
+        console.log('check', page)
         if(isLogin){
             dispatch(setLoginFormProp('loginPlaceholder', ''))
             dispatch(setLoginFormProp('passwordPlaceholder', ''))            
             if(!loginForm.login || loginForm.login.length ===0){
-                dispatch(setLoginFormProp('loginPlaceholder', 'No empty string allowed in login.'))
+                dispatch(setLoginFormProp('loginPlaceholder', phrases[language]?.requiredField))
                 return
             }
             if(!loginForm.password || loginForm.password.length === 0){
-                dispatch(setLoginFormProp('passwordPlaceholder', 'No empty string allowed in password.'))
+                dispatch(setLoginFormProp('passwordPlaceholder', phrases[language]?.requiredField))
                 // dispatch(setLoginFormProp('password', ''))
                 return
             }
@@ -95,11 +98,11 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
             } catch (error) {
                 console.log(error)
                 if(error?.message==='The password is invalid or the user does not have a password.'){
-                    dispatch(setLoginFormProp('passwordPlaceholder', 'there is no user or password wrong'))
+                    dispatch(setLoginFormProp('passwordPlaceholder', phrases[language]?.authMessage3))
                     return
                 }
                 Modal.error({
-                    title: 'This is an error message',
+                    title: phrases[language]?.authMessage4,
                     content: `${error.response?.data || error.message}`,
                 });
                 return
@@ -109,7 +112,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
             switch (page){
                 case 0:   
                     if(!forgetForm.email || forgetForm.email.length ===0 || !forgetForm.email.includes('@')){
-                        dispatch(setForgetFormProp('emailPlaceholder', 'Nie wygląda jak prawdziwy email adress...'))
+                        dispatch(setForgetFormProp('emailPlaceholder', phrases[language]?.authMessage5))
                         break
                     }
                     await auth.sendPasswordResetEmail(forgetForm.email)
@@ -117,7 +120,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         // title: 'This is a notification message',
                         content: (
                           <div>
-                            <p>{`Link do zresetowania hasła został wysłany na e-mail ${forgetForm.email}`}</p>
+                            <p>{`${phrases[language]?.authMessage6} ${forgetForm.email}`}</p>
                           </div>
                         ),
                         onOk() {
@@ -130,7 +133,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     // if(!signupForm.name || signupForm.name.length ===0){
                     //     dispatch(setSignupFormProp('namePlaceholder', 'There is no empty string allowed'))
                     if(!signupForm.email || signupForm.email.length ===0 || !signupForm.email.includes('@')){
-                        dispatch(setSignupFormProp('emailPlaceholder', 'Nie wygląda jak prawdziwy email adress...'))
+                        dispatch(setSignupFormProp('emailPlaceholder', phrases[language]?.authMessage5))
                         break
                     }
                     try {
@@ -156,23 +159,23 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         console.log(error)
                         // dispatch(setSignupFormProp('name', ''))
                         if(error.response?.data==='This username is already in use by another account.'){
-                            dispatch(setSignupFormProp('namePlaceholder', 'This username is already in use by another account.'))
+                            dispatch(setSignupFormProp('namePlaceholder', phrases[language]?.authMessage7))
                             return
                         }
                         // alert(`ERROR: ${error.response?.data || error.message}`)
                         Modal.error({
-                            title: 'This is an error message',
+                            title: phrases[language]?.authMessage4,
                             content: `${error.response?.data || error.message}`,
                         });
                         break
                     }
                     if(!signupForm.password || signupForm.password.length < 6 ){
-                        dispatch(setSignupFormProp('passwordPlaceholder', 'Password should be at least 6 digits'))
+                        dispatch(setSignupFormProp('passwordPlaceholder', phrases[language]?.authMessage8))
                         // dispatch(setSignupFormProp('password', ''))
                         break
                     }
                     if(!signupForm.password || !signupForm.repeat || signupForm.password !== signupForm.repeat){
-                        dispatch(setSignupFormProp('repeatPlaceholder', 'Passwords are not the same...'))
+                        dispatch(setSignupFormProp('repeatPlaceholder', phrases[language]?.authMessage9))
                         // dispatch(setSignupFormProp('repeat', ''))
                         break
                     }
@@ -180,11 +183,12 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     break
                 case 2: 
                     if(!signupForm.fullName || signupForm.fullName.length ===0){
-                        dispatch(setSignupFormProp('fullNamePlaceholder', 'There is no empty string allowed'))
+                        console.log('fullNamePlaceholder', phrases[language]?.requiredField)
+                        dispatch(setSignupFormProp('fullNamePlaceholder', phrases[language]?.requiredField))
                         break
                     }
                     if(!signupForm.companyName || signupForm.companyName.length ===0){
-                        dispatch(setSignupFormProp('companyNamePlaceholder', 'There is no empty string allowed'))
+                        dispatch(setSignupFormProp('companyNamePlaceholder', phrases[language]?.requiredField))
                         break
                     }
                     // if(!signupForm.NIP || signupForm.NIP.trim().length !==10 || !Number(signupForm.NIP)){
@@ -199,11 +203,11 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     // }
                     if(!signupForm.phoneNumber || signupForm.phoneNumber.length ===0){
                         // dispatch(setSignupFormProp('phoneNumber', ''))
-                        dispatch(setSignupFormProp('phoneNumberPlaceholder', 'There is no empty string allowed'))
+                        dispatch(setSignupFormProp('phoneNumberPlaceholder', phrases[language]?.requiredField))
                         break
                     }
                     if(signupForm.phoneNumber && !isPossiblePhoneNumber(signupForm.phoneNumber)){
-                        dispatch(setSignupFormProp('phoneNumberPlaceholder', 'Nie wygląda jak prawdziwy numer telefonu.'))
+                        dispatch(setSignupFormProp('phoneNumberPlaceholder', phrases[language]?.authMessage10))
                         break
                     }
                     // dispatch(setSignupFormProp('page', 3))
@@ -295,25 +299,25 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     } catch (error) {
                         console.log(error)
                         if(error.response?.data==="The email address is improperly formatted."){
-                            dispatch(setSignupFormProp('contactEmailPlaceholder', 'The email address is improperly formatted.'))
+                            dispatch(setSignupFormProp('contactEmailPlaceholder', phrases[language]?.authMessage5))
                             // dispatch(setSignupFormProp('contactEmail', ''))
                             return
                         }
                         if(error.response?.data==="The email address is already in use by another account."){
-                            dispatch(setSignupFormProp('emailPlaceholder', 'The email address is already in use by another account.'))
+                            dispatch(setSignupFormProp('emailPlaceholder', phrases[language]?.authMessage11))
                             // dispatch(setSignupFormProp('contactEmail', ''))
                             dispatch(setSignupFormProp('page', 1))
                             return
                         }
                         if(error.response?.data==='This username is already in use by another account.'){
-                            dispatch(setSignupFormProp('namePlaceholder', 'This username is already in use by another account.'))
+                            dispatch(setSignupFormProp('namePlaceholder', phrases[language]?.authMessage7))
                             // dispatch(setSignupFormProp('contactEmail', ''))
                             dispatch(setSignupFormProp('page', 1))
                             return
                         }
                         // alert(`ERROR: ${error.response?.data || error.message}`)
                         Modal.error({
-                            title: 'This is an error message',
+                            title: phrases[language]?.authMessage4,
                             content: `${error.response?.data || error.message}`,
                         });
                     }
@@ -349,10 +353,10 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                 {children}
                 <div className={styles.authFooter}>
                     <div className={styles.left} onClick={leftClicked}>
-                        {isLogin? "Nie pamiętam hasła": page!==1? "powrót": ''}
+                        {isLogin? buttonNames[language]?.forget : page!==1? buttonNames[language]?.back : ''}
                     </div>
                     <button onClick={submit} disabled={btnDisabled}>
-                        {isLogin? "Zajoguj się": page!==2?"Dalej":"Sign up"}
+                        {isLogin? buttonNames[language]?.login : page!==2? buttonNames[language]?.next: buttonNames[language]?.register2}
                         {btnDisabled && <LoadingOutlined style={{color: "white"}}/>}
                     </button>
                 </div>

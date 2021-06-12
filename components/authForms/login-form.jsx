@@ -5,12 +5,14 @@ import AuthFormBoilerplate from './auth-form-boilerplate'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import AuthLoginInput from './auth-login-input'
+import { phrases } from '../../accessories/constants'
 
 function LoginForm({db, auth}) {
 
     const loginForm = useSelector(state=>state.loginForm)
     const showAuth = useSelector(state=>state.showAuth)
     const formSubmitted = useSelector(state=>state.formSubmitted)
+    const language = useSelector(state=>state.language)
 
     const loginRef = useRef(null)
     const passwordRef = useRef(null)
@@ -50,7 +52,7 @@ function LoginForm({db, auth}) {
                 <AuthLoginInput
                     type="text"  
                     propName="login"
-                    placeholder="E-mail"
+                    placeholder={phrases[language]?.email}
                     ref={loginRef}
                 />
 
@@ -69,7 +71,7 @@ function LoginForm({db, auth}) {
                 <AuthLoginInput
                     type="password"  
                     propName="password"
-                    placeholder="Hasło"
+                    placeholder={phrases[language]?.password}
                     ref={passwordRef}
                 />
 
