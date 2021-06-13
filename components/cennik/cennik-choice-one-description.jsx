@@ -44,7 +44,25 @@ const CennikChoiceOneDescription = () => {
                     <br/>
                     Ціна не включає ПДВ
                 </p>
-            } 
+            }
+            {language === 'en' && 
+                <p>
+                    - address for registration and business operation purposes
+                    <br/>
+                    - notification of correspondence
+                    <br/>
+                    - scanning and e-mailing of incoming correspondence up to 20 documents or 100 MB per month
+                    <br/>
+                    - archiving of documents in a safeguarded room – one A4 binder per year
+                    <br/>
+                    - access to the conference room for 2 hours a month
+                    <br/>
+                    - Invoicing + Warehouse package from wfirma.pl in the first year of using virtoffice.pl
+                    <br/>
+                    <br/>
+                    The price does not include VAT                
+                </p>
+            }  
         </div>  
     )
 }

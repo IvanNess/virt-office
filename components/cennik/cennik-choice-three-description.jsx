@@ -57,6 +57,30 @@ const CennikChoiceThreeDescription = () => {
                     Ціна не включає ПДВ
                 </p>
             } 
+            {language === 'en' && 
+                <p>
+                    - address for registration and business operation purposes
+                    <br/>
+                    - issuing and sending of up to 50 invoices per month by electronic means at wfirma.pl
+                    <br/>
+                    - notification of correspondence
+                    <br/>
+                    - unlimited number of scanned and e-mailed documents
+                    <br/>
+                    - access to archived documents in a cloud up to 2 GB
+                    <br/>
+                    - archiving of documents in a safeguarded room – five binders per year
+                    <br/>
+                    - sending of correspondence to the specified address once a week
+                    <br/>
+                    - access to the conference room for 10 hours a month
+                    <br/>
+                    - Accounting Office package from wfirma.pl
+                    <br/>
+                    <br/>
+                    The price does not include VAT                
+                </p>
+            }
         </div>  
     )
 }

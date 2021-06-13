@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import styles from '../styles/WynajmijButton.module.scss'
 import Link from 'next/link'
+import { buttonNames } from '../accessories/constants'
 
 const WynajmijButton = () => {
 
     const packages = useSelector(state=>state.packages)
+    const language = useSelector(state=>state.language)
     const currentUser = useSelector(state=>state.currentUser)  
 
     const [wynajecieClassName, setWynajecieClassName] = useState('hideWynajecie')
@@ -25,7 +27,7 @@ const WynajmijButton = () => {
             <div className={styles[wynajecieClassName]}>
                 {
                     wynajecieClassName==='wynajecie' && 
-                    <Link href='/wynajecie'><a>Wynajmij adres</a></Link>
+                    <Link href='/wynajecie'><a>{buttonNames[language]?.wynajecie}</a></Link>
                 }
             </div>
         </div>

@@ -18,7 +18,13 @@ const CennikTitle = () => {
                 <div className={styles.title}>
                     віртуальний офіс / <span className={styles.boldFont}> прайс-лист</span>
                 </div>
-            }      
+            }   
+            {language === 'en' && 
+                <div className={styles.title}>
+                    virtual office / <span className={styles.boldFont}> prices</span>
+                </div>
+            }
+   
         </>
     )
 }

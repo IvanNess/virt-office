@@ -28,7 +28,17 @@ const CennikHeader = () => {
                         Керуйте своїм бізнесом з будь-якого місця та у будь-який час
                     </div>
                 </>
-            }        
+            } 
+            {language === 'en' && 
+                <>
+                    <div className={styles.headerTitle}>
+                        see our <div className={styles.headerBoldFont}> PRICES AND SERVICES</div>
+                    </div>
+                    <div className={styles.headerText}>
+                        Manage your business from any place at any time
+                    </div>
+                </>
+            }       
         </div>
     )
 }

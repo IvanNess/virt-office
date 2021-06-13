@@ -38,7 +38,22 @@ const KsiegowoscHeader = () => {
                         Ми будемо раді допомогти вам вибрати рішення, яке найкраще відповідає вашим потребам.
                     </div>
                 </>
-            }        
+            }  
+            {language === 'en' && 
+                <>
+                    <div className={styles.headerTitle}>
+                        strength of combined offers
+                        <br/>
+                        for customers leasing an address from&nbsp;<Link href='/'><a>virtoffice.pl</a></Link> 
+                        <div className={styles.headerBoldFont}>YEAR OF FREE ACCESS TO THE <a href="https://wfirma.pl" target="_blank">WFIRMA.PL</a> ACCOUNTING PORTAL</div>
+                    </div>
+                    <div className={styles.headerText}>
+                        Księgowość zarówno on-line jak i konwencjonalna. 
+                        <br/>
+                        Issue invoices, calculate taxes and settle payments with ZUS thanks to online accounting or order this to <span className={styles.headerTextBoldFont}>PROFESSIONAL&nbsp;ACCOUNTANTS.</span>. We will help you choose the solution that is best adapted to your needs.  
+                    </div>
+                </>
+            }      
         </div>
     )
 }

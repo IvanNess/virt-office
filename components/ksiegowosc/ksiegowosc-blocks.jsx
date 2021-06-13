@@ -67,6 +67,33 @@ const KsiegowoscBlocks = () => {
                     </Block>  
                 </> 
             }
+            {language === 'en' && 
+                <>
+                    <Block className='blockMedium'>
+                        <div className={styles.blockTitle} style={{maxWidth: '360px'}}>
+                            The simplicity and comfort that you will like.
+                        </div>
+                        <div className={styles.blockText}><p>
+                            You will quickly issue an invoice, easily calculate taxes and settle payments with ZUS. Simple, comfortable and uncomplicated.
+                        </p></div>
+                    </Block>
+                    <Block className='blockMedium'>
+                        <div className={styles.blockTitle}>
+                            Support whenever<br/> you need it    
+                        </div>
+                        <div className={styles.blockText}><p>
+                            We suggest effective solutions and share our knowledge. Our team of experts is always at your disposal.                        </p></div>
+                    </Block>  
+                    <Block className='blockMedium'>
+                        <div className={styles.blockTitle} style={{maxWidth: '350px'}}>
+                            The comprehensiveness that you will appreciate.
+                        </div>
+                        <div className={styles.blockText}><p>
+                            Everything you need in one place, available on every device and at any time. Your company is wherever you are!
+                        </p></div>
+                    </Block>  
+                </> 
+            }
         </div>
     )
 }

@@ -48,6 +48,26 @@ const Digits = () => {
                     </div>
                 </div>
             }
+            {language === 'en' && 
+                <div className={styles.uarecords}>
+                    <div className={styles.record}>
+                        <div className={styles.top}>390&nbsp;000</div>
+                        <div className={styles.bottom}>registered users</div>
+                    </div>
+                    <div className={styles.record}>
+                        <div className={styles.top}>15&nbsp;years</div>
+                        <div className={styles.bottom}>on the accounting market</div>
+                    </div>
+                    <div className={styles.record}>
+                        <div className={styles.top}>3&nbsp;million</div>
+                        <div className={styles.bottom}>submitted declarations</div>
+                    </div>
+                    <div className={styles.record}>
+                        <div className={styles.top}>62&nbsp;million</div>
+                        <div className={styles.bottom}>issued invoices</div>
+                    </div>
+                </div>
+            }
         </>
     )
 }

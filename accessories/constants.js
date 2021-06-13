@@ -74,10 +74,10 @@ export const pathnames = {
     },
     en: {
         home: 'lease of address for companies',
-        cennik: 'cennik i usługi',
-        ksiegowosc: 'księgowość',
-        polityka : 'polityka prywatności',
-        regulamin : 'regulamin'
+        cennik: 'prices and services',
+        ksiegowosc: 'accounting',
+        polityka : 'privacy policy',
+        regulamin : 'terms and conditions'
     }
 }
 
@@ -160,7 +160,7 @@ export const buttonNames = {
     },
     en: {
         wynajecie: 'LEASE ADDRESS',
-        login: 'LOG IN',
+        login: 'log in',
         profil: "profil",
         cancel: 'cancel',
         reserve: "book",
@@ -168,16 +168,16 @@ export const buttonNames = {
 	    accounting: "accounting",
 	    conditions: "terms and conditions",
         policy: "privacy policy",
-        login2: 'LOG IN',
+        login2: 'log in',
         register: "register",
         logout: "log out",
         next: "next",
         pay: "Pay",
         loginAndPay: 'log in and pay',
-        cennik: 'cennik',
-        ksiegowosc: 'ksiegowosc',
-        regulamin: 'regulamin',
-        polityka : 'polityka prywatności',
+        cennik: 'prices',
+        ksiegowosc: 'accounting',
+        regulamin: 'terms and conditions',
+        polityka : 'privacy policy',
         myProfile: '1. Mój profil',
         pakiet: '2. Pakiet',
         pack: 'Pakiet',
@@ -191,9 +191,9 @@ export const buttonNames = {
         menuMyReservations: "— moje rezerwacje",
         save: 'save',
         edit: 'edit',
-        forget: "Nie pamiętam hasła",
+        forget: "I don’t remember password",
         back: "powrót",
-        register2: "zarejestruj się",
+        register2: "register",
 
     }
 }
@@ -340,7 +340,7 @@ export const phrases = {
         authMessage10: 'Nie wygląda jak prawdziwy numer telefonu.',
         authMessage11: 'The email address is already in use by another account.',
         authMessage12: 'E-mail podany podczas rejestracji',
-        password: 'Hasło',
+        password: 'Password',
         email: 'E-mail',
         step: 'крок'
 
@@ -348,10 +348,10 @@ export const phrases = {
     en: {
         footerOne: "Operate from any place around the world thanks to the virtual office option.",
         footerTwo: "Contact us:",
-        cennikTitleOne: 'Wirtualny adres',
-        cennikTitleTwo: 'Optymalny pakiet',
-        cennikTitleThree: 'Profesjonalne biuro',
-        plnPerMonth: 'Злотих / місяць',
+        cennikTitleOne: 'Virtual address',
+        cennikTitleTwo: 'Optimum package',
+        cennikTitleThree: 'Professional office',
+        plnPerMonth: 'PLN / month',
         selectPackage: '1. wybór usługi biura wirtualnego:',
         selectPeriod: '2. wybierz profesjonalny adres swojej firmy:',
         month: 'Month',

@@ -24,6 +24,12 @@ const KsiegowoscEnd = () => {
                     </div>
                 </Billboard>
             }
+            {language === 'en' && 
+                <Billboard noBackground={true}>
+                    <div className={styles.noBackgroundBillboardText}>
+                        We are always there to help you. We&nbsp;provide constant substantive support and fast technical assistance.                    </div>
+                </Billboard>
+            }
         </>
     )
 }

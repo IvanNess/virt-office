@@ -22,7 +22,13 @@ const KsiegowoscTitleOne = () => {
                     більш <span className={styles.boldFont}> 700 нових </span>
                     підприємців вибирають <span className={styles.boldFont}><a href ='https://wfirma.pl'>wFirma.pl</a></span> бухгатерський сервіс щотижня 
                 </div>
-            }     
+            }   
+            {language === 'en' && 
+                <div className={styles.title}>
+                    over <span className={styles.boldFont}> 700 new </span>
+                    entrepreneurs choose the&nbsp;<span className={styles.boldFont}><a href ='https://wfirma.pl'>wFirma.pl</a></span> portal every week 
+                </div>
+            }  
         </>
     )
 }

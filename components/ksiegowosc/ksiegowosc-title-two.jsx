@@ -22,7 +22,14 @@ const KsiegowoscTitleTwo = () => {
                         наш партнер, бухгалтерська служба <span className={styles.boldFont}><a href ='https://wfirma.pl'>wFirma.pl</a></span> у&nbsp;цифрах
                     </div>
                 </div>
-            }     
+            }  
+            {language === 'en' && 
+                <div className={styles.secondTitle}>
+                    <div className={styles.title}>
+                        our partner <span className={styles.boldFont}><a href ='https://wfirma.pl'>wFirma.pl</a></span> in&nbsp;figures
+                    </div>
+                </div>
+            }   
         </>
     )
 }
