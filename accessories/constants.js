@@ -42,18 +42,18 @@ export const monthNames = {
         "Грудень"
     ],
     en: [
-        "Січень",
-        "Лютий",
-        "Березень",
-        "Квітень",
-        "Травень",
-        "Червень",
-        "Липень",
-        "Серпень",
-        "Вересень",
-        "Жовтень",
-        "Листопад",
-        "Грудень"
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
     ],
 }
 
