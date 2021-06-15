@@ -166,7 +166,7 @@ const Calendar = ({db, auth}) => {
     }
 
     return (
-        <div className={router.pathname ==='/konto/rezerwacja' ? styles.rezCalendar : styles.calendar} >
+        <div className={router.asPath.includes('/konto') ? styles.rezCalendar : styles.calendar} >
             {/* <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
                 <DatePicker
                     disableToolbar

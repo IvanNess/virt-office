@@ -9,12 +9,15 @@ import Link from 'next/link'
 import Footer from '../components/footer'
 import WynajmijButton from '../components/wynajmij-button'
 import Line from '../components/line'
+import { useSelector } from 'react-redux'
 
 function Regulamin({auth}) {
     const Hyphen = ()=> <span className={styles.hyphen}>&mdash;&mdash;&mdash;&mdash;&mdash;</span>
 
+    const language = useSelector(state=>state.language)
+
     return (
-        <div className={styles.regulamin}>
+        <div className={styles.regulamin} style={{display: language? 'block': 'none'}}>
             <Sidebar auth={auth}/>
 
             <Line/>

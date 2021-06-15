@@ -39,10 +39,11 @@ export default function Home({db, auth}) {
 
   const wynajmijBiuroRef = useRef()
   const router = useRouter()
+  const language = useSelector(state=>state.language)
 
   useEffect(()=>{
     console.log('router', router)
-    if(router.asPath==='/#wynajmij-biuro')
+    if(router.asPath.includes('#wynajmij-biuro'))
     wynajmijBiuroRef.current.scrollIntoView()
   }, [router.query])
 
@@ -51,7 +52,10 @@ export default function Home({db, auth}) {
   }
 
   return (
-    <div className={router.asPath==='/#wynajmij-biuro' ? styles.containerNoAnimation : styles.container}>
+    <div 
+      className={router.asPath.includes('#wynajmij-biuro') ? styles.containerNoAnimation : styles.container}
+      style={{display: language? 'block': 'none'}}
+    >
 
       <Sidebar auth={auth}/>
 

@@ -286,7 +286,7 @@ function Dane({auth, db}) {
     // }
 
     return (
-        <div className={styles.dane}>
+        <div className={styles.dane} style={{display: language? 'block': 'none'}}>
             <ProfileBoilerplate  auth={auth} db={db}>
                 <Sidebar color='#4CAED5' auth={auth}/>
                 <div>

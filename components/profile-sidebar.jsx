@@ -36,23 +36,23 @@ function ProfileSidebar({auth, db}) {
     return (
         <div className={styles.profileSidebar}>
             <div className={styles.categories}>
-                <div className={router.pathname==="/konto/profil"? styles.active: ""}><Link href="/konto/profil"><a>
+                <div className={router.asPath.includes("/profil")? styles.active: ""}><Link href={`/konto/${language}/profil`}><a>
                     {buttonNames[language]?.myProfile}
                 </a></Link></div>
                 {/* <div className={router.pathname==="/konto/dane"? styles.active: ""}><Link href="/konto/dane"><a>2. Moje dane</a></Link></div> */}
-                <div className={router.pathname==="/konto/pakiet"? styles.active: ""}><Link href="/konto/pakiet"><a>
+                <div className={router.asPath.includes("/pakiet")? styles.active: ""}><Link href={`/konto/${language}/pakiet`}><a>
                     {buttonNames[language]?.pakiet}
                 </a></Link></div>
-                <div className={router.pathname==="/konto/rozliczenia"? styles.active: ""}><Link href="/konto/rozliczenia"><a>
+                <div className={router.asPath.includes("/rozliczenia")? styles.active: ""}><Link href={`/konto/${language}/rozliczenia`}><a>
                     {buttonNames[language]?.rozliczenia}
                 </a></Link></div>
                 {/* <div><Link href="/konto/profil"><a>&nbsp;&nbsp;&nbsp; — Historia</a></Link></div>
                 <div><Link href="/konto/profil"><a>&nbsp;&nbsp;&nbsp; — Płatności</a></Link></div>
                 <div><Link href="/konto/rozliczenia-faktury"><a>&nbsp;&nbsp;&nbsp; — Faktury</a></Link></div> */}
-                <div className={router.pathname==="/konto/rezerwacja"? styles.active: ""}><Link href="/konto/rezerwacja"><a>
+                <div className={router.asPath.includes("/rezerwacja")? styles.active: ""}><Link href={`/konto/${language}/rezerwacja`}><a>
                     {buttonNames[language]?.rezerwacja}
                 </a></Link></div>
-                <div className={router.pathname==="/konto/moje-rezerwacje"? styles.active: ""}><Link href="/konto/moje-rezerwacje"><a>
+                <div className={router.asPath.includes("/moje-rezerwacje")? styles.active: ""}><Link href={`/konto/${language}/moje-rezerwacje`}><a>
                     &nbsp;&nbsp;&nbsp; {buttonNames[language]?.myReservations}
                 </a></Link></div>
             </div>

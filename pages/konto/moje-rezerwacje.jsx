@@ -17,7 +17,7 @@ function MojeRezerwacje({auth, db}) {
     const language = useSelector(state=>state.language)
 
     return (
-        <div className={styles.pakiet}>
+        <div className={styles.pakiet} style={{display: language? 'block': 'none'}}>
             <ProfileBoilerplate  auth={auth} db={db}>
                 <Sidebar color='#4CAED5' auth={auth}/>
                 <div className={styles.title}> <span className={styles.bold}>{phrases[language]?.myReservations}</span></div>

@@ -15,12 +15,15 @@ import KsiegowoscBlocks from '../components/ksiegowosc/ksiegowosc-blocks'
 import KsiegowoscTitleTwo from '../components/ksiegowosc/ksiegowosc-title-two'
 import Digits from '../components/ksiegowosc/digits'
 import KsiegowoscEnd from '../components/ksiegowosc/ksiegowosc-end'
+import { useSelector } from 'react-redux'
 
 function Ksiegowosc({auth}) {
     const Hyphen = ()=> <span className={styles.hyphen}>&mdash;&mdash;&mdash;&mdash;&mdash;</span>
 
+    const language=useSelector(state=>state.language)
+
     return (
-        <div className={styles.ksiegowosc}>
+        <div className={styles.ksiegowosc} style={{display: language? 'block': 'none'}}>
             <Sidebar auth={auth}/>
 
             <Line/>

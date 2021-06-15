@@ -1,6 +1,6 @@
 export const updateLanguage = (state, action)=>{
     if(state===undefined){
-        return 'pl'
+        return undefined
     }
     switch(action.type){
         case "SET_LANGUAGE":

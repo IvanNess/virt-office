@@ -27,7 +27,7 @@ const WynajmijButton = () => {
             <div className={styles[wynajecieClassName]}>
                 {
                     wynajecieClassName==='wynajecie' && 
-                    <Link href='/wynajecie'><a>{buttonNames[language]?.wynajecie}</a></Link>
+                    <Link href={`/${language}/wynajecie`}><a>{buttonNames[language]?.wynajecie}</a></Link>
                 }
             </div>
         </div>

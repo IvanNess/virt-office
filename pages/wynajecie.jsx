@@ -37,7 +37,7 @@ function Wynajecie({db, auth}) {
     }, [hiringChoiceNumber])
 
     return (
-        <div style={{backgroundImage: 'linear-gradient(90deg, #ffffff 50%, #4caed5 50%)'}}>
+        <div style={{backgroundImage: 'linear-gradient(90deg, #ffffff 50%, #4caed5 50%)', display: language? 'block': 'none'}}>
         <Line leftColor='#4CAED5'/>
         <div style={{margin: 'auto', maxWidth: '1440px', backgroundColor: '#ffffff'}}>
         <div className={styles.wynajecie}>

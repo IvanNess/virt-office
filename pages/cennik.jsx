@@ -13,8 +13,11 @@ import WynajmijButton from '../components/wynajmij-button'
 import Line from '../components/line'
 import CennikHeader from '../components/cennik/cennik-header'
 import CennikTitle from '../components/cennik/cennik-title'
+import { useSelector } from 'react-redux'
 
 const Cennik = ({auth}) => {
+
+    const language=useSelector(state=>state.language)
 
     const [currentCennikId, setCurrentCennikId]  = useState(1)
 
@@ -23,10 +26,11 @@ const Cennik = ({auth}) => {
         setCurrentCennikId(Number(id))        
     }
 
+    console.log('cennik language', language)
 
 
     return (
-        <div className={styles.cennik}>
+        <div className={styles.cennik} style={{display: language? 'block': 'none'}}>
             <Sidebar auth={auth}/>
 
             <Line/>

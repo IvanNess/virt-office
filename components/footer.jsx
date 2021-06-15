@@ -40,17 +40,17 @@ const Footer = ({auth}) => {
                 <div className={language==='ua'? styles.uaWrapper: styles.wrapper}>
                     <div className={styles.column}>
                         {/* <div><Link href="/onas"><a><h2>o nas</h2></a></Link></div> */}                    
-                        <div><Link href="/cennik"><a><h2 >{buttonNames[language].prices}</h2></a></Link></div>     
+                        <div><Link href={`/${language}/cennik`}><a><h2 >{buttonNames[language]?.prices}</h2></a></Link></div>     
                         {/* <div><Link href="/ksiegowosc"><a><h2 className={styles.last}>księgowość</h2></a></Link></div> */}
-                        <div><Link href="/ksiegowosc"><a><h2>{buttonNames[language].accounting}</h2></a></Link></div>
-                        <div><Link href="/regulamin"><a><h2>{buttonNames[language].conditions}</h2></a></Link></div>
-                        <div><Link href="/polityka-prywatnosci"><a><h2>{buttonNames[language].policy}</h2></a></Link></div>
+                        <div><Link href={`/${language}/ksiegowosc`}><a><h2>{buttonNames[language]?.accounting}</h2></a></Link></div>
+                        <div><Link href={`/${language}/regulamin`}><a><h2>{buttonNames[language]?.conditions}</h2></a></Link></div>
+                        <div><Link href={`/${language}/polityka-prywatnosci`}><a><h2>{buttonNames[language]?.policy}</h2></a></Link></div>
                         {!currentUser && <div className={styles.firstColAuth}>
-                            <div onClick={()=>onAuth(true)}><a><h2 className={styles.first}>{buttonNames[language].login2}</h2></a></div>
-                            <div onClick={()=>onAuth(false)}><a><h2>{buttonNames[language].register}</h2></a></div>
+                            <div onClick={()=>onAuth(true)}><a><h2 className={styles.first}>{buttonNames[language]?.login2}</h2></a></div>
+                            <div onClick={()=>onAuth(false)}><a><h2>{buttonNames[language]?.register}</h2></a></div>
                         </div>}
                         {currentUser && <div className={styles.firstColAuth}>
-                            <div onClick={logout}><a><h2 className={styles.first}>{buttonNames[language].logout}</h2></a></div>
+                            <div onClick={logout}><a><h2 className={styles.first}>{buttonNames[language]?.logout}</h2></a></div>
                         </div>}
                     </div>
                     <div className={styles.column}>
@@ -86,11 +86,11 @@ const Footer = ({auth}) => {
                         </div> */}
                         <WynajmijButton/>
                         {!currentUser && <div className={styles.secondColAuth}>
-                            <div onClick={()=>onAuth(true)}><a><h2 className={styles.first}>{buttonNames[language].login2}</h2></a></div>
-                            <div onClick={()=>onAuth(false)}><a><h2>{buttonNames[language].register}</h2></a></div>
+                            <div onClick={()=>onAuth(true)}><a><h2 className={styles.first}>{buttonNames[language]?.login2}</h2></a></div>
+                            <div onClick={()=>onAuth(false)}><a><h2>{buttonNames[language]?.register}</h2></a></div>
                         </div>} 
                         {currentUser && <div className={styles.secondColAuth}>
-                            <div onClick={logout}><a><h2 className={styles.first}>{buttonNames[language].logout}</h2></a></div>
+                            <div onClick={logout}><a><h2 className={styles.first}>{buttonNames[language]?.logout}</h2></a></div>
                         </div>}                   
                     </div>
                     <div className={styles.thirdColumn}>

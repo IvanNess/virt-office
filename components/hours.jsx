@@ -706,7 +706,7 @@ function Hours({db, auth , outterReset}) {
                             '390px'
                         }}
                     >
-                        { disableConfirmBtn ?<LoadingOutlined style={{color: "black"}}/> : buttonNames[language].reserve}
+                        { disableConfirmBtn ?<LoadingOutlined style={{color: "black"}}/> : buttonNames[language]?.reserve}
                     </button>
                     <button 
                         className={styles.cancelBtn} 
@@ -718,7 +718,7 @@ function Hours({db, auth , outterReset}) {
                             '390px'
                         }}
                     >
-                        {buttonNames[language].cancel}
+                        {buttonNames[language]?.cancel}
                     </button>
                 </div> 
             </div>

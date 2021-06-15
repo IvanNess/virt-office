@@ -21,7 +21,7 @@ function Rezervacja({db, auth}) {
     }, [calendarRedirect])
 
     return (
-        <div className={styles.dane}>
+        <div className={styles.dane} style={{display: language? 'block': 'none'}}>
             <ProfileBoilerplate  auth={auth} db={db}>
                 <Sidebar color='#4CAED5' auth={auth}/>
                 <div className={styles.title}>4. <span className={styles.bold}>{phrases[language]?.rezerwacja}</span></div>

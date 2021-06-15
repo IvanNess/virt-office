@@ -111,7 +111,7 @@ const MenuContent = ({auth}) => {
     return (
         <div className={styles.menuContent} ref={ref}>
             <div className={styles.iconsWrapper}>
-                <Link href="/"><a>
+                <Link href={`/${language}/home`}><a>
                     <div onClick={linkClicked}>
                         <Logo scale={useWindowWidth>=700 ? 1 : 0.6}/>
                     </div>
@@ -134,20 +134,20 @@ const MenuContent = ({auth}) => {
 
             <div className={styles.options}>
                 {/* <div><Link href="/onas"><a><h2 onClick={linkClicked}>o nas</h2></a></Link></div> */}
-                <div><Link href="/cennik"><a><h2 onClick={linkClicked}>{buttonNames[language]?.prices}</h2></a></Link></div>
-                <div><Link href="/ksiegowosc"><a><h2 className={styles.last} onClick={linkClicked}>{buttonNames[language]?.accounting}</h2></a></Link></div>
+                <div><Link href={`/${language}/cennik`}><a><h2 onClick={linkClicked}>{buttonNames[language]?.prices}</h2></a></Link></div>
+                <div><Link href={`/${language}/ksiegowosc`}><a><h2 className={styles.last} onClick={linkClicked}>{buttonNames[language]?.accounting}</h2></a></Link></div>
                 {/* <div><Link href="/regulamin"><a><h2 onClick={linkClicked}>regulamin</h2></a></Link></div>
                 <div><Link href="/polityka-prywatnosci"><a><h2 onClick={linkClicked}>polityka prywatności</h2></a></Link></div> */}
-                {!currentUser && <div><Link href="/#wynajmij-biuro"><a><h2 className={styles.wynajmijBiuro} onClick={linkClicked}>Wynajmij biuro na godziny</h2></a></Link></div>}
+                {!currentUser && <div><Link href={`/${language}/home#wynajmij-biuro`}><a><h2 className={styles.wynajmijBiuro} onClick={linkClicked}>Wynajmij biuro na godziny</h2></a></Link></div>}
                 {/* <div><Link href="/podpis"><a><h2>wirtualny podpis</h2></a></Link></div> */}
 
                 {currentUser && 
                     <div className={styles.profilLinks}>
-                        <div><Link href="/konto/profil"><a><h2 className={styles.profilLink} onClick={linkClicked}>{buttonNames[language]?.menuProfile}</h2></a></Link></div>
-                        <div><Link href="/konto/pakiet"><a><h2 className={styles.profilLink} onClick={linkClicked}>{buttonNames[language]?.meuPakiet}</h2></a></Link></div>
-                        <div><Link href="/konto/rozliczenia"><a><h2 className={styles.profilLink} onClick={linkClicked}>{buttonNames[language]?.menuRozliczenia}</h2></a></Link></div>
-                        <div><Link href="/konto/rezerwacja"><a><h2 className={styles.profilLink} onClick={linkClicked}>{buttonNames[language]?.menuRezerwacja}</h2></a></Link></div>
-                        <div><Link href="/konto/moje-rezerwacje"><a><h2 className={styles.profilLink} onClick={linkClicked}>&nbsp;&nbsp;&nbsp; {buttonNames[language]?.menuMyReservations}</h2></a></Link></div>
+                        <div><Link href={`/konto/${language}/profil`}><a><h2 className={styles.profilLink} onClick={linkClicked}>{buttonNames[language]?.menuProfile}</h2></a></Link></div>
+                        <div><Link href={`/konto/${language}/pakiet`}><a><h2 className={styles.profilLink} onClick={linkClicked}>{buttonNames[language]?.meuPakiet}</h2></a></Link></div>
+                        <div><Link href={`/konto/${language}/rozliczenia`}><a><h2 className={styles.profilLink} onClick={linkClicked}>{buttonNames[language]?.menuRozliczenia}</h2></a></Link></div>
+                        <div><Link href={`/konto/${language}/rezerwacja`}><a><h2 className={styles.profilLink} onClick={linkClicked}>{buttonNames[language]?.menuRezerwacja}</h2></a></Link></div>
+                        <div><Link href={`/konto/${language}/moje-rezerwacje`}><a><h2 className={styles.profilLink} onClick={linkClicked}>&nbsp;&nbsp;&nbsp; {buttonNames[language]?.menuMyReservations}</h2></a></Link></div>
                     </div>
                 }
 

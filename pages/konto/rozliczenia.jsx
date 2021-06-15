@@ -133,7 +133,7 @@ function Rozliczenia({db, auth}) {
     }
 
     return (
-        <div className={styles.rozliczeniaFaktury}>
+        <div className={styles.rozliczeniaFaktury} style={{display: language? 'block': 'none'}}>
             <ProfileBoilerplate  auth={auth} db={db}>
                 <Sidebar color='#4CAED5' auth={auth}/>
                 <div className={styles.title}>3. <span className={styles.bold}>{phrases[language]?.rozliczenia}</span></div>

@@ -49,7 +49,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     content: phrases[language]?.authMessage2,
                     onOk: ()=>dispatch(setPayAfterRegister(false))
                 })
-                router.push('/konto/pakiet')
+                router.push(`/konto/${language}/pakiet`)
             }
         }
         
@@ -90,10 +90,10 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     return
                 }
                 if(calendarRedirect)
-                    return router.push('/konto/rezerwacja')
+                    return router.push(`/konto/${language}/rezerwacja`)
                 // router.push('/konto/profil')
                 if(!payAfterRegister){
-                    router.push('/konto/profil')
+                    router.push(`/konto/${language}profil`)
                 }
             } catch (error) {
                 console.log(error)
@@ -291,10 +291,10 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                             return
                         }
                         if(calendarRedirect)
-                            return router.push('/konto/rezerwacja')
+                            return router.push(`/konto/${language}/rezerwacja`)
                         // router.push('/konto/profil')
                         if(!payAfterRegister){
-                            router.push('/konto/profil')
+                            router.push(`/konto/${language}/profil`)
                         }
                     } catch (error) {
                         console.log(error)

@@ -31,11 +31,11 @@ const Header = () => {
     const PathInner =()=>(
         <div className={styles.pathInner}>
             {
-                router.pathname === '/' ? pathnames[language].home : 
-                router.pathname === '/cennik' ? pathnames[language].cennik : 
-                router.pathname === '/ksiegowosc' ? pathnames[language].ksiegowosc : 
-                router.pathname === '/polityka-prywatnosci' ? pathnames[language].polityka : 
-                router.pathname === '/regulamin' ? pathnames[language].regulamin : ''
+                (router.asPath === '/' || router.asPath.includes('/home'))? pathnames[language]?.home : 
+                router.asPath.includes('/cennik') ? pathnames[language]?.cennik : 
+                router.asPath.includes('/ksiegowosc') ? pathnames[language]?.ksiegowosc : 
+                router.asPath.includes('/polityka-prywatnosci') ? pathnames[language]?.polityka : 
+                router.asPath.includes('/regulamin') ? pathnames[language]?.regulamin : ''
             }
         </div> 
     )
@@ -47,7 +47,7 @@ const Header = () => {
                 <div className={styles.top}>
                     <div className={styles.logoNPath}>
                         <div className={styles.logo}>
-                            <Link href="/"><a>
+                            <Link href={`/${language}/home`}><a>
                                 <Logo scale={1.0}/>
                             </a></Link>
                         </div>
@@ -63,11 +63,11 @@ const Header = () => {
                         </div>
                         <div className={styles[language==='ua'?'uabuttons':'buttons']}>
                             {((packages && packages.length === 0) || currentUser===false) && <div className={styles.button}>
-                                <Link href="/wynajecie"><a>{buttonNames[language].wynajecie}</a></Link>
+                                <Link href={`/${language}/wynajecie`}><a>{buttonNames[language]?.wynajecie}</a></Link>
                             </div>}
-                            {(!currentUser && currentUser !== null) && <button className={styles.loginButton} onClick={login}>{buttonNames[language].login}</button>}
+                            {(!currentUser && currentUser !== null) && <button className={styles.loginButton} onClick={login}>{buttonNames[language]?.login}</button>}
                             {currentUser && <div className={styles.profileButton} >
-                                    <Link href="/konto/profil"><a>{buttonNames[language].profil}</a></Link>
+                                    <Link href={`/konto/${language}/profil`}><a>{buttonNames[language]?.profil}</a></Link>
                                 </div>}
                             {currentUser === null && <button className={styles.plug}></button>}
                         </div>                

@@ -6,6 +6,7 @@ import styles from '../styles/Sidebar.module.scss'
 import MenuContent from './menu-content'
 import { setShowMenu, setLanguage } from '../redux/actions'
 import { useSelector, useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
 
 const Sidebar = ({color = 'white', auth}) => {
 
@@ -13,6 +14,7 @@ const Sidebar = ({color = 'white', auth}) => {
 
     const dispatch = useDispatch()
     const [height, setHeight] = useState('100%')
+    const router = useRouter()
 
     function clickMenu(e){
         console.log(e.target)
@@ -26,7 +28,13 @@ const Sidebar = ({color = 'white', auth}) => {
 
     function clickLanguage(e){
         console.log(e)
-        dispatch(setLanguage(e.target.dataset.id))
+        const language = e.target.dataset.id
+        const pathname = router.query?.pagename ? `/${router.query.pagename}` : `${router.pathname==='/' ? '/home' : router.pathname}`
+        console.log(`/${language}${pathname}`)
+        localStorage.setItem('voLanguage', language)
+        // dispatch(setLanguage(e.target.dataset.id))
+        router.push(`/${language}${pathname}`)
+
     }
 
     // useEffect(()=>{

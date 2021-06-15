@@ -104,12 +104,12 @@ const MyCalendar = () => {
         dispatch(setSelectedDate(moment(selectedDate.raw).subtract(1, 'month'), true))
     }
 
-    const getWeek = ()=>week[language].map(name=><div className={styles.weekDay}>{name}</div>)
+    const getWeek = ()=>language && week[language].map(name=><div className={styles.weekDay}>{name}</div>)
 
-    const getCurrentMonthName = ()=>(`${monthNames[language][selectedDate.month -1]} ${selectedDate.year}`)
+    const getCurrentMonthName = ()=>(language && `${monthNames[language][selectedDate.month -1]} ${selectedDate.year}`)
 
     return (
-        <div className={router.pathname ==='/konto/rezerwacja' ? styles.myRezCalendar : styles.myCalendar} >
+        <div className={router.asPath.includes('/konto') ? styles.myRezCalendar : styles.myCalendar} >
             <div className={styles.top}>
                 <div className={styles.arrow} onClick={prevMonth}><LeftOutlined style={{color: '#474747'}} /></div>
                 <div className={styles.monthName}>{getCurrentMonthName()}</div>

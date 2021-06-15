@@ -6,7 +6,7 @@ import SignupFormOne from './authForms/signup-form-one'
 import { useSelector, useDispatch } from 'react-redux'
 import SignupFormTwo from './authForms/signup-form-two'
 import SignupFormThree from './authForms/signup-form-three'
-import { setShowAuth, setCurrentUser, setCalendarRedirect, setPayAfterRegister, registerAndReserve, setPackages } from '../redux/actions'
+import { setShowAuth, setCurrentUser, setCalendarRedirect, setPayAfterRegister, registerAndReserve, setPackages, setLanguage } from '../redux/actions'
 import Link from 'next/link'
 import { useClickOutside } from 'react-click-outside-hook'
 import ForgetForm from './authForms/forget-form'
@@ -53,16 +53,50 @@ function AuthBoilerplate({db, auth, posts}) {
     }, [currentUser, packages])
 
     useEffect(()=>{
-        console.log('router', router)
-        const isKontoPage = ['/konto/moje-rezerwacje', '/konto/pakiet', '/konto/profil', '/konto/rezerwacja', '/konto/rozliczenia'].includes(router.pathname)
+        // console.log('router', router)
+        const isKontoPage = router.pathname.includes('/konto')
         if(isKontoPage && currentUser === false){
             router.push('/')
         }
-        const isWynajeciePage = router.pathname === '/wynajecie'
+        const isWynajeciePage = router.pathname.includes('/wynajecie')
         if(isWynajeciePage && packages && packages.length > 0){
             router.push('/')
         }
     }, [currentUser, packages, router])
+
+    useEffect(()=>{
+        console.log('localstorage router', localStorage, router)
+        // if(!router.query.lang && (localStorage.getItem('voLanguage')!=='pl' || !localStorage.getItem('voLanguage'))){
+        //     const pathname = router.query?.pagename ? `/${router.query.pagename}` : `${router.pathname==='/' ? '/home' : router.pathname}`
+        //     router.push(`/${localStorage.getItem('voLanguage')}${pathname}`)
+        // }
+
+        // const newLangauage = router.query.lang || localStorage.getItem('voLanguage') || 'pl'
+        // if(language !== newLangauage){
+        //     dispatch(setLanguage(newLangauage))
+        // }
+        languageSetup()
+
+        function languageSetup(){
+            // if(router.asPath.includes('polityka') || router.asPath.includes('regulamin'))
+            //     return
+            const queryLanguage = router.query.lang
+            const localstorageLanguage = localStorage.getItem('voLanguage')
+            const pagename = router.asPath==='/'? '/home': 
+                router.asPath.includes('/konto')? router.asPath.split('/konto')[1] : router.asPath
+            const konto = router.asPath.includes('/konto')? '/konto' : ''
+            if(queryLanguage){
+                return dispatch(setLanguage(queryLanguage))
+            }
+            if(!queryLanguage && (!localstorageLanguage || localstorageLanguage==='pl')){
+                return dispatch(setLanguage('pl'))
+            }
+            if(!queryLanguage && localstorageLanguage!=='pl'){
+                return router.push(`${konto}/${localstorageLanguage}${pagename}`)
+            }
+        }
+
+    }, [])
 
     async function getUserPackages(){
         console.log('getUserPackagesRecords')
