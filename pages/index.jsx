@@ -68,7 +68,9 @@ export default function Home({db, auth}) {
           <HeaderTwo/>
           <HeaderThree/>
         </Carousel>
-        <WynajmijButton/>
+        <div className={styles.wynajmijButtonWrapper}>
+          <WynajmijButton/>
+        </div>
       </Billboard>
 
       <div style={{margin: 'auto', maxWidth: '1440px'}}>

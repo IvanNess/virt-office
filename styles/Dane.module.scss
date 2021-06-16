@@ -6,6 +6,7 @@
     @include profileInput();
     .text{
         @include profileText();
+        max-width: 610px;
     }
     input{
         @media (max-width: 700px) {

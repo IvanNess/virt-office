@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import Sidebar from '../../components/side-bar';
 import { phrases } from '../../accessories/constants';
+import RozliczeniaDescription from '../../components/konto/rozliczenia-description';
 
 const { Option } = Select;
 
@@ -138,7 +139,7 @@ function Rozliczenia({db, auth}) {
                 <Sidebar color='#4CAED5' auth={auth}/>
                 <div className={styles.title}>3. <span className={styles.bold}>{phrases[language]?.rozliczenia}</span></div>
                 <div className={styles.text}>
-                    <div className={styles.small}>{phrases[language]?.packDescription2}</div>
+                    <RozliczeniaDescription/>
                 </div>
 
                 <div className={styles.table}>

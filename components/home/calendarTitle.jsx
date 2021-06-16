@@ -10,7 +10,7 @@ const CalendarTitle = () => {
     return (
         <>
             {language === 'pl' && 
-                <><span className={styles.boldFont}>WYNAJMIJ BIURO NA GODZINY</span></>
+                <><span className={styles.boldFont}>Rezerwacja sali&nbsp;konferencyjnej NA&nbsp;GODZINY</span></>
             }
             {language === 'ua' && 
                 <><span className={styles.boldFont}>ПОГОДИННА ОРЕНДА КОНФЕРЕНЦ ЗАЛИ</span></>

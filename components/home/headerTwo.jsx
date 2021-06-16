@@ -35,7 +35,7 @@ const HeaderTwo = () => {
                             всі потреби для <span className={styles.headerBoldFont}>ПІДПРИЄМЦЯ</span> в&nbsp;одному пакеті 
                         </div>
                         <div className={styles.bottom}>
-                            <span className={styles.headerBoldFont}>АДРЕСА</span> - офісні послуги – <span className={styles.headerBoldFont}>БУХГАЛТЕРІЯ</span> – юридичні консультації - <span className={styles.headerBoldFont}>МАРКЕТИНГ</span>
+                            <span className={styles.headerBoldFont}>АДРЕСА</span> - офісні послуги – <span className={styles.headerBoldFont}>БУХГАЛТЕРІЯ</span> – юридичні консультації
                         </div>
                     </div>
                     <div className={styles.headerText}>
@@ -54,7 +54,7 @@ const HeaderTwo = () => {
                         all needs of the <span className={styles.headerBoldFont}>ENTREPRENEUR</span> in&nbsp;one package 
                         </div>
                         <div className={styles.bottom}>
-                            <span className={styles.headerBoldFont}>ADRESS</span> - office services – <span className={styles.headerBoldFont}>ACCOUNTING</span> – legal consultations - <span className={styles.headerBoldFont}>MARKETING</span>
+                            <span className={styles.headerBoldFont}>ADRESS</span> - office services – <span className={styles.headerBoldFont}>ACCOUNTING</span> – legal consultations
                         </div>
                     </div>
                     <div className={styles.headerText}>

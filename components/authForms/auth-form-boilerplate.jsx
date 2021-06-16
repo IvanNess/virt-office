@@ -93,7 +93,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     return router.push(`/konto/${language}/rezerwacja`)
                 // router.push('/konto/profil')
                 if(!payAfterRegister){
-                    router.push(`/konto/${language}profil`)
+                    router.push(`/konto/${language}/profil`)
                 }
             } catch (error) {
                 console.log(error)

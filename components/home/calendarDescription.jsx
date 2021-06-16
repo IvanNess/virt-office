@@ -2,7 +2,6 @@ import React from 'react'
 import styles from '../../styles/Home.module.scss'
 import { useSelector } from 'react-redux'
 
-
 const CalendarDescription = () => {
 
     const language = useSelector(state=>state.language)
@@ -12,7 +11,13 @@ const CalendarDescription = () => {
             {language === 'pl' && 
                 <>
                     wynajem sali konferencyjnej na godziny jest świetnym uzupełnieniem wynajmu wirtualnego adresu. Czasami powstaje potrzeba spotkania się z partnerami biznesowymi w warunkach komfortowych do przeprowadzenia rozmów lub prezentacji. 
-                    <span className={styles.smallTextBold}>{` SPRAWDŹ DOSTĘPNE TERMINY I ZAREZERWUJ`}</span>
+                    <span className={styles.smallTextBold}>{` SPRAWDŹ DOSTĘPNE TERMINY I ZAREZERWUJ`}</span>.
+                    Sala konferencyjna do wynajęcia mieści się na {` `}
+                    <a className={styles.calendarLink} href={`https://www.google.com/maps/place/Zawodzie+20,+80-726+Gda%C5%84sk`} target='_blank'>
+                        <span className={styles.smallTextBold}>ul.&nbsp;ZAWODZIE&nbsp;20&nbsp;w&nbsp;GDAŃSKU</span>
+                    </a>
+                    {` `}
+                    - wkrótce udostępnimy <span className={styles.smallTextBold}>NOWE LOKALIZACJE</span>
                 </>
             }
             {language === 'ua' && 

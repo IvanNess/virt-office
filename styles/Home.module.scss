@@ -48,7 +48,7 @@
 
 .calendarTitle{
     @include title();
-    max-width: 900px;
+    max-width: 1050px;
     margin-bottom: 31px;
     margin-top: 86px;
     @media (max-width: 700px) {
@@ -56,6 +56,10 @@
         margin-top: 61px;
         margin-bottom: 16px;
     }
+}
+
+.calendarLink{
+    text-decoration: underline;
 }
 
 .headerForm input[type=button]{
@@ -316,6 +320,7 @@
     margin-top: 40px;
     max-width: none;
     font: normal normal normal 56px/66px var(--sans);
+    margin-bottom: 20px;
     @media (max-width: 700px){
         margin-top: 20px;
         margin-left: 26px;
@@ -382,7 +387,7 @@
     width: auto;
     .top{
         max-width: 1020px;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
         // text-align: center;
         margin-right: 150px;
         @media all and (max-width: 1024px){
@@ -572,4 +577,11 @@
 .underlined{
     text-decoration: underline;
     font-weight: bold;
+}
+
+.wynajmijButtonWrapper{
+    min-height: 50px;
+    @media (max-width: 700px) {
+        min-height: 70px;
+    }
 }

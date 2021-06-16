@@ -5,6 +5,7 @@
     @include konto();
     .text{
         @include profileText();
+        max-width: 600px;
     }
 }
 
