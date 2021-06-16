@@ -8,7 +8,7 @@ import '../../server-setup/mongoose-setup'
 import {serviceAccount, firebaseInit} from '../../server-setup/firebase' 
 import {runMiddleware} from '../../utilities'
 import Cors from 'cors'
-import { packageMonthDaays, packageKwartalDays } from '../../accessories/constants'
+import { packageMonthDays, packageKwartalDays, packageYearDays } from '../../accessories/constants'
 
 const PackageSchema = require('../../mongo-models/package-model')
 const UserSchema = require('../../mongo-models/user-model')
