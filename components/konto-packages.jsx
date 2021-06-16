@@ -13,7 +13,7 @@ import { updatePackagePay, przelewyUpdatePackagePay } from '../utilities'
 import { useRouter } from 'next/router'
 import PakietTableSecond from './pakiet-table-second'
 import PakietTableThird from './pakiet-table-third'
-import { phrases, buttonNames } from '../accessories/constants'
+import { phrases, buttonNames, packageMonthDays, packageKwartalDays, packageYearDays } from '../accessories/constants'
 const { Panel } = Collapse;
 
 const Header = ({isMain, packageName, endDate, updPrice=null, auth, price, pakiet})=>{
@@ -100,7 +100,8 @@ const KontoPackages = ({auth}) => {
         console.log('packageName', packageName)
         setPackageName(packageName)
 
-        const days = pakiet.days || (pakiet.hiredPeriod === "Miesiąc" ? 31 : pakiet.hiredPeriod === "Kwartał" ? 93 : 366)
+        const days = pakiet.days || (pakiet.hiredPeriod === "Miesiąc" ? packageMonthDays : 
+            pakiet.hiredPeriod === "Kwartał" ? packageKwartalDays : packageYearDays)
         // const days = pakiet.hiredPeriod === "Miesiąc" ? 31 :
         //     pakiet.hiredPeriod === "Kwartał" ? 93 : 366
 

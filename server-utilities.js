@@ -1,5 +1,6 @@
 import axios from 'axios'
 import crypto from 'crypto'
+import { domain } from './accessories/constants'
 
 export const getPrzelewyToken = async ({sessionId, amount, email, description="test", country="PL", language="pl", timeLimit=5})=>{
     // const sessionId = `mySession${Math.floor(Math.random()*1000)}`
@@ -33,8 +34,8 @@ export const getPrzelewyToken = async ({sessionId, amount, email, description="t
             "email": email,
             "country": country,
             "language": language,
-            "urlReturn": "https://virt-office.vercel.app/konto/rozliczenia",
-            "urlStatus": "https://virt-office.vercel.app/api/notification",
+            "urlReturn": `${domain}/konto/rozliczenia`,
+            "urlStatus": `${domain}/api/notification`,
             "sign": gen_hash,
             waitForResult: true,
             timeLimit,

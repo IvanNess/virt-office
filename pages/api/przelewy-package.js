@@ -8,6 +8,7 @@ import '../../server-setup/mongoose-setup'
 import {serviceAccount, firebaseInit} from '../../server-setup/firebase' 
 import {runMiddleware} from '../../utilities'
 import Cors from 'cors'
+import { packageMonthDaays, packageKwartalDays } from '../../accessories/constants'
 
 const PackageSchema = require('../../mongo-models/package-model')
 const UserSchema = require('../../mongo-models/user-model')
@@ -40,8 +41,8 @@ export default async(req, res) => {
 
         const user = await UserSchema.findOne({ firebaseId: uid }).exec()
 
-        const days = hiredPeriod === "Miesiąc" ? 31 :
-        hiredPeriod === "Kwartał" ? 93 : 366
+        const days = hiredPeriod === "Miesiąc" ? packageMonthDays :
+        hiredPeriod === "Kwartał" ? packageKwartalDays : packageYearDays
 
         const updStartDate = moment(startDate).startOf('date')
         const endDate =  moment(updStartDate).add(days-1, "d").endOf('date')

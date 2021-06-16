@@ -1,10 +1,14 @@
 export const email = 'biuro@virtoffice.pl'
+export const domain = "https://virtoffice.pl"
 
 export const utcOffset = 2
 
 export const packageMonthCoeff = 1
 export const packageKwartalCoeff = 2.5
 export const packageYearCoeff = 9
+export const packageMonthDays = 30
+export const packageKwartalDays = 90
+export const packageYearDays = 365
 
 export const week = {
     pl: ['pon', 'wto', 'śro', 'czw', 'pią', 'sob', 'nie'],
