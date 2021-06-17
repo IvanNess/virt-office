@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Logo from './logo'
 import { email, pathnames, buttonNames } from '../accessories/constants'
 import { useRouter } from 'next/router'
+import LanguageChoice from './languageChoice'
 
 
 const Header = () => {
@@ -78,7 +79,11 @@ const Header = () => {
                     
                 </div>
             </div>
-            <PathInner/>
+            <div className={styles.languageNPath}>
+                <LanguageChoice/>
+                <PathInner/>
+            </div>
+            
         </div>
         
     )

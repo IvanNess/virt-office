@@ -14,6 +14,7 @@ import Logo from './logo'
 import Link from 'next/link'
 import { email, phrases, buttonNames } from '../accessories/constants'
 import useWindowWidth from '../hooks/useWindowWidth'
+import LanguageChoice from './languageChoice'
 
 // Hook
 function useOnClickOutside(ref, handler) {
@@ -125,6 +126,7 @@ const MenuContent = ({auth}) => {
                     <CloseIcon style={{fontSize: '70px', color: "white"}}/>
                 </div>
             </div>
+            <LanguageChoice/>
 
             <div className={styles.textOne}>{phrases[language]?.menuContentText1}</div>
 

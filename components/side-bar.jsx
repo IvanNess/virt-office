@@ -7,6 +7,7 @@ import MenuContent from './menu-content'
 import { setShowMenu, setLanguage } from '../redux/actions'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
+import LanguageChoice from './languageChoice'
 
 const Sidebar = ({color = 'white', auth}) => {
 
@@ -55,13 +56,7 @@ const Sidebar = ({color = 'white', auth}) => {
             <div className={styles.languageBlock}>
                 <div className={styles.text}>Choose your language</div>
 
-                <div className={styles.languages} onClick={clickLanguage}>
-                    <div className={styles[language==="pl"? 'active': 'language']} data-id='pl'>PL</div>
-                    /
-                    <div className={styles[language==="en"? 'active': 'language']} data-id='en'>EN</div>
-                    /
-                    <div className={styles[language==="ua"? 'active': 'language']} data-id='ua'>UA</div>
-                </div>
+                <LanguageChoice/>
             </div>
 
             {showMenu && <MenuContent auth={auth}/>}

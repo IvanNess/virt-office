@@ -32,7 +32,7 @@ function Rightbar({db, auth}) {
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        if(router.pathname==='/wynajecie' && windowWidth <= 1124){
+        if(router.asPath.includes('/wynajecie') && windowWidth <= 1124){
             setSideBarColor('#4CAED5')
         } else{
             setSideBarColor('white')

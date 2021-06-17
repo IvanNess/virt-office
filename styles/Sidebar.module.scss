@@ -10,13 +10,10 @@ $language-taxt-width: 98px;
     height: 100%;
     border: 1px solid #B9B9B9;
     z-index: 1;
-    // @media all and (max-width: 1024px){
-    //     width: 70px;
-    //     display: flex;
-    // }
-    // @media all and (max-width: 1024px){
-    //     display: none;
-    // }
+    @media all and (max-width: 1350px){
+        border: none;
+        height: auto;
+    }
     @media all and (max-width: 1215px){
         border: none;
         height: auto;
@@ -59,6 +56,9 @@ $language-taxt-width: 98px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    @media all and (max-width: 1350px){
+        display: none;
+    }
     @media all and (max-width: 1215px){
         display: none;
     }
@@ -72,21 +72,29 @@ $language-taxt-width: 98px;
         padding-bottom: 0;
         padding-top: 0;
     }
-    .languages{
-        display: flex;
-        width: $language-taxt-width;
-        justify-content: space-between;
-        font: normal normal 300 16px/19px var(--sans-light);
+}
+
+.languages{
+    display: flex;
+    width: $language-taxt-width;
+    justify-content: space-between;
+    font: normal normal 300 16px/19px var(--sans-light);
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    .active{
+        font: normal normal 300 16px/19px var(--sans-black);
         letter-spacing: 0px;
         color: #FFFFFF;
+        cursor: pointer;
+    }
+    .language{
+        cursor: pointer;
+    }
+    @media(max-width: 700px){
+        font-size: 12px;
+        width: 66px;
         .active{
-            font: normal normal 300 16px/19px var(--sans-black);
-            letter-spacing: 0px;
-            color: #FFFFFF;
-            cursor: pointer;
-        }
-        .language{
-            cursor: pointer;
+            font-size: 12px;
         }
     }
 }
