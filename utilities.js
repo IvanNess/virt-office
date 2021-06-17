@@ -2,7 +2,8 @@ import { loadStripe } from "@stripe/stripe-js"
 import axios from 'axios'
 import { parseISO } from 'date-fns'; 
 import moment from 'moment'
-import {utcOffset} from './accessories/constants'
+import {utcOffset, phrases, packageMonthDays, packageKwartalDays, packageYearDays} from './accessories/constants'
+import { Modal } from "antd";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE);
 
@@ -191,8 +192,8 @@ export const przelewyPackagePay = async ({ auth, hiringChoices, email, country="
 
     try {
         const invoiceDate = +new Date()
-        const packageDuration = hiringChoices[1].choice==='Miesiąc' ? 30*24*60*60*1000:
-            hiringChoices[1].choice==='Kwartał'? 3*30*24*60*60*1000: 365*24*60*60*1000
+        const packageDuration = hiringChoices[1].choice==='Miesiąc' ? packageMonthDays*24*60*60*1000:
+            hiringChoices[1].choice==='Kwartał'? packageKwartalDays*24*60*60*1000: packageYearDays*24*60*60*1000
 
         const token = await auth.currentUser.getIdToken()
         console.log('auth token', auth, token)
@@ -224,6 +225,10 @@ export const przelewyPackagePay = async ({ auth, hiringChoices, email, country="
 
     } catch(err){
         console.log('package pay error', err)
+        Modal.error({
+            // title: phrases[language]?.authMessage4,
+            content: `${err.response?.data.message || err.message}. ${phrases[language]?.pageReload}`,
+        });
     }
 }
 
@@ -263,6 +268,10 @@ export const przelewyUpdatePackagePay = async ({
 
     } catch(err){
         console.log('package pay error', err)
+        Modal.error({
+            // title: phrases[language]?.authMessage4,
+            content: `${err.response?.data.message || err.message}. ${phrases[language]?.pageReload}`,
+        });
     }
 }
 
@@ -301,6 +310,10 @@ export const przelewyReservationPay = async ({auth, selectedDate, startHour, fin
 
     } catch (error) {
         console.log('error', error)
+        Modal.error({
+            // title: phrases[language]?.authMessage4,
+            content: `${error.response?.data.message || error.message}. ${phrases[language]?.pageReload}`,
+        });
     }
 }
 

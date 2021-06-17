@@ -50,6 +50,23 @@ export const periods = {
             title: "Рік",
             text: "Вам подобається наша пропозиція та не подобаються часті платежі? Дякуємо за довіру. Як мотиваційний фактор, другий рік оренди віртуальної адреси для вашої компанії буде на <span class='boldSelectOption'>10%&nbsp;дешевшим</span>. Ми віримо, що завдяки пропозиції віртуального офісу ви досягнете успіху."
         }
+    ],
+    en: [
+        {
+            id: "0",
+            title: "Miesiąc",
+            text: "Jeśli masz ochotę na test, <span class='boldSelectOption'>sprawdź jak działa wynajem adresu</span>. Zalecamy dłuższy wynajem, ale cieszymy się, że chcesz wypróbować naszą usługę wirtualnego biura chociaż na jeden miesiąc."
+        },
+        {
+            id: "1",
+            title: "Kwartał",
+            text: "Nie jesteś pewny jak długo będzie funkcjonować Twoja firma? Nie ryzykuj długiego wynajmu adresu, <span class='boldSelectOption'>Możemy rozliczać się kwartalnie</span>, to zminimalizuje ryzyko inwestycji w Twoją firmę."
+        },
+        {
+            id: "2",
+            title: "Rok",
+            text: "Podoba Ci się nasza oferta i nie lubisz częstych płatności? Dziękujemy za zaufanie. W ramach rewanżu drugi rok wynajmu wirtualnego adresu dla Twojej firmy będzie o <span class='boldSelectOption'>10%&nbsp;tańszy</span>. Wierzymy, że dzięki ofercie wirtualnego biura odniesiesz sukces."
+        }
     ]
 }
 

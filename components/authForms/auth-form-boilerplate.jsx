@@ -40,12 +40,12 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                 //pay actions
                 console.log('pay action')
                 // await packagePay({auth, hiringChoices})
-                await przelewyPackagePay({auth, hiringChoices, email: currentUser.email, router})
+                await przelewyPackagePay({auth, hiringChoices, email: currentUser.email, router, language})
                 
             } else if(payAfterRegister && packages && packages.length > 0){
                 // dispatch(setPayAfterRegister(false))
                 Modal.error({
-                    title: phrases[language]?.authMessage1,
+                    // title: phrases[language]?.authMessage1,
                     content: phrases[language]?.authMessage2,
                     onOk: ()=>dispatch(setPayAfterRegister(false))
                 })
@@ -86,7 +86,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                 if(selectedDate.registerAndReserve){
                     // dispatch(registerAndReserve(false))
                     // await reservationPay({auth, selectedDate, startHour, finishHour})
-                    await przelewyReservationPay({auth, selectedDate, startHour, finishHour, router})
+                    await przelewyReservationPay({auth, selectedDate, startHour, finishHour, router, language})
                     return
                 }
                 if(calendarRedirect)
@@ -102,7 +102,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                     return
                 }
                 Modal.error({
-                    title: phrases[language]?.authMessage4,
+                    // title: phrases[language]?.authMessage4,
                     content: `${error.response?.data || error.message}`,
                 });
                 return
@@ -115,19 +115,26 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         dispatch(setForgetFormProp('emailPlaceholder', phrases[language]?.authMessage5))
                         break
                     }
-                    await auth.sendPasswordResetEmail(forgetForm.email)
-                    Modal.info({
-                        // title: 'This is a notification message',
-                        content: (
-                          <div>
-                            <p>{`${phrases[language]?.authMessage6} ${forgetForm.email}`}</p>
-                          </div>
-                        ),
-                        onOk() {
-                            dispatch(setSignupFormProp('page', undefined))
-                            dispatch(setShowAuth({isLogin: true}))
-                        },
-                    });
+                    try {
+                        await auth.sendPasswordResetEmail(forgetForm.email)
+                        Modal.info({
+                            // title: 'This is a notification message',
+                            content: (
+                            <div>
+                                <p>{`${phrases[language]?.authMessage6} ${forgetForm.email}`}</p>
+                            </div>
+                            ),
+                            onOk() {
+                                dispatch(setSignupFormProp('page', undefined))
+                                dispatch(setShowAuth({isLogin: true}))
+                            },
+                        });
+                    } catch (error) {
+                        Modal.error({
+                            // title: phrases[language]?.authMessage4,
+                            content: `${err.response?.data.message || err.message}. ${phrases[language]?.pageReload}`,
+                        });
+                    }
 
                 case 1: 
                     // if(!signupForm.name || signupForm.name.length ===0){
@@ -164,7 +171,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         }
                         // alert(`ERROR: ${error.response?.data || error.message}`)
                         Modal.error({
-                            title: phrases[language]?.authMessage4,
+                            // title: phrases[language]?.authMessage4,
                             content: `${error.response?.data || error.message}`,
                         });
                         break
@@ -317,7 +324,7 @@ function AuthFormBoilerplate({children, isLogin=false, page, db, auth}) {
                         }
                         // alert(`ERROR: ${error.response?.data || error.message}`)
                         Modal.error({
-                            title: phrases[language]?.authMessage4,
+                            // title: phrases[language]?.authMessage4,
                             content: `${error.response?.data || error.message}`,
                         });
                     }

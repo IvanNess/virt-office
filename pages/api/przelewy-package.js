@@ -123,7 +123,9 @@ export default async(req, res) => {
 
     } catch (error) {
         console.log('Error in package creation:', error)
-        res.status(500).json('package creation error.')        
+        res.status(500).json({
+            message: error.message
+        })        
     }
 
 }

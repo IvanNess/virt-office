@@ -275,7 +275,12 @@ export const phrases = {
         authMessage12: 'E-mail podany podczas rejestracji',
         password: 'Hasło',
         email: 'E-mail',
-        step: 'step'
+        step: 'step',
+        reserveError: 'Błąd rezerwacji',
+        reserveMessage: 'Musisz wybrać początek i koniec rezerwacji.',
+        reserveMessage2: 'Musisz wybrać koniec rezerwacji.',
+        reserveMessage3: 'Ten czas nie może być początkiem rezerwacji.',
+        pageReload: 'Proszę odświeżyć stronę.',
     },
     ua: {
         footerOne: "Дійте з будь-якої точки світу завдяки можливості віртуального офісу.",
@@ -346,8 +351,12 @@ export const phrases = {
         authMessage12: 'E-mail podany podczas rejestracji',
         password: 'Password',
         email: 'E-mail',
-        step: 'крок'
-
+        step: 'крок',
+        reserveError: 'Błąd rezerwacji',
+        reserveMessage: 'Musisz wybrać początek i koniec rezerwacji.',
+        reserveMessage2: 'Musisz wybrać koniec rezerwacji.',
+        reserveMessage3: 'Ten czas nie może być początkiem rezerwacji.',
+        pageReload: 'Proszę odświeżyć stronę.',
     },
     en: {
         footerOne: "Operate from any place around the world thanks to the virtual office option.",
@@ -418,8 +427,12 @@ export const phrases = {
         authMessage12: 'E-mail podany podczas rejestracji',
         password: 'Hasło',
         email: 'E-mail',
-        step: 'step'
-
+        step: 'step',
+        reserveError: 'Błąd rezerwacji',
+        reserveMessage: 'Musisz wybrać początek i koniec rezerwacji.',
+        reserveMessage2: 'Musisz wybrać koniec rezerwacji.',
+        reserveMessage3: 'Ten czas nie może być początkiem rezerwacji.',
+        pageReload: 'Proszę odświeżyć stronę.',
     }
 }
 

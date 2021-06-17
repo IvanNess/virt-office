@@ -46,7 +46,7 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
     }
     
     const selectBlock = (idx, isBtn=false) =>{
-        if(router.pathname==='/cennik' && !isBtn)
+        if(router.asPath.includes('/cennik') && !isBtn)
             return
         setSelectedBlock(idx)
         dispatch(updateHiringChoice({
@@ -78,28 +78,28 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
         }
         if(isBtn){
             dispatch(setHiringChoiceNumber(2))
-            router.push('/wynajecie')
+            router.push(`/${language}/wynajecie`)
         }
     }
 
     const getBlocksClassName = () =>{
-        return (router.pathname==='/cennik')? styles.blocks: styles.kontoBlocks
+        return (router.asPath.includes('/cennik'))? styles.blocks: styles.kontoBlocks
     }
 
     return (
         <div className={styles.cennikChoices}>
             <div className={getBlocksClassName()} style={{marginRight}}>
                 
-                <div className={router.pathname==='/cennik'? styles.cennikBlock: selectedBlock===0 ? styles.selectedBlock : styles.block} 
+                <div className={router.asPath.includes('/cennik')? styles.cennikBlock: selectedBlock===0 ? styles.selectedBlock : styles.block} 
                     onClick={()=>selectBlock(0)}
-                    style={{cursor: router.pathname==='/cennik'? 'auto': 'pointer'}}
+                    style={{cursor: router.asPath.includes('/cennik')? 'auto': 'pointer'}}
                 >
 
                     <div className={styles.main}>
                         <div className={styles.blockTitle}>{phrases[language]?.cennikTitleOne}</div>
                         <div className={styles.digit}>55</div>
                         <div className={styles.afterDigit}>{phrases[language]?.plnPerMonth}</div>
-                        {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(0, true)}>
+                        {router.asPath.includes('/cennik') && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(0, true)}>
                             {buttonNames[language]?.wynajecie}
                         </div>}
                         {/* {router.pathname === '/cennik' && <WynajmijButton/>} */}
@@ -107,16 +107,16 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                     <CennikChoiceOneDescription/>             
                 </div>
 
-                <div className={router.pathname==='/cennik'? styles.cennikMainBlock: selectedBlock===1 ? styles.selectedBlock : 
+                <div className={router.asPath.includes('/cennik')? styles.cennikMainBlock: selectedBlock===1 ? styles.selectedBlock : 
                     selectedBlock===null? styles.mainBlock: styles.block} 
                     onClick={()=>selectBlock(1)}
-                    style={{cursor: router.pathname==='/cennik'? 'auto': 'pointer'}}
+                    style={{cursor: router.asPath.includes('/cennik')? 'auto': 'pointer'}}
                 >
                     <div className={styles.main}>
                         <div className={styles.blockTitle}>{phrases[language]?.cennikTitleThree}</div>
                         <div className={styles.digit}>{price}</div>
                         <div className={styles.afterDigit}>{phrases[language]?.plnPerMonth}</div>
-                        {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(1, true)}>
+                        {router.asPath.includes('/cennik') && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(1, true)}>
                             {buttonNames[language]?.wynajecie}
                         </div>}
                         {/* {router.pathname === '/cennik' && <WynajmijButton/>} */}
@@ -150,15 +150,15 @@ const CennikChoices = ({marginRight="149px", showSlash=true}) => {
                 </div>
 
                 <div 
-                    className={router.pathname==='/cennik'? styles.cennikBlock: selectedBlock===2 ? styles.selectedBlock : styles.block} 
+                    className={router.asPath.includes('/cennik')? styles.cennikBlock: selectedBlock===2 ? styles.selectedBlock : styles.block} 
                     onClick={()=>selectBlock(2)}
-                    style={{cursor: router.pathname==='/cennik'? 'auto': 'pointer'}}
+                    style={{cursor: router.asPath.includes('/cennik')? 'auto': 'pointer'}}
                 >
                     <div className={styles.main}>
                         <div className={styles.blockTitle}>{phrases[language]?.cennikTitleThree}</div>
                         <div className={styles.digit}>450</div>
                         <div className={styles.afterDigit}>{phrases[language]?.plnPerMonth}</div>
-                        {router.pathname === '/cennik' && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(2, true)}>
+                        {router.asPath.includes('/cennik') && <div className={styles.wynajmijBtn} onClick={()=>selectBlock(2, true)}>
                             {buttonNames[language]?.wynajecie}
                         </div>}
                         {/* {router.pathname === '/cennik' && <WynajmijButton/>} */}

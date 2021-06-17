@@ -19,7 +19,12 @@ const WynajecieTitleTwo = () => {
                 <div className={styles.servicesTitle}>2. виберіть 
                     <span className={styles.boldFont}> тривалість&nbsp;договору</span>
                 </div>
-            }        
+            }   
+            {language === 'en' && 
+                    <div className={styles.servicesTitle}>2. WYBIERZ 
+                        <span className={styles.boldFont}> CZAS TRWANIA UMOWY</span>
+                    </div>
+            }     
         </>
     )
 }

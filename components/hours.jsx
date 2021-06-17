@@ -15,7 +15,8 @@ import { reservationPay, przelewyReservationPay } from '../utilities'
 import { LoadingOutlined } from '@ant-design/icons'
 import useWindowWidth from '../hooks/useWindowWidth'
 import { useRouter } from 'next/router'
-import { utcOffset, buttonNames } from '../accessories/constants'
+import { utcOffset, buttonNames, phrases } from '../accessories/constants'
+import { Modal } from 'antd'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE);
 
@@ -110,6 +111,7 @@ function Hours({db, auth , outterReset}) {
                 
             }
         }
+        newUpdHours[newUpdHours.length-1].className = 'border'
         // setUpdHours(newUpdHours)
         dispatch(setReservedHoursUtilitiesProp('updHours', newUpdHours))
     }
@@ -159,6 +161,7 @@ function Hours({db, auth , outterReset}) {
                 
             }
         }  
+        newUpdHours[newUpdHours.length-1].className = 'border'
         // setStartHour(null)
         dispatch(setReservedHoursUtilitiesProp('startHour', null))
         // setFinishHour(null) 
@@ -189,6 +192,13 @@ function Hours({db, auth , outterReset}) {
                 dispatch(setShowAuth({show: true, isLogin: true}))
                 // document.body.style.overflow = "hidden"
             }
+        } else{
+            const content = startHour ? phrases[language]?.reserveMessage2 : phrases[language]?.reserveMessage
+            Modal.error({
+                title: phrases[language]?.reserveError,
+                content,
+                onOk: ()=>{}
+            })
         }
         // setDisableConfirmBtn(false)
     }
@@ -375,6 +385,13 @@ function Hours({db, auth , outterReset}) {
         console.log('start hour', startHour)
         if(['reserved', 'past', "border", "noaccess", "init"].includes(className)){
             console.log('denied')
+            if(className==='border'){
+                Modal.error({
+                    title: phrases[language]?.reserveError,
+                    content: phrases[language]?.reserveMessage3,
+                    onOk: ()=>{}
+                })
+            }
             return
         }
 

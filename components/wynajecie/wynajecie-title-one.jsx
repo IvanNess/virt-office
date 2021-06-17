@@ -19,7 +19,12 @@ const WynajecieTitleOne = () => {
                 <div className={styles.servicesTitle}>1. вибір  тарифа 
                     <span className={styles.boldFont}> виртуального&nbsp;офісу</span>
                 </div>
-            }        
+            } 
+            {language === 'en' && 
+                <div className={styles.servicesTitle}>1. WYBÓR USŁUGI
+                    <span className={styles.boldFont}> BIURA WIRTUALNEGO</span>
+                </div>
+            }       
         </>
     )
 }
